@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Component
+  - Connection
+  - Pipe
+  - ahu
+  - Selection
+  - Component/AHU
+  - Component/Chiller
+  - Component/CoolingTower
+  - Component/CwpOpt
+  - Component/CwpOptElavated
   layers:
   - Default
   - TransparentFX
