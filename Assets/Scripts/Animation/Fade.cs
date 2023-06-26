@@ -27,6 +27,7 @@ public class Fade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
         Debug.Log(PlayerPrefs.GetString("previousScene"));
         previousScene = PlayerPrefs.GetString("previousScene");
 
@@ -45,7 +46,7 @@ public class Fade : MonoBehaviour
             fadeImage.color = new Color32(red, green, blue, fadeAmount);
             fadeAmount -= fadeSpeed;
 
-            if(fadeAmount == 0)
+            if(fadeAmount <= 0)
             {
                 fadeIn = false;
                 fadeImage.enabled = false;
@@ -59,7 +60,7 @@ public class Fade : MonoBehaviour
             fadeImage.color = new Color32(red, green, blue, fadeAmount);
             fadeAmount += fadeSpeed;
 
-            if(fadeAmount == 255)
+            if(fadeAmount >= 255)
             {
                 Debug.Log("transition");
 

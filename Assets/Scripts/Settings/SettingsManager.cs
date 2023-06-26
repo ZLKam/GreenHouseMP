@@ -12,15 +12,19 @@ public class SettingsManager : MonoBehaviour
     public Slider rotate;
     public Slider zoomSpeed;
     public Slider zoomSensitivity;
+    public Slider fadeSlider;
 
     public Slider music;
     public Slider sound;
+
+    private float[] fadeSpeedArray = new[] { 1, 5, 51, 127.5f, 255 };
 
     // Start is called before the first frame update
     void Start()
     {
         background.value = PlayerPrefs.GetInt("backgroundIndex");
         musicDrop.value = PlayerPrefs.GetInt("musicIndex");
+        fadeSlider.value = PlayerPrefs.GetFloat("fadeValue");
     }
 
     // Update is called once per frame
@@ -82,9 +86,21 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("rotationSpeed", 60);
         PlayerPrefs.SetFloat("zoomSpeed", 75);
         PlayerPrefs.SetFloat("zoomSensitivity", 5);
+        PlayerPrefs.SetFloat("fadeSpeed", 1);
 
         rotate.value = PlayerPrefs.GetFloat("rotationSpeed");
         zoomSpeed.value = PlayerPrefs.GetFloat("zoomSpeed");
         zoomSensitivity.value = PlayerPrefs.GetFloat("zoomSensitivity");
+        fadeSlider.value = PlayerPrefs.GetFloat("fadeValue");
+        fadeSlider.transform.parent.transform.parent.GetChild(fadeSlider.transform.parent.childCount + 1).GetComponent<Fade>().fadeSpeed =
+            (byte)PlayerPrefs.GetFloat("fadeSpeed");
+    }
+
+    public void SetFadeSpeed()
+    {
+        fadeSlider.transform.parent.transform.parent.GetChild(fadeSlider.transform.parent.childCount + 1).GetComponent<Fade>().fadeSpeed =
+            (byte)fadeSpeedArray[Mathf.RoundToInt(fadeSlider.value)];
+        PlayerPrefs.SetFloat("fadeValue", fadeSlider.value);
+        PlayerPrefs.SetFloat("fadeSpeed", fadeSpeedArray[Mathf.RoundToInt(fadeSlider.value)]);
     }
 }
