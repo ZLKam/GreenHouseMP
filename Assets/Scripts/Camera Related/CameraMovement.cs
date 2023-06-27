@@ -47,11 +47,14 @@ public class CameraMovement : MonoBehaviour
     }
 
     void CheckSkybox()
+    //sets the skybox of the game level based on the int
+    //selects a background based on the index, array of backgrounds is set in the variables
     {
         RenderSettings.skybox = skyboxes[PlayerPrefs.GetInt("backgroundIndex")];
     }
 
     void EnhancedCamera()
+    //not used, intended purpose?
     {
         transform.LookAt(cameras[selectedCamera]);
         //transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
@@ -66,6 +69,8 @@ public class CameraMovement : MonoBehaviour
     }
 
     void TemporaryCamera()
+    //switches the camera's rotation based on different points in the scene
+    //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
         transform.LookAt(cameras[selectedCamera]);
         transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
@@ -99,6 +104,8 @@ public class CameraMovement : MonoBehaviour
 
 
     void SwitchCamera()
+    //selects different cameras based on different set cameras in the scene
+    //not sure what is the goal but seems to switch intended view of the level, but can already customise view
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {

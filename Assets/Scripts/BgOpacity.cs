@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BgOpacity : MonoBehaviour
+//set opacity of background based on a slider value
+//is this script even used?
 {
     [SerializeField]
     private Slider slider;

@@ -4058,6 +4058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 220
   fadeAmount: 0
@@ -13137,6 +13138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 210
   fadeAmount: 0
@@ -93282,6 +93284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 0
   fadeAmount: 255
