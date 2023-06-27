@@ -27,6 +27,10 @@ public class Fade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!PlayerPrefs.HasKey("fadeSpeed"))
+        {
+            PlayerPrefs.SetFloat("fadeSpeed", 1);
+        }
         fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
         Debug.Log(PlayerPrefs.GetString("previousScene"));
         previousScene = PlayerPrefs.GetString("previousScene");
