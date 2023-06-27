@@ -31,6 +31,9 @@ public class ComponentWheelButtonController : MonoBehaviour
     }
 
     public void Selected() 
+    //selecting objects in the wheel button at the left side of the screen
+    //sets the component ID to the selected object id
+    //not sure what line 5 does
     {
         anim.SetBool("select", true);
         anim.SetBool("hovered", false);
@@ -40,6 +43,9 @@ public class ComponentWheelButtonController : MonoBehaviour
     }
 
     public void DeSelected()
+    //deselects everything 
+    //resets the boolean and compoenent ID
+    //text into blank
     {
         anim.SetBool("select", false);
         selected = false;

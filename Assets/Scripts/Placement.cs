@@ -21,7 +21,7 @@ public class Placement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -62,7 +62,7 @@ public class Placement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
+        if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject())
         {
             // checks if there is an object being selected
             // if so, remove selection by resetting the object's material to it's original material
@@ -139,7 +139,7 @@ public class Placement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !EventSystem.current.IsPointerOverGameObject())
+        if (InputSystem.Instance.RightCLick() && !EventSystem.current.IsPointerOverGameObject())
         {
             // checks if there is an object being selected
             // if so, remove selection by resetting the object's material to it's original material
@@ -154,31 +154,57 @@ public class Placement : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
-                if (selection.CompareTag("Component/Chiller") || selection.CompareTag("Component/AHU") || selection.CompareTag("Component/CoolingTower") || selection.CompareTag("Component/CwpOpt") || selection.CompareTag("Component/CwpOptElavated"))
-                {
-                    selection.transform.parent.GetComponent<Renderer>().enabled = true;
-                    selection.transform.parent.GetComponent<BoxCollider>().enabled = true;
-                    Destroy(selection.gameObject);
-
-                    /*
-                    selection.GetComponent<MeshRenderer>().material = selectionMat;
-
-                    if (selectedPrefab != null)
-                    {
-                        GameObject component = Instantiate(selectedPrefab, selection.transform.position, selectedPrefab.transform.rotation);
-                        component.transform.parent = selection;
-                    }
-                    else
-                    {
-                        Debug.Log("Please Select A Component First");
-                    }
-                    */
-                }
-                else
-                {
-                    selection = null;
-                }
+                DeleteSelection();
             }
         }
+    }
+
+    void DeleteSelection()
+    {
+#if UNITY_STANDALONE
+        if (selection.CompareTag("Component/Chiller") || selection.CompareTag("Component/AHU") || selection.CompareTag("Component/CoolingTower") || selection.CompareTag("Component/CwpOpt") || selection.CompareTag("Component/CwpOptElavated"))
+        {
+            selection.transform.parent.GetComponent<Renderer>().enabled = true;
+            selection.transform.parent.GetComponent<BoxCollider>().enabled = true;
+            Destroy(selection.gameObject);
+
+            /*
+            selection.GetComponent<MeshRenderer>().material = selectionMat;
+
+            if (selectedPrefab != null)
+            {
+                GameObject component = Instantiate(selectedPrefab, selection.transform.position, selectedPrefab.transform.rotation);
+                component.transform.parent = selection;
+            }
+            else
+            {
+                Debug.Log("Please Select A Component First");
+            }
+            */
+        }
+        else
+        {
+            selection = null;
+        }
+#endif
+#if UNITY_ANDROID
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            if (selection.CompareTag("Component/Chiller") || selection.CompareTag("Component/AHU") || selection.CompareTag("Component/CoolingTower") || selection.CompareTag("Component/CwpOpt") || selection.CompareTag("Component/CwpOptElavated"))
+            {
+                Debug.Log("drw out");
+            }
+        }
+        if (Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            // gameobject follow position
+            Debug.Log("moving");
+        }
+        if (Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            // check if dragged out, if out, delete
+            Debug.Log("stop");
+        }
+#endif
     }
 }
