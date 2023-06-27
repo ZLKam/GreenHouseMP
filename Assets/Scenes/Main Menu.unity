@@ -1276,7 +1276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exit: 0
   settings: 0
-  maxFade: 0
+  maxFade: 10
   fadeAmount: 255
   fadeSpeed: 1
   red: 0
