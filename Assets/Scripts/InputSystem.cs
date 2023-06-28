@@ -30,7 +30,8 @@ public class InputSystem : MonoBehaviour
 #endif
 
 #if UNITY_ANDROID
-        return Input.GetTouch(0);
+        return Input.touchCount > 0;
+
 #endif
     }
 
@@ -40,7 +41,7 @@ public class InputSystem : MonoBehaviour
         return Input.GetMouseButtonDown(2);
 #endif
 
-#if Unity_ANDROID
+#if UNITY_ANDROID
         if (Input.touchCount > 0)
         {
             return true;

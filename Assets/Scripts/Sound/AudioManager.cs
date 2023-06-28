@@ -69,7 +69,6 @@ public class AudioManager : MonoBehaviour
                 {
                     audio.volume = PlayerPrefs.GetFloat("soundValue") / 100;
                 }
-                Debug.Log(audio.volume);
             }
         }
     }

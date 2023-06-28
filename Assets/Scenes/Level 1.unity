@@ -96221,6 +96221,7 @@ MonoBehaviour:
   highlightMat: {fileID: 2100000, guid: e8f2a314f04619740b04d2b91e337386, type: 2}
   selectionMat: {fileID: 2100000, guid: 54eb24558bf4f544eb32cac30bfe9406, type: 2}
   selectedPrefab: {fileID: 0}
+  originalMat: {fileID: 2100000, guid: 04e96e6ec5ff3ee419be849d6bb64add, type: 2}
   tutorial: 0
 --- !u!1 &1668210592
 GameObject:
