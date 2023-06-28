@@ -30,7 +30,18 @@ public class InputSystem : MonoBehaviour
 #endif
 
 #if UNITY_ANDROID
-        return Input.touchCount > 0;
+        if (Input.touchCount > 0)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                return true;
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary || Input.GetTouch(0).phase == TouchPhase.Ended) 
+            {
+                return false;
+            }
+        }
+        return false;
 
 #endif
     }
@@ -40,14 +51,7 @@ public class InputSystem : MonoBehaviour
 #if UNITY_STANDALONE
         return Input.GetMouseButtonDown(2);
 #endif
-
-#if UNITY_ANDROID
-        if (Input.touchCount > 0)
-        {
-            return true;
-        }
-        return false;
-#endif
+        return true;
     }
 }
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 118911803906712836}
   - component: {fileID: 856039310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cooling Tower 1
   m_TagString: Component/CoolingTower
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 3160802419475760649}
   - component: {fileID: 3160802419475760650}
   - component: {fileID: 3160802419475760651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: connection point 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 3160802419902990463}
   - component: {fileID: 3160802419902990448}
   - component: {fileID: 3160802419902990449}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: connection point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 3160802419933535526}
   - component: {fileID: 3160802419933535527}
   - component: {fileID: 3160802419933535512}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cooling Tower Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
