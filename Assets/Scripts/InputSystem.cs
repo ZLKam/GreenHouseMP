@@ -35,7 +35,7 @@ public class InputSystem : MonoBehaviour
 #endif
     }
 
-    public bool RightCLick()
+    public bool RightClick()
     {
 #if UNITY_STANDALONE
         return Input.GetMouseButtonDown(2);

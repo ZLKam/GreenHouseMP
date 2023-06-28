@@ -217,14 +217,14 @@ public class Placement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (InputSystem.Instance.LeftClick())
             {
                 if (!hit.transform.CompareTag("Selection"))
                     return;
                 Select(hit.transform);
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (InputSystem.Instance.RightClick())
             {
                 Debug.Log("right click");
                 Delete(hit.transform);
@@ -253,7 +253,7 @@ public class Placement : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (InputSystem.Instance.LeftClick())
             {
                 selected = null;
             }
@@ -283,7 +283,7 @@ public class Placement : MonoBehaviour
             selectedTransform.parent.GetComponent<BoxCollider>().enabled = true;
             Destroy(selectedTransform.gameObject);
         }
-    }
+    
 #endif
 #if UNITY_ANDROID
         if (Input.GetTouch(0).phase == TouchPhase.Began)
