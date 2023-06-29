@@ -81,12 +81,22 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("zoomSensitivity", zoomSensitivity.value);
     }
 
-    public void ResetValues()
+    public void SetFadeSpeed()
     {
+        fadeSlider.transform.parent.transform.parent.GetChild(fadeSlider.transform.parent.childCount + 1).GetComponent<Fade>().fadeSpeed =
+            (byte)fadeSpeedArray[Mathf.RoundToInt(fadeSlider.value)];
+        PlayerPrefs.SetFloat("fadeValue", fadeSlider.value);
+        PlayerPrefs.SetFloat("fadeSpeed", fadeSpeedArray[Mathf.RoundToInt(fadeSlider.value)]);
+    }
+
+    public void ResetValues()
+    //resets all the slider values to the default values
+    {
+        //sets the base numbers for all the sliders
         PlayerPrefs.SetFloat("rotationSpeed", 60);
         PlayerPrefs.SetFloat("zoomSpeed", 75);
         PlayerPrefs.SetFloat("zoomSensitivity", 5);
-        PlayerPrefs.SetFloat("fadeSpeed", 1);
+        PlayerPrefs.SetFloat("fadeSpeed", 51);
 
         rotate.value = PlayerPrefs.GetFloat("rotationSpeed");
         zoomSpeed.value = PlayerPrefs.GetFloat("zoomSpeed");
@@ -96,11 +106,4 @@ public class SettingsManager : MonoBehaviour
             (byte)PlayerPrefs.GetFloat("fadeSpeed");
     }
 
-    public void SetFadeSpeed()
-    {
-        fadeSlider.transform.parent.transform.parent.GetChild(fadeSlider.transform.parent.childCount + 1).GetComponent<Fade>().fadeSpeed =
-            (byte)fadeSpeedArray[Mathf.RoundToInt(fadeSlider.value)];
-        PlayerPrefs.SetFloat("fadeValue", fadeSlider.value);
-        PlayerPrefs.SetFloat("fadeSpeed", fadeSpeedArray[Mathf.RoundToInt(fadeSlider.value)]);
-    }
 }

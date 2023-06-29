@@ -50,7 +50,9 @@ public class InputSystem : MonoBehaviour
 #if UNITY_STANDALONE
         return Input.GetMouseButtonDown(2);
 #endif
+#if UNITY_ANDROID
         return true;
+#endif
     }
 }
 

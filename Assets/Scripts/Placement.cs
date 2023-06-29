@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Placement : MonoBehaviour
+//Handles the Placement of component gameobjects
+//Also handles the highlighting of the selected gameobjects(green boxes) in the scene
 {
     public Material highlightMat;
     public Material selectionMat;
@@ -21,7 +23,7 @@ public class Placement : MonoBehaviour
     private bool allowDelete;
     private int layerMaskComponent = 1 << 6;
 
-    GameObject detelableGameobject;
+    private GameObject detelableGameobject;
 
     // Update is called once per frame
     void Update()
@@ -253,6 +255,7 @@ public class Placement : MonoBehaviour
 #endif          
                 //if not it will run the select function
                 Select(hit.transform);
+                Debug.Log("test");
                 return;
             }
             //not sure if needed

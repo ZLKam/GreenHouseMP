@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
+//not used, intended use was probably to drag gameobjects from the scrollwheel idk
 {
     Vector3 mousePosition;
 
