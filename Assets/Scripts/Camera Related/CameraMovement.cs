@@ -73,9 +73,22 @@ public class CameraMovement : MonoBehaviour
     //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
         transform.LookAt(cameras[selectedCamera]);
+#if UNITY_STANDALONE
         transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
         transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime);
-        
+#endif
+#if UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            //if the finger has moved
+            //checks the difference between the intial touch position of the finger to the new finger position
+            {
+                transform.Translate(Vector3.up * Input.GetTouch(0).deltaPosition.y);
+                transform.Translate(Vector3.right * Input.GetTouch(0).deltaPosition.x);
+            }
+        }
+#endif
         if (Input.GetKey(KeyCode.LeftShift))
         {
             rotationSpeed = originalSpeed * 2;
@@ -104,7 +117,7 @@ public class CameraMovement : MonoBehaviour
 
 
     void SwitchCamera()
-    //selects different cameras based on different set cameras in the scene
+    //switches camera between different transforms in the scene which provides slightly altered view of the game
     //not sure what is the goal but seems to switch intended view of the level, but can already customise view
     {
         if (Input.GetKeyDown(KeyCode.Q))

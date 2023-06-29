@@ -19,10 +19,8 @@ public class InputSystem : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Mouse Left Click
-    /// </summary>
-    /// <returns></returns>
+    //Returns mouse Input left click
+    //main purpose is to return the first touch detected and return it to be used
     public bool LeftClick()
     {
 #if UNITY_STANDALONE
@@ -46,6 +44,7 @@ public class InputSystem : MonoBehaviour
 #endif
     }
 
+    //returns the right click for the mouse
     public bool RightClick()
     {
 #if UNITY_STANDALONE
