@@ -63,9 +63,7 @@ public class CameraMovement : MonoBehaviour
         }
         else 
         {
-
             //level 2
-            
                 SwitchCamera();
                 TemporaryCamera();
                 ZoomCamera();

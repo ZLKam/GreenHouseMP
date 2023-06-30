@@ -27,6 +27,8 @@ public class SettingsButtons : MonoBehaviour
 
         //ClickOnBg();
     }
+
+    //sets the buttons for the settings when in the game to turn the buttons on
     public void ClickOnBg()
     {
         bgButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
@@ -39,6 +41,7 @@ public class SettingsButtons : MonoBehaviour
         resetButton.SetActive(false);
     }
 
+    //sets the panels for the volume settings to active
     public void ClickOnVolume() 
     {
         bgButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
@@ -50,7 +53,9 @@ public class SettingsButtons : MonoBehaviour
         sensPanel.SetActive(false);
         resetButton.SetActive(false);
     }
+    
 
+    //sets the panels for the sensitivity settings to active
     public void ClickOnSensitivity() 
     {
         bgButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
