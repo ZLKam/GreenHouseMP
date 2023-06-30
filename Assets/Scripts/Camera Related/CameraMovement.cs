@@ -7,6 +7,7 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform[] cameras;
     int selectedCamera;
+    public Placement placement;
 
     float originalSpeed;
     public float rotationSpeed;
@@ -17,7 +18,14 @@ public class CameraMovement : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public float initialDistance;
+    public float sensitivity = 5;
+    public float maxZoom = 140;
     public List<Material> skyboxes;
+    public bool zooming;
+    private bool moved;
+
+    private Vector2 startPos;
 
     void Start()
     {
@@ -34,16 +42,35 @@ public class CameraMovement : MonoBehaviour
         }
         */
         rotationSpeed = PlayerPrefs.GetFloat("rotationSpeed");
+        sensitivity = PlayerPrefs.GetFloat("zoomSensitivity");
         originalSpeed = rotationSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         CheckSkybox();
-        SwitchCamera();
-        TemporaryCamera();
-        //EnhancedCamera();
+        if (placement != null)
+        {
+            if (!placement.deletingObject)
+            //for level 1
+            {
+                SwitchCamera();
+                ZoomCamera();
+                TemporaryCamera();
+            }
+        }
+        else 
+        {
+
+            //level 2
+            
+                SwitchCamera();
+                TemporaryCamera();
+                ZoomCamera();
+        }
+            //EnhancedCamera();
     }
 
     void CheckSkybox()
@@ -78,14 +105,21 @@ public class CameraMovement : MonoBehaviour
         transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime);
 #endif
 #if UNITY_ANDROID
-        if (Input.touchCount > 0)
+        if (Input.touchCount == 1)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                startPos = Input.GetTouch(0).position;
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved)
             //if the finger has moved
             //checks the difference between the intial touch position of the finger to the new finger position
             {
-                transform.Translate(Vector3.up * Input.GetTouch(0).deltaPosition.y);
-                transform.Translate(Vector3.right * Input.GetTouch(0).deltaPosition.x);
+                Vector2 swipeDelta = Input.GetTouch(0).position - startPos;
+                float rotationAmountX = swipeDelta.x * Time.deltaTime;
+                float rotationAmountY = swipeDelta.y * Time.deltaTime;
+                transform.RotateAround(cameras[0].position, Vector3.up, rotationAmountX);
+                transform.RotateAround(cameras[0].position, Vector3.forward, rotationAmountY);
             }
         }
 #endif
@@ -99,6 +133,48 @@ public class CameraMovement : MonoBehaviour
         }
             
         
+    }
+
+    void ZoomCamera() 
+    {
+        if (Input.touchCount == 2)
+        {
+            Vector3 currentRotation = transform.eulerAngles;
+            zooming = true;
+            moved = true;
+            if (Input.GetTouch(0).phase == TouchPhase.Began || Input.GetTouch(1).phase == TouchPhase.Began)
+            {
+                initialDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(1).phase == TouchPhase.Moved)
+            {
+                transform.eulerAngles = currentRotation;
+                float currentDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+                float deltaDistance = currentDistance - initialDistance;
+
+                float zoomAmount = deltaDistance * sensitivity * Time.deltaTime;
+                float zoom = Mathf.Clamp(transform.position.x + zoomAmount, -maxZoom, maxZoom);
+
+                Vector3 newPosition = transform.position;
+                newPosition.x = zoom;
+                transform.position = newPosition;
+
+                ClipCheck();
+            }
+        }
+        else 
+        {
+            if (!moved)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, transform.forward, 100 * Time.deltaTime);
+                if (Vector3.Distance(transform.position, cameras[0].position) < 60)
+                {
+                    moved = true;
+                }
+            }
+            
+            zooming = false;
+        }
     }
 
     //void RotateCamera()
@@ -122,7 +198,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(selectedCamera > 0)
+            if (selectedCamera > 0)
             {
                 selectedCamera--;
             }
@@ -141,6 +217,18 @@ public class CameraMovement : MonoBehaviour
             else
             {
                 selectedCamera = 0;
+            }
+        }
+    }
+
+    void ClipCheck()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        if (Physics.SphereCast(ray, 1, out RaycastHit hit, maxZoom))
+        {
+            if (hit.distance < 60f)
+            {
+                transform.position = new Vector3(hit.point.x - 60f, hit.point.y, hit.point.z);
             }
         }
     }

@@ -153,7 +153,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &17620214
 MeshRenderer:
@@ -544,7 +544,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &120984859
 MeshRenderer:
@@ -1111,7 +1111,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &175784569
 MeshRenderer:
@@ -3584,6 +3584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 220
   fadeAmount: 0
@@ -3845,7 +3846,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &473384307
 MeshRenderer:
@@ -5519,6 +5520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 0
   fadeAmount: 255
@@ -6459,7 +6461,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &731289706
 MeshRenderer:
@@ -6519,7 +6521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731289704}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -76.27055, y: -21.050697, z: -36.897717}
+  m_LocalPosition: {x: -76.27055, y: -21.050697, z: -37.14}
   m_LocalScale: {x: 0.5509118, y: 0.55091196, z: 0.5509123}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7680,7 +7682,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &860941025
 MeshRenderer:
@@ -7777,7 +7779,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &867058258
 MeshRenderer:
@@ -9841,7 +9843,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1212622568
 MeshRenderer:
@@ -9923,7 +9925,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1214740352
 MeshRenderer:
@@ -10178,7 +10180,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1286344521
 MeshRenderer:
@@ -10238,7 +10240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286344519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -76.29556, y: -25.973614, z: -57.71172}
+  m_LocalPosition: {x: -76.29556, y: -25.98, z: -57.22}
   m_LocalScale: {x: 0.5509116, y: 0.5509121, z: 0.5509121}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10275,7 +10277,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1290822755
 MeshRenderer:
@@ -10335,7 +10337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290822753}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -76.695564, y: -24.272701, z: -59.26772}
+  m_LocalPosition: {x: -76.695564, y: -23.94, z: -59.26772}
   m_LocalScale: {x: 0.5509116, y: 0.5509122, z: 0.5509122}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11145,7 +11147,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1417685235
 MeshRenderer:
@@ -11205,7 +11207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417685233}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -76.276184, y: -21.043419, z: -39.5139}
+  m_LocalPosition: {x: -76.276184, y: -21.043419, z: -39.6}
   m_LocalScale: {x: 0.5509115, y: 0.550912, z: 0.6069398}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12321,7 +12323,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.6273421
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1583791416
 MeshRenderer:
@@ -13141,7 +13143,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1634895565
 MeshRenderer:
@@ -14151,6 +14153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 220
   fadeAmount: 0
@@ -15424,7 +15427,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1839530827
 MeshRenderer:
@@ -15521,7 +15524,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.627342
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1892371928
 MeshRenderer:
@@ -15773,6 +15776,9 @@ MonoBehaviour:
   - {fileID: 1428784281}
   - {fileID: 1503147926}
   rotationSpeed: 60
+  initialDistance: 0
+  sensitivity: 5
+  maxZoom: 140
   skyboxes:
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
@@ -16406,6 +16412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 210
   fadeAmount: 0

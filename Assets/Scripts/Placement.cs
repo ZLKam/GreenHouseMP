@@ -10,6 +10,7 @@ public class Placement : MonoBehaviour
 {
     public Material highlightMat;
     public Material selectionMat;
+    public CameraMovement cameraMovement;
 
     [HideInInspector]
     public GameObject selectedPrefab;
@@ -24,7 +25,7 @@ public class Placement : MonoBehaviour
     private int layerMaskComponent = 1 << 6;
 
     private GameObject detelableGameobject;
-
+    public bool deletingObject;
     // Update is called once per frame
     void Update()
     {
@@ -323,9 +324,11 @@ public class Placement : MonoBehaviour
     private void Delete(Transform selectedTransform)
     //handles deletion of the component gameobjects
     {
-        //null exception
-        if (selectedTransform.gameObject == null)
-            return;
+        if (!cameraMovement.zooming)
+        {
+            //null exception
+            if (selectedTransform.gameObject == null)
+                return;
 #if UNITY_STANDALONE
         //gets the hit gamebject from the raycast(passed in through the parameter)
         //checks the tags to ensure its one of the components
@@ -343,49 +346,54 @@ public class Placement : MonoBehaviour
     
 #endif
 #if UNITY_ANDROID
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
-        //once the touch is detected
-        {
-            //returns the component which the gameobject matches the tag
-            if (selectedTransform.CompareTag("Component/Chiller") || selectedTransform.CompareTag("Component/AHU") ||
-            selectedTransform.CompareTag("Component/CoolingTower") || selectedTransform.CompareTag("Component/CwpOpt") ||
-            selectedTransform.CompareTag("Component/CwpOptElavated"))
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            //once the touch is detected
             {
-                detelableGameobject = selectedTransform.gameObject;
+                //returns the component which the gameobject matches the tag
+                if (selectedTransform.CompareTag("Component/Chiller") || selectedTransform.CompareTag("Component/AHU") ||
+                selectedTransform.CompareTag("Component/CoolingTower") || selectedTransform.CompareTag("Component/CwpOpt") ||
+                selectedTransform.CompareTag("Component/CwpOptElavated"))
+                {
+                    detelableGameobject = selectedTransform.gameObject;
+                    deletingObject = true;
+                }
             }
-        }
-        if (Input.GetTouch(0).phase == TouchPhase.Moved)
-        //once the finger starts moving
-        {
-            //Set the vector finger point from the screeen into a world point
-            //set the gameobject we referenced to the world point
-            Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, 50));
-            detelableGameobject.transform.position = tempPos;
+            if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            //once the finger starts moving
+            {
+                if (detelableGameobject == null)
+                    return;
+                //Set the vector finger point from the screeen into a world point
+                //set the gameobject we referenced to the world point
+                Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, 50));
+                detelableGameobject.transform.position = tempPos;
 
-            Debug.Log("moving");
-        }
-        if (Input.GetTouch(0).phase == TouchPhase.Ended)
-        //no longer detecting the touch
-        {
-            // check if dragged out, if out, delete
-            //null error check
-            if (detelableGameobject == null)
-                return;
-            //creates a raycast, ignores the component layer and checks if it does not hit any object with a collider
-            //if there is no collider will delete the gameobject as it is outside the boundaries
-            //if the raycast hits a collider, it will return the game object to its parent transform(green boxes)
-            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~layerMaskComponent))
-            {
-                detelableGameobject.transform.parent.GetComponent<Renderer>().enabled = true;
-                detelableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
-                Destroy(selectedTransform.gameObject);
+                Debug.Log("moving");
             }
-            else
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            //no longer detecting the touch
             {
-                selectedTransform.gameObject.transform.localPosition = Vector3.zero;
+                // check if dragged out, if out, delete
+                //null error check
+                if (detelableGameobject == null)
+                    return;
+                //creates a raycast, ignores the component layer and checks if it does not hit any object with a collider
+                //if there is no collider will delete the gameobject as it is outside the boundaries
+                //if the raycast hits a collider, it will return the game object to its parent transform(green boxes)
+                if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~layerMaskComponent))
+                {
+                    detelableGameobject.transform.parent.GetComponent<Renderer>().enabled = true;
+                    detelableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
+                    Destroy(selectedTransform.gameObject);
+                }
+                else
+                {
+                    selectedTransform.gameObject.transform.localPosition = Vector3.zero;
+                }
+                deletingObject = false;
+                Debug.Log("stop");
             }
-            Debug.Log("stop");
-        }
 #endif
+        }
     }
 }

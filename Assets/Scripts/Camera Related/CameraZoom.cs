@@ -11,6 +11,8 @@ public class CameraZoom : MonoBehaviour
     public float maxZoom = 30;
     float zoomPosition;
 
+    private float initialDistance;
+
     void Start()
     {
         speed = PlayerPrefs.GetFloat("zoomSpeed");
@@ -64,3 +66,4 @@ public class CameraZoom : MonoBehaviour
         }
     }
 }
+
