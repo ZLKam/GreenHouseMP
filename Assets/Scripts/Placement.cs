@@ -22,7 +22,6 @@ public class Placement : MonoBehaviour
 
     public bool tutorial;
     private bool allowDelete;
-    private int layerMaskComponent = 1 << 6;
 
     private GameObject detelableGameobject;
     public bool deletingObject;
