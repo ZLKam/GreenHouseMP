@@ -27,6 +27,9 @@ public class CameraMovement : MonoBehaviour
 
     private Vector2 startPos;
     public float zoomStopDistance = 60;
+    [SerializeField]
+    private float zoomAmount;
+    private float deltaDistance;
 
     void Start()
     {
@@ -45,6 +48,8 @@ public class CameraMovement : MonoBehaviour
         rotationSpeed = PlayerPrefs.GetFloat("rotationSpeed");
         sensitivity = PlayerPrefs.GetFloat("zoomSensitivity");
         originalSpeed = rotationSpeed;
+
+        zoomAmount = Camera.main.fieldOfView;
     }
 
     // Update is called once per frame
@@ -58,8 +63,8 @@ public class CameraMovement : MonoBehaviour
             //for level 1
             {
                 SwitchCamera();
-                ZoomCamera();
                 TemporaryCamera();
+                ZoomCamera();
             }
         }
         else 
@@ -136,32 +141,62 @@ public class CameraMovement : MonoBehaviour
 
     void ZoomCamera() 
     {
+#if UNITY_STANDALONE
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            zoomAmount += -Input.mouseScrollDelta.y * sensitivity * 50f * Time.deltaTime;
+            float zoom = Mathf.Clamp(zoomAmount, 20, 100);
+
+            Camera.main.fieldOfView = zoom;
+        }
+#endif
+#if UNITY_ANDROID
         if (Input.touchCount == 2)
         {
-            Vector3 currentRotation = transform.eulerAngles;
-            zooming = true;
-            moved = true;
             if (Input.GetTouch(0).phase == TouchPhase.Began || Input.GetTouch(1).phase == TouchPhase.Began)
             {
                 initialDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+                if (Physics.Raycast(((Input.GetTouch(0).position + Input.GetTouch(1).position) / 2), transform.forward, out RaycastHit hit, Mathf.Infinity)) 
+                {
+                    //Camera.main.transform.Translate(Vector3.up * )
+                    Debug.Log(hit.point.y);
+                }
+            }
+            //else if (InputSystem.Instance.isStationary(2, deltaDistance) && deltaDistance != 0)
+            //{
+            //    return;
+            //}
+            else if (Input.GetTouch(0).phase == TouchPhase.Stationary || Input.GetTouch(1).phase == TouchPhase.Stationary)
+            {
+                return;
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(1).phase == TouchPhase.Moved)
             {
-                transform.eulerAngles = currentRotation;
                 float currentDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-                float deltaDistance = currentDistance - initialDistance;
-
-                float zoomAmount = deltaDistance * sensitivity * Time.deltaTime;
-                float zoom = Mathf.Clamp(transform.position.x + zoomAmount, -maxZoom, maxZoom);
-
-                Vector3 newPosition = transform.position;
-                newPosition.x = zoom;
-                transform.position = newPosition;
-
-                ClipCheck();
+                deltaDistance = currentDistance - initialDistance;
+                //if (InputSystem.Instance.isStationary(2, deltaDistance))
+                //{
+                //    return;
+                //}
+                zoomAmount += -deltaDistance * sensitivity * Time.deltaTime;
+                if (zoomAmount > 100)
+                {
+                    zoomAmount = 100;
+                }
+                if (zoomAmount < 20)
+                {
+                    zoomAmount = 20;
+                }
+                float zoom = Mathf.Clamp(zoomAmount, 20, 100);
+                Camera.main.fieldOfView = zoom;
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(1).phase == TouchPhase.Ended)
+            {
+                zoomAmount = Camera.main.fieldOfView;
             }
         }
-        else 
+#endif
+        else
         {
             if (!moved)
             {
@@ -220,16 +255,24 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    void ClipCheck()
+    void ClipCheck(Vector3 position)
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        if (Physics.SphereCast(ray, 1, out RaycastHit hit, maxZoom))
+        Ray ray1 = new (position, transform.forward);
+        Ray ray2 = new(transform.position, transform.forward);
+        if (Physics.Raycast(ray2, out RaycastHit hit2, maxZoom))
         {
-            Debug.Log(hit.distance);
-            if (hit.distance < zoomStopDistance)
+            if (hit2.distance < zoomStopDistance)
             {
-                Debug.Log(hit.point);
-                transform.position = new Vector3(hit.point.x - zoomStopDistance, hit.point.y, hit.point.z);
+                transform.position = new(hit2.point.x - zoomStopDistance, hit2.point.y, hit2.point.z);
+                return;
+            }
+        }
+        if (Physics.Raycast(ray1, out RaycastHit hit1, maxZoom))
+        {
+            if (hit1.distance < zoomStopDistance)
+            {
+                transform.position = new Vector3(hit1.point.x - zoomStopDistance, hit1.point.y, hit1.point.z);
+                return;
             }
         }
     }

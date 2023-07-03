@@ -7,6 +7,8 @@ public class InputSystem : MonoBehaviour
 {
     public static InputSystem Instance;
 
+    private float prevDeltaDist = 0f;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -47,6 +49,26 @@ public class InputSystem : MonoBehaviour
 #endif
     }
 
+    public bool isStationary(int touchCount, float deltaDistance)
+    {
+        if (/*(Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(1).phase == TouchPhase.Moved) &&*/
+                Mathf.Abs(prevDeltaDist - deltaDistance) < 1f)
+        {
+            prevDeltaDist = deltaDistance;
+            return true;
+        }
+        prevDeltaDist = deltaDistance;
+        return false;
+        //int stationaryTouch = 0;
+        //for (int i = 0; i < touchCount; i++)
+        //{
+        //    if (Input.GetTouch(i).phase == TouchPhase.Stationary)
+        //    {
+        //        stationaryTouch++;
+        //    }
+        //}
+        //return stationaryTouch == touchCount;
+    }
     //returns the right click for the mouse
     public bool RightClick()
     {

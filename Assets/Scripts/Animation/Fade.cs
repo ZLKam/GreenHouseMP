@@ -29,7 +29,7 @@ public class Fade : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("fadeSpeed"))
         {
-            PlayerPrefs.SetFloat("fadeSpeed", 1);
+            PlayerPrefs.SetFloat("fadeSpeed", 51);
         }
         fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
         Debug.Log(PlayerPrefs.GetString("previousScene"));

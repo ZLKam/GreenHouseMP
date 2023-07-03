@@ -24,7 +24,13 @@ public class SettingsManager : MonoBehaviour
     {
         background.value = PlayerPrefs.GetInt("backgroundIndex");
         musicDrop.value = PlayerPrefs.GetInt("musicIndex");
-        fadeSlider.value = PlayerPrefs.GetFloat("fadeValue");
+        if (!PlayerPrefs.HasKey("fadeValue"))
+        {
+            fadeSlider.value = 2f;
+            PlayerPrefs.SetFloat("fadeValue", 2f);
+        }
+        else
+            fadeSlider.value = PlayerPrefs.GetFloat("fadeValue");
     }
 
     // Update is called once per frame
