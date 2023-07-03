@@ -52,6 +52,11 @@ public class Connection : MonoBehaviour
 
     bool unselect;
 
+    private void Awake()
+    {
+        Camera.main.transform.parent.GetComponent<CameraMovement>().zoomStopDistance = 30f;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -59,7 +64,7 @@ public class Connection : MonoBehaviour
 
         if (multiConnect)
         {
-            //MultiHighlight();
+            MultiHighlight();
         }
         else
         {
@@ -171,7 +176,8 @@ public class Connection : MonoBehaviour
                 }
 
             }
-        }
+        } 
+    }
 
         void Connect()
         {
@@ -232,10 +238,10 @@ public class Connection : MonoBehaviour
             }
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            // checks if the raycast being drawn from the mouse hits an object
-            // if so, check if the tag of the highlight is called "Connection" before setting the colour of the object's material
-            if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
+#if UNITY_STANDALONE
+        // checks if the raycast being drawn from the mouse hits an object
+        // if so, check if the tag of the highlight is called "Connection" before setting the colour of the object's material
+        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 highlight = raycastHit.transform;
                 if (highlight.CompareTag("Connection") && highlight != selection)
@@ -251,16 +257,17 @@ public class Connection : MonoBehaviour
                     highlight = null;
                 }
             }
+#endif
 
             if (Input.GetKey(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 // checks if there is an object being selected
                 // if so, remove selection by resetting the object's material to it's original material
-                if (selection != null)
-                {
-                    selection.GetComponent<MeshRenderer>().material = originalMat;
-                    selection = null;
-                }
+                //if (selection != null)
+                //{
+                //    selection.GetComponent<MeshRenderer>().material = originalMat;
+                //    selection = null;
+                //}
 
                 // checks if the raycast being drawn from the mouse hits an object
                 // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
@@ -269,9 +276,18 @@ public class Connection : MonoBehaviour
                     selection = raycastHit.transform;
                     if (selection.CompareTag("Connection"))
                     {
-                        selection.GetComponent<MeshRenderer>().material = selectionMat;
+                        //using sharedMaterial to avoid having instance material
+                        if (selection.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+                        {
+                            selection.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                            multiPoints.Remove(selection.gameObject);
+                            return;
+                        }
+                        //selection.GetComponent<MeshRenderer>().material = selectionMat;
+                        originalMat = selection.GetComponent<MeshRenderer>().material;
+                        selection.GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
 
-                        if (!multiPoints.Contains(selection.gameObject))
+                    if (!multiPoints.Contains(selection.gameObject))
                         {
                             multiPoints.Add(selection.gameObject);
 
@@ -430,7 +446,4 @@ public class Connection : MonoBehaviour
                 }
             }
         }
-
-
     }
-}

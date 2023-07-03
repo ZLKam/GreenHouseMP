@@ -26,6 +26,7 @@ public class CameraMovement : MonoBehaviour
     private bool moved;
 
     private Vector2 startPos;
+    public float zoomStopDistance = 60;
 
     void Start()
     {
@@ -224,9 +225,11 @@ public class CameraMovement : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         if (Physics.SphereCast(ray, 1, out RaycastHit hit, maxZoom))
         {
-            if (hit.distance < 60f)
+            Debug.Log(hit.distance);
+            if (hit.distance < zoomStopDistance)
             {
-                transform.position = new Vector3(hit.point.x - 60f, hit.point.y, hit.point.z);
+                Debug.Log(hit.point);
+                transform.position = new Vector3(hit.point.x - zoomStopDistance, hit.point.y, hit.point.z);
             }
         }
     }

@@ -379,7 +379,7 @@ public class Placement : MonoBehaviour
                 //creates a raycast, ignores the component layer and checks if it does not hit any object with a collider
                 //if there is no collider will delete the gameobject as it is outside the boundaries
                 //if the raycast hits a collider, it will return the game object to its parent transform(green boxes)
-                if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~layerMaskComponent))
+                if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)))
                 {
                     detelableGameobject.transform.parent.GetComponent<Renderer>().enabled = true;
                     detelableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;

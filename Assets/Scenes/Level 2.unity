@@ -6755,7 +6755,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745149422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22e2c79c970ead24dbad18e49a7304e9, type: 3}
   m_Name: 
@@ -15223,6 +15223,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd4c4140b0cd3647ae94ef9da23f378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1830069155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1830069157}
+  - component: {fileID: 1830069156}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1830069156
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830069155}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -0.03, z: 0}
+--- !u!4 &1830069157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830069155}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 71.5, y: -4, z: -2}
+  m_LocalScale: {x: 1, y: 74, z: 41.10544}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830410730
 GameObject:
   m_ObjectHideFlags: 0
@@ -15775,6 +15820,7 @@ MonoBehaviour:
   - {fileID: 752681534}
   - {fileID: 1428784281}
   - {fileID: 1503147926}
+  placement: {fileID: 0}
   rotationSpeed: 60
   initialDistance: 0
   sensitivity: 5
@@ -15782,6 +15828,7 @@ MonoBehaviour:
   skyboxes:
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
+  zooming: 0
 --- !u!1 &1921678956
 GameObject:
   m_ObjectHideFlags: 0
