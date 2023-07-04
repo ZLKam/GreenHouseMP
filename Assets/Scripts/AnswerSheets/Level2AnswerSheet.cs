@@ -21,22 +21,31 @@ public class Level2AnswerSheet : MonoBehaviour
     public GameObject correctPanel;
     bool showPopUp;
 
+    GameObject[] CHWR;
+    GameObject[] CHWS;
+    GameObject[] CWS;
+    GameObject[] CWR;
+
     // Start is called before the first frame update
     void Start()
     {
         showPopUp = true;
         //Debug.Log(connectionPoint1.Count);
+
+        CHWR = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 1");
+        CHWS = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 2");
+        CWS = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 3");
+        CWR = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 4");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        ConnectionCheck();
         AnswerCheck();
     }
 
     public void AnswerCheck()
     {
+        ConnectionCheck();
         if (showPopUp)
         {
             if (connectionCHWR && connectionCHWS && connectionCWS && connectionCWR)
@@ -50,11 +59,6 @@ public class Level2AnswerSheet : MonoBehaviour
 
     void ConnectionCheck()
     {
-        var CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 1");
-        var CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 2");
-        var CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 3");
-        var CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 4");
-
         if (CHWR.Count() == 2)
         {
             connectionCHWR = true;
@@ -62,8 +66,9 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCHWR = false;
+            return;
         }
-
+        
         if (CHWS.Count() == 1)
         {
             connectionCHWS = true;
@@ -71,6 +76,7 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCHWS = false;
+            return;
         }
 
         if (CWS.Count() == 2)
@@ -80,6 +86,7 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCWS = false;
+            return;
         }
 
         if (CWR.Count() == 1)
@@ -89,6 +96,7 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCWR = false;
+            return;
         }
     }
 

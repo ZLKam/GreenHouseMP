@@ -15847,6 +15847,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
   zooming: 0
   zoomStopDistance: 60
+  zoomAmount: 0
 --- !u!1 &1921678956
 GameObject:
   m_ObjectHideFlags: 0
