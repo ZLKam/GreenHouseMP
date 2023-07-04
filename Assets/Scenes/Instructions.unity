@@ -7301,6 +7301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 120
   fadeAmount: 0
@@ -10455,7 +10456,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966174637}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22e2c79c970ead24dbad18e49a7304e9, type: 3}
   m_Name: 
@@ -12147,10 +12148,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameras:
   - {fileID: 412877915}
+  placement: {fileID: 1377717995}
   rotationSpeed: 50
+  initialDistance: 0
+  sensitivity: 5
+  maxZoom: 140
   skyboxes:
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
+  zooming: 0
+  zoomStopDistance: 60
+  zoomAmount: 0
 --- !u!4 &1120197200
 Transform:
   m_ObjectHideFlags: 0
@@ -14999,8 +15007,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: e8f2a314f04619740b04d2b91e337386, type: 2}
   selectionMat: {fileID: 2100000, guid: 54eb24558bf4f544eb32cac30bfe9406, type: 2}
+  cameraMovement: {fileID: 1120197199}
   selectedPrefab: {fileID: 0}
+  originalMat: {fileID: 2100000, guid: 04e96e6ec5ff3ee419be849d6bb64add, type: 2}
   tutorial: 1
+  deletingObject: 0
 --- !u!4 &1377717996
 Transform:
   m_ObjectHideFlags: 0
@@ -21064,6 +21075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   settings: 0
   maxFade: 0
   fadeAmount: 255

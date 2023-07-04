@@ -30,6 +30,12 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private float zoomAmount;
     private float deltaDistance;
+    private float tempRotation;
+
+    private float maxRotationX = 30f;
+    private float minRotationX = 330f;
+    private float maxRotationY = 150f;
+    private float minRotationY = 30f;
 
     void Start()
     {
@@ -63,18 +69,18 @@ public class CameraMovement : MonoBehaviour
             //for level 1
             {
                 SwitchCamera();
-                TemporaryCamera();
+                CameraRotation();
                 ZoomCamera();
             }
         }
-        else 
+        else
+        //level 2
         {
-            //level 2
-                SwitchCamera();
-                TemporaryCamera();
-                ZoomCamera();
+            SwitchCamera();
+            CameraRotation();
+            ZoomCamera();
         }
-            //EnhancedCamera();
+        //EnhancedCamera();
     }
 
     void CheckSkybox()
@@ -99,18 +105,55 @@ public class CameraMovement : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation * rotationSpeed, 0f, 0f);
     }
 
-    void TemporaryCamera()
+    void CameraRotation()
     //switches the camera's rotation based on different points in the scene
     //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
-        transform.LookAt(cameras[selectedCamera]);
+
 #if UNITY_STANDALONE
-        transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
-        transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime);
+        transform.LookAt(cameras[selectedCamera]);
+        //transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
+        //transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime);
+        float rotationAmountY = -Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime;
+        float rotationAmountX = Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime;
+        float currentEulerAngleY = transform.rotation.eulerAngles.y;
+        float currentEulerAngleX = transform.rotation.eulerAngles.x;
+        if (rotationAmountY != 0)
+        {
+            if ((currentEulerAngleY + rotationAmountY) > maxRotationY)
+            {
+                //rotationAmountY = maxRotationY - currentEulerAngleY;
+                rotationAmountY = 0;
+            }
+            else if (currentEulerAngleY + rotationAmountY < minRotationY)
+            {
+                //rotationAmountY = minRotationY - currentEulerAngleY;
+                rotationAmountY = 0;
+            }
+            transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
+            //transform.Rotate(Vector3.up, rotationAmountY);
+        }
+        if (rotationAmountX != 0)
+        {
+            //Debug.Log(currentEulerAngleX + rotationAmountX);
+            if ((currentEulerAngleX + rotationAmountX) > maxRotationX && (currentEulerAngleX + rotationAmountX) < 180)
+            {
+                rotationAmountX = 0;
+                //rotationAmountX = maxRotationX - currentEulerAngleX;
+            }
+            else if ((currentEulerAngleX + rotationAmountX < minRotationX) && (currentEulerAngleX + rotationAmountX > 180))
+            {
+                rotationAmountX = 0;
+                //rotationAmountX = maxRotationX - currentEulerAngleX;
+            }
+            //transform.Rotate(Vector3.right, rotationAmountX);
+            transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
+        }
 #endif
 #if UNITY_ANDROID
         if (Input.touchCount == 1)
         {
+            transform.LookAt(cameras[selectedCamera]);
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 startPos = Input.GetTouch(0).position;
@@ -120,10 +163,47 @@ public class CameraMovement : MonoBehaviour
             //checks the difference between the intial touch position of the finger to the new finger position
             {
                 Vector2 swipeDelta = Input.GetTouch(0).position - startPos;
-                float rotationAmountX = swipeDelta.x * Time.deltaTime;
-                float rotationAmountY = swipeDelta.y * Time.deltaTime;
-                transform.RotateAround(cameras[0].position, Vector3.up, rotationAmountX);
-                transform.RotateAround(cameras[0].position, Vector3.forward, rotationAmountY);
+
+                float rotationAmountY = -swipeDelta.x * rotationSpeed * Time.deltaTime;
+                float rotationAmountX = -swipeDelta.y * rotationSpeed * Time.deltaTime;
+                float currentEulerAngleY = transform.rotation.eulerAngles.y;
+                float currentEulerAngleX = transform.rotation.eulerAngles.x;
+                if (rotationAmountY != 0)
+                {
+                    if ((currentEulerAngleY + rotationAmountY) > maxRotationY)
+                    {
+                        //rotationAmountY = maxRotationY - currentEulerAngleY;
+                        rotationAmountY = 0;
+                    }
+                    else if (currentEulerAngleY + rotationAmountY < minRotationY)
+                    {
+                        //rotationAmountY = minRotationY - currentEulerAngleY;
+                        rotationAmountY = 0;
+                    }
+                    transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
+                    //transform.Rotate(Vector3.up, rotationAmountY);
+                }
+                if (rotationAmountX != 0)
+                {
+                    //Debug.Log(currentEulerAngleX + rotationAmountX);
+                    if ((currentEulerAngleX + rotationAmountX) > maxRotationX && (currentEulerAngleX + rotationAmountX) < 180)
+                    {
+                        rotationAmountX = 0;
+                        //rotationAmountX = maxRotationX - currentEulerAngleX;
+                    }
+                    else if ((currentEulerAngleX + rotationAmountX < minRotationX) && (currentEulerAngleX + rotationAmountX > 180))
+                    {
+                        rotationAmountX = 0;
+                        //rotationAmountX = maxRotationX - currentEulerAngleX;
+                    }
+                    //transform.Rotate(Vector3.right, rotationAmountX);
+                    transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
+                }
+
+
+                transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
+                transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
+                //transform.rotation = Quaternion.Euler(0, 0, rotationAmountXtemp);
             }
         }
 #endif
@@ -156,10 +236,11 @@ public class CameraMovement : MonoBehaviour
             if (Input.GetTouch(0).phase == TouchPhase.Began || Input.GetTouch(1).phase == TouchPhase.Began)
             {
                 initialDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-                if (Physics.Raycast(((Input.GetTouch(0).position + Input.GetTouch(1).position) / 2), transform.forward, out RaycastHit hit, Mathf.Infinity)) 
+                if (Physics.Raycast(Camera.main.ScreenPointToRay((Input.GetTouch(0).position + Input.GetTouch(1).position) / 2), out RaycastHit hit, Mathf.Infinity))
                 {
-                    //Camera.main.transform.Translate(Vector3.up * )
-                    Debug.Log(hit.point.y);
+
+                    transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+                    transform.LookAt(hit.point);
                 }
             }
             //else if (InputSystem.Instance.isStationary(2, deltaDistance) && deltaDistance != 0)
@@ -168,16 +249,18 @@ public class CameraMovement : MonoBehaviour
             //}
             else if (Input.GetTouch(0).phase == TouchPhase.Stationary || Input.GetTouch(1).phase == TouchPhase.Stationary)
             {
-                return;
+                initialDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(1).phase == TouchPhase.Moved)
             {
                 float currentDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
                 deltaDistance = currentDistance - initialDistance;
-                //if (InputSystem.Instance.isStationary(2, deltaDistance))
-                //{
-                //    return;
-                //}
+
+                if (InputSystem.Instance.isStationary(2, initialDistance, deltaDistance))
+                {
+                    return;
+                }
+
                 zoomAmount += -deltaDistance * sensitivity * Time.deltaTime;
                 if (zoomAmount > 100)
                 {
@@ -196,19 +279,19 @@ public class CameraMovement : MonoBehaviour
             }
         }
 #endif
-        else
-        {
-            if (!moved)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, transform.forward, 100 * Time.deltaTime);
-                if (Vector3.Distance(transform.position, cameras[0].position) < 60)
-                {
-                    moved = true;
-                }
-            }
+        //else
+        //{
+        //    if (!moved)
+        //    {
+        //        transform.position = Vector3.MoveTowards(transform.position, transform.forward, 100 * Time.deltaTime);
+        //        if (Vector3.Distance(transform.position, cameras[0].position) < 60)
+        //        {
+        //            moved = true;
+        //        }
+        //    }
             
-            zooming = false;
-        }
+            //zooming = false;
+        //}
     }
 
     //void RotateCamera()
@@ -255,25 +338,25 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    void ClipCheck(Vector3 position)
-    {
-        Ray ray1 = new (position, transform.forward);
-        Ray ray2 = new(transform.position, transform.forward);
-        if (Physics.Raycast(ray2, out RaycastHit hit2, maxZoom))
-        {
-            if (hit2.distance < zoomStopDistance)
-            {
-                transform.position = new(hit2.point.x - zoomStopDistance, hit2.point.y, hit2.point.z);
-                return;
-            }
-        }
-        if (Physics.Raycast(ray1, out RaycastHit hit1, maxZoom))
-        {
-            if (hit1.distance < zoomStopDistance)
-            {
-                transform.position = new Vector3(hit1.point.x - zoomStopDistance, hit1.point.y, hit1.point.z);
-                return;
-            }
-        }
-    }
+    //void ClipCheck(Vector3 position)
+    //{
+    //    Ray ray1 = new (position, transform.forward);
+    //    Ray ray2 = new(transform.position, transform.forward);
+    //    if (Physics.Raycast(ray2, out RaycastHit hit2, maxZoom))
+    //    {
+    //        if (hit2.distance < zoomStopDistance)
+    //        {
+    //            transform.position = new(hit2.point.x - zoomStopDistance, hit2.point.y, hit2.point.z);
+    //            return;
+    //        }
+    //    }
+    //    if (Physics.Raycast(ray1, out RaycastHit hit1, maxZoom))
+    //    {
+    //        if (hit1.distance < zoomStopDistance)
+    //        {
+    //            transform.position = new Vector3(hit1.point.x - zoomStopDistance, hit1.point.y, hit1.point.z);
+    //            return;
+    //        }
+    //    }
+    //}
 }

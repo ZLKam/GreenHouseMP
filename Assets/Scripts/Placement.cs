@@ -255,7 +255,6 @@ public class Placement : MonoBehaviour
 #endif          
                 //if not it will run the select function
                 Select(hit.transform);
-                Debug.Log("test");
                 return;
             }
             //not sure if needed
