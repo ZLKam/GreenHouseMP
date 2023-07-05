@@ -87,59 +87,54 @@ namespace Level3
 
         //private IEnumerator CheckParticleFlow()
         //{
-            //for (int i = 0; i < pipesTransform.Count; i++)
-            //{
-            //    if (i == 0)
-            //    {
-            // first point, instantiate particle
+        //    for (int i = 0; i < pipesTransform.Count; i++)
+        //    {
+        //        if (i == 0)
+        //        {
+        //            particle.rectTransform.position = pipesTransform[i].position;
+        //            particle.rectTransform.SetParent(pipesTransform[i].parent);
+        //            particleManager.StartToSpawnParticle(pipesTransform[i]);
 
-            //particle.rectTransform.position = pipesTransform[i].position;
-            //particle.rectTransform.SetParent(pipesTransform[i].parent);
-            //particleManager.StartToSpawnParticle(pipesTransform[i]);
+        //        }
+        //        else if (i % 2 == 0)
+        //        {
+        //            particle.rectTransform.position = pipesTransform[i].position;
+        //        }
+        //        else if (i % 2 != 0)
+        //        {
+        //            while (true)
+        //            {
 
-            //}
-            //else if (i % 2 == 0)
-            //{
-            // even point change particle position
-
-            //particle.rectTransform.position = pipesTransform[i].position;
-            //}
-            //else if (i % 2 != 0)
-            //{
-            // odd point move towards the end of pipe
-            //while (true)
-            //{
-
-            //if (Vector2.Distance(particle.rectTransform.position, pipesTransform[i].position) < 0.1f)
-            //{
-            //    particle.rectTransform.SetParent(pipesTransform[i].parent);
-            //    if (i < pipesTransform.Count - 1)
-            //    {
-            //        if (particle.rectTransform.parent != pipesTransform[i + 1].parent)
-            //        {
-            //            Debug.Log("Con't connect, wrong pipe connection");
-            //            yield break;
-            //        }
-            //    }
-            //    break;
-            //}
-            //particle.rectTransform.position = Vector2.MoveTowards(particle.rectTransform.position, pipesTransform[i].position, 1f);
-            //        yield return null;
-            //    }
-            //}
-            //    correct ++;
-            //yield return null;
-            //}
-            //if (correct == answer)
-            //{
-            //    Debug.Log("Correct");
-            //}
-            //else
-            //{
-            //    particle.rectTransform.position = pipesTransform[0].position;
-            //    particle.rectTransform.SetParent(pipesTransform[0].parent);
-            //    Debug.Log("Wrong");
-            //}
+        //                if (Vector2.Distance(particle.rectTransform.position, pipesTransform[i].position) < 0.1f)
+        //                {
+        //                    particle.rectTransform.SetParent(pipesTransform[i].parent);
+        //                    if (i < pipesTransform.Count - 1)
+        //                    {
+        //                        if (particle.rectTransform.parent != pipesTransform[i + 1].parent)
+        //                        {
+        //                            Debug.Log("Con't connect, wrong pipe connection");
+        //                            yield break;
+        //                        }
+        //                    }
+        //                    break;
+        //                }
+        //                particle.rectTransform.position = Vector2.MoveTowards(particle.rectTransform.position, pipesTransform[i].position, 1f);
+        //                yield return null;
+        //            }
+        //        }
+        //        correct++;
+        //        yield return null;
+        //    }
+        //    if (correct == answer)
+        //    {
+        //        Debug.Log("Correct");
+        //    }
+        //    else
+        //    {
+        //        particle.rectTransform.position = pipesTransform[0].position;
+        //        particle.rectTransform.SetParent(pipesTransform[0].parent);
+        //        Debug.Log("Wrong");
+        //    }
         //}
     }
 }

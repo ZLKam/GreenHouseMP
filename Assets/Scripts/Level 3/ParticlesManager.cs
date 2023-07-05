@@ -7,27 +7,31 @@ namespace Level3 {
     {
         public GameObject particle;
 
+        private bool spawnCoroutineRunning = false;
+
         public void StartToSpawnParticle(Transform pos = null)
         {
-            StartCoroutine(SpawnParticle(pos));
+            StartCoroutine(SpawnParticle(pos, this));
         }
 
         public void StopSpawnParticle()
         {
+            if (!spawnCoroutineRunning)
+                return;
             StopAllCoroutines();
+            spawnCoroutineRunning = false;
         }
 
-        private IEnumerator SpawnParticle(Transform pos)
+        private IEnumerator SpawnParticle(Transform pos, ParticlesManager manager)
         {
-            //while (true)
-            //{
-            //    GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
-            //    particle.transform.parent = pos;
-            //    yield return new WaitForSecondsRealtime(1f);
-            //}
-            GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
-            particle.transform.parent = pos;
-            yield return new WaitForSecondsRealtime(1f);
+            while (true)
+            {
+                spawnCoroutineRunning = true;
+                GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
+                particle.GetComponent<RectTransform>().SetParent(pos);
+                particle.GetComponent<Particle>().manager = manager;
+                yield return new WaitForSecondsRealtime(0.2f);
+            }
         }
     }
 }
