@@ -1611,7 +1611,7 @@ MonoBehaviour:
   particleManagerGO: {fileID: 1140808729}
   pipesTransform:
   - {fileID: 334613567}
-  particle: {fileID: 461515417}
+  particle: {fileID: 240865740546949144, guid: c92004bdba70ccc4496a94e8855027d8, type: 3}
   start1: {fileID: 334613567}
   end1: {fileID: 27700435}
   start2: {fileID: 674642910}

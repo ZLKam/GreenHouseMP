@@ -19,12 +19,17 @@ namespace Level3 {
 
         private IEnumerator SpawnParticle(Transform pos)
         {
-            while (true)
-            {
-                GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
-                particle.transform.parent = pos;
-                yield return new WaitForSecondsRealtime(1f);
-            }
+            //while (true)
+            //{
+            //    GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
+            //    particle.transform.parent = pos;
+            //    yield return new WaitForSecondsRealtime(1f);
+            //}
+            //GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
+            //particle.transform.parent = pos;
+            /*GameObject go =*/
+            Instantiate(particle);
+            yield return new WaitForSecondsRealtime(1f);
         }
     }
 }
