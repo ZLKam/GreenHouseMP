@@ -32,7 +32,6 @@ public class Fade : MonoBehaviour
             PlayerPrefs.SetFloat("fadeSpeed", 51);
         }
         fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
-        Debug.Log(PlayerPrefs.GetString("previousScene"));
         previousScene = PlayerPrefs.GetString("previousScene");
 
         fadeImage = GetComponent<Image>();
