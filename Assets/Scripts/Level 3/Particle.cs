@@ -21,29 +21,38 @@ namespace Level3
         {
             me = GetComponent<Image>();
             flow = FindFirstObjectByType<CheckFlow>();
-            me.rectTransform.position = flow.pipesTransform[0].position;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            targetPos = flow.pipesTransform[target];
-            if (Vector2.Distance(me.rectTransform.position, targetPos.position) < 0.1f)
-            {
-                me.rectTransform.SetParent(targetPos.parent);
-                if (target < flow.pipesTransform.Count - 1)
-                {
-                    if (me.rectTransform.parent != flow.pipesTransform[target + 1].parent)
-                    {
-                        Destroy(gameObject);
-                    }
-                }
-            }
-            Vector2.MoveTowards(me.rectTransform.position, targetPos.position, 1f);
+            StartCoroutine(Move());
         }
 
         private IEnumerator Move()
         {
+            for (int i = 1; i < flow.pipesTransform.Count; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    Debug.Log("moving");
+                    targetPos = flow.pipesTransform[target];
+                    while (true)
+                    {
+                        if (Vector2.Distance(me.rectTransform.position, targetPos.position) < 0.1f)
+                        {
+                            me.rectTransform.SetParent(targetPos.parent);
+                            if (target < flow.pipesTransform.Count - 1)
+                            {
+                                if (me.rectTransform.parent != flow.pipesTransform[target + 1].parent)
+                                {
+                                    Destroy(gameObject);
+                                }
+                            }
+                        }
+                        Vector2.MoveTowards(me.rectTransform.position, targetPos.position, 1f);
+                    }
+                }
+                else if (i % 2 == 0)
+                {
+                    me.rectTransform.position = flow.pipesTransform[i].position;
+                }
+            }
             yield return null;
         }
     }
