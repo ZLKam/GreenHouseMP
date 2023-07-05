@@ -259,7 +259,7 @@ public class Connection : MonoBehaviour
             }
 #endif
 
-            if (Input.GetKey(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
+            if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject())
             {
                 // checks if there is an object being selected
                 // if so, remove selection by resetting the object's material to it's original material

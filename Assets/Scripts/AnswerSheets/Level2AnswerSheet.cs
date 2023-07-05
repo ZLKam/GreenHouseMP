@@ -21,10 +21,10 @@ public class Level2AnswerSheet : MonoBehaviour
     public GameObject correctPanel;
     bool showPopUp;
 
-    GameObject[] CHWR;
-    GameObject[] CHWS;
-    GameObject[] CWS;
-    GameObject[] CWR;
+    //GameObject[] CHWR;
+    //GameObject[] CHWS;
+    //GameObject[] CWS;
+    //GameObject[] CWR;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +32,10 @@ public class Level2AnswerSheet : MonoBehaviour
         showPopUp = true;
         //Debug.Log(connectionPoint1.Count);
 
-        CHWR = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 1");
-        CHWS = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 2");
-        CWS = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 3");
-        CWR = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 4");
+        //    CHWR = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 1");
+        //    CHWS = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 2");
+        //    CWS = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 3");
+        //    CWR = (GameObject[])Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection 4");
     }
 
     private void Update()
@@ -59,6 +59,12 @@ public class Level2AnswerSheet : MonoBehaviour
 
     void ConnectionCheck()
     {
+        var CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 1");
+        var CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 2");
+        var CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 3");
+        var CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 4");
+
+        Debug.Log(CHWR.Count());
         if (CHWR.Count() == 2)
         {
             connectionCHWR = true;

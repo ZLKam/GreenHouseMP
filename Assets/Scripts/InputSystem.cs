@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InputSystem : MonoBehaviour
 {
     public static InputSystem Instance;
+
+    [SerializeField]
+    private Dropdown dropdown;
+    private List<string> levels = new();
 
     private void Awake()
     {
@@ -18,8 +25,62 @@ public class InputSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
-        //SceneManager.LoadScene("Level 2");
+#if UNITY_EDITOR
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            foreach (var scene in EditorBuildSettings.scenes)
+            {
+                levels.Add(scene.path.Substring(scene.path.LastIndexOf('/') + 1).Replace(".unity", ""));
+            }
+            if (dropdown == null)
+            {
+                dropdown = GameObject.Find("Canvas").transform.GetChild(-1).GetComponent<Dropdown>();
+            }
+            dropdown.gameObject.SetActive(true);
+            dropdown.ClearOptions();
+            dropdown.AddOptions(levels);
+            dropdown.onValueChanged.AddListener(delegate { EnterLevel(dropdown.options[dropdown.value].text); });
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            foreach (var name in EditorBuildSettings.scenes)
+            {
+                levels.Add(scene.path.Substring(name.path.LastIndexOf('/') + 1).Replace(".unity", ""));
+            }
+            if (dropdown == null)
+            {
+                GameObject canvas = GameObject.Find("Canvas");
+                dropdown = canvas.transform.GetChild(canvas.transform.childCount - 1).GetComponent<Dropdown>();
+            }
+            dropdown.gameObject.SetActive(true);
+            dropdown.ClearOptions();
+            dropdown.AddOptions(levels);
+            dropdown.onValueChanged.AddListener(delegate { EnterLevel(dropdown.options[dropdown.value].text); });
+        }
+    }
+#endif
+
+    private void EnterLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
     }
 
     //Returns mouse Input left click
@@ -79,7 +140,7 @@ public class InputSystem : MonoBehaviour
     public bool RightClick()
     {
 #if UNITY_STANDALONE
-        return Input.GetMouseButtonDown(2);
+        return Input.GetMouseButtonDown(1);
 #endif
 #if UNITY_ANDROID
         return true;

@@ -239,20 +239,21 @@ public class Placement : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit))
-        //constantly generates a raycast fromm the mouse position
+        //constantly generates a raycast from the mouse position
         //checks if the mouse is over a game object and the returns the hit object using raycast
         {
             if (InputSystem.Instance.LeftClick())
             //if there is a left click or a touch detected
             {
                 if (!hit.transform.CompareTag("Selection"))
-                //the game object is not the green boxes it will run the delete function
-#if UNITY_ANDROID
                 {
+                    //the game object is not the green boxes it will run the delete function
+#if UNITY_ANDROID
                     Delete(hit.transform);
                     return;
-                }
 #endif          
+                }
+
                 //if not it will run the select function
                 Select(hit.transform);
                 return;
