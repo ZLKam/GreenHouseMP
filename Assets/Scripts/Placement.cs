@@ -28,8 +28,6 @@ public class Placement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HighlightPlacement();
-        //HighlightComponent();
         //not sure if needed
         if (!allowDelete && Input.touchCount > 0)
         {
@@ -41,156 +39,6 @@ public class Placement : MonoBehaviour
         Highlight();
     }
 
-    void HighlightPlacement()
-    {
-        // checks if there is an object being highlighted
-        // if so, remove highlight by resetting the object's material to it's original material
-        if (highlight != null)
-        {
-            highlight.GetComponent<MeshRenderer>().material = originalMat;
-            highlight = null;
-        }
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        // checks if the raycast being drawn from the mouse hits an object
-        // if so, check if the tag of the highlight is called "Connection" before setting the colour of the object's material
-        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
-        {
-            highlight = raycastHit.transform;
-            if (highlight.CompareTag("Selection") && highlight != selection)
-            {
-                if (highlight.GetComponent<MeshRenderer>().material != highlightMat)
-                {
-                    originalMat = highlight.GetComponent<MeshRenderer>().material;
-                    highlight.GetComponent<MeshRenderer>().material = highlightMat;
-                }
-            }
-            else
-            {
-                highlight = null;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
-        {
-            // checks if there is an object being selected
-            // if so, remove selection by resetting the object's material to it's original material
-            if (selection != null)
-            {
-                selection.GetComponent<MeshRenderer>().material = originalMat;
-                selection = null;
-            }
-
-            // checks if the raycast being drawn from the mouse hits an object
-            // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
-            if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
-            {
-                selection = raycastHit.transform;
-                if (selection.CompareTag("Selection"))
-                {
-                    selection.GetComponent<MeshRenderer>().material = selectionMat;
-
-                    if (selectedPrefab != null)
-                    {
-                        GameObject component = Instantiate(selectedPrefab, selection.transform.position, selectedPrefab.transform.rotation);
-                        component.transform.parent = selection;
-
-                        selection.GetComponent<Renderer>().enabled = false;
-                        selection.GetComponent<BoxCollider>().enabled = false;
-
-                        if (tutorial)
-                        {
-                            FindObjectOfType<Tutorial>().CheckPlacement();
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Please Select A Component First");
-                    }
-
-                }
-                else
-                {
-                    selection = null;
-                }
-            }
-        }
-    }
-
-    void HighlightComponent()
-    {
-        // checks if there is an object being highlighted
-        // if so, remove highlight by resetting the object's material to it's original material
-        if (highlight != null)
-        {
-            highlight.GetComponent<MeshRenderer>().material = originalMat;
-            highlight = null;
-        }
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        // checks if the raycast being drawn from the mouse hits an object
-        // if so, check if the tag of the highlight is called "Connection" before setting the colour of the object's material
-        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
-        {
-            highlight = raycastHit.transform;
-            if (highlight.CompareTag("Selection") && highlight != selection)
-            {
-                if (highlight.GetComponent<MeshRenderer>().material != highlightMat)
-                {
-                    originalMat = highlight.GetComponent<MeshRenderer>().material;
-                    highlight.GetComponent<MeshRenderer>().material = highlightMat;
-                }
-            }
-            else
-            {
-                highlight = null;
-            }
-        }
-
-        if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject())
-        {
-            // checks if there is an object being selected
-            // if so, remove selection by resetting the object's material to it's original material
-            if (selection != null)
-            {
-                selection.GetComponent<MeshRenderer>().material = originalMat;
-                selection = null;
-            }
-
-            // checks if the raycast being drawn from the mouse hits an object
-            // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
-            if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
-            {
-                selection = raycastHit.transform;
-                if (selection.CompareTag("Component/Chiller") || selection.CompareTag("Component/AHU") || selection.CompareTag("Component/CoolingTower") || selection.CompareTag("Component/CwpOpt") || selection.CompareTag("Component/CwpOptElavated"))
-                {
-                    selection.transform.parent.GetComponent<Renderer>().enabled = true;
-                    selection.transform.parent.GetComponent<BoxCollider>().enabled = true;
-                    Destroy(selection.gameObject);
-
-                    /*
-                    selection.GetComponent<MeshRenderer>().material = selectionMat;
-
-                    if (selectedPrefab != null)
-                    {
-                        GameObject component = Instantiate(selectedPrefab, selection.transform.position, selectedPrefab.transform.rotation);
-                        component.transform.parent = selection;
-                    }
-                    else
-                    {
-                        Debug.Log("Please Select A Component First");
-                    }
-                    */
-                }
-                else
-                {
-                    selection = null;
-                }
-            }
-        }
-    }
 
     private void Select(Transform selectedTransform)
     {
@@ -318,6 +166,13 @@ public class Placement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void DragandDrop() 
+    {
+        //when there is an id, instantiate sprite on the touchInput,On touch began
+        //if distance between instantiated object and cogwheel is close, auto delete when finger is off
+        //as long as finger is moving, the objcet will follow and if the distance is further will drop object onto scene
     }
 
     private void Delete(Transform selectedTransform)
