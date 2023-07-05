@@ -25,10 +25,8 @@ namespace Level3 {
             //    particle.transform.parent = pos;
             //    yield return new WaitForSecondsRealtime(1f);
             //}
-            //GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
-            //particle.transform.parent = pos;
-            /*GameObject go =*/
-            Instantiate(particle);
+            GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
+            particle.transform.parent = pos;
             yield return new WaitForSecondsRealtime(1f);
         }
     }
