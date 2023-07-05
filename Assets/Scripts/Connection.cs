@@ -9,6 +9,8 @@ public class Connection : MonoBehaviour
 {
     public bool tutorial;
     public Level2AnswerSheet level2AnswerSheet;
+    public SelectedComponent selectedComponent;
+    public ReturnValue valueReturnBtn;
 
     public GameObject particle;
 
@@ -126,57 +128,104 @@ public class Connection : MonoBehaviour
             }
         }
 #endif
-
         if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject())
         {
-            // checks if there is an object being selected
-            // if so, remove selection by resetting the object's material to it's original material
-            //if (selection != null)
-            //{
-            //    selection.GetComponent<MeshRenderer>().material = originalMat;
-            //    selection = null;
-            //}
-
-            // checks if the raycast being drawn from the mouse hits an object
-            // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
-                if (selection.CompareTag("Connection"))
+                if (selection.GetComponent<SelectedComponent>() != null)
                 {
-                    //using sharedMaterial to avoid having instance material
-                    if (selection.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-                    {
-                        selection.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                        points.Remove(selection.gameObject);
-                        return;
-                    }
-                    originalMat = selection.GetComponent<MeshRenderer>().material;
-                    selection.GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
-
-                    if (!points.Contains(selection.gameObject))
-                    {
-                        points.Add(selection.gameObject);
-
-                        if (points.Count >= 2)
-                        {
-                            Connect();
-
-                            if (FindObjectOfType<Tutorial>() != null)
-                            {
-                                FindObjectOfType<Tutorial>().CheckConnection();
-                            }
-                        }
-                    }
+                    selectedComponent = selection.GetComponent<SelectedComponent>();
+                    selectedComponent.ShowUI();
+                    valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
                 }
-                else
-                {
-                    points.Remove(selection.gameObject);
-                    selection = null;
-                }
-
             }
-        } 
+        }
+        if (valueReturnBtn.pressedBtn)
+        {
+            if (selectedComponent.IndexReturn() != null)
+            {
+                if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+                {
+                    selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                    points.Remove(selection.gameObject);
+                    valueReturnBtn.pressedBtn = false;
+                    return;
+                }
+                originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
+                selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
+            }
+
+            if (!points.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn() != null)
+            {
+                points.Add(selectedComponent.IndexReturn().gameObject);
+
+                if (points.Count >= 2)
+                {
+                    Connect();
+
+                    if (FindObjectOfType<Tutorial>() != null)
+                    {
+                        FindObjectOfType<Tutorial>().CheckConnection();
+                    }
+                }
+            }
+            valueReturnBtn.pressedBtn = false;
+        }
+
+        //if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject() || valueReturnBtn.pressedBtn)
+        //{
+        //    // checks if the raycast being drawn from the mouse hits an object
+        //    // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
+        //    if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit) || valueReturnBtn.pressedBtn)
+        //    {
+        //        selection = raycastHit.transform;
+        //        if (selection.GetComponent<SelectedComponent>() != null  || valueReturnBtn.pressedBtn)
+        //        {
+        //            if (selection != null)
+        //            {
+        //                selectedComponent = selection.GetComponent<SelectedComponent>();
+        //                selectedComponent.ShowUI();
+        //                valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
+        //            }
+        //            if (selectedComponent.IndexReturn() != null)
+        //            {
+        //                Debug.Log("test");
+        //                //using sharedMaterial to avoid having instance material
+        //                if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+        //                {
+        //                    selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+        //                    points.Remove(selection.gameObject);
+        //                    return;
+        //                }
+        //                originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
+        //                selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
+        //            }
+
+        //            if (!points.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn() != null)
+        //            {
+        //                valueReturnBtn.pressedBtn = false;
+        //                points.Add(selectedComponent.IndexReturn().gameObject);
+
+        //                if (points.Count >= 2)
+        //                {
+        //                    Connect();
+
+        //                    if (FindObjectOfType<Tutorial>() != null)
+        //                    {
+        //                        FindObjectOfType<Tutorial>().CheckConnection();
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            points.Remove(selection.gameObject);
+        //            selection = null;
+        //        }
+
+        //    }
+        //} 
     }
 
         void Connect()
@@ -438,6 +487,7 @@ public class Connection : MonoBehaviour
                     pipeMain.AddComponent<ParticleFlow>();
 
                     Debug.Log("matches");
+                    level2AnswerSheet.AnswerCheck();
                 }
                 else if (anomalyFound)
                 {
