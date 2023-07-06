@@ -2,6 +2,7 @@ using Level3;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ComponentWheel : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class ComponentWheel : MonoBehaviour
     [SerializeField]
     internal bool drawLine = false;
 
+    public Text txtMode;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,8 @@ public class ComponentWheel : MonoBehaviour
         bottom = playArea.Find("Bottom");
         left = playArea.Find("Left");
         right = playArea.Find("Right");
+
+        txtMode.text = "Select Component";
     }
 
     internal bool IsWithinX(Vector3 check)
@@ -52,10 +57,12 @@ public class ComponentWheel : MonoBehaviour
 
         if (selectComponent)
         {
+            txtMode.text = "Select Component";
             FindObjectOfType<LineManagerController>().enabled = false;
         }
         else
         {
+            txtMode.text = "Draw Pipe";
             FindObjectOfType<LineManagerController>().enabled = true;
         }
     }

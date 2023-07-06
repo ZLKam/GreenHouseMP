@@ -8,10 +8,15 @@ namespace Level3
 {
     public class LineManagerController : MonoBehaviour
     {
+        public GameObject lineManager;
+        public ComponentWheel wheel;
+
         public int linesToDraw = 0;
         [SerializeField]
         internal int i = 0;
         public List<bool> linesDrawn = new();
+
+        public static bool componentClicked = false;
 
         private void Start()
         {
@@ -27,17 +32,29 @@ namespace Level3
                     Debug.Log("hit UI");
                     return;
                 }
-                if (i >= transform.childCount)
+                if (componentClicked)
                 {
+                    Debug.Log("hit component");
+                    
+                    if (!(transform.childCount == 0) && transform.GetChild(transform.childCount - 1).GetComponent<LineManager>().isDrawing)
+                    {
+                        Debug.Log("line is drawing");
+                        return;
+                    }
+                    Instantiate(lineManager, transform.position, Quaternion.identity, transform);
                     return;
                 }
-                transform.GetChild(i).gameObject.SetActive(true);
 
-                if (i == linesToDraw)
-                {
-                    Debug.Log("Finished drawing line. Check answer");
-                }
+                //if (i == linesToDraw)
+                //{
+                //    Debug.Log("Finished drawing line. Check answer");
+                //}
             }
+        }
+
+        private void LateUpdate()
+        {
+            componentClicked = false;
         }
 
         public void CheckLineDrawn()

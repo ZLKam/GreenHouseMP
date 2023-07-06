@@ -9,7 +9,10 @@ namespace Level3
     {
         LineRenderer lineRenderer;
 
+        public Vector3 startPos;
+
         private Vector3 mousePosition = new();
+
         [SerializeField]
         internal bool isDrawing = false;
 
@@ -24,9 +27,13 @@ namespace Level3
 
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
+            startPos = mousePosition;
 
             lineRenderer.enabled = true;
-            lineRenderer.SetPosition(0, mousePosition);
+            lineRenderer.SetPosition(0, startPos);
+            lineRenderer.SetPosition(1, startPos);
+            lineRenderer.SetPosition(2, startPos);
+            lineRenderer.SetPosition(3, startPos);
             isDrawing = true;
         }
 
@@ -40,9 +47,17 @@ namespace Level3
                 if (isDrawing)
                 {
                     isDrawing = false;
-                    transform.parent.GetComponent<LineManagerController>().linesDrawn.Add(true);
-                    transform.parent.GetComponent<LineManagerController>().i++;
-                    transform.parent.GetComponent<LineManagerController>().CheckLineDrawn();
+
+                    if (LineManagerController.componentClicked)
+                    {
+                        transform.parent.GetComponent<LineManagerController>().linesDrawn.Add(true);
+                        transform.parent.GetComponent<LineManagerController>().i++;
+                        transform.parent.GetComponent<LineManagerController>().CheckLineDrawn();
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
                 }
             }
             if (Input.GetMouseButton(0))
@@ -57,9 +72,16 @@ namespace Level3
                     {
                         timePressed = 0f;
                         isDrawing = false;
-                        transform.parent.GetComponent<LineManagerController>().linesDrawn.Add(true);
-                        transform.parent.GetComponent<LineManagerController>().i++;
-                        transform.parent.GetComponent<LineManagerController>().CheckLineDrawn();
+                        if (LineManagerController.componentClicked)
+                        {
+                            transform.parent.GetComponent<LineManagerController>().linesDrawn.Add(true);
+                            transform.parent.GetComponent<LineManagerController>().i++;
+                            transform.parent.GetComponent<LineManagerController>().CheckLineDrawn();
+                        }
+                        else
+                        {
+                            Destroy(gameObject);
+                        }
                     }
                 }
             }

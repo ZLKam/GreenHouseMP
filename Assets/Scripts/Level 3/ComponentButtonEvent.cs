@@ -13,9 +13,6 @@ namespace Level3 {
 
         private int spawnedComponentCount = 0;
 
-        [SerializeField]
-        private GameObject go;
-
         private Vector3 mousePos;
 
         private void Start()
