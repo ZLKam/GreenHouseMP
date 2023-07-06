@@ -11,6 +11,13 @@ namespace Level3 {
 
         private Transform component;
 
+        private int spawnedComponentCount = 0;
+
+        [SerializeField]
+        private GameObject go;
+
+        private Vector3 mousePos;
+
         private void Start()
         {
             componentWheel = transform.parent.GetComponent<ComponentWheel>();
@@ -19,9 +26,17 @@ namespace Level3 {
         public void OnPointerDown(PointerEventData eventData)
         {
             transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
-            component = Instantiate(transform.GetChild(transform.childCount - 1), eventData.position, Quaternion.identity, componentWheel.playArea);
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
+            component = Instantiate(transform.GetChild(transform.childCount - 1), mousePos, Quaternion.identity, componentWheel.playArea);
             component.GetComponent<ComponentEvent>().buttonEvent = this;
             transform.GetChild(transform.childCount - 1).gameObject.SetActive(false);
+            spawnedComponentCount++;
+
+            if (componentWheel.drawLine && spawnedComponentCount > 1)
+            {
+                FindObjectOfType<LineManagerController>().GetComponent<LineManagerController>().linesToDraw++;
+            }
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -33,9 +48,11 @@ namespace Level3 {
 
         internal void FollowDragPosition(PointerEventData eventData, Transform component)
         {
-            if (componentWheel.IsWithinX(eventData.position) && componentWheel.IsWithinY(eventData.position))
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
+            if (componentWheel.IsWithinX(mousePos) && componentWheel.IsWithinY(mousePos))
             {
-                component.GetComponent<RectTransform>().position = eventData.position;
+                component.transform.position = mousePos;
                 return;
             }
         }

@@ -1,3 +1,4 @@
+using Level3;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ public class ComponentWheel : MonoBehaviour
     private Transform bottom;
     private Transform left;
     private Transform right;
+
+    [SerializeField]
+    internal bool selectComponent = true;
+    [SerializeField]
+    internal bool drawLine = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +43,20 @@ public class ComponentWheel : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void ChangeMode()
+    {
+        selectComponent = !selectComponent;
+        drawLine = !drawLine;
+
+        if (selectComponent)
+        {
+            FindObjectOfType<LineManagerController>().enabled = false;
+        }
+        else
+        {
+            FindObjectOfType<LineManagerController>().enabled = true;
+        }
     }
 }
