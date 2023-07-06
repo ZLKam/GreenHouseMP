@@ -100,7 +100,7 @@ public class Hover : MonoBehaviour
         }
         else if (!isTab && componentBtnEvent != null) 
         {
-            componentBtnEvent.selectedPrefab = component;
+            //componentBtnEvent.selectedPrefab = component;
         }
     }
 }
