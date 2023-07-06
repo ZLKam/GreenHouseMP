@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 namespace Level3 {
     public class ComponentButtonEvent : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
+<<<<<<< Updated upstream
         ComponentWheel componentWheel;
 
         private Transform component;
@@ -26,6 +27,7 @@ namespace Level3 {
 
         public void OnDrag(PointerEventData eventData)
         {
+<<<<<<< Updated upstream
             FollowDragPosition(eventData, component);
         }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Level3;
 
 public class Hover : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class Hover : MonoBehaviour
     public GameObject component;
     public GameObject componentName;
     Placement placement;
+    ComponentButtonEvent componentBtnEvent;
 
     void Start()
     {
         placement = FindObjectOfType<Placement>();
+        componentBtnEvent = GetComponent<ComponentButtonEvent>();
 
         startPosition = transform.localPosition;
         startSize = transform.localScale;
@@ -60,7 +63,7 @@ public class Hover : MonoBehaviour
     }
     public void Enter()
     {
-        Debug.Log("hover");
+        //Debug.Log("hover");
         hoverOver = true;
         if (componentName != null)
         {
@@ -71,7 +74,7 @@ public class Hover : MonoBehaviour
 
     public void Exit()
     {
-        Debug.Log("exit");
+        //Debug.Log("exit");
         hoverOver = false;
         if (componentName != null)
         {
@@ -91,9 +94,13 @@ public class Hover : MonoBehaviour
 
     public void Selection()
     {
-        if (!isTab)
+        if (!isTab && placement != null)
         {
             placement.selectedPrefab = component;
+        }
+        else if (!isTab && componentBtnEvent != null) 
+        {
+            componentBtnEvent.selectedPrefab = component;
         }
     }
 }
