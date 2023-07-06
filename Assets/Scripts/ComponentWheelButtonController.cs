@@ -44,7 +44,7 @@ public class ComponentWheelButtonController : MonoBehaviour
 
     public void DeSelected()
     //deselects everything 
-    //resets the boolean and compoenent ID
+    //resets the boolean and component ID
     //text into blank
     {
         anim.SetBool("select", false);

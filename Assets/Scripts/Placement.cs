@@ -37,6 +37,7 @@ public class Placement : MonoBehaviour
             }
         }
         Highlight();
+        DragandDrop();
     }
 
 
@@ -173,6 +174,14 @@ public class Placement : MonoBehaviour
         //when there is an id, instantiate sprite on the touchInput,On touch began
         //if distance between instantiated object and cogwheel is close, auto delete when finger is off
         //as long as finger is moving, the objcet will follow and if the distance is further will drop object onto scene
+        if (selectedPrefab != null && InputSystem.Instance.LeftClick()) 
+        {
+            GameObject component = Instantiate(selectedPrefab, Input.GetTouch(0).position, selectedPrefab.transform.rotation);
+        }
+        if (selectedPrefab != null && Input.GetTouch(0).phase == TouchPhase.Moved) 
+        {
+
+        }
     }
 
     private void Delete(Transform selectedTransform)
