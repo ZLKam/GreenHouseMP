@@ -16,7 +16,9 @@ namespace Level3
         internal int i = 0;
         public List<bool> linesDrawn = new();
 
-        public static bool componentClicked = false;
+        public bool componentClicked = false;
+
+        public Transform componentClickedT = null;
 
         private void Start()
         {

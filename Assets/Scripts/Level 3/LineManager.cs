@@ -8,6 +8,7 @@ namespace Level3
     public class LineManager : MonoBehaviour
     {
         LineRenderer lineRenderer;
+        LineManagerController lineManagerController;
 
         public Vector3 startPos;
 
@@ -19,8 +20,12 @@ namespace Level3
         [SerializeField]
         private float timePressed = 0f;
 
+        [SerializeField]
+        private Transform hitT;
+
         private void Start()
         {
+            lineManagerController = transform.parent.GetComponent<LineManagerController>();
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.startWidth = 0.1f;
             lineRenderer.endWidth = 0.1f;
@@ -47,15 +52,16 @@ namespace Level3
                 if (isDrawing)
                 {
                     isDrawing = false;
-
-                    if (LineManagerController.componentClicked)
+                    if (lineManagerController.componentClicked && lineManagerController.componentClickedT != hitT)
                     {
-                        transform.parent.GetComponent<LineManagerController>().linesDrawn.Add(true);
-                        transform.parent.GetComponent<LineManagerController>().i++;
-                        transform.parent.GetComponent<LineManagerController>().CheckLineDrawn();
+                        lineManagerController.linesDrawn.Add(true);
+                        lineManagerController.i++;
+                        lineManagerController.CheckLineDrawn();
+                        lineManagerController.componentClickedT = null;
                     }
                     else
                     {
+                        lineManagerController.componentClickedT = null;
                         Destroy(gameObject);
                     }
                 }
@@ -72,14 +78,16 @@ namespace Level3
                     {
                         timePressed = 0f;
                         isDrawing = false;
-                        if (LineManagerController.componentClicked)
+                        if (lineManagerController.componentClicked && lineManagerController.componentClickedT != hitT)
                         {
-                            transform.parent.GetComponent<LineManagerController>().linesDrawn.Add(true);
-                            transform.parent.GetComponent<LineManagerController>().i++;
-                            transform.parent.GetComponent<LineManagerController>().CheckLineDrawn();
+                            lineManagerController.linesDrawn.Add(true);
+                            lineManagerController.i++;
+                            lineManagerController.CheckLineDrawn();
+                            lineManagerController.componentClickedT = null;
                         }
                         else
                         {
+                            lineManagerController.componentClickedT = null;
                             Destroy(gameObject);
                         }
                     }
@@ -94,6 +102,11 @@ namespace Level3
                 lineRenderer.SetPosition(2, new Vector3(mousePosition.x, half.y, half.z));
                 lineRenderer.SetPosition(3, mousePosition);
             }
+        }
+
+        public Transform SetHitT
+        {
+            set { hitT = value; }
         }
     }
 }

@@ -9,9 +9,17 @@ namespace Level3
     {
         internal ComponentButtonEvent buttonEvent;
 
+        LineManagerController lineManagerController;
+
+        private void Start()
+        {
+            lineManagerController = FindObjectOfType<LineManagerController>();
+        }
+
         public void OnDrag(PointerEventData eventData)
         {
-            LineManagerController.componentClicked = false;
+            lineManagerController.componentClicked = false;
+            lineManagerController.componentClickedT = null;
             if (buttonEvent.transform.parent.GetComponent<ComponentWheel>().drawLine)
                 return;
             buttonEvent.FollowDragPosition(eventData, transform);
@@ -20,7 +28,16 @@ namespace Level3
         public void OnPointerDown(PointerEventData eventData)
         {
             Debug.Log("clicked");
-            LineManagerController.componentClicked = true;
+            lineManagerController.componentClicked = true;
+            if (!lineManagerController.componentClickedT)
+                lineManagerController.componentClickedT = transform;
+
+            if (lineManagerController.transform.childCount == 0)
+                return;
+            if (lineManagerController.transform.GetChild(lineManagerController.transform.childCount - 1).GetComponent<LineManager>().isDrawing)
+            {
+                lineManagerController.transform.GetChild(lineManagerController.transform.childCount - 1).GetComponent<LineManager>().SetHitT = transform;
+            }
         }
     }
 }
