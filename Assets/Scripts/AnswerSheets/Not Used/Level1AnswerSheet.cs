@@ -95,17 +95,25 @@ public class Level1AnswerSheet : MonoBehaviour
             {
                 GameObject childObject = SelectionPointsArray[16].transform.GetChild(0).gameObject;
 
-                if (SelectionPointsArray[16].transform && childObject.CompareTag("Component/CwpOpt"))
+                if (SelectionPointsArray[16].transform)
                 {
-                    cwp_opt = true;
+                    if (childObject.CompareTag("Component/CwpOpt"))
+                    {
+                        cwp_opt = true;
 
-                    Debug.Log(cwp_opt + "CwpOpt");
+                        Debug.Log(cwp_opt + "CwpOpt");
+                    }
+                    else if (childObject.CompareTag("Component/cwp_opt_Elavated")) 
+                    {
+                        cwp_opt_Elav = true;
+                    }
                 }
 
             }
             else
             {
                 cwp_opt = false;
+                cwp_opt_Elav = false;
             }
 
 
@@ -113,16 +121,23 @@ public class Level1AnswerSheet : MonoBehaviour
             {
                 GameObject childObject = SelectionPointsArray[17].transform.GetChild(0).gameObject;
 
-                if (SelectionPointsArray[17].transform && childObject.CompareTag("Component/CwpOptElavated"))
+                if (SelectionPointsArray[17].transform)
                 {
-                    cwp_opt_Elav = true;
-
-                    Debug.Log(cwp_opt_Elav + "cwp_opt_Elavated");
+                    if (childObject.CompareTag("Component/CwpOpt"))
+                    {
+                        cwp_opt = true;
+                    }
+                    else if (childObject.CompareTag("Component/cwp_opt_Elavated"))
+                    {
+                        cwp_opt_Elav = true;
+                        Debug.Log(cwp_opt_Elav + "cwp_opt_Elavated");
+                    }
                 }
 
             }
             else
             {
+                cwp_opt = false;
                 cwp_opt_Elav = false;
             }
 

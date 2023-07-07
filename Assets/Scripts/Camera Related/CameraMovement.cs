@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,7 +56,25 @@ public class CameraMovement : MonoBehaviour
         sensitivity = PlayerPrefs.GetFloat("zoomSensitivity");
         originalSpeed = rotationSpeed;
 
+        Camera.main.fieldOfView = 40f;
         zoomAmount = Camera.main.fieldOfView;
+        StartCoroutine(ZoomCameraCoroutine());
+    }
+
+    private IEnumerator ZoomCameraCoroutine()
+    {
+        while (true)
+        {
+            Camera.main.fieldOfView -= sensitivity * 10f * Time.deltaTime;
+            if (Camera.main.fieldOfView <= 25)
+            {
+                Camera.main.fieldOfView = 25;
+                zoomAmount = Camera.main.fieldOfView;
+                StopCoroutine(ZoomCameraCoroutine());
+                break;
+            }
+            yield return null;
+        }
     }
 
     // Update is called once per frame

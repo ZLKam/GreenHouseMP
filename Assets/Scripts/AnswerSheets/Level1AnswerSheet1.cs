@@ -57,13 +57,19 @@ public class Level1AnswerSheet1 : MonoBehaviour
             chiller = false;
         }
 
-        if(correctSelection1[2].transform.childCount > 0 &&
+        if (correctSelection1[2].transform.childCount > 0 &&
             correctSelection1[2].transform.GetChild(0).CompareTag("Component/CwpOpt"))
         {
             cwp_opt = true;
         }
+        else if(correctSelection1[2].transform.childCount > 0 &&
+            correctSelection1[2].transform.GetChild(0).CompareTag("Component/CwpOptElavated"))
+        {
+            cwp_opt_Elav = true;
+        }
         else
         {
+            cwp_opt_Elav = false;
             cwp_opt = false;
         }
 
@@ -72,8 +78,14 @@ public class Level1AnswerSheet1 : MonoBehaviour
         {
             cwp_opt_Elav = true;
         }
+        else if (correctSelection1[3].transform.childCount > 0 &&
+            correctSelection1[3].transform.GetChild(0).CompareTag("Component/CwpOpt"))
+        {
+            cwp_opt = true;
+        }
         else
         {
+            cwp_opt = false;
             cwp_opt_Elav = false;
         }
 
