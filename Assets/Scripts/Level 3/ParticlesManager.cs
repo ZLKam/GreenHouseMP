@@ -9,9 +9,9 @@ namespace Level3 {
 
         private bool spawnCoroutineRunning = false;
 
-        public void StartToSpawnParticle(Transform pos = null)
+        public void StartToSpawnParticle(Vector2 position)
         {
-            StartCoroutine(SpawnParticle(pos, this));
+            StartCoroutine(SpawnParticle(position, this));
         }
 
         public void StopSpawnParticle()
@@ -22,13 +22,13 @@ namespace Level3 {
             spawnCoroutineRunning = false;
         }
 
-        private IEnumerator SpawnParticle(Transform pos, ParticlesManager manager)
+        private IEnumerator SpawnParticle(Vector2 position, ParticlesManager manager)
         {
             while (true)
             {
                 spawnCoroutineRunning = true;
-                GameObject particle = Instantiate(this.particle, pos.position, Quaternion.identity);
-                particle.GetComponent<RectTransform>().SetParent(pos);
+                GameObject particle = Instantiate(this.particle, position, Quaternion.identity);
+                particle.GetComponent<Transform>().SetParent(transform);
                 particle.GetComponent<Particle>().manager = manager;
                 yield return new WaitForSecondsRealtime(0.2f);
             }

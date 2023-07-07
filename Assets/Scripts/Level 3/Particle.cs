@@ -12,17 +12,14 @@ namespace Level3
         
         internal ParticlesManager manager;
 
-        public Transform targetPos;
-
-        private Image me;
+        public Vector2 targetPos;
 
         private int target = 0;
-        private float speed = 100f;
+        private float speed = 10f;
 
         // Start is called before the first frame update
         void Start()
         {
-            me = GetComponent<Image>();
             flow = FindFirstObjectByType<CheckFlow>();
             StartCoroutine(Move());
         }
@@ -37,36 +34,20 @@ namespace Level3
             for (int i = 1; i < flow.pipesTransform.Count; i++)
             {
                 target = i;
-                if (i % 2 != 0)
+                targetPos = flow.pipesTransform[target];
+                while (true)
                 {
-                    targetPos = flow.pipesTransform[target];
-                    while (true)
+                    if (Vector2.Distance(transform.position, targetPos) < 0.1f)
                     {
-                        if (Vector2.Distance(me.rectTransform.position, targetPos.position) < 0.1f)
+                        if (target >= flow.pipesTransform.Count - 1)
                         {
-                            me.rectTransform.SetParent(targetPos.parent);
-                            if (target < flow.pipesTransform.Count - 1)
-                            {
-                                if (me.rectTransform.parent != flow.pipesTransform[target + 1].parent)
-                                {
-                                    Debug.Log("wrong parent");
-                                    yield break;
-                                }
-                            }
-                            else
-                            {
-                                manager.StopSpawnParticle();
-                                Destroy(gameObject);
-                            }
-                            break;
+                            //manager.StopSpawnParticle();
+                            Destroy(gameObject);
                         }
-                        me.rectTransform.position = Vector2.MoveTowards(me.rectTransform.position, targetPos.position, speed * Time.deltaTime);
-                        yield return null;
+                        break;
                     }
-                }
-                else if (i % 2 == 0)
-                {
-                    me.rectTransform.position = flow.pipesTransform[i].position;
+                    transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+                    yield return null;
                 }
             }
             yield return null;

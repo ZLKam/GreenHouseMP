@@ -48,6 +48,8 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isDrawing: 0
   timePressed: 0
+  initT: {fileID: 0}
+  hitT: {fileID: 0}
 --- !u!120 &6709206045949303805
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -68,7 +70,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 740e1dc25525dfe43b9a4615f4025838, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,9 +93,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

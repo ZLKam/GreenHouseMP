@@ -7,58 +7,16 @@ namespace Level3
 {
     public class CheckFlow : MonoBehaviour
     {
-        public GameObject particleManagerGO;
         private ParticlesManager particleManager;
 
-        public List<Transform> pipesTransform = new();
-
-        public Image particle;
-
-        #region Test Transform
-        public RectTransform start1;
-        public RectTransform end1;
-        public RectTransform start2;
-        public RectTransform end2;
-        public RectTransform start3;
-        public RectTransform end3;
-        public RectTransform start4;
-        public RectTransform end4;
-        #endregion
-
-        private int correct = 0;
-        private int answer = 8;
+        public List<Vector2> pipesTransform = new();
 
         private void Start()
         {
-            particleManager = particleManagerGO.GetComponent<ParticlesManager>();
-            //particle.rectTransform.position = pipesTransform[0].position;
+            particleManager = GetComponent<ParticlesManager>();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                AddPipe(start1, end1);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                AddPipe(start2, end2);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                AddPipe(start3, end3);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                AddPipe(start4, end4);
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                CheckAnswer();
-            }
-        }
-
-        internal void AddPipe(Transform start, Transform end)
+        internal void AddPipe(Vector2 start, Vector2 end)
         {
             if (pipesTransform.Contains(start) && pipesTransform.Contains(end))
             {
@@ -82,59 +40,6 @@ namespace Level3
         public void CheckAnswer()
         {
             particleManager.StartToSpawnParticle(pipesTransform[0]);
-            //StartCoroutine(CheckParticleFlow());
         }
-
-        //private IEnumerator CheckParticleFlow()
-        //{
-        //    for (int i = 0; i < pipesTransform.Count; i++)
-        //    {
-        //        if (i == 0)
-        //        {
-        //            particle.rectTransform.position = pipesTransform[i].position;
-        //            particle.rectTransform.SetParent(pipesTransform[i].parent);
-        //            particleManager.StartToSpawnParticle(pipesTransform[i]);
-
-        //        }
-        //        else if (i % 2 == 0)
-        //        {
-        //            particle.rectTransform.position = pipesTransform[i].position;
-        //        }
-        //        else if (i % 2 != 0)
-        //        {
-        //            while (true)
-        //            {
-
-        //                if (Vector2.Distance(particle.rectTransform.position, pipesTransform[i].position) < 0.1f)
-        //                {
-        //                    particle.rectTransform.SetParent(pipesTransform[i].parent);
-        //                    if (i < pipesTransform.Count - 1)
-        //                    {
-        //                        if (particle.rectTransform.parent != pipesTransform[i + 1].parent)
-        //                        {
-        //                            Debug.Log("Con't connect, wrong pipe connection");
-        //                            yield break;
-        //                        }
-        //                    }
-        //                    break;
-        //                }
-        //                particle.rectTransform.position = Vector2.MoveTowards(particle.rectTransform.position, pipesTransform[i].position, 1f);
-        //                yield return null;
-        //            }
-        //        }
-        //        correct++;
-        //        yield return null;
-        //    }
-        //    if (correct == answer)
-        //    {
-        //        Debug.Log("Correct");
-        //    }
-        //    else
-        //    {
-        //        particle.rectTransform.position = pipesTransform[0].position;
-        //        particle.rectTransform.SetParent(pipesTransform[0].parent);
-        //        Debug.Log("Wrong");
-        //    }
-        //}
     }
 }

@@ -20,6 +20,8 @@ public class ComponentWheel : MonoBehaviour
 
     public Text txtMode;
 
+    public Vector2 centerPointOfPlayArea = new();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,8 @@ public class ComponentWheel : MonoBehaviour
         bottom = playArea.Find("Bottom");
         left = playArea.Find("Left");
         right = playArea.Find("Right");
+
+        centerPointOfPlayArea = new Vector2((top.position.y + bottom.position.y) / 2, (left.position.x + right.position.x) / 2);
 
         txtMode.text = "Select Component";
     }
