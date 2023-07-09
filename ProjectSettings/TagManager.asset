@@ -14,6 +14,7 @@ TagManager:
   - Component/CoolingTower
   - Component/CwpOpt
   - Component/CwpOptElavated
+  - LineParent
   layers:
   - Default
   - TransparentFX
