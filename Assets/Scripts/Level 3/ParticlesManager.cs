@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Level3 {
     public class ParticlesManager : MonoBehaviour
+    //handles spawning the moving particles through the pipes in the scene
     {
         public GameObject particle;
 
@@ -14,6 +15,7 @@ namespace Level3 {
             StartCoroutine(SpawnParticle(position, this));
         }
 
+        //Stops spawning particles through the coroutine
         public void StopSpawnParticle()
         {
             if (!spawnCoroutineRunning)
@@ -22,6 +24,7 @@ namespace Level3 {
             spawnCoroutineRunning = false;
         }
 
+        //instantiate a new particle every 0.2s continously, as the coroutine is triggered
         private IEnumerator SpawnParticle(Vector2 position, ParticlesManager manager)
         {
             while (true)

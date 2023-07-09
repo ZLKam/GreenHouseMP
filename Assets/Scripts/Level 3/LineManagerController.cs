@@ -29,6 +29,7 @@ namespace Level3
         {
             if (Input.GetMouseButtonDown(0))
             {
+                //checks if you have hit the UI to prevent lines being drawn there
                 if (EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.layer == 5)
                 {
                     Debug.Log("hit UI");
@@ -38,11 +39,15 @@ namespace Level3
                 {
                     Debug.Log("hit component");
                     
+                    //checks if there is a line already being drawn
+                    //if there is a child under lineboss, and the line is defined to be still being drawn, will return
                     if (!(transform.childCount == 0) && transform.GetChild(transform.childCount - 1).GetComponent<LineManager>().isDrawing)
                     {
                         Debug.Log("line is drawing");
                         return;
                     }
+                    
+                    //draws the line and sets it as a child to the object this script is attached to(lineboss)
                     Instantiate(lineManager, transform.position, Quaternion.identity, transform);
                     return;
                 }
@@ -55,13 +60,14 @@ namespace Level3
         }
 
         private void LateUpdate()
+        //resets the component clicked?
         {
             componentClicked = false;
         }
 
         public void CheckLineDrawn()
         {
-            // linesToDraw add when a component added
+            // adds linesToDraw to a component when it is instantiated
             // check linesDrawn after every line drawn, add a bool every time draw a line
             foreach (bool lineDrawn in linesDrawn)
             {

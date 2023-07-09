@@ -4,7 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Level3 {
+namespace Level3 
+{
     public class ComponentButtonEvent : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         ComponentWheel componentWheel;
@@ -21,12 +22,16 @@ namespace Level3 {
         }
 
         public void OnPointerDown(PointerEventData eventData)
+        //handles instantiting the object component to be placed in the scene
         {
             transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
+
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
+
             component = Instantiate(transform.GetChild(transform.childCount - 1), mousePos, Quaternion.identity, componentWheel.playArea);
             component.GetComponent<ComponentEvent>().buttonEvent = this;
+
             transform.GetChild(transform.childCount - 1).gameObject.SetActive(false);
             spawnedComponentCount++;
 
@@ -41,8 +46,8 @@ namespace Level3 {
             FollowDragPosition(eventData, component);
         }
 
-        
-
+        //handles moving the component with the mouse position
+        //prevents component from going beyond set boundaries
         internal void FollowDragPosition(PointerEventData eventData, Transform component)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

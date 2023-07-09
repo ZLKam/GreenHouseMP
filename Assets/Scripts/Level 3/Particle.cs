@@ -24,9 +24,11 @@ namespace Level3
             StartCoroutine(Move());
         }
 
+        //Coroutine to move the particles across the pipes
         private IEnumerator Move()
         {
             if (flow.pipesTransform.Count == 1)
+            //if there is no end point to the pipes
             {
                 Debug.Log("no pipe");
                 yield break;
