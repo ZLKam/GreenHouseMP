@@ -8,9 +8,9 @@ public class Hover : MonoBehaviour
     bool hoverOver;
     bool hoverTab;
     Vector3 startSize;
-    Vector3 startPosition;
     public bool isTab;
     public float moveSpeed;
+    public Vector3 startPosition;
     public Vector3 desiredPosition;
     public Vector3 desiredSize;
     public GameObject component;
@@ -23,7 +23,8 @@ public class Hover : MonoBehaviour
         placement = FindObjectOfType<Placement>();
         componentBtnEvent = GetComponent<ComponentButtonEvent>();
 
-        startPosition = transform.localPosition;
+        //transform.localPosition = startPosition;
+        //startPosition = transform.localPosition;
         startSize = transform.localScale;
     }
     void Update()
@@ -49,14 +50,16 @@ public class Hover : MonoBehaviour
             {
                 if (transform.localPosition.x < desiredPosition.x)
                 {
-                    transform.position += new Vector3(moveSpeed, 0f, 0f) * Time.deltaTime * 5;
+                    //transform.position += new Vector3(moveSpeed, 0f, 0f) * Time.deltaTime * 5;
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, desiredPosition, Time.deltaTime* moveSpeed);
                 }
             }
             else
             {
                 if (transform.localPosition.x > startPosition.x)
                 {
-                    transform.position -= new Vector3(moveSpeed, 0f, 0f) * Time.deltaTime * 5;
+                    //transform.position -= new Vector3(moveSpeed, 0f, 0f) * Time.deltaTime * 5;
+                    transform.localPosition = Vector3.Lerp(startPosition, transform.localPosition, Time.deltaTime * moveSpeed);
                 }
             }
         }

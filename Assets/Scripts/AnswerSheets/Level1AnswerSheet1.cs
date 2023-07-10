@@ -18,7 +18,6 @@ public class Level1AnswerSheet1 : MonoBehaviour
     public bool cwp_opt_Elav;
 
     public bool wrongSelection;
-    private int pumpCount;
 
     public Shader shaderRight;
     public Shader shaderWrong;
@@ -32,7 +31,6 @@ public class Level1AnswerSheet1 : MonoBehaviour
 
     public void AnswerCheck()
     {
-        pumpCount = 0;
         PlacementCheck();
         if (coolingTower && ahu && chiller && cwp_opt && cwp_opt_Elav && !wrongSelection)
         {
@@ -49,7 +47,7 @@ public class Level1AnswerSheet1 : MonoBehaviour
     void PlacementCheck()
     {
         if (correctSelection1[0].transform.childCount > 0 &&
-            correctSelection1[0].transform.GetChild(0).CompareTag("Component/CoolingTower"))
+            correctSelection1[0].transform.GetChild(1).CompareTag("Component/CoolingTower"))
         {
             coolingTower = true;
         }
@@ -59,7 +57,7 @@ public class Level1AnswerSheet1 : MonoBehaviour
         }
 
         if (correctSelection2.All(i => i.transform.childCount > 0) && 
-            correctSelection2.All(i => i.transform.GetChild(0).CompareTag("Component/AHU")))
+            correctSelection2.All(i => i.transform.GetChild(1).CompareTag("Component/AHU")))
         {
             ahu = true;
         }
@@ -69,7 +67,7 @@ public class Level1AnswerSheet1 : MonoBehaviour
         }
 
         if(correctSelection1[1].transform.childCount > 0 &&
-            correctSelection1[1].transform.GetChild(0).CompareTag("Component/Chiller"))
+            correctSelection1[1].transform.GetChild(1).CompareTag("Component/Chiller"))
         {
             chiller = true;
         }
@@ -80,38 +78,35 @@ public class Level1AnswerSheet1 : MonoBehaviour
         }
 
         if (correctSelection1[2].transform.childCount > 0 &&
-            correctSelection1[2].transform.GetChild(0).CompareTag("Component/CwpOpt"))
+            correctSelection1[2].transform.GetChild(1).CompareTag("Component/CwpOpt") && !cwp_opt)
         {
-            pumpCount += 1;
+            Debug.Log("test");
             cwp_opt = true;
         }
         else if(correctSelection1[2].transform.childCount > 0 &&
-            correctSelection1[2].transform.GetChild(0).CompareTag("Component/CwpOptElavated"))
+            correctSelection1[2].transform.GetChild(1).CompareTag("Component/CwpOptElavated") && !cwp_opt_Elav)
         {
-            pumpCount += 1;
             cwp_opt_Elav = true;
         }
         else
         {
+            Debug.Log("test");  
             cwp_opt_Elav = false;
             cwp_opt = false;
         }
 
         if(correctSelection1[3].transform.childCount > 0 &&
-            correctSelection1[3].transform.GetChild(0).CompareTag("Component/CwpOptElavated"))
+            correctSelection1[3].transform.GetChild(1).CompareTag("Component/CwpOptElavated") && !cwp_opt_Elav)
         {
-            pumpCount += 1;
             cwp_opt_Elav = true;
         }
         else if (correctSelection1[3].transform.childCount > 0 &&
-            correctSelection1[3].transform.GetChild(0).CompareTag("Component/CwpOpt"))
+            correctSelection1[3].transform.GetChild(1).CompareTag("Component/CwpOpt") && !cwp_opt)
         {
-            pumpCount += 1;
             cwp_opt = true;
         }
         else
         {
-            
             cwp_opt = false;
             cwp_opt_Elav = false;
         }
