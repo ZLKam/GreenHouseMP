@@ -59,15 +59,15 @@ public class LineCollision : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (parent != null)
-        {
-            if (transform.parent == collision.transform.parent || collision.transform == origin || collision.transform == destination)
-            {
-                return;
-            }
-            Debug.Log(name + " is trigger with " + collision.gameObject.name);
-            isTriggerring = true;
-            parent.GetComponent<LineCollision>().isTriggerring = true;
-        }
+        //if (parent != null)
+        //{
+        //    if (transform.parent == collision.transform.parent || collision.transform == origin || collision.transform == destination)
+        //    {
+        //        return;
+        //    }
+        //    Debug.Log(name + " is trigger with " + collision.gameObject.name);
+        //    isTriggerring = true;
+        //    parent.GetComponent<LineCollision>().isTriggerring = true;
+        //}
     }
 }

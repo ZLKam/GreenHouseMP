@@ -2,14 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using QPathFinder;
+using System.Drawing;
+using System.IO;
 
 public class TestLineFindPath : MonoBehaviour
 {
     [SerializeField]
     private GameObject emptyLinePrefab;
+    [SerializeField]
+    private GameObject emptyGO;
 
+    [SerializeField]
     private Transform hit1;
+    [SerializeField]
     private Transform hit2;
+
+    private GameObject GO;
+    private int hitCount = 0;
+
+    private void Start()
+    {
+        GameObject colliderParent = new("Path Collider");
+        List<QPathFinder.Path> paths = PathFinder.instance.graphData.paths;
+        foreach (QPathFinder.Path path in paths)
+        {
+            //Debug.Log("Path: " + PathFinder.instance.graphData.GetNode(path.IDOfA).Position + ", " + PathFinder.instance.graphData.GetNode(path.IDOfB).Position);
+            Vector3 from = PathFinder.instance.graphData.GetNode(path.IDOfA).Position;
+            Vector3 to = PathFinder.instance.graphData.GetNode(path.IDOfB).Position;
+            GameObject pathCollider = Instantiate(emptyGO, GetCentrePoint(from, to), Quaternion.identity, colliderParent.transform);
+            pathCollider.transform.localScale = new Vector2(GetLength(from, to), 0.1f);
+            pathCollider.transform.rotation = Quaternion.Euler(0, 0, GetAngle(from, to));
+            pathCollider.name = (PathFinder.instance.graphData.paths.IndexOf(path) + 1).ToString();
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,16 +46,60 @@ public class TestLineFindPath : MonoBehaviour
             RaycastHit2D raycastHit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (raycastHit2D)
             {
-                if (hit1 == null)
+                if (hitCount == 0)
                 {
+                    hitCount = 1;
                     hit1 = raycastHit2D.transform;
+                    GO = new GameObject();
+                    GO.transform.position = hit1.position;
                 }
-                else if (hit1 != null && hit2 == null)
+                else if (hitCount == 1)
                 {
                     hit2 = raycastHit2D.transform;
-                    OneTurnConnection(hit1.position, hit2.position);
-                    hit1 = null;
-                    hit2 = null;
+                    PathFinder.instance.FindShortestPathOfPoints(GO.transform.position, hit2.position, PathFinder.instance.graphData.lineType,
+                        Execution.Asynchronously, SearchMode.Simple, delegate (List<Vector3> points)
+                        {
+                            PathFollowerUtility.StopFollowing(GO.transform);
+                            if (points != null)
+                            {
+                                PathFollowerUtility.FollowPath(GO.transform, points, 10, true);
+
+                                List<Node> Nodes = PathFinder.instance.graphData.nodes;
+                                Vector3 from = points[0];
+                                foreach (Vector3 point in points)
+                                {
+                                    if (from != point)
+                                    {
+                                        OneTurnConnection(from, point);
+                                        from = point;
+                                    }
+                                }
+                                List<Node> nodeInUsed = new();
+                                foreach (Node node in Nodes)
+                                {
+                                    if (points.Contains(node.Position))
+                                    {
+                                        nodeInUsed.Add(node);
+                                    }
+                                }
+                                Node node1 = nodeInUsed[0];
+                                foreach (Node node in nodeInUsed)
+                                {
+                                    if (node == node1)
+                                        continue;
+                                    if (PathFinder.instance.graphData.GetPathBetween(node, node1) != null)
+                                    {
+                                        PathFinder.instance.graphData.GetPathBetween(node, node1).isOpen = false;
+                                    }
+                                    else if (PathFinder.instance.graphData.GetPathBetween(node1, node) != null)
+                                    {
+                                        PathFinder.instance.graphData.GetPathBetween(node1, node).isOpen = false;
+                                    }
+                                    node1 = node;
+                                }
+                            }
+                        });
+                    hitCount = 0;
                 }
             }
         }

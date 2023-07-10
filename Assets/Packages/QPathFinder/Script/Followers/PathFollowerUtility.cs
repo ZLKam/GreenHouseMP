@@ -64,7 +64,7 @@ namespace QPathFinder
 			if (points != null) 
 				pathFollower.Follow(points, moveSpeed, autoRotateToDestination);
 			else
-			{ 
+			{
 				if ( QPathFinder.Logger.CanLogError ) QPathFinder.Logger.LogError("Could not find the path for path follower to follow!", true );
 			}
 			return pathFollower;
