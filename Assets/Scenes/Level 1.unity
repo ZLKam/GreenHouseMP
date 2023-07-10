@@ -98053,8 +98053,8 @@ MonoBehaviour:
   cwp_opt: 0
   cwp_opt_Elav: 0
   wrongSelection: 0
-  shaderRight: {fileID: 0}
-  shaderWrong: {fileID: 0}
+  shaderRight: {fileID: 4800000, guid: ddf239f6a8f31f14a967843793068e90, type: 3}
+  shaderWrong: {fileID: 4800000, guid: 0d760a105552f084393d083a05d3160f, type: 3}
 --- !u!1 &1687398753
 GameObject:
   m_ObjectHideFlags: 0
@@ -124228,9 +124228,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlaceHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 2104762158399420850, guid: 803ef67aa3a2d0f4c97e2a79f4f31fad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10ebf211c1d839a4fa507b0bb33fa0f9, type: 2}
     - target: {fileID: 2104762158399420851, guid: 803ef67aa3a2d0f4c97e2a79f4f31fad, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3386395022225225028, guid: 803ef67aa3a2d0f4c97e2a79f4f31fad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 803ef67aa3a2d0f4c97e2a79f4f31fad, type: 3}
