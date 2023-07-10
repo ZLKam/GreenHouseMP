@@ -23,7 +23,7 @@ public class Placement : MonoBehaviour
     public bool tutorial;
     private bool allowDelete;
 
-    private GameObject detelableGameobject;
+    private GameObject deletableGameobject;
     public bool deletingObject;
     // Update is called once per frame
     void Update()
@@ -49,8 +49,27 @@ public class Placement : MonoBehaviour
             GameObject component = Instantiate(selectedPrefab, selectedTransform.position, selectedPrefab.transform.rotation);
             component.transform.parent = selectedTransform;
 
-            selectedTransform.GetComponent<Renderer>().enabled = false;
+            selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            //selectedTransform.GetComponent<Renderer>().enabled = false;
             selectedTransform.GetComponent<BoxCollider>().enabled = false;
+
+            //checks if chilled water pump or condensed water pump is placed and flip it if need be
+            if (component.CompareTag("Component/CwpOpt") && selectedTransform.name.Equals("Selection Point (17)"))
+            {
+                Vector3 scaleTemp = component.transform.localScale;
+                scaleTemp.x *= -1;
+                component.transform.localScale = scaleTemp;
+            }
+            else if (component.CompareTag("Component/CwpOptElavated") && selectedTransform.name.Equals("Selection Point (16)"))
+            {
+                Vector3 scaleTemp = component.transform.localScale;
+                scaleTemp.x *= -1;
+                component.transform.localScale = scaleTemp;
+            }
+            else 
+            {
+                return;
+            }
 
             if (tutorial)
             {
@@ -119,51 +138,51 @@ public class Placement : MonoBehaviour
                 return;
             }
 #endif
-            // Change color of the component to highlight material
-            if (hit.transform.CompareTag("Selection"))
-            //when the raycast returns the tag of the gameobject it hits and it matches the tag for the green boxes
-            {
-                if (hit.transform.GetComponent<MeshRenderer>().material != highlightMat && hit.transform != selected)
-                //as long as the hit gameobject is not already the material for highlight or detected
-                //it will change the material to the highlight material
-                {
-                    hit.transform.GetComponent<MeshRenderer>().material = highlightMat;
-                }
-            }
-            else
-            //handles returning all green boxes back to the original material except the highlighted one
-            {
-                GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
-                foreach (GameObject selection in selections)
-                {
-                    // if the selection is not in the selected array, change the material back to original material
-                    if (selected == null || selection.transform != selected)
-                    {
-                        selection.GetComponent<MeshRenderer>().material = originalMat;
-                    }
-                }
-            }
+            //// Change color of the component to highlight material
+            //if (hit.transform.CompareTag("Selection"))
+            ////when the raycast returns the tag of the gameobject it hits and it matches the tag for the green boxes
+            //{
+            //    if (hit.transform.GetComponent<MeshRenderer>().material != highlightMat && hit.transform != selected)
+            //    //as long as the hit gameobject is not already the material for highlight or detected
+            //    //it will change the material to the highlight material
+            //    {
+            //        hit.transform.GetComponent<MeshRenderer>().material = highlightMat;
+            //    }
+            //}
+            //else
+            ////handles returning all green boxes back to the original material except the highlighted one
+            //{
+            //    GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
+            //    foreach (GameObject selection in selections)
+            //    {
+            //        // if the selection is not in the selected array, change the material back to original material
+            //        if (selected == null || selection.transform != selected)
+            //        {
+            //            selection.GetComponent<MeshRenderer>().material = originalMat;
+            //        }
+            //    }
+            //}
         }
         else
         //handles returning all green boxes back to the orignal mat as long as none of them are currently being hovered over by the mouse
         {
-            if (InputSystem.Instance.LeftClick())
-            //resets the variable that stores the currently hit green box to null
-            {
-                selected = null;
-            }
-            if (originalMat != null)
-            {
-                GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
-                foreach (GameObject selection in selections)
-                {
-                    // if the selection is not in the selected list, change the material back to original material
-                    if (selected == null || selection.transform != selected)
-                    {
-                        selection.GetComponent<MeshRenderer>().material = originalMat;
-                    }
-                }
-            }
+            //if (InputSystem.Instance.LeftClick())
+            ////resets the variable that stores the currently hit green box to null
+            //{
+            //    selected = null;
+            //}
+            //if (originalMat != null)
+            //{
+            //    GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
+            //    foreach (GameObject selection in selections)
+            //    {
+            //        // if the selection is not in the selected list, change the material back to original material
+            //        if (selected == null || selection.transform != selected)
+            //        {
+            //            selection.GetComponent<MeshRenderer>().material = originalMat;
+            //        }
+            //    }
+            //}
         }
     }
 
@@ -200,19 +219,19 @@ public class Placement : MonoBehaviour
                 selectedTransform.CompareTag("Component/CoolingTower") || selectedTransform.CompareTag("Component/CwpOpt") ||
                 selectedTransform.CompareTag("Component/CwpOptElavated"))
                 {
-                    detelableGameobject = selectedTransform.gameObject;
+                    deletableGameobject = selectedTransform.gameObject;
                     deletingObject = true;
                 }
             }
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             //once the finger starts moving
             {
-                if (detelableGameobject == null)
+                if (deletableGameobject == null)
                     return;
                 //Set the vector finger point from the screeen into a world point
                 //set the gameobject we referenced to the world point
                 Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, 50));
-                detelableGameobject.transform.position = tempPos;
+                deletableGameobject.transform.position = tempPos;
 
                 Debug.Log("moving");
             }
@@ -221,15 +240,16 @@ public class Placement : MonoBehaviour
             {
                 // check if dragged out, if out, delete
                 //null error check
-                if (detelableGameobject == null)
+                if (deletableGameobject == null)
                     return;
                 //creates a raycast, ignores the component layer and checks if it does not hit any object with a collider
                 //if there is no collider will delete the gameobject as it is outside the boundaries
                 //if the raycast hits a collider, it will return the game object to its parent transform(green boxes)
                 if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)))
                 {
-                    detelableGameobject.transform.parent.GetComponent<Renderer>().enabled = true;
-                    detelableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
+                    //deletableGameobject.transform.parent.GetComponent<Renderer>().enabled = true;
+                    deletableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
+                    deletableGameobject.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                     Destroy(selectedTransform.gameObject);
                 }
                 else
