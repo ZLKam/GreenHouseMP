@@ -11,6 +11,9 @@ namespace Level3
 
         LineManagerController lineManagerController;
 
+        private int linesAllow = 2;
+        public int linesDrawn = 0;
+
         private void Start()
         {
             lineManagerController = FindObjectOfType<LineManagerController>();
@@ -29,7 +32,6 @@ namespace Level3
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("clicked");
             lineManagerController.componentClicked = true;
 
             if (!lineManagerController.componentClickedT)
@@ -45,6 +47,11 @@ namespace Level3
                 //sets the hitT variable to the transform of the new component that has been clicked
                 lineManagerController.transform.GetChild(lineManagerController.transform.childCount - 1).GetComponent<LineManager>().SetHitT = transform;
             }
+        }
+
+        public bool AllowDrawLine()
+        {
+            return linesDrawn < linesAllow;
         }
     }
 }

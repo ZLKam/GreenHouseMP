@@ -1,3 +1,4 @@
+using QPathFinder;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,6 +11,8 @@ namespace Level3
     {
         public GameObject lineManager;
         public ComponentWheel wheel;
+        public GameObject emptyGO;
+        public GameObject emptyLinePrefab;
 
         public int linesToDraw = 0;
         [SerializeField]
@@ -47,6 +50,7 @@ namespace Level3
                         return;
                     }
                     
+                    Debug.Log("instantiating line");
                     //draws the line and sets it as a child to the object this script is attached to(lineboss)
                     Instantiate(lineManager, transform.position, Quaternion.identity, transform);
                     return;

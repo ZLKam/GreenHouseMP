@@ -32,14 +32,9 @@ public class LineCollision : MonoBehaviour
 
     private IEnumerator DrawDelayCoroutine()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return null;
         if (parent != null)
         {
-            if (isTriggerring || parent.GetComponent<LineCollision>().isTriggerring)
-            {
-                // Find other path
-                yield break;
-            }
             if (!instantiatedLine)
             {
                 GameObject line = Instantiate(this.line, transform.position, Quaternion.identity);

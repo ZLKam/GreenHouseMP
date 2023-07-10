@@ -12,7 +12,7 @@ namespace Level3
 
         private Transform component;
 
-        private int spawnedComponentCount = 0;
+        private static int spawnedComponentCount = 0;
 
         private Vector3 mousePos;
 
@@ -24,6 +24,8 @@ namespace Level3
         public void OnPointerDown(PointerEventData eventData)
         //handles instantiting the object component to be placed in the scene
         {
+            if (spawnedComponentCount >= 7)
+                return;
             transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
 
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -43,6 +45,8 @@ namespace Level3
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (!component)
+                return;
             FollowDragPosition(eventData, component);
         }
 
