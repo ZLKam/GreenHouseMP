@@ -79,7 +79,7 @@ namespace Level3
 
         public bool AllowDrawLine()
         {
-            if (GetComponentsInChildren<LineLimit>()[0].AllowDrawLine || GetComponentsInChildren<LineLimit>()[1].AllowDrawLine)
+            if (GetComponentsInChildren<LineLimit>()[0].AllowDrawLine && GetComponentsInChildren<LineLimit>()[1].AllowDrawLine)
                 return true;
             return false;
         }

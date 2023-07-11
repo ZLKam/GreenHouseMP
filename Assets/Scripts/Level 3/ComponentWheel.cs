@@ -24,7 +24,7 @@ public class ComponentWheel : MonoBehaviour
     public Vector2 centerPointOfPlayArea = new();
 
     private List<bool> correctList = new();
-    private int numberOfCorrectConnections = 2;
+    private int numberOfCorrectConnections = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +102,7 @@ public class ComponentWheel : MonoBehaviour
             }
         }
         Debug.Log(correctList.Count);
-        if (correctList.Count == numberOfCorrectConnections)
+        if (correctList.Count >= numberOfCorrectConnections)
         {
             foreach (bool correct in correctList)
             {

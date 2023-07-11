@@ -81,8 +81,9 @@ public class Level1AnswerSheet1 : MonoBehaviour
         if(correctSelection1[1].transform.childCount > 1 &&
             correctSelection1[1].transform.GetChild(1).CompareTag("Component/Chiller"))
         {
-            SetBorderColor(correctSelection1[1].transform.GetChild(0), chiller);
+            
             chiller = true;
+            SetBorderColor(correctSelection1[1].transform.GetChild(0), chiller);
         }
         else
         {
@@ -100,6 +101,7 @@ public class Level1AnswerSheet1 : MonoBehaviour
         else if(correctSelection1[2].transform.childCount > 1 &&
             correctSelection1[2].transform.GetChild(1).CompareTag("Component/CwpOptElavated") && !cwp_opt_Elav)
         {
+            cwp_opt_Elav = true;
             SetBorderColor(correctSelection1[2].transform.GetChild(0), cwp_opt_Elav);
         }
         else

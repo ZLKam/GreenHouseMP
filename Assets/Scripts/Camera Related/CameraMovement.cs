@@ -183,7 +183,7 @@ public class CameraMovement : MonoBehaviour
             {
                 Vector2 swipeDelta = Input.GetTouch(0).position - startPos;
 
-                float rotationAmountY = -swipeDelta.x / 100f * rotationSpeed * Time.deltaTime;
+                float rotationAmountY = swipeDelta.x / 100f * rotationSpeed * Time.deltaTime;
                 float rotationAmountX = -swipeDelta.y / 100f * rotationSpeed * Time.deltaTime;
                 float currentEulerAngleY = transform.rotation.eulerAngles.y;
                 float currentEulerAngleX = transform.rotation.eulerAngles.x;

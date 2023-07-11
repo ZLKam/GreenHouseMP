@@ -15,7 +15,10 @@ public class SelectedComponent : MonoBehaviour
     public void ShowUI() 
     {
         valueReturn.gameObject.SetActive(true);
-        valueReturn.gameObject.transform.position = new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y);
+        if (!valueReturn.gameObject.activeInHierarchy)
+        {
+            valueReturn.gameObject.transform.position = new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y);
+        }
     }
 
     public void RemoveUI() 

@@ -53,6 +53,7 @@ public class Placement : MonoBehaviour
             selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
             //selectedTransform.GetComponent<Renderer>().enabled = false;
             selectedTransform.GetComponent<BoxCollider>().enabled = false;
+            selectedTransform.GetChild(0).GetChild(0).gameObject.SetActive(false);
             selectedTransform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
 
 
@@ -253,6 +254,7 @@ public class Placement : MonoBehaviour
                     //deletableGameobject.transform.parent.GetComponent<Renderer>().enabled = true;
                     deletableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
                     deletableGameobject.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+                    selectedTransform.GetChild(0).GetChild(0).gameObject.SetActive(true);
                     deletableGameobject.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                     Destroy(selectedTransform.gameObject);
                 }
