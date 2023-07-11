@@ -18,6 +18,11 @@ public class SelectedComponent : MonoBehaviour
         valueReturn.gameObject.transform.position = new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y);
     }
 
+    public void RemoveUI() 
+    {
+        valueReturn.gameObject.SetActive(false);
+    }
+
     public GameObject IndexReturn() 
     {
         if (valueReturn.ReturnIndex() == 0)

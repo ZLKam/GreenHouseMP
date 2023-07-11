@@ -16,6 +16,7 @@ public class ReturnValue : MonoBehaviour
         indexValue = 0;
         gameObject.SetActive(false);
     }
+
     public void ButtonPress1() 
     {
         pressedBtn = !pressedBtn;

@@ -139,6 +139,14 @@ public class Connection : MonoBehaviour
                     selectedComponent.ShowUI();
                     valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
                 }
+                else 
+                {
+                    selectedComponent.RemoveUI();
+                }
+            }
+            else 
+            {
+                selectedComponent.RemoveUI();
             }
         }
         if (valueReturnBtn.pressedBtn)

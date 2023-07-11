@@ -11,6 +11,7 @@ public class Placement : MonoBehaviour
     public Material highlightMat;
     public Material selectionMat;
     public CameraMovement cameraMovement;
+    private Animator placeholderAnim;
 
     [HideInInspector]
     public GameObject selectedPrefab;
@@ -52,6 +53,8 @@ public class Placement : MonoBehaviour
             selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
             //selectedTransform.GetComponent<Renderer>().enabled = false;
             selectedTransform.GetComponent<BoxCollider>().enabled = false;
+            selectedTransform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
+
 
             //checks if chilled water pump or condensed water pump is placed and flip it if need be
             if (component.CompareTag("Component/CwpOpt") && selectedTransform.name.Equals("Selection Point (17)"))
@@ -250,6 +253,7 @@ public class Placement : MonoBehaviour
                     //deletableGameobject.transform.parent.GetComponent<Renderer>().enabled = true;
                     deletableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
                     deletableGameobject.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+                    deletableGameobject.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                     Destroy(selectedTransform.gameObject);
                 }
                 else
