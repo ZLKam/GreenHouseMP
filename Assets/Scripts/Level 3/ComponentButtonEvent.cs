@@ -11,7 +11,6 @@ namespace Level3
         ComponentWheel componentWheel;
 
         private Transform component;
-
         private static int spawnedComponentCount = 0;
 
         private Vector3 mousePos;
@@ -19,6 +18,7 @@ namespace Level3
         private void Start()
         {
             componentWheel = transform.parent.GetComponent<ComponentWheel>();
+            spawnedComponentCount = 0;
         }
 
         public void OnPointerDown(PointerEventData eventData)

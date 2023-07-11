@@ -21,48 +21,17 @@ public class LineCollision : MonoBehaviour
     {
         if (CompareTag("LineParent"))
         {
-            parent = null;
+            return;
         }
         else
         {
-            parent = transform.parent;
+            GameObject line = Instantiate(this.line, transform.position, Quaternion.identity);
+            line.transform.localScale = transform.localScale;
+            line.transform.rotation = transform.rotation;
+            line.name = name;
+            line.transform.parent = transform.parent;
+            instantiatedLine = true;
+            Destroy(gameObject);
         }
-        StartCoroutine(DrawDelayCoroutine());
-    }
-
-    private IEnumerator DrawDelayCoroutine()
-    {
-        yield return null;
-        if (parent != null)
-        {
-            if (!instantiatedLine)
-            {
-                GameObject line = Instantiate(this.line, transform.position, Quaternion.identity);
-                line.transform.localScale = transform.localScale;
-                line.transform.rotation = transform.rotation;
-                line.name = name;
-                line.transform.parent = transform.parent;
-                instantiatedLine = true;
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            yield break;
-        }
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (parent != null)
-        //{
-        //    if (transform.parent == collision.transform.parent || collision.transform == origin || collision.transform == destination)
-        //    {
-        //        return;
-        //    }
-        //    Debug.Log(name + " is trigger with " + collision.gameObject.name);
-        //    isTriggerring = true;
-        //    parent.GetComponent<LineCollision>().isTriggerring = true;
-        //}
     }
 }

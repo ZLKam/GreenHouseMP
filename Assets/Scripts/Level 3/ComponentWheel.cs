@@ -1,6 +1,7 @@
 using Level3;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,6 +64,14 @@ public class ComponentWheel : MonoBehaviour
         {
             txtMode.text = "Select Component";
             FindObjectOfType<LineManagerController>().enabled = false;
+            var lineParents = GameObject.FindGameObjectsWithTag("LineParent").ToList();
+            var lines = GameObject.FindGameObjectsWithTag("Line").ToList();
+            GameObject lineBoss = FindObjectOfType<LineManagerController>().gameObject;
+            List<GameObject> allLines = new();
+            allLines.AddRange(lineParents);
+            allLines.AddRange(lines);
+            allLines.Remove(lineBoss);
+            allLines.ForEach(line => Destroy(line));
         }
         else
         {

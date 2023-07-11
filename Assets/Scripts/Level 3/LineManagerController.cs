@@ -23,14 +23,47 @@ namespace Level3
 
         public Transform componentClickedT = null;
 
+        private bool enabledBefore = false;
+
         private void Start()
         {
+            StartCoroutine(WaitForPath());
             enabled = false;
+            enabledBefore = true;
+        }
+
+        private void OnEnable()
+        {
+            if (!enabledBefore)
+                return;
+            List<Path> paths = PathFinder.instance.graphData.paths;
+            foreach (Path path in paths)
+            {
+                path.isOpen = true;
+            }
+        }
+
+        private IEnumerator WaitForPath()
+        {
+            PathFinder.instance.graphData.ReGenerateIDs();
+            yield return new WaitForSeconds(0.1f);
+            GameObject colliderParent = new("Path Collider");
+            List<Path> paths = PathFinder.instance.graphData.paths;
+            foreach (Path path in paths)
+            {
+                //Debug.Log("Path: " + PathFinder.instance.graphData.GetNode(path.IDOfA).Position + ", " + PathFinder.instance.graphData.GetNode(path.IDOfB).Position);
+                Vector3 from = PathFinder.instance.graphData.GetNode(path.IDOfA).Position;
+                Vector3 to = PathFinder.instance.graphData.GetNode(path.IDOfB).Position;
+                GameObject pathCollider = Instantiate(emptyGO, lineManager.GetComponent<LineManager>().GetCentrePoint(from, to), Quaternion.identity, colliderParent.transform);
+                pathCollider.transform.localScale = new Vector2(lineManager.GetComponent<LineManager>().GetLength(from, to), 0.1f);
+                pathCollider.transform.rotation = Quaternion.Euler(0, 0, lineManager.GetComponent<LineManager>().GetAngle(from, to));
+                pathCollider.name = (PathFinder.instance.graphData.paths.IndexOf(path) + 1).ToString();
+            }
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (InputSystem.Instance.LeftClick())
             {
                 //checks if you have hit the UI to prevent lines being drawn there
                 if (EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.layer == 5)

@@ -11,9 +11,6 @@ namespace Level3
 
         LineManagerController lineManagerController;
 
-        private int linesAllow = 2;
-        public int linesDrawn = 0;
-
         private void Start()
         {
             lineManagerController = FindObjectOfType<LineManagerController>();
@@ -35,7 +32,7 @@ namespace Level3
             lineManagerController.componentClicked = true;
 
             if (!lineManagerController.componentClickedT)
-                lineManagerController.componentClickedT = transform;
+                lineManagerController.componentClickedT = transform.GetChild(0);
             //when line is able to draw, sets the transform of the component as the point in which the line is drawn
 
             if (lineManagerController.transform.childCount == 0)
@@ -45,13 +42,21 @@ namespace Level3
             if (lineManagerController.transform.GetChild(lineManagerController.transform.childCount - 1).GetComponent<LineManager>().isDrawing)
             {
                 //sets the hitT variable to the transform of the new component that has been clicked
-                lineManagerController.transform.GetChild(lineManagerController.transform.childCount - 1).GetComponent<LineManager>().SetHitT = transform;
+                lineManagerController.transform.GetChild(lineManagerController.transform.childCount - 1).GetComponent<LineManager>().SetHitT = transform.GetChild(1);
             }
+        }
+
+        public void ResetAllowDraw()
+        {
+            GetComponentsInChildren<LineLimit>()[0].AllowDrawLine = true;
+            GetComponentsInChildren<LineLimit>()[1].AllowDrawLine = true;
         }
 
         public bool AllowDrawLine()
         {
-            return linesDrawn < linesAllow;
+            if (GetComponentsInChildren<LineLimit>()[0].AllowDrawLine || GetComponentsInChildren<LineLimit>()[1].AllowDrawLine)
+                return true;
+            return false;
         }
     }
 }

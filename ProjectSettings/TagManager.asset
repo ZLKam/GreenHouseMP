@@ -15,6 +15,7 @@ TagManager:
   - Component/CwpOpt
   - Component/CwpOptElavated
   - LineParent
+  - Line
   layers:
   - Default
   - TransparentFX

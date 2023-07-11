@@ -44,28 +44,28 @@ namespace Level3
             //initial transform is set as the component that has been interacted with(iniT)
             checkFlow = FindObjectOfType<CheckFlow>();
 
-            lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.startWidth = 0.1f;
-            lineRenderer.endWidth = 0.1f;
+            //lineRenderer = GetComponent<LineRenderer>();
+            //lineRenderer.startWidth = 0.1f;
+            //lineRenderer.endWidth = 0.1f;
             //line variables
 
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
-            startPos = mousePosition;
+            //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mousePosition.z = 0;
+            //startPos = mousePosition;
 
-            lineRenderer.enabled = true;
-            lineRenderer.positionCount = 1;
-            lineRenderer.SetPosition(0, startPos);
+            //lineRenderer.enabled = true;
+            //lineRenderer.positionCount = 1;
+            //lineRenderer.SetPosition(0, startPos);
             isDrawing = true;
         }
 
         // Update is called once per frame
         void Update()
         {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
+            //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mousePosition.z = 0;
 
-            if (Input.GetMouseButtonDown(0))
+            if (InputSystem.Instance.LeftClick())
             //if left click, run the function to draw lines
             {
                 //CheckCanDrawLine();
@@ -111,15 +111,15 @@ namespace Level3
 
         private void LinePathFind()
         {
-            if (!initT || !hitT || !initT.GetComponent<ComponentEvent>().AllowDrawLine() || !hitT.GetComponent<ComponentEvent>().AllowDrawLine())
+            if (!initT || !hitT || !initT.GetComponentInParent<ComponentEvent>().AllowDrawLine() || !hitT.GetComponentInParent<ComponentEvent>().AllowDrawLine())
             {
                 Debug.Log("Initial or hit transform is null or not allowed to draw line as exceeded the max line allow to draw");
                 lineManagerController.componentClickedT = null;
                 Destroy(gameObject);
                 return;
             }
-            initT.GetComponent<ComponentEvent>().linesDrawn++;
-            hitT.GetComponent<ComponentEvent>().linesDrawn++;
+            initT.GetComponentInChildren<LineLimit>().AllowDrawLine = false;
+            hitT.GetComponentInChildren<LineLimit>().AllowDrawLine = false;
             GO = new();
             GO.transform.position = initT.position;
             PathFinder.instance.FindShortestPathOfPoints(GO.transform.position, hitT.position, PathFinder.instance.graphData.lineType,
@@ -206,7 +206,7 @@ namespace Level3
             set { hitT = value; }
         }
 
-        private Vector2 GetCentrePoint(Vector2 point1, Vector2 point2)
+        public Vector2 GetCentrePoint(Vector2 point1, Vector2 point2)
         {
             return new Vector2((point1.x + point2.x) / 2, (point1.y + point2.y) / 2);
         }
@@ -298,12 +298,12 @@ namespace Level3
             return new Vector2(GetCSqr(adjacent, opposite), GetTheta(opposite, adjacent));
         }
 
-        private float GetLength(Vector2 point1, Vector2 point2)
+        public float GetLength(Vector2 point1, Vector2 point2)
         {
             return CalculateLengthAndTheta(point1, point2).x;
         }
 
-        private float GetAngle(Vector2 point1, Vector2 point2)
+        public float GetAngle(Vector2 point1, Vector2 point2)
         {
             return CalculateLengthAndTheta(point1, point2).y;
         }
