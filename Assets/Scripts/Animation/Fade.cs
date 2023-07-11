@@ -74,10 +74,6 @@ public class Fade : MonoBehaviour
                 }
                 else
                 {
-                    if (SceneManager.GetActiveScene().name == "Level 3")
-                    {
-                        return;
-                    }
                     SceneManager.LoadScene(transitionScene);
                 }
             }

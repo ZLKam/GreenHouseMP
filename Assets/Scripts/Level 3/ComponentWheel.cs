@@ -23,6 +23,9 @@ public class ComponentWheel : MonoBehaviour
 
     public Vector2 centerPointOfPlayArea = new();
 
+    private List<bool> correctList = new();
+    private int numberOfCorrectConnections = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,11 +75,50 @@ public class ComponentWheel : MonoBehaviour
             allLines.AddRange(lines);
             allLines.Remove(lineBoss);
             allLines.ForEach(line => Destroy(line));
+
+            foreach (Transform child in playArea)
+            {
+                if (child.CompareTag("Component"))
+                {
+                    child.GetComponent<ComponentEvent>().ResetAllowDraw();
+                    child.GetComponent<ComponentEvent>().CorrectConnection = false;
+                }
+            }
         }
         else
         {
             txtMode.text = "Draw Pipe";
             FindObjectOfType<LineManagerController>().enabled = true;
         }
+    }
+
+    public void CheckAnswer()
+    {
+        foreach (Transform child in playArea)
+        {
+            if (child.CompareTag("Component") || child.CompareTag("Component/Chiller"))
+            {
+                correctList.Add(child.GetComponent<ComponentEvent>().CorrectConnection);
+            }
+        }
+        Debug.Log(correctList.Count);
+        if (correctList.Count == numberOfCorrectConnections)
+        {
+            foreach (bool correct in correctList)
+            {
+                if (!correct)
+                {
+                    Debug.Log("Incorrect");
+                    correctList.Clear();
+                    return;
+                }
+            }
+            Debug.Log("Correct");
+        }
+        else
+        {
+            Debug.Log("Incorrect");
+        }
+        correctList.Clear();
     }
 }

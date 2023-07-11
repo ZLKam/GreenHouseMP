@@ -11,6 +11,15 @@ namespace Level3
 
         LineManagerController lineManagerController;
 
+        public Transform correctTransform;
+        [SerializeField]
+        private Transform correctTransform2;
+
+        private bool correctConnection = false;
+
+        [SerializeField]
+        protected int specialID;
+
         private void Start()
         {
             lineManagerController = FindObjectOfType<LineManagerController>();
@@ -43,7 +52,23 @@ namespace Level3
             {
                 //sets the hitT variable to the transform of the new component that has been clicked
                 lineManagerController.transform.GetChild(lineManagerController.transform.childCount - 1).GetComponent<LineManager>().SetHitT = transform.GetChild(1);
+                Transform fromT = lineManagerController.componentClickedT.transform.parent;
+                if (fromT.GetComponent<ComponentEvent>().IsCloneOf(correctTransform) || (correctTransform2 ? fromT.GetComponent<ComponentEvent>().IsCloneOf(correctTransform2) : false))
+                {
+                    correctConnection = true;
+                }
             }
+        }
+
+        public bool IsCloneOf(Transform original)
+        {
+            return GetComponent<ComponentEvent>().specialID == original.GetComponent<ComponentEvent>().specialID;
+        }
+
+        public bool CorrectConnection
+        {
+            get { return correctConnection; }
+            set { correctConnection = value; }
         }
 
         public void ResetAllowDraw()
