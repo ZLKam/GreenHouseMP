@@ -24,6 +24,10 @@ public class Fade : MonoBehaviour
     public string transitionScene;
     public string previousScene;
 
+    public GameObject Section;
+    public GameObject Level;
+    public GameObject GameMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,8 +69,7 @@ public class Fade : MonoBehaviour
 
             if(fadeAmount >= 255)
             {
-                Debug.Log("transition");
-
+                Debug.Log("transition");    
                 if (exit)
                 {
                     Debug.Log("Quit");
@@ -137,5 +140,24 @@ public class Fade : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("Click");
         fadeOut = true;
         exit = true;
+    }
+
+
+
+
+    //Section Selector / Level Selector
+
+
+    public void playbtn()
+    {
+        GameMenu.SetActive(false);
+        Section.SetActive(true);
+    }
+
+    public void SectionSelect()
+    {
+        //open up the level select popup
+        Level.SetActive(true);
+        Section.SetActive(false);
     }
 }
