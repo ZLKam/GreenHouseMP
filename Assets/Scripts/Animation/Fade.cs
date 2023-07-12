@@ -62,6 +62,8 @@ public class Fade : MonoBehaviour
             fadeImage.enabled = true;
             fadeImage.color = new Color32(red, green, blue, fadeAmount);
             fadeAmount += fadeSpeed;
+            //fadeAmount = (byte)Mathf.Lerp(0, 255, fadeSpeed * Time.deltaTime);
+            Debug.Log("fade minus");
 
             if(fadeAmount >= 255)
             {

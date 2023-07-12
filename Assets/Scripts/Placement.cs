@@ -27,6 +27,8 @@ public class Placement : MonoBehaviour
     private GameObject deletableGameobject;
     public bool deletingObject;
 
+    private Transform highlighted;
+
     // Update is called once per frame
     void Update()
     {
@@ -108,11 +110,27 @@ public class Placement : MonoBehaviour
     private void Highlight()
     //handles turning the selected object(green boxes) yellow(highlighted)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit))
+        Ray ray = new();
+        if (Input.touchCount != 0)
+        {
+            ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        }
+        if (EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit,Mathf.Infinity, ~(1 << 6)))
         //constantly generates a raycast from the mouse position
         //checks if the mouse is over a game object and the returns the hit object using raycast
         {
+            if (hit.collider.CompareTag("Selection"))
+            {
+                if (highlighted == hit.transform)
+                    return;
+                else
+                {
+                    if (highlighted)
+                        highlighted.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
+                    highlighted = hit.transform;
+                    hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = highlightSprite;
+                }
+            }
             if (InputSystem.Instance.LeftClick())
             //if there is a left click or a touch detected
             {
@@ -152,6 +170,7 @@ public class Placement : MonoBehaviour
             if (hit.transform.CompareTag("Selection"))
             //when the raycast returns the tag of the gameobject it hits and it matches the tag for the green boxes
             {
+                Debug.Log("test");
                 if (hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite != highlightSprite && hit.transform != selected)
                 //as long as the hit gameobject is not already the material for highlight or detected
                 //it will change the material to the highlight material
@@ -176,24 +195,35 @@ public class Placement : MonoBehaviour
         else
         //handles returning all green boxes back to the orignal mat as long as none of them are currently being hovered over by the mouse
         {
-            //if (InputSystem.Instance.LeftClick())
-            ////resets the variable that stores the currently hit green box to null
+            //GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
+            //foreach (GameObject selection in selections)
             //{
-            //    selected = null;
-            //}
-            //if (originalMat != null)
-            //{
-            //    GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
-            //    foreach (GameObject selection in selections)
+            //    if (!selection.activeSelf)
+            //        continue;
+            //    // if the selection is not in the selected list, change the material back to original material
+            //    if (selected == null || selection.transform != selected)
             //    {
-            //        // if the selection is not in the selected list, change the material back to original material
-            //        if (selected == null || selection.transform != selected)
-            //        {
-            //            selection.GetComponent<MeshRenderer>().material = originalMat;
-            //        }
+            //        selection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
             //    }
             //}
-        }
+                //if (InputSystem.Instance.LeftClick())
+                ////resets the variable that stores the currently hit green box to null
+                //{
+                //    selected = null;
+                //}
+                //if (originalMat != null)
+                //{
+                //    GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
+                //    foreach (GameObject selection in selections)
+                //    {
+                //        // if the selection is not in the selected list, change the material back to original material
+                //        if (selected == null || selection.transform != selected)
+                //        {
+                //            selection.GetComponent<MeshRenderer>().material = originalMat;
+                //        }
+                //    }
+                //}
+            }
     }
 
     private void Delete(Transform selectedTransform)

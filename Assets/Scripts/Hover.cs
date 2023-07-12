@@ -108,6 +108,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         Debug.Log("press");
         cameraMovement.hover = this;
         componentSelected = true;
+        placement.selectedPrefab = component;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         componentPrefab = Instantiate(component, mousePos, Quaternion.identity);

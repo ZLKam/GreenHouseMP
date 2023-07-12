@@ -17,7 +17,7 @@ public class SettingsManager : MonoBehaviour
     public Slider music;
     public Slider sound;
 
-    private float[] fadeSpeedArray = new[] { 1, 5, 51, 127.5f, 255 };
+    private int[] fadeSpeedArray = new[] { 1, 5, 51, 255 };
 
     // Start is called before the first frame update
     void Start()
