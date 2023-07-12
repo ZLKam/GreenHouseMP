@@ -9,12 +9,10 @@ public class CameraMovement : MonoBehaviour
     public Transform[] cameras;
     int selectedCamera;
     public Placement placement;
+    public Hover hover;
 
     float originalSpeed;
     public float rotationSpeed;
-
-    float rotationX;
-    float rotationY;
 
     float xRotation;
     float yRotation;
@@ -24,7 +22,7 @@ public class CameraMovement : MonoBehaviour
     public float maxZoom = 140;
     public List<Material> skyboxes;
     public bool zooming;
-    private bool moved;
+    public bool moved;
 
     private Vector2 startPos;
     public float zoomStopDistance = 60;
@@ -129,6 +127,8 @@ public class CameraMovement : MonoBehaviour
     //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
 
+        if (hover != null && hover.componentSelected)
+            return;
 #if UNITY_STANDALONE
         transform.LookAt(cameras[selectedCamera]);
         //transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
@@ -170,7 +170,7 @@ public class CameraMovement : MonoBehaviour
         }
 #endif
 #if UNITY_ANDROID
-        if (Input.touchCount == 1)
+        if (Input.touchCount == 1 && !placement.deletingObject)
         {
             transform.LookAt(cameras[selectedCamera]);
             if (Input.GetTouch(0).phase == TouchPhase.Began)

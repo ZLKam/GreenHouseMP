@@ -2,26 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Level3;
+using UnityEngine.EventSystems;
 
-public class Hover : MonoBehaviour
+public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     bool hoverOver;
     bool hoverTab;
     Vector3 startSize;
     public bool isTab;
     public float moveSpeed;
+    public bool componentSelected;
+
     public Vector3 startPosition;
     public Vector3 desiredPosition;
     public Vector3 desiredSize;
+    private Vector3 mousePos;
+
     public GameObject component;
     public GameObject componentName;
+
     Placement placement;
-    ComponentButtonEvent componentBtnEvent;
+    GameObject componentPrefab;
+    CameraMovement cameraMovement;
+    
 
     void Start()
     {
         placement = FindObjectOfType<Placement>();
-        componentBtnEvent = GetComponent<ComponentButtonEvent>();
+        cameraMovement = FindObjectOfType<CameraMovement>();
 
         //transform.localPosition = startPosition;
         //startPosition = transform.localPosition;
@@ -66,7 +74,6 @@ public class Hover : MonoBehaviour
     }
     public void Enter()
     {
-        //Debug.Log("hover");
         hoverOver = true;
         if (componentName != null)
         {
@@ -95,15 +102,37 @@ public class Hover : MonoBehaviour
         hoverTab = false;
     }
 
+    public void OnPointerDown(PointerEventData eventData)
+    //handles instantiting the object component to be placed in the scene
+    {
+        Debug.Log("press");
+        cameraMovement.hover = this;
+        componentSelected = true;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        componentPrefab = Instantiate(component, mousePos, Quaternion.identity);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (component == null || componentPrefab == null)
+            return;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 50));
+        componentPrefab.transform.position = mousePos;
+    }
+
+    public void OnPointerUp(PointerEventData eventData) 
+    {
+        cameraMovement.hover = null;
+    }
+
+
     public void Selection()
     {
         if (!isTab && placement != null)
         {
+            Debug.Log("component selected");
             placement.selectedPrefab = component;
-        }
-        else if (!isTab && componentBtnEvent != null) 
-        {
-            //componentBtnEvent.selectedPrefab = component;
         }
     }
 }

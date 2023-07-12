@@ -7637,6 +7637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
+  componentSelected: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -14759,6 +14760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
+  componentSelected: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -29604,6 +29606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 1
   moveSpeed: 2
+  componentSelected: 0
   startPosition: {x: -786, y: 0, z: 0}
   desiredPosition: {x: -521, y: 0, z: 0}
   desiredSize: {x: 280.25, y: -786, z: 0}
@@ -56537,7 +56540,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 100
   far clip plane: 1000
   field of view: 25
   orthographic: 0
@@ -97834,11 +97837,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e60fed1d9db8844ae3dd5f5235d507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMat: {fileID: 2100000, guid: e8f2a314f04619740b04d2b91e337386, type: 2}
-  selectionMat: {fileID: 2100000, guid: 54eb24558bf4f544eb32cac30bfe9406, type: 2}
+  highlightSprite: {fileID: 0}
+  selectionSprite: {fileID: 0}
   cameraMovement: {fileID: 2065333683}
   selectedPrefab: {fileID: 0}
-  originalMat: {fileID: 2100000, guid: 04e96e6ec5ff3ee419be849d6bb64add, type: 2}
+  originalSprite: {fileID: 21300000, guid: b7a58407a8a05904a93f7d7ee038d7ba, type: 3}
   tutorial: 0
   deletingObject: 0
 --- !u!1 &1668210592
@@ -98909,6 +98912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
+  componentSelected: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -104684,6 +104688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
+  componentSelected: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -106602,7 +106607,7 @@ RectTransform:
   - {fileID: 1630587943}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 2.549, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -107369,6 +107374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
+  componentSelected: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -120836,6 +120842,7 @@ MonoBehaviour:
   - {fileID: 1234995488}
   - {fileID: 422274368}
   placement: {fileID: 1668015404}
+  hover: {fileID: 0}
   rotationSpeed: 50
   initialDistance: 0
   sensitivity: 5
@@ -120844,6 +120851,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
   zooming: 0
+  moved: 0
   zoomStopDistance: 60
   zoomAmount: 0
 --- !u!4 &2065333684
