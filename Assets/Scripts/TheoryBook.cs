@@ -5,13 +5,16 @@ using UnityEngine;
 public class TheoryBook : MonoBehaviour
 {
     [Header("Theory Book")]
-    public GameObject theoryBook;
+    public GameObject TheoryBookComponent;
     public GameObject TheoryBookPipes; 
 
     [Header("Pages")]
-    public GameObject page1;
-    public GameObject page2;
-    public GameObject page3;
+    public GameObject Comppage1;
+    public GameObject Comppage2;
+    public GameObject Comppage3;
+
+    public GameObject Pipepage1;
+    public GameObject Pipepage2;
 
     [Header("Poloroid Frame")]
     public GameObject frame;
@@ -19,48 +22,59 @@ public class TheoryBook : MonoBehaviour
 
     public void OpenTheoryBook()
     {
-        theoryBook.SetActive(true);
+        TheoryBookComponent.SetActive(true);
     }
 
     public void CloseTheoryBook()
     {
-        theoryBook.SetActive(false);
+        TheoryBookComponent.SetActive(false);
     }
 
-    public void Page1()
+    public void ComponentPage1()
     {
-        page1.SetActive(true);
-        page2.SetActive(false);
-        page3.SetActive(false);
+        Comppage1.SetActive(true);
+        Comppage2.SetActive(false);
+        Comppage3.SetActive(false);
         frame.SetActive(true);
     }
 
-    public void Page2() 
+    public void ComponentPage2() 
     {
-        page1.SetActive(false);
-        page2.SetActive(true);
-        page3.SetActive(false);
+        Comppage1.SetActive(false);
+        Comppage2.SetActive(true);
+        Comppage3.SetActive(false);
         frame.SetActive(true);
     }
 
-    public void Page3()
+    public void ComponentPage3()
     {
-        page1.SetActive(false);
-        page2.SetActive(false);
-        page3.SetActive(true);
+        Comppage1.SetActive(false);
+        Comppage2.SetActive(false);
+        Comppage3.SetActive(true);
         frame.SetActive(false);
     }
 
-    public void PipeBook() 
+    public void PipePage1()
     {
-        theoryBook.SetActive(false);
-        TheoryBookPipes.SetActive(true);
+        Pipepage1.SetActive(true);
+        Pipepage2.SetActive(false);
+
     }
 
+    public void PipePage2()
+    {
+        Pipepage1.SetActive(false);
+        Pipepage2.SetActive(true);
+
+    }
     public void ComponentBook()
     {
-        theoryBook.SetActive(true);
         TheoryBookPipes.SetActive(false);
+        TheoryBookComponent.SetActive(true);
     }
-
+    public void PipeBook()
+    {
+        TheoryBookComponent.SetActive(false);
+        TheoryBookPipes.SetActive(true);
+    }
 }
