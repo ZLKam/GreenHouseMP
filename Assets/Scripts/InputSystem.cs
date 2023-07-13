@@ -16,6 +16,7 @@ public class InputSystem : MonoBehaviour
 
     private void Awake()
     {
+        QualitySettings.vSyncCount = 0;
         DontDestroyOnLoad(gameObject);
         if (Instance == null)
         {
