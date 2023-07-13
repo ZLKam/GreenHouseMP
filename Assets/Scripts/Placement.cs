@@ -22,12 +22,13 @@ public class Placement : MonoBehaviour
     Transform selection;
     RaycastHit raycastHit;
     Transform selected;
-    Transform test;
+    Transform highlightedPlacement;
 
     public bool tutorial;
     private bool allowDelete;
 
     private GameObject deletableGameobject;
+    private GameObject deletingGO;
     public bool deletingObject;
 
     private Transform highlighted;
@@ -43,6 +44,11 @@ public class Placement : MonoBehaviour
                 allowDelete = true;
             }
         }
+        //Highlight();
+    }
+
+    private void FixedUpdate()
+    {
         Highlight();
     }
 
@@ -55,27 +61,30 @@ public class Placement : MonoBehaviour
             //turns off the selected box, renderer and box collider, not visible after the prefab is placed down
             allowDelete = false;
 
-            if (!hover.buttonLetgo)
+            if(component == null)
             {
-                component = null;
                 component = Instantiate(selectedPrefab, selectedTransform.position, selectedPrefab.transform.rotation);
             }
-            else 
-            {
-                component = null;
+            else if(hover)
+            { 
                 component = hover.componentPrefab;
                 hover.buttonLetgo = false;
             }
 
             component.transform.parent = selectedTransform;
             component.transform.localPosition = Vector3.zero;
+            component.GetComponent<Collider>().enabled = true;
 
+            selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
             selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
             //selectedTransform.GetComponent<Renderer>().enabled = false;
             selectedTransform.GetComponent<BoxCollider>().enabled = false;
             selectedTransform.GetChild(0).GetChild(0).gameObject.SetActive(false);
             selectedTransform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
-
+            highlighted = null;
+            component = null;
+            highlightedPlacement = null;
+            return;
 
 
             //checks if chilled water pump or condensed water pump is placed and flip it if need be
@@ -91,17 +100,11 @@ public class Placement : MonoBehaviour
                 scaleTemp.x *= -1;
                 component.transform.localScale = scaleTemp;
             }
-            else 
-            {
-                return;
-            }
 
             if (tutorial)
             {
                 FindObjectOfType<Tutorial>().CheckPlacement();
             }
-
-            //hover = null;
         }
         else
         //no components has been detected yet
@@ -135,18 +138,31 @@ public class Placement : MonoBehaviour
         {
             ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         }
-        if (test != null && Input.touchCount == 0) 
+
+        if (Input.touchCount == 0 && hover)
         {
-            Select(test.transform);
+            if (highlightedPlacement)
+            {
+                Select(highlightedPlacement.transform);
+            }
+            else if(hover.componentPrefab)
+            {
+                Destroy(hover.componentPrefab);
+                return;
+            }
         }
-        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit,Mathf.Infinity, ~(1 << 6)))
+
+        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit,Mathf.Infinity))
         //constantly generates a raycast from the mouse position
         //checks if the mouse is over a game object and the returns the hit object using raycast
         {
+
             if (hit.collider.CompareTag("Selection"))
             {
                 if (highlighted == hit.transform)
+                {
                     return;
+                }
                 else
                 {
                     if (highlighted)
@@ -154,12 +170,12 @@ public class Placement : MonoBehaviour
                         highlighted.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
                     }
 
-                    Debug.Log("ulimate fix");
                     highlighted = hit.transform;
                     hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = highlightSprite;
-                    if (hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite == highlightSprite) 
+
+                    if (hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite == highlightSprite)
                     {
-                        test = hit.transform;
+                        highlightedPlacement = hit.transform;
                     }
                 }
             }
@@ -222,6 +238,26 @@ public class Placement : MonoBehaviour
         else
         //handles returning all green boxes back to the orignal mat as long as none of them are currently being hovered over by the mouse
         {
+            if (deletingGO)
+            {
+                if (Input.touchCount == 0)
+                {
+                    if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit deletehit, Mathf.Infinity, ~(1 << 6)))
+                    {
+                        deletingGO.transform.parent.GetComponent<BoxCollider>().enabled = true;
+                        deletingGO.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+                        deletingGO.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
+                        deletingGO.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
+                        Destroy(deletingGO);
+                        return;
+                    }
+                    else 
+                    {
+                        deletingGO.transform.localPosition = Vector3.zero;
+                    }
+                }
+                deletingGO.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 50));
+            }
             //GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
             //foreach (GameObject selection in selections)
             //{
@@ -233,24 +269,24 @@ public class Placement : MonoBehaviour
             //        selection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
             //    }
             //}
-                //if (InputSystem.Instance.LeftClick())
-                ////resets the variable that stores the currently hit green box to null
-                //{
-                //    selected = null;
-                //}
-                //if (originalMat != null)
-                //{
-                //    GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
-                //    foreach (GameObject selection in selections)
-                //    {
-                //        // if the selection is not in the selected list, change the material back to original material
-                //        if (selected == null || selection.transform != selected)
-                //        {
-                //            selection.GetComponent<MeshRenderer>().material = originalMat;
-                //        }
-                //    }
-                //}
-            }
+            //if (InputSystem.Instance.LeftClick())
+            ////resets the variable that stores the currently hit green box to null
+            //{
+            //    selected = null;
+            //}
+            //if (originalMat != null)
+            //{
+            //    GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
+            //    foreach (GameObject selection in selections)
+            //    {
+            //        // if the selection is not in the selected list, change the material back to original material
+            //        if (selected == null || selection.transform != selected)
+            //        {
+            //            selection.GetComponent<MeshRenderer>().material = originalMat;
+            //        }
+            //    }
+            //}
+        }
     }
 
     private void Delete(Transform selectedTransform)
@@ -259,7 +295,7 @@ public class Placement : MonoBehaviour
         if (!cameraMovement.zooming)
         {
             //null exception
-            if (selectedTransform.gameObject == null)
+            if (!selectedTransform.gameObject)
                 return;
 #if UNITY_STANDALONE
         //gets the hit gamebject from the raycast(passed in through the parameter)
@@ -288,6 +324,7 @@ public class Placement : MonoBehaviour
                 {
                     deletingObject = true;
                     deletableGameobject = selectedTransform.gameObject;
+                    deletingGO = deletableGameobject;
                 }
             }
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
@@ -300,23 +337,25 @@ public class Placement : MonoBehaviour
                 Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 50));
                 deletableGameobject.transform.position = tempPos;
             }
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled)
             //no longer detecting the touch
             {
                 // check if dragged out, if out, delete
                 //null error check
-                if (deletableGameobject == null)
+                if (!deletableGameobject)
                     return;
                 //creates a raycast, ignores the component layer and checks if it does not hit any object with a collider
                 //if there is no collider will delete the gameobject as it is outside the boundaries
                 //if the raycast hits a collider, it will return the game object to its parent transform
+                deletableGameobject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 50));
                 if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)))
                 {
                     deletableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
                     deletableGameobject.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
-                    selectedTransform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+                    deletableGameobject.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
                     deletableGameobject.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                     Destroy(selectedTransform.gameObject);
+                    deletingGO = null;
                 }
                 else
                 {

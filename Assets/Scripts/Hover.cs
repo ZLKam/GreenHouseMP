@@ -108,14 +108,18 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     //handles instantiting the object component to be placed in the scene
     {
         Debug.Log("press");
-        cameraMovement.hover = this;
-        placement.hover = this;
+        cameraMovement.hover = placement.hover = this;
         componentSelected = true;
         buttonLetgo = false;
-        placement.selectedPrefab = component;
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        componentPrefab = Instantiate(component, mousePos, Quaternion.identity);
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (component) 
+        {
+            placement.selectedPrefab = component;
+            component.GetComponent<Collider>().enabled = false;
+            componentPrefab = Instantiate(component, mousePos, Quaternion.identity);
+        }
+
     }
 
     public void OnDrag(PointerEventData eventData)
