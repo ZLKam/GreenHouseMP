@@ -11,7 +11,9 @@ public class Placement : MonoBehaviour
     public Sprite highlightSprite;
     public Sprite selectionSprite;
     public CameraMovement cameraMovement;
+    public Hover hover;
     private Animator placeholderAnim;
+    private GameObject component;
 
     [HideInInspector]
     public GameObject selectedPrefab;
@@ -20,6 +22,7 @@ public class Placement : MonoBehaviour
     Transform selection;
     RaycastHit raycastHit;
     Transform selected;
+    Transform test;
 
     public bool tutorial;
     private bool allowDelete;
@@ -47,17 +50,32 @@ public class Placement : MonoBehaviour
     {
         if (selectedPrefab != null)
         {
+
             //instatiates the prefab of the game object and sets the prefab the child of the selected box
             //turns off the selected box, renderer and box collider, not visible after the prefab is placed down
             allowDelete = false;
-            GameObject component = Instantiate(selectedPrefab, selectedTransform.position, selectedPrefab.transform.rotation);
+
+            if (!hover.buttonLetgo)
+            {
+                component = null;
+                component = Instantiate(selectedPrefab, selectedTransform.position, selectedPrefab.transform.rotation);
+            }
+            else 
+            {
+                component = null;
+                component = hover.componentPrefab;
+                hover.buttonLetgo = false;
+            }
+
             component.transform.parent = selectedTransform;
+            component.transform.localPosition = Vector3.zero;
 
             selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
             //selectedTransform.GetComponent<Renderer>().enabled = false;
             selectedTransform.GetComponent<BoxCollider>().enabled = false;
             selectedTransform.GetChild(0).GetChild(0).gameObject.SetActive(false);
             selectedTransform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
+
 
 
             //checks if chilled water pump or condensed water pump is placed and flip it if need be
@@ -82,6 +100,8 @@ public class Placement : MonoBehaviour
             {
                 FindObjectOfType<Tutorial>().CheckPlacement();
             }
+
+            //hover = null;
         }
         else
         //no components has been detected yet
@@ -115,7 +135,11 @@ public class Placement : MonoBehaviour
         {
             ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         }
-        if (EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit,Mathf.Infinity, ~(1 << 6)))
+        if (test != null && Input.touchCount == 0) 
+        {
+            Select(test.transform);
+        }
+        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit,Mathf.Infinity, ~(1 << 6)))
         //constantly generates a raycast from the mouse position
         //checks if the mouse is over a game object and the returns the hit object using raycast
         {
@@ -126,9 +150,17 @@ public class Placement : MonoBehaviour
                 else
                 {
                     if (highlighted)
+                    {
                         highlighted.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
+                    }
+
+                    Debug.Log("ulimate fix");
                     highlighted = hit.transform;
                     hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = highlightSprite;
+                    if (hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite == highlightSprite) 
+                    {
+                        test = hit.transform;
+                    }
                 }
             }
             if (InputSystem.Instance.LeftClick())
@@ -151,11 +183,6 @@ public class Placement : MonoBehaviour
             else if (Input.touchCount > 0 && allowDelete)
             {
                 Delete(hit.transform);
-                return;
-            }
-            else if (Input.touchCount > 0) 
-            {
-                Select(hit.transform);
                 return;
             }
 #if UNITY_STANDALONE

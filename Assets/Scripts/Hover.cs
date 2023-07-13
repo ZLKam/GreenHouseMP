@@ -12,6 +12,8 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     public bool isTab;
     public float moveSpeed;
     public bool componentSelected;
+    public bool buttonLetgo;
+    public bool draggingComponent;
 
     public Vector3 startPosition;
     public Vector3 desiredPosition;
@@ -22,7 +24,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     public GameObject componentName;
 
     Placement placement;
-    GameObject componentPrefab;
+    public GameObject componentPrefab;
     CameraMovement cameraMovement;
     
 
@@ -107,7 +109,9 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     {
         Debug.Log("press");
         cameraMovement.hover = this;
+        placement.hover = this;
         componentSelected = true;
+        buttonLetgo = false;
         placement.selectedPrefab = component;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -125,6 +129,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     public void OnPointerUp(PointerEventData eventData) 
     {
         cameraMovement.hover = null;
+        buttonLetgo = true;
     }
 
 
@@ -132,7 +137,6 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     {
         if (!isTab && placement != null)
         {
-            Debug.Log("component selected");
             placement.selectedPrefab = component;
         }
     }
