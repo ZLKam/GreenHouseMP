@@ -107,28 +107,16 @@ public class CameraMovement : MonoBehaviour
         RenderSettings.skybox = skyboxes[PlayerPrefs.GetInt("backgroundIndex")];
     }
 
-    void EnhancedCamera()
-    //not used, intended purpose?
-    {
-        transform.LookAt(cameras[selectedCamera]);
-        //transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
-        transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime);
-        //float moveX = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
-        float moveY = Input.GetAxis("Vertical") * rotationSpeed * Time.deltaTime;
-
-        xRotation -= moveY;
-        xRotation = Mathf.Clamp(xRotation, -10f, 10f);
-
-        transform.localRotation = Quaternion.Euler(xRotation * rotationSpeed, 0f, 0f);
-    }
-
     void CameraRotation()
     //switches the camera's rotation based on different points in the scene
     //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
 
-        if (hover != null && hover.componentSelected)
-            return;
+        if (hover != null) 
+        {
+            if(Hover.componentSelected || placement.deletingObject || hover.isTab)
+                return;
+        }
 #if UNITY_STANDALONE
         transform.LookAt(cameras[selectedCamera]);
         //transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
@@ -170,7 +158,7 @@ public class CameraMovement : MonoBehaviour
         }
 #endif
 #if UNITY_ANDROID
-        if (Input.touchCount == 1 && !placement.deletingObject)
+        if (Input.touchCount == 1)
         {
             transform.LookAt(cameras[selectedCamera]);
             if (Input.GetTouch(0).phase == TouchPhase.Began)
@@ -240,6 +228,11 @@ public class CameraMovement : MonoBehaviour
 
     void ZoomCamera() 
     {
+        if (hover != null) 
+        {
+            if(Hover.componentSelected || placement.deletingObject || hover.isTab)
+                return;
+        }
 #if UNITY_STANDALONE
         if (Input.mouseScrollDelta.y != 0)
         {

@@ -7644,9 +7644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
-  componentSelected: 0
   buttonLetgo: 0
-  draggingComponent: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -14777,9 +14775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
-  componentSelected: 0
   buttonLetgo: 0
-  draggingComponent: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -29630,9 +29626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 1
   moveSpeed: 2
-  componentSelected: 0
   buttonLetgo: 0
-  draggingComponent: 0
   startPosition: {x: -786, y: 0, z: 0}
   desiredPosition: {x: -521, y: 0, z: 0}
   desiredSize: {x: 280.25, y: -786, z: 0}
@@ -97886,6 +97880,7 @@ MonoBehaviour:
   highlightSprite: {fileID: 21300000, guid: b51e4cfff7378f844bb95a5e03c6b31c, type: 3}
   selectionSprite: {fileID: 21300000, guid: 642700a5aec25204195f6947373cd393, type: 3}
   cameraMovement: {fileID: 2065333683}
+  answerSheet1: {fileID: 1686206209}
   hover: {fileID: 0}
   selectedPrefab: {fileID: 0}
   originalSprite: {fileID: 21300000, guid: b7a58407a8a05904a93f7d7ee038d7ba, type: 3}
@@ -98959,9 +98954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
-  componentSelected: 0
   buttonLetgo: 0
-  draggingComponent: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -99207,6 +99200,7 @@ MonoBehaviour:
   cwp_opt: 0
   cwp_opt_Elav: 0
   wrongSelection: 0
+  placementChecks: 0
   shaderRight: {fileID: 4800000, guid: ddf239f6a8f31f14a967843793068e90, type: 3}
   shaderWrong: {fileID: 4800000, guid: 0d760a105552f084393d083a05d3160f, type: 3}
   correctSprite: {fileID: 21300000, guid: d53fbe53b2f252d41b3c024f10d485b9, type: 3}
@@ -104742,9 +104736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
-  componentSelected: 0
   buttonLetgo: 0
-  draggingComponent: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
@@ -107431,9 +107423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTab: 0
   moveSpeed: 0
-  componentSelected: 0
   buttonLetgo: 0
-  draggingComponent: 0
   startPosition: {x: 0, y: 0, z: 0}
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}

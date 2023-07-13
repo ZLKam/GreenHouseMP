@@ -11,6 +11,7 @@ public class Placement : MonoBehaviour
     public Sprite highlightSprite;
     public Sprite selectionSprite;
     public CameraMovement cameraMovement;
+    public Level1AnswerSheet1 answerSheet1;
     public Hover hover;
     private Animator placeholderAnim;
     private GameObject component;
@@ -23,6 +24,7 @@ public class Placement : MonoBehaviour
     RaycastHit raycastHit;
     Transform selected;
     Transform highlightedPlacement;
+    GameObject[] selections;
 
     public bool tutorial;
     private bool allowDelete;
@@ -32,6 +34,11 @@ public class Placement : MonoBehaviour
     public bool deletingObject;
 
     private Transform highlighted;
+
+    private void Start()
+    {
+        selections = GameObject.FindGameObjectsWithTag("Selection");
+    }
 
     // Update is called once per frame
     void Update()
@@ -84,7 +91,6 @@ public class Placement : MonoBehaviour
             highlighted = null;
             component = null;
             highlightedPlacement = null;
-            return;
 
 
             //checks if chilled water pump or condensed water pump is placed and flip it if need be
@@ -145,9 +151,9 @@ public class Placement : MonoBehaviour
             {
                 Select(highlightedPlacement.transform);
             }
-            else if(hover.componentPrefab)
+            else
             {
-                Destroy(hover.componentPrefab);
+                Destroy(component);
                 return;
             }
         }
@@ -213,7 +219,6 @@ public class Placement : MonoBehaviour
             if (hit.transform.CompareTag("Selection"))
             //when the raycast returns the tag of the gameobject it hits and it matches the tag for the green boxes
             {
-                Debug.Log("test");
                 if (hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite != highlightSprite && hit.transform != selected)
                 //as long as the hit gameobject is not already the material for highlight or detected
                 //it will change the material to the highlight material
@@ -224,7 +229,6 @@ public class Placement : MonoBehaviour
             else
             //handles returning all green boxes back to the original material except the highlighted one
             {
-                GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
                 foreach (GameObject selection in selections)
                 {
                     // if the selection is not in the selected array, change the material back to original material
@@ -258,17 +262,22 @@ public class Placement : MonoBehaviour
                 }
                 deletingGO.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 50));
             }
-            //GameObject[] selections = GameObject.FindGameObjectsWithTag("Selection");
-            //foreach (GameObject selection in selections)
-            //{
-            //    if (!selection.activeSelf)
-            //        continue;
-            //    // if the selection is not in the selected list, change the material back to original material
-            //    if (selected == null || selection.transform != selected)
-            //    {
-            //        selection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
-            //    }
-            //}
+            highlighted = null;
+            highlightedPlacement = null;
+
+            if (!answerSheet1.placementChecks)
+            {
+                foreach (GameObject selection in selections)
+                {
+                    if (!selection.activeSelf)
+                        continue;
+                    // if the selection is not in the selected list, change the material back to original material
+                    if (selected == null || selection.transform != selected)
+                    {
+                        selection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
+                    }
+                }
+            }
             //if (InputSystem.Instance.LeftClick())
             ////resets the variable that stores the currently hit green box to null
             //{

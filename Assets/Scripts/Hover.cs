@@ -4,16 +4,15 @@ using UnityEngine;
 using Level3;
 using UnityEngine.EventSystems;
 
-public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     bool hoverOver;
     bool hoverTab;
     Vector3 startSize;
     public bool isTab;
     public float moveSpeed;
-    public bool componentSelected;
+    public static bool componentSelected;
     public bool buttonLetgo;
-    public bool draggingComponent;
 
     public Vector3 startPosition;
     public Vector3 desiredPosition;
@@ -73,7 +72,15 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
                 }
             }
         }
+
+        if (Input.touchCount == 0)
+        {
+            cameraMovement.hover = null;
+            componentSelected = false;
+            Destroy(componentPrefab);
+        }
     }
+
     public void Enter()
     {
         hoverOver = true;
@@ -107,14 +114,16 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     public void OnPointerDown(PointerEventData eventData)
     //handles instantiting the object component to be placed in the scene
     {
-        Debug.Log("press");
+        if (componentSelected)
+            return;
+
         cameraMovement.hover = placement.hover = this;
-        componentSelected = true;
         buttonLetgo = false;
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (component) 
+        if (component && !componentPrefab) 
         {
+            componentSelected = true;
             placement.selectedPrefab = component;
             component.GetComponent<Collider>().enabled = false;
             componentPrefab = Instantiate(component, mousePos, Quaternion.identity);
@@ -129,13 +138,6 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 50));
         componentPrefab.transform.position = mousePos;
     }
-
-    public void OnPointerUp(PointerEventData eventData) 
-    {
-        cameraMovement.hover = null;
-        buttonLetgo = true;
-    }
-
 
     public void Selection()
     {

@@ -18,6 +18,7 @@ public class Level1AnswerSheet1 : MonoBehaviour
     public bool cwp_opt_Elav;
 
     public bool wrongSelection;
+    public bool placementChecks;
 
     //private Transform[] childrenInModel;
     //private List<Renderer> childRenderList = new List<Renderer>();
@@ -129,6 +130,8 @@ public class Level1AnswerSheet1 : MonoBehaviour
             cwp_opt_Elav = false;
             SetBorderColor(correctSelection1[3].transform.GetChild(0));
         }
+
+        placementChecks = true;
 
         if (incorrectSelection.Any(i => i.transform.childCount > 0))
         {
