@@ -21,15 +21,17 @@ public class Level2AnswerSheet : MonoBehaviour
     public GameObject correctPanel;
     bool showPopUp;
 
-    GameObject[] CHWR;
-    GameObject[] CHWS;
-    GameObject[] CWS;
-    GameObject[] CWR;
+    Transform[] CHWR;
+    Transform[] CHWRsub;
+    Transform[] CHWS;
+    Transform[] CWS;
+    Transform[] CWSsub;
+    Transform[] CWR;
 
-    public Transform[] CHWRans;
-    public Transform[] CHWSans;
-    public Transform[] CWSans;
-    public Transform[] CWRans;
+    //public Transform[] CHWRans;
+    //public Transform[] CHWSans;
+    //public Transform[] CWSans;
+    //public Transform[] CWRans;
     public Transform[] pipes;
 
     // Start is called before the first frame update
@@ -38,10 +40,12 @@ public class Level2AnswerSheet : MonoBehaviour
         showPopUp = true;
         //Debug.Log(connectionPoint1.Count);
 
-        CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 1").ToArray();
-        CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 2").ToArray();
-        CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 3").ToArray();
-        CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 4").ToArray();
+        CHWR = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 1").ToArray();
+        CHWRsub = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Sub Point 1").ToArray();
+        CHWS = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 2").ToArray();
+        CWS = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 3").ToArray();
+        CHWRsub = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Sub Point 3").ToArray();
+        CWR = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 4").ToArray();
         Debug.Log(CHWR.Count());
         //Debug.Log(CHWS.Count());
         //Debug.Log(CWS.Count());
@@ -106,39 +110,40 @@ public class Level2AnswerSheet : MonoBehaviour
         }
     }
 
-    void ConnectionCheckv2(List<Transform> ans1, List<Transform> ans2, List<Transform> ans3, List<Transform> ans4)
-    {
-        foreach (Transform t in ans1)
-        {
-            if (!CHWRans.Contains(t))
-            {
-                connectionCHWR = false;
-            }
-        }
+    //void ConnectionCheckv2(List<Transform> ans1, List<Transform> ans2, List<Transform> ans3, List<Transform> ans4)
+    //{
+    //    foreach (Transform t in ans1)
+    //    {
+    //        if (!CHWRans.Contains(t))
+    //        {
+    //            connectionCHWR = false;
+    //        }
+    //    }
 
-        foreach (Transform t in ans2)
-        {
-            if (!CHWSans.Contains(t))
-            {
-                connectionCHWS = false;
-            }
-        }
+    //    foreach (Transform t in ans2)
+    //    {
+    //        if (!CHWSans.Contains(t))
+    //        {
+    //            connectionCHWS = false;
+    //        }
+    //    }
 
-        foreach (Transform t in ans3)
-        {
-            if (!CWRans.Contains(t))
-            {
-                connectionCWR = false;
-            }
-        }
-        foreach (Transform t in ans4)
-        {
-            if (!CWSans.Contains(t))
-            {
-                connectionCWS = false;
-            }
-        }
-    }
+    //    foreach (Transform t in ans3)
+    //    {
+    //        if (!CWRans.Contains(t))
+    //        {
+    //            connectionCWR = false;
+    //        }
+    //    }
+    //    foreach (Transform t in ans4)
+    //    {
+    //        if (!CWSans.Contains(t))
+    //        {
+    //            connectionCWS = false;
+    //        }
+    //    }
+    //    else { }
+    //}
 
     public bool ListComparison(List<GameObject> playerList)
     {
@@ -251,23 +256,66 @@ public class Level2AnswerSheet : MonoBehaviour
     //{
 
     //}
-    //public void ListCompare(List<Transform> ans)
-    //{
-    //    if (ans[0] == pipes[0])
-    //    {
-    //        //CHWR Check
-    //    }
-    //    if (ans[0] == pipes[1])
-    //    {
-    //        //CHWS Check
-    //    }
-    //    if (ans[0] == pipes[2])
-    //    {
-    //        //CWR Check
-    //    }
-    //    if (ans[0] == pipes[3])
-    //    {
-    //        //CWS Check
-    //    }
-    //}
+    public void ConnectionCheck(List<Transform> ans)
+    {
+        if (ans[0] == pipes[0])
+        {
+            foreach (Transform t in ans)
+            {
+                if (!CHWR.Contains(t) || !CHWRsub.Contains(t))
+                {
+                    connectionCHWR = false;
+                }
+                else
+                {
+                    connectionCHWR = true;
+                }
+            }
+        }
+        if (ans[0] == pipes[1])
+        {
+            //CHWS Check
+            foreach (Transform t in ans)
+            {
+                if (!CHWS.Contains(t))
+                {
+                    connectionCHWS = false;
+                }
+                else
+                {
+                    connectionCHWS = true;
+                }
+            }
+        }
+        if (ans[0] == pipes[2])
+        {
+            //CWR Check
+            foreach (Transform t in ans)
+            {
+                if (!CWR.Contains(t) )
+                {
+                    connectionCWR = false;
+                }
+                else
+                {
+                    connectionCWR = true;
+                }
+            }
+        }
+        if (ans[0] == pipes[3])
+        {
+            //CWS Check
+            foreach (Transform t in ans)
+            {
+                if (!CWS.Contains(t) || !CWSsub.Contains(t))
+                {
+                    connectionCWS = false;
+                }
+                else
+                {
+                    connectionCWS = true;
+                }
+            }
+        }
+    }
 }
