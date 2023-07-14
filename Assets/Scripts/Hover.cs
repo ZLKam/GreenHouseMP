@@ -20,16 +20,21 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     private Vector3 mousePos;
 
     public GameObject component;
+    public GameObject pipe, pipeBody, pipeEntrance;
     public GameObject componentName;
 
     Placement placement;
-    public GameObject componentPrefab;
+    Connection connection;
     CameraMovement cameraMovement;
+    [HideInInspector]
+    public GameObject componentPrefab;
+
     
 
     void Start()
     {
         placement = FindObjectOfType<Placement>();
+        connection = FindObjectOfType<Connection>();
         cameraMovement = FindObjectOfType<CameraMovement>();
 
         //transform.localPosition = startPosition;
@@ -117,16 +122,31 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
         if (componentSelected)
             return;
 
-        cameraMovement.hover = placement.hover = this;
         buttonLetgo = false;
 
+        if (placement)
+        {
+            cameraMovement.hover = placement.hover = this;
+        }
+        else 
+        {
+            cameraMovement.hover = this;
+        }
+
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (component && !componentPrefab) 
+        if (component && !componentPrefab)
         {
             componentSelected = true;
             placement.selectedPrefab = component;
             component.GetComponent<Collider>().enabled = false;
             componentPrefab = Instantiate(component, mousePos, Quaternion.identity);
+        }
+        else if (pipe && connection) 
+        {
+            connection.pipe = pipe;
+            connection.entrance = pipeEntrance;
+            connection.exit = pipeEntrance;
+            connection.body = pipeBody;
         }
 
     }
