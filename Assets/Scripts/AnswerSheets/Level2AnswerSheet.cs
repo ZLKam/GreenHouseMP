@@ -26,18 +26,26 @@ public class Level2AnswerSheet : MonoBehaviour
     GameObject[] CWS;
     GameObject[] CWR;
 
+    public Transform[] CHWRans;
+    public Transform[] CHWSans;
+    public Transform[] CWSans;
+    public Transform[] CWRans;
+    public Transform[] pipes;
+
     // Start is called before the first frame update
     void Start()
     {
         showPopUp = true;
         //Debug.Log(connectionPoint1.Count);
 
-
         CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 1").ToArray();
         CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 2").ToArray();
         CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 3").ToArray();
         CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 4").ToArray();
         Debug.Log(CHWR.Count());
+        //Debug.Log(CHWS.Count());
+        //Debug.Log(CWS.Count());
+        //Debug.Log(CWR.Count());
     }
 
     public void AnswerCheck()
@@ -56,7 +64,6 @@ public class Level2AnswerSheet : MonoBehaviour
 
     void ConnectionCheck()
     {
-       
 
         if (CHWR.Count() == 2)
         {
@@ -99,9 +106,43 @@ public class Level2AnswerSheet : MonoBehaviour
         }
     }
 
+    void ConnectionCheckv2(List<Transform> ans1, List<Transform> ans2, List<Transform> ans3, List<Transform> ans4)
+    {
+        foreach (Transform t in ans1)
+        {
+            if (!CHWRans.Contains(t))
+            {
+                connectionCHWR = false;
+            }
+        }
+
+        foreach (Transform t in ans2)
+        {
+            if (!CHWSans.Contains(t))
+            {
+                connectionCHWS = false;
+            }
+        }
+
+        foreach (Transform t in ans3)
+        {
+            if (!CWRans.Contains(t))
+            {
+                connectionCWR = false;
+            }
+        }
+        foreach (Transform t in ans4)
+        {
+            if (!CWSans.Contains(t))
+            {
+                connectionCWS = false;
+            }
+        }
+    }
+
     public bool ListComparison(List<GameObject> playerList)
     {
-        if (playerList.Count == connectionPoint1.Count)
+        if (playerList.Count == connectionPoint1.Count) //Connection 1 has 7 gameobjects,in fame 7, in script 5, answer 2
         {
             Debug.Log("checking 1");
             for (int i = 0; i < connectionPoint1.Count; i++)
@@ -120,7 +161,7 @@ public class Level2AnswerSheet : MonoBehaviour
         if (playerList.Count == connectionSubPoint1.Count)
         {
             Debug.Log("checking s1");
-            for (int i = 0; i < connectionSubPoint1.Count; i++)
+            for (int i = 0; i < connectionSubPoint1.Count; i++) //5,5
             {
                 if (connectionSubPoint1[i].transform.position == playerList[i].transform.position)
                 {
@@ -209,5 +250,24 @@ public class Level2AnswerSheet : MonoBehaviour
     //public void ListComparison(List<GameObject> playerList, List<GameObject> answerList)
     //{
 
+    //}
+    //public void ListCompare(List<Transform> ans)
+    //{
+    //    if (ans[0] == pipes[0])
+    //    {
+    //        //CHWR Check
+    //    }
+    //    if (ans[0] == pipes[1])
+    //    {
+    //        //CHWS Check
+    //    }
+    //    if (ans[0] == pipes[2])
+    //    {
+    //        //CWR Check
+    //    }
+    //    if (ans[0] == pipes[3])
+    //    {
+    //        //CWS Check
+    //    }
     //}
 }

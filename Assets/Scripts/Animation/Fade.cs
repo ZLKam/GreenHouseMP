@@ -53,7 +53,7 @@ public class Fade : MonoBehaviour
             fadeImage.color = new Color32(red, green, blue, fadeAmount);
             fadeAmount -= fadeSpeed;
 
-            if(fadeAmount <= 0)
+            if (fadeAmount <= 0)
             {
                 fadeIn = false;
                 fadeImage.enabled = false;
@@ -69,9 +69,9 @@ public class Fade : MonoBehaviour
             //fadeAmount = (byte)Mathf.Lerp(0, 255, fadeSpeed * Time.deltaTime);
             Debug.Log("fade minus");
 
-            if(fadeAmount >= 255)
+            if (fadeAmount >= 255)
             {
-                Debug.Log("transition");    
+                Debug.Log("transition");
                 if (exit)
                 {
                     Debug.Log("Quit");
@@ -107,7 +107,7 @@ public class Fade : MonoBehaviour
 
                     if (fadeAmount <= 0)
                     {
-                        if(proceedButton != null)
+                        if (proceedButton != null)
                         {
                             proceedButton.SetActive(true);
                         }
@@ -162,4 +162,17 @@ public class Fade : MonoBehaviour
         Level.SetActive(true);
         Section.SetActive(false);
     }
+
+    public void SectionBack()
+    {
+        GameMenu.SetActive(true);
+        Section.SetActive(false);
+    }
+
+    public void LevelBack()
+    {
+        Level.SetActive(false);
+        Section.SetActive(true);
+    }
+
 }
