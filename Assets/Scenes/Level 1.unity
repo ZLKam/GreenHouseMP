@@ -7649,6 +7649,9 @@ MonoBehaviour:
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
   component: {fileID: 5073094528020811294, guid: f3de24947717f3d47a72c4ee3d29b515, type: 3}
+  pipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
   componentName: {fileID: 969495337}
   componentPrefab: {fileID: 0}
 --- !u!1 &102622713
@@ -14780,6 +14783,9 @@ MonoBehaviour:
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
   component: {fileID: 7042955982540528974, guid: 3df3473120784654cad9b759d5a6c52d, type: 3}
+  pipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
   componentName: {fileID: 300115604}
   componentPrefab: {fileID: 0}
 --- !u!1 &193614469
@@ -29631,6 +29637,9 @@ MonoBehaviour:
   desiredPosition: {x: -521, y: 0, z: 0}
   desiredSize: {x: 280.25, y: -786, z: 0}
   component: {fileID: 0}
+  pipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
   componentName: {fileID: 0}
   componentPrefab: {fileID: 0}
 --- !u!1 &462871617
@@ -98959,6 +98968,9 @@ MonoBehaviour:
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
   component: {fileID: 5529669330089554512, guid: 4bc2a1879952d4141b87b6e22120d8ea, type: 3}
+  pipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
   componentName: {fileID: 521788531}
   componentPrefab: {fileID: 0}
 --- !u!1 &1685167089
@@ -104741,6 +104753,9 @@ MonoBehaviour:
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
   component: {fileID: 118911803906712837, guid: 1ae9954049e7f6b4288a6d72a23a083c, type: 3}
+  pipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
   componentName: {fileID: 1919087088}
   componentPrefab: {fileID: 0}
 --- !u!1 &1774747140
@@ -106674,9 +106689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c2406d9bd084149bab0eb51d777ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theoryBook: {fileID: 478060810}
-  page1: {fileID: 923277355}
-  page2: {fileID: 710976862}
 --- !u!114 &1813309337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106689,11 +106701,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a539690c20e08b445ac8cb5ff95e6a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theoryBook: {fileID: 477689256}
+  TheoryBookComponent: {fileID: 0}
   TheoryBookPipes: {fileID: 478060810}
-  page1: {fileID: 1561108159}
-  page2: {fileID: 749564033}
-  page3: {fileID: 2018674271}
+  Comppage1: {fileID: 0}
+  Comppage2: {fileID: 0}
+  Comppage3: {fileID: 0}
+  Pipepage1: {fileID: 0}
+  Pipepage2: {fileID: 0}
   frame: {fileID: 803682016}
 --- !u!1 &1814384921
 GameObject:
@@ -107428,6 +107442,9 @@ MonoBehaviour:
   desiredPosition: {x: 0, y: 0, z: 0}
   desiredSize: {x: 1.2, y: 1.2, z: 1.2}
   component: {fileID: 3322066198371930665, guid: 9296afd0619464040812caae4dcc1400, type: 3}
+  pipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
   componentName: {fileID: 1587953492}
   componentPrefab: {fileID: 0}
 --- !u!114 &1824966085
