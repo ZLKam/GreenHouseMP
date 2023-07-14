@@ -1388,10 +1388,6 @@ MonoBehaviour:
   connectionCWS: 0
   connectionCWR: 0
   correctPanel: {fileID: 754042568}
-  CHWRans: []
-  CHWSans: []
-  CWSans: []
-  CWRans: []
   pipes: []
 --- !u!1 &263355725
 GameObject:
@@ -6918,7 +6914,7 @@ GameObject:
   - component: {fileID: 731289706}
   - component: {fileID: 731289705}
   m_Layer: 0
-  m_Name: Connection Point 3
+  m_Name: Connection Sub Point 3
   m_TagString: Connection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10836,7 +10832,7 @@ GameObject:
   - component: {fileID: 1214740352}
   - component: {fileID: 1214740351}
   m_Layer: 0
-  m_Name: Connection Point 1
+  m_Name: Connection Sub Point 1
   m_TagString: Connection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11167,7 +11163,7 @@ GameObject:
   - component: {fileID: 1286344521}
   - component: {fileID: 1286344520}
   m_Layer: 0
-  m_Name: Connection Point 1
+  m_Name: Connection Sub Point 1
   m_TagString: Connection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12407,7 +12403,7 @@ GameObject:
   - component: {fileID: 1417685235}
   - component: {fileID: 1417685234}
   m_Layer: 0
-  m_Name: Connection Point 3
+  m_Name: Connection Sub Point 3
   m_TagString: Connection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
