@@ -229,7 +229,7 @@ public class Level2AnswerSheet : MonoBehaviour
         
         if (playerList.Count == connectionPoint4.Count)
         {
-            Debug.Log("checking 4");
+            Debug.Log("checking 4"); 
             for (int i = 0; i < connectionPoint4.Count; i++)
             {
                 if (connectionPoint4[i].transform.position == playerList[i].transform.position)

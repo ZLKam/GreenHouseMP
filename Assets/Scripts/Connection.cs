@@ -372,11 +372,7 @@ public class Connection : MonoBehaviour
                 }
             valueReturnBtn.pressedBtn = false;  
         }
-            //else
-            //{   
-            //    multiPoints.Remove(selectedComponent.IndexReturn().gameObject);
-            //    selection = null;
-            //}
+
         }
             
         

@@ -112,11 +112,16 @@ public class CameraMovement : MonoBehaviour
     //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
 
-        if (hover != null) 
+        if (!placement)
         {
-            if(Hover.componentSelected || placement.deletingObject || hover.isTab)
+            return;
+        }
+        else if (hover != null)
+        {
+            if (Hover.componentSelected || placement.deletingObject || hover.isTab)
                 return;
         }
+
 #if UNITY_STANDALONE
         transform.LookAt(cameras[selectedCamera]);
         //transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime);
@@ -228,9 +233,13 @@ public class CameraMovement : MonoBehaviour
 
     void ZoomCamera() 
     {
-        if (hover != null) 
+        if (!placement)
         {
-            if(Hover.componentSelected || placement.deletingObject || hover.isTab)
+            return;
+        }
+        else if (hover != null)
+        {
+            if (Hover.componentSelected || placement.deletingObject || hover.isTab)
                 return;
         }
 #if UNITY_STANDALONE

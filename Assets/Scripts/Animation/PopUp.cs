@@ -91,11 +91,12 @@ public class PopUp : MonoBehaviour
         pop = true;
         gameObject.SetActive(false);
     }
-    public void NextPopUp(GameObject next)
-    {
-        gameObject.SetActive(false);
-        next.SetActive(true);
-    }
+
+    //public void NextPopUp(GameObject next)
+    //{
+    //    gameObject.SetActive(false);
+    //    next.SetActive(true);
+    //}
 
     public void Return()
     {
