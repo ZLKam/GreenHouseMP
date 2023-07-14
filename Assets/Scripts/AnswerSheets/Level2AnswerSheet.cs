@@ -21,12 +21,12 @@ public class Level2AnswerSheet : MonoBehaviour
     public GameObject correctPanel;
     bool showPopUp;
 
-    GameObject[] CHWR;
-    GameObject[] CHWRsub;
-    GameObject[] CHWS;
-    GameObject[] CWS;
-    GameObject[] CWSsub;
-    GameObject[] CWR;
+    Transform[] CHWR;
+    Transform[] CHWRsub;
+    Transform[] CHWS;
+    Transform[] CWS;
+    Transform[] CWSsub;
+    Transform[] CWR;
 
     //public Transform[] CHWRans;
     //public Transform[] CHWSans;
@@ -40,12 +40,12 @@ public class Level2AnswerSheet : MonoBehaviour
         showPopUp = true;
         //Debug.Log(connectionPoint1.Count);
 
-        CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 1").ToArray();
-        CHWRsub = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Sub Point 1").ToArray();
-        CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 2").ToArray();
-        CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 3").ToArray();
-        CHWRsub = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Sub Point 3").ToArray();
-        CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 4").ToArray();
+        CHWR = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 1").ToArray();
+        CHWRsub = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Sub Point 1").ToArray();
+        CHWS = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 2").ToArray();
+        CWS = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 3").ToArray();
+        CHWRsub = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Sub Point 3").ToArray();
+        CWR = Resources.FindObjectsOfTypeAll<Transform>().Where(obj => obj.name == "Connection Point 4").ToArray();
         Debug.Log(CHWR.Count());
         //Debug.Log(CHWS.Count());
         //Debug.Log(CWS.Count());
@@ -256,23 +256,66 @@ public class Level2AnswerSheet : MonoBehaviour
     //{
 
     //}
-    public void ListCompare(List<Transform> ans)
+    public void ConnectionCheck(List<Transform> ans)
     {
         if (ans[0] == pipes[0])
         {
-            //CHWR Check
+            foreach (Transform t in ans)
+            {
+                if (!CHWR.Contains(t) || !CHWRsub.Contains(t))
+                {
+                    connectionCHWR = false;
+                }
+                else
+                {
+                    connectionCHWR = true;
+                }
+            }
         }
         if (ans[0] == pipes[1])
         {
             //CHWS Check
+            foreach (Transform t in ans)
+            {
+                if (!CHWS.Contains(t))
+                {
+                    connectionCHWS = false;
+                }
+                else
+                {
+                    connectionCHWS = true;
+                }
+            }
         }
         if (ans[0] == pipes[2])
         {
             //CWR Check
+            foreach (Transform t in ans)
+            {
+                if (!CWR.Contains(t) )
+                {
+                    connectionCWR = false;
+                }
+                else
+                {
+                    connectionCWR = true;
+                }
+            }
         }
         if (ans[0] == pipes[3])
         {
             //CWS Check
+            foreach (Transform t in ans)
+            {
+                if (!CWS.Contains(t) || !CWSsub.Contains(t))
+                {
+                    connectionCWS = false;
+                }
+                else
+                {
+                    connectionCWS = true;
+                }
+            }
         }
     }
 }
