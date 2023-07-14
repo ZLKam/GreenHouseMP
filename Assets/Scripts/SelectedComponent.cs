@@ -15,7 +15,7 @@ public class SelectedComponent : MonoBehaviour
     public void ShowUI() 
     {
         valueReturn.gameObject.SetActive(true);
-        if (!valueReturn.gameObject.activeInHierarchy)
+        if (valueReturn.gameObject.activeInHierarchy)
         {
             valueReturn.gameObject.transform.position = new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y);
         }

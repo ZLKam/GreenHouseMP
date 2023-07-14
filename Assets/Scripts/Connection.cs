@@ -327,25 +327,22 @@ public class Connection : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
-                if (selection.CompareTag("Connection"))
+                if (selection.GetComponent<SelectedComponent>())
                 {
-                    if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-                    {
-                        selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                        points.Remove(selection.gameObject);
-                        valueReturnBtn.pressedBtn = false;
-                        return;
-                    }
-                    else
-                    {
-                        selectedComponent.RemoveUI();
-                    }
+                    selectedComponent = selection.GetComponent<SelectedComponent>();
+                    selectedComponent.ShowUI();
+                    valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
                 }
                 else
                 {
                     selectedComponent.RemoveUI();
                 }
-            } 
+            }
+            else
+            {
+                    selectedComponent.RemoveUI();
+            }
+             
         }
             if (valueReturnBtn.pressedBtn)
             {
@@ -373,7 +370,8 @@ public class Connection : MonoBehaviour
                     }
 
                 }
-            }
+            valueReturnBtn.pressedBtn = false;  
+        }
             //else
             //{   
             //    multiPoints.Remove(selectedComponent.IndexReturn().gameObject);
