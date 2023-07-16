@@ -111,7 +111,7 @@ namespace Level3
 
         private void LinePathFind()
         {
-            if (!initT || !hitT || !initT.GetComponentInParent<ComponentEvent>().AllowDrawLine() || !hitT.GetComponentInParent<ComponentEvent>().AllowDrawLine())
+            if (!initT || !hitT /*|| !initT.GetComponentInParent<ComponentEvent>().AllowDrawLine() || !hitT.GetComponentInParent<ComponentEvent>().AllowDrawLine()*/)
             {
                 Debug.Log("Initial or hit transform is null or not allowed to draw line as exceeded the max line allow to draw");
                 lineManagerController.componentClickedT = null;
