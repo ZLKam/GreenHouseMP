@@ -64,10 +64,10 @@ public class Level2AnswerSheet : MonoBehaviour
 
     void ConnectionCheck()
     {
-        CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWR").ToArray();
-        CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWS").ToArray();
-        CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWS").ToArray();
-        CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWR").ToArray();
+        CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWR(Clone)").ToArray();
+        CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWS(Clone)").ToArray();
+        CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWS(Clone)").ToArray();
+        CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWR(Clone)").ToArray();
 
         if (CHWR.Count() == 2)
         {
