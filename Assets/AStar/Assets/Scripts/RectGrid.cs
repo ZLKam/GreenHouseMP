@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using Level3;
 
 public class RectGrid : MonoBehaviour
 {
@@ -17,15 +18,20 @@ public class RectGrid : MonoBehaviour
 
     GameObject[,] cells = null;
 
-    public Color COLOR_WALKABLE = Color.cyan;
-    public Color COLOR_NON_WALKABLE = Color.black;
+    [SerializeField]
+    //private Color COLOR_WALKABLE = Color.cyan;
+    private Color COLOR_WALKABLE = new Color(Color.cyan.r, Color.cyan.g, Color.cyan.b, 0.5f);
+    [SerializeField]
+    //private Color COLOR_NON_WALKABLE = Color.black;
+    private Color COLOR_NON_WALKABLE = new Color(Color.black.r, Color.black.g, Color.black.b, 0.5f);
+
     public Color COLOR_PATH = Color.green;
 
     public bool noDiagonalMovement = false;
 
     // The NPC
     public NPCMovement npc;
-    private GMAI.PathFinder pathFinder = new GMAI.PathFinder();
+    private PathFinder pathFinder = new PathFinder();
 
     // Start is called before the first frame update
     void Start()
@@ -110,13 +116,11 @@ public class RectGrid : MonoBehaviour
     {
         if (gridCell.isWalkable)
         {
-            gridCell.SetInnerColor(COLOR_NON_WALKABLE);
-            gridCell.isWalkable = false;
+            gridCell.SetNonWalkable();
         }
         else
         {
-            gridCell.SetInnerColor(COLOR_WALKABLE);
-            gridCell.isWalkable = true;
+            gridCell.SetWalkable();
         }
     }
 
@@ -137,11 +141,11 @@ public class RectGrid : MonoBehaviour
                 RectGridCell gridCell = cell.GetComponent<RectGridCell>();
                 if (!gridCell.isWalkable)
                 {
-                    gridCell.SetInnerColor(COLOR_NON_WALKABLE);
+                    gridCell.SetNonWalkable();
                 }
                 else
                 {
-                    gridCell.SetInnerColor(COLOR_WALKABLE);
+                    gridCell.SetWalkable();
                 }
 
             }
@@ -283,5 +287,26 @@ public class RectGrid : MonoBehaviour
             }
         }
         return neighbours;
+    }
+
+    public RectGrid()
+    {
+        
+    }
+
+    public Color WalkableColor
+    {
+        get
+        {
+            return COLOR_WALKABLE;
+        }
+    }
+
+    public Color NonWalkableColor
+    {
+        get
+        {
+            return COLOR_NON_WALKABLE;
+        }
     }
 }

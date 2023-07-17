@@ -499,15 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343da44c39d4fe946bda61267bd118fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineManager: {fileID: 6709206045949303800, guid: dc4c75adcc85ef5459bf632c28d8a2e5, type: 3}
-  wheel: {fileID: 0}
-  emptyGO: {fileID: 4109558821009205862, guid: 9293465e29d31884488aa395d5a688d9, type: 3}
-  emptyLinePrefab: {fileID: 4109558821009205862, guid: c8b32dcb580d20345b10f1327b4d4241, type: 3}
-  linesToDraw: 0
-  i: 0
-  linesDrawn: 
-  componentClicked: 0
-  componentClickedT: {fileID: 0}
 --- !u!1 &352344812
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +871,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -301260379
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4030061801765492577, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
 --- !u!4 &676647621 stripped
 Transform:
@@ -3783,7 +3775,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -301260379
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4030061801765492577, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
 --- !u!4 &982308582 stripped
 Transform:
@@ -4080,7 +4073,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -301260379
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4030061801765492577, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
 --- !u!4 &1167856611 stripped
 Transform:
@@ -4158,7 +4152,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -301260379
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4030061801765492577, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
 --- !u!4 &1171408844 stripped
 Transform:
@@ -4269,6 +4264,37 @@ MonoBehaviour:
   drawLine: 0
   txtMode: {fileID: 1399516176}
   centerPointOfPlayArea: {x: 0, y: 0}
+--- !u!1 &1232624426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1232624427}
+  m_Layer: 0
+  m_Name: PathFinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1232624427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232624426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1263224617
 GameObject:
   m_ObjectHideFlags: 0
@@ -4675,7 +4701,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -301260379
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4030061801765492577, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
 --- !u!4 &1480914300 stripped
 Transform:
