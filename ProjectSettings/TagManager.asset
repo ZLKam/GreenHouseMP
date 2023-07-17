@@ -16,6 +16,7 @@ TagManager:
   - Component/CwpOptElavated
   - LineParent
   - Line
+  - RectGrid
   layers:
   - Default
   - TransparentFX
