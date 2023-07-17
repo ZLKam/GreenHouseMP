@@ -19,6 +19,8 @@ public class Connection : MonoBehaviour
 
     public List<GameObject> points;
     public List<GameObject> multiPoints;
+    public SelectedComponent[] componentArray;
+    private SelectedComponent currentComponent;
 
     public int multiConnectLimit;
     public bool multiConnect;
@@ -57,6 +59,7 @@ public class Connection : MonoBehaviour
     private void Awake()
     {
         Camera.main.transform.parent.GetComponent<CameraMovement>().zoomStopDistance = 30f;
+        componentArray = FindObjectsOfType<SelectedComponent>();
     }
 
     // Update is called once per frame
@@ -135,11 +138,25 @@ public class Connection : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
-                if (selection.GetComponent<SelectedComponent>() != null)
+                if (selection.GetComponent<SelectedComponent>())
                 {
+                    //Debug.Log("Reached two");
                     selectedComponent = selection.GetComponent<SelectedComponent>();
-                    selectedComponent.ShowUI();
-                    valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
+                    //selectedComponent.valueReturn.selectedComponentBtn = selectedComponent;
+                    valueReturnBtn.selectedComponentBtn = selectedComponent;
+                    foreach (SelectedComponent component in componentArray) 
+                    {
+                        if (selectedComponent != component)
+                        {
+                            Debug.Log("NOT showing UI");
+                            component.RemoveUI();
+                        }
+                        else 
+                        {
+                            Debug.Log("showing UI");
+                            component.ShowUI();
+                        }
+                    }
                 }
                 else 
                 {
@@ -147,7 +164,7 @@ public class Connection : MonoBehaviour
                     selectedComponent.RemoveUI();
                 }
             }
-            else 
+            else
             {
                 selectedComponent.RemoveUI();
             }
@@ -170,6 +187,7 @@ public class Connection : MonoBehaviour
             if (!points.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn() != null)
             {
                 points.Add(selectedComponent.IndexReturn().gameObject);
+                
 
                 if (points.Count >= 2)
                 {
@@ -241,11 +259,15 @@ public class Connection : MonoBehaviour
 
         void Connect()
         {
+            if (!pipe && !entrance && !exit && !body)
+                return;
             for (int i = 0; i < points.Count; i++)
             {
                 point1 = points[0].transform;
                 point2 = points[1].transform;
             }
+
+            Debug.Log(pipe.transform.name);
 
             Quaternion rotation1 = point1.rotation;
             Quaternion rotation2 = point2.rotation;
@@ -289,6 +311,8 @@ public class Connection : MonoBehaviour
 
         void MultiHighlight()
         {
+            if (!pipe && !entrance && !exit && !body)
+                 return;
             // checks if there is an object being highlighted
             // if so, remove highlight by resetting the object's material to it's original material
             if (highlight != null)
@@ -331,8 +355,20 @@ public class Connection : MonoBehaviour
                 if (selection.GetComponent<SelectedComponent>())
                 {
                     selectedComponent = selection.GetComponent<SelectedComponent>();
-                    selectedComponent.ShowUI();
                     valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
+                    foreach (SelectedComponent component in componentArray)
+                    {
+                        if (selectedComponent != component)
+                        {
+                            Debug.Log("NOT showing UI");
+                            component.RemoveUI();
+                        }
+                        else
+                        {
+                            Debug.Log("showing UI");
+                            component.ShowUI();
+                        }
+                    }
                 }
                 else
                 {
@@ -493,7 +529,7 @@ public class Connection : MonoBehaviour
                         pipeMain.name = "Connection 3";
                         foreach (Renderer renderer in renderers)
                         {
-                            renderer.material.color = new Color32(232, 0, 254, 175);
+                            renderer.material.color = new Color32(255, 0, 0, 175);
                         }
                     }
 
@@ -502,7 +538,7 @@ public class Connection : MonoBehaviour
                         pipeMain.name = "Connection 4";
                         foreach (Renderer renderer in renderers)
                         {
-                            renderer.material.color = new Color32(255, 0, 0, 175);
+                            renderer.material.color = new Color32(232, 0, 254, 175);
                         }
                     }
 

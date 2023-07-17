@@ -6,7 +6,10 @@ using TMPro;
 public class SelectedComponent : MonoBehaviour
 {
     public bool selected { get; private set; }
-    public ReturnValue valueReturn;
+    private ReturnValue valueReturn;
+    public GameObject UIPrefab;
+    public GameObject canvas;
+    public GameObject uiTemp;
     [SerializeField]
     private List<GameObject> selectedTransform = new List<GameObject>();
     private GameObject connectionPoint;
@@ -14,16 +17,17 @@ public class SelectedComponent : MonoBehaviour
 
     public void ShowUI() 
     {
-        valueReturn.gameObject.SetActive(true);
-        if (valueReturn.gameObject.activeInHierarchy)
+        if (!uiTemp)
         {
-            valueReturn.gameObject.transform.position = new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y);
+            uiTemp = Instantiate(UIPrefab, new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y), Quaternion.identity);
         }
+        uiTemp.transform.SetParent(canvas.transform);
+        valueReturn = uiTemp.GetComponent<ReturnValue>();
     }
 
     public void RemoveUI() 
     {
-        valueReturn.gameObject.SetActive(false);
+        Destroy(uiTemp);
     }
 
     public GameObject IndexReturn() 

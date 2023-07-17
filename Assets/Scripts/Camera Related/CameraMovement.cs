@@ -112,13 +112,16 @@ public class CameraMovement : MonoBehaviour
     //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
 
-        if (!placement)
+        if (placement)
         {
-            return;
+            if (placement.deletingObject)
+            {
+                return;
+            }
         }
-        else if (hover != null)
+        if (hover != null)
         {
-            if (Hover.componentSelected || placement.deletingObject || hover.isTab)
+            if (Hover.componentSelected || hover.isTab)
                 return;
         }
 
@@ -233,13 +236,16 @@ public class CameraMovement : MonoBehaviour
 
     void ZoomCamera() 
     {
-        if (!placement)
+        if (placement)
         {
-            return;
+            if (placement.deletingObject) 
+            {
+                return;
+            }
         }
-        else if (hover != null)
+        if (hover != null)
         {
-            if (Hover.componentSelected || placement.deletingObject || hover.isTab)
+            if (Hover.componentSelected || hover.isTab)
                 return;
         }
 #if UNITY_STANDALONE

@@ -23,6 +23,9 @@ public class PopUp : MonoBehaviour
     public bool pop;
     public bool wrong;
 
+    [SerializeField]
+    private bool popAtBeginning;
+
     
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,7 @@ public class PopUp : MonoBehaviour
         rect = popImage.rectTransform.rect;
         width = rect.width;
         height = rect.height;
+
     }
 
     // Update is called once per frame
@@ -49,7 +53,8 @@ public class PopUp : MonoBehaviour
             {
                 fade.darken = true;
             }
-
+            
+            //they do all of this just for an animation
             if(popImage.rectTransform.localScale.x < maxSize)
             {
                 popImage.rectTransform.localScale += popSpeed;

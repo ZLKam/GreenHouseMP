@@ -14,7 +14,6 @@ public class ReturnValue : MonoBehaviour
         connection = FindObjectOfType<Connection>();
         pressedBtn = false;
         indexValue = 0;
-        gameObject.SetActive(false);
     }
 
     public void ButtonPress1() 

@@ -26,6 +26,11 @@ public class Level2AnswerSheet : MonoBehaviour
     GameObject[] CWS;
     GameObject[] CWR;
 
+    GameObject[] CHWRans;
+    GameObject[] CHWSans;
+    GameObject[] CWSans;
+    GameObject[] CWRans;
+
     //public Transform[] CHWRans;
     //public Transform[] CHWSans;
     //public Transform[] CWSans;
@@ -64,41 +69,50 @@ public class Level2AnswerSheet : MonoBehaviour
 
     void ConnectionCheck()
     {
-        CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWR").ToArray();
-        CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWS").ToArray();
-        CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWS").ToArray();
-        CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWR").ToArray();
+        CHWRans = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWR(Clone)" || obj.name == "Connection 1").ToArray();
+        CHWSans = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWS(Clone)" || obj.name == "Connection 2").ToArray();
+        CWSans = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWS(Clone)" || obj.name == "Connection 3").ToArray();
+        CWRans = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWR(Clone)" || obj.name == "Connection 4").ToArray();
 
-        if (CHWR.Count() == 2)
+        Debug.Log(CWRans.Count());
+
+
+
+
+        if (CHWRans.Count() == 2)
         {
             connectionCHWR = true;
+            //Debug.Log("CHWR Correct");
         }
         else
         {
             connectionCHWR = false;
         }
         
-        if (CHWS.Count() == 1)
+        if (CHWSans.Count() == 1)
         {
             connectionCHWS = true;
+            //Debug.Log("CHWS Correct");
         }
         else
         {
             connectionCHWS = false;
         }
 
-        if (CWS.Count() == 2)
+        if (CWSans.Count() == 2)
         {
             connectionCWS = true;
+            //Debug.Log("CWS Correct");
         }
         else
         {
             connectionCWS = false;
         }
 
-        if (CWR.Count() == 1)
+        if (CWRans.Count() == 1)
         {
             connectionCWR = true;
+            //Debug.Log("CWR Correct");
         }
         else
         {
