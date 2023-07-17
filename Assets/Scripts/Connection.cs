@@ -19,6 +19,8 @@ public class Connection : MonoBehaviour
 
     public List<GameObject> points;
     public List<GameObject> multiPoints;
+    public SelectedComponent[] componentArray;
+    private SelectedComponent currentComponent;
 
     public int multiConnectLimit;
     public bool multiConnect;
@@ -57,6 +59,7 @@ public class Connection : MonoBehaviour
     private void Awake()
     {
         Camera.main.transform.parent.GetComponent<CameraMovement>().zoomStopDistance = 30f;
+        componentArray = FindObjectsOfType<SelectedComponent>();
     }
 
     // Update is called once per frame
@@ -134,15 +137,26 @@ public class Connection : MonoBehaviour
                 return;
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
-                Debug.Log("Reached1"); 
                 selection = raycastHit.transform;
-                if (selection.GetComponent<SelectedComponent>() != null)
+                if (selection.GetComponent<SelectedComponent>())
                 {
                     //Debug.Log("Reached two");
                     selectedComponent = selection.GetComponent<SelectedComponent>();
                     //selectedComponent.valueReturn.selectedComponentBtn = selectedComponent;
-                    selectedComponent.ShowUI();
-                    valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
+                    valueReturnBtn.selectedComponentBtn = selectedComponent;
+                    foreach (SelectedComponent component in componentArray) 
+                    {
+                        if (selectedComponent != component)
+                        {
+                            Debug.Log("NOT showing UI");
+                            component.RemoveUI();
+                        }
+                        else 
+                        {
+                            Debug.Log("showing UI");
+                            component.ShowUI();
+                        }
+                    }
                 }
                 else 
                 {
@@ -150,12 +164,9 @@ public class Connection : MonoBehaviour
                     selectedComponent.RemoveUI();
                 }
             }
-            else 
+            else
             {
-                if (selectedComponent) 
-                {
-                    selectedComponent.RemoveUI();
-                }
+                selectedComponent.RemoveUI();
             }
         }
         if (valueReturnBtn.pressedBtn)
@@ -176,6 +187,7 @@ public class Connection : MonoBehaviour
             if (!points.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn() != null)
             {
                 points.Add(selectedComponent.IndexReturn().gameObject);
+                
 
                 if (points.Count >= 2)
                 {
