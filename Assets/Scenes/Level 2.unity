@@ -1388,7 +1388,11 @@ MonoBehaviour:
   connectionCWS: 0
   connectionCWR: 0
   correctPanel: {fileID: 754042568}
-  pipes: []
+  pipes:
+  - {fileID: 3420256080813939743, guid: 48c6408291b6aaa41abd456f168ce9b7, type: 3}
+  - {fileID: 3420256080813939743, guid: 304e1455dcae9d24ea49b24b8d5735a3, type: 3}
+  - {fileID: 3420256080813939743, guid: 7fa8a3eb0f0772c498a337cf8a609ba7, type: 3}
+  - {fileID: 3420256080813939743, guid: 17a6527b39ec37c418b883f7e6cc68bd, type: 3}
 --- !u!1 &263355725
 GameObject:
   m_ObjectHideFlags: 0
@@ -6196,7 +6200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &629794845
 RectTransform:
   m_ObjectHideFlags: 0
