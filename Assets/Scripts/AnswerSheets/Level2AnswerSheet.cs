@@ -64,10 +64,10 @@ public class Level2AnswerSheet : MonoBehaviour
 
     void ConnectionCheck()
     {
-        //CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "CHWR").ToArray();
-        //CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "CHWSPipe").ToArray();
-        //CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "CWS").ToArray();
-        //CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "CWR").ToArray();
+        CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWR").ToArray();
+        CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CHWS").ToArray();
+        CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWS").ToArray();
+        CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Pipe CWR").ToArray();
 
         if (CHWR.Count() == 2)
         {
@@ -76,7 +76,6 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCHWR = false;
-            return;
         }
         
         if (CHWS.Count() == 1)
@@ -86,7 +85,6 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCHWS = false;
-            return;
         }
 
         if (CWS.Count() == 2)
@@ -96,7 +94,6 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCWS = false;
-            return;
         }
 
         if (CWR.Count() == 1)
@@ -106,7 +103,6 @@ public class Level2AnswerSheet : MonoBehaviour
         else
         {
             connectionCWR = false;
-            return;
         }
     }
 
