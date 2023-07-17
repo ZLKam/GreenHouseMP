@@ -6,7 +6,7 @@ using UnityEngine;
 // visualisation of the cell.
 public class RectGridCell : MonoBehaviour
 {
-    RectGrid rectGrid = new();
+    public RectGrid rectGrid;
 
     [SerializeField]
     SpriteRenderer innerSprite;
@@ -15,6 +15,11 @@ public class RectGridCell : MonoBehaviour
 
     public Vector2Int index = Vector2Int.zero;
     public bool isWalkable = true;
+
+    private void Awake()
+    {
+        rectGrid = GetComponentInParent<RectGrid>();
+    }
 
     public void SetInnerColor(Color col)
     {

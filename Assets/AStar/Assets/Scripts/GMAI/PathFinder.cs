@@ -54,7 +54,7 @@ namespace Level3
         public CostFunction heuristicCost; // H cost
         public CostFunction traversalCost; // G cost.
 
-        public delegate List<Vector2Int> GetNeighbours(Vector2Int index);
+        public delegate List<Vector2Int> GetNeighbours(Vector2Int index, bool diagonalMovement);
         public GetNeighbours getNeighbours;
 
         PathFinderNode currentNode = null;
@@ -134,7 +134,7 @@ namespace Level3
         }
 
 
-        public PathFinderStatus Step()
+        public PathFinderStatus Step(bool diagonalMovement)
         {
             closedList.Add(currentNode);
             if (openList.Count == 0)
@@ -158,7 +158,7 @@ namespace Level3
             }
             // we have not found the goal yet. Need to traverse this node.
             // get the neighbours of the location of the current node.
-            List<Vector2Int> neighbours = getNeighbours(currentNode.location);
+            List<Vector2Int> neighbours = getNeighbours(currentNode.location, diagonalMovement);
             foreach (Vector2Int neighbour in neighbours)
             {
                 if (IsInList(neighbour, closedList) == -1)

@@ -61,7 +61,7 @@ public class NPCMovement : MonoBehaviour
     {
         while (pathFinder.status == PathFinderStatus.RUNNING)
         {
-            pathFinder.Step();
+            pathFinder.Step(true);
             yield return null;
         }
         // completed pathfinding.
