@@ -88,9 +88,6 @@ public class Placement : MonoBehaviour
             selectedTransform.GetComponent<BoxCollider>().enabled = false;
             selectedTransform.GetChild(0).GetChild(0).gameObject.SetActive(false);
             selectedTransform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
-            highlighted = null;
-            component = null;
-            highlightedPlacement = null;
 
 
             //checks if chilled water pump or condensed water pump is placed and flip it if need be
@@ -106,6 +103,14 @@ public class Placement : MonoBehaviour
                 scaleTemp.x *= -1;
                 component.transform.localScale = scaleTemp;
             }
+            else 
+            {
+                
+            }
+
+            highlighted = null;
+            component = null;
+            highlightedPlacement = null;
 
             if (tutorial)
             {
