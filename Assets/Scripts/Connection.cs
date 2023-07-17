@@ -267,6 +267,8 @@ public class Connection : MonoBehaviour
                 point2 = points[1].transform;
             }
 
+            Debug.Log(pipe.transform.name);
+
             Quaternion rotation1 = point1.rotation;
             Quaternion rotation2 = point2.rotation;
 
@@ -527,7 +529,7 @@ public class Connection : MonoBehaviour
                         pipeMain.name = "Connection 3";
                         foreach (Renderer renderer in renderers)
                         {
-                            renderer.material.color = new Color32(232, 0, 254, 175);
+                            renderer.material.color = new Color32(255, 0, 0, 175);
                         }
                     }
 
@@ -536,7 +538,7 @@ public class Connection : MonoBehaviour
                         pipeMain.name = "Connection 4";
                         foreach (Renderer renderer in renderers)
                         {
-                            renderer.material.color = new Color32(255, 0, 0, 175);
+                            renderer.material.color = new Color32(232, 0, 254, 175);
                         }
                     }
 
