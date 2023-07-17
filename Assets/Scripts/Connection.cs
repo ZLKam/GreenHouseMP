@@ -353,8 +353,20 @@ public class Connection : MonoBehaviour
                 if (selection.GetComponent<SelectedComponent>())
                 {
                     selectedComponent = selection.GetComponent<SelectedComponent>();
-                    selectedComponent.ShowUI();
                     valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
+                    foreach (SelectedComponent component in componentArray)
+                    {
+                        if (selectedComponent != component)
+                        {
+                            Debug.Log("NOT showing UI");
+                            component.RemoveUI();
+                        }
+                        else
+                        {
+                            Debug.Log("showing UI");
+                            component.ShowUI();
+                        }
+                    }
                 }
                 else
                 {
