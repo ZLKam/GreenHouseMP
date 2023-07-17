@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2104762158399420848}
   - component: {fileID: 2104762158399420850}
   - component: {fileID: 4068684905307723619}
-  - component: {fileID: 4030061801765492577}
+  - component: {fileID: 3940836653461233964}
   m_Layer: 0
   m_Name: Lvl3Placeholder
   m_TagString: Selection
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12}
   m_EdgeRadius: 0
---- !u!114 &4030061801765492577
+--- !u!114 &3940836653461233964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2104762158399420849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b1a021435c6a543a2b029782d5b6ba, type: 3}
+  m_Script: {fileID: 11500000, guid: a839c5cacdca07347ba7e7ffbf8a38cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

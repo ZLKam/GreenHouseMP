@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Level3;
 
 public class NPCMovement : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class NPCMovement : MonoBehaviour
         wayPoints.Enqueue(point);
     }
 
-    public void SetDestination(Vector2Int destination, RectGrid grid, GMAI.PathFinder pathFinder = null)
+    public void SetDestination(Vector2Int destination, RectGrid grid, PathFinder pathFinder = null)
     {
         if (pathFinder != null)
         {
@@ -33,7 +34,7 @@ public class NPCMovement : MonoBehaviour
             // 2. while pathfinder is running
             // 2.a perform one iteration of the loop.
             // 2.b continue until a success or failure is returned.
-            if (pathFinder.status != GMAI.PathFinderStatus.RUNNING)
+            if (pathFinder.status != PathFinderStatus.RUNNING)
             {
                 // clear all the waypoints.
                 wayPoints.Clear();
@@ -56,25 +57,25 @@ public class NPCMovement : MonoBehaviour
         }
     }
 
-    IEnumerator Coroutine_PathFinding(GMAI.PathFinder pathFinder, RectGrid grid)
+    IEnumerator Coroutine_PathFinding(PathFinder pathFinder, RectGrid grid)
     {
-        while (pathFinder.status == GMAI.PathFinderStatus.RUNNING)
+        while (pathFinder.status == PathFinderStatus.RUNNING)
         {
             pathFinder.Step();
             yield return null;
         }
         // completed pathfinding.
 
-        if (pathFinder.status == GMAI.PathFinderStatus.FAILURE)
+        if (pathFinder.status == PathFinderStatus.FAILURE)
         {
             Debug.Log("Failed finding a path. No valid path exists");
         }
-        if (pathFinder.status == GMAI.PathFinderStatus.SUCCESS)
+        if (pathFinder.status == PathFinderStatus.SUCCESS)
         {
             // found a valid path.
             // accumulate all the locations by traversing from goal to the start.
             List<Vector2Int> reversePathLocations = new List<Vector2Int>();
-            GMAI.PathFinderNode node = pathFinder.GetCurrentNode();
+            PathFinderNode node = pathFinder.GetCurrentNode();
             while (node != null)
             {
                 reversePathLocations.Add(node.location);

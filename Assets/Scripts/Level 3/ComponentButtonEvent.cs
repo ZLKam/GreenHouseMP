@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Level3 
 {
-    public class ComponentButtonEvent : MonoBehaviour, IPointerDownHandler, IDragHandler
+    public class ComponentButtonEvent : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
         ComponentWheel componentWheel;
 
@@ -66,6 +66,20 @@ namespace Level3
             //    component.transform.position = mousePos;
             //    return;
             //}
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (instantiatedComponent)
+            {
+                Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
+                if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Selection"))
+                {
+                    Debug.Log("Component placed on selection");
+                    instantiatedComponent.transform.parent = eventData.pointerCurrentRaycast.gameObject.transform;
+                    instantiatedComponent.transform.localPosition = Vector3.zero;
+                }
+            }
         }
     }
 }
