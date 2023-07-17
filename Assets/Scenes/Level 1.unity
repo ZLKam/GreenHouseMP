@@ -56711,7 +56711,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 100
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 25
   orthographic: 0
@@ -103657,7 +103657,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -103677,7 +103677,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -42.23799, y: 0, z: 43.022156, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -103690,7 +103690,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749295191}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!224 &1749295194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -103708,7 +103708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 324.64487, y: 0.515}
+  m_AnchoredPosition: {x: 362, y: 0.515}
   m_SizeDelta: {x: 439.29, y: 41.171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1750239125
