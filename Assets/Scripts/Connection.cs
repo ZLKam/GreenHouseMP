@@ -259,6 +259,8 @@ public class Connection : MonoBehaviour
 
         void Connect()
         {
+            if (!pipe && !entrance && !exit && !body)
+                return;
             for (int i = 0; i < points.Count; i++)
             {
                 point1 = points[0].transform;
@@ -307,6 +309,8 @@ public class Connection : MonoBehaviour
 
         void MultiHighlight()
         {
+            if (!pipe && !entrance && !exit && !body)
+                 return;
             // checks if there is an object being highlighted
             // if so, remove highlight by resetting the object's material to it's original material
             if (highlight != null)

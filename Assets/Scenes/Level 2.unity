@@ -1340,10 +1340,10 @@ MonoBehaviour:
   multiConnectLimit: 5
   multiConnect: 0
   pipes: []
-  pipe: {fileID: 3420256080813939742, guid: 78d22a0cfd0725b4692d3b9f95c4a2d2, type: 3}
-  entrance: {fileID: 9215319287458789997, guid: 77de627c031fbab48b482ef154c120b9, type: 3}
-  exit: {fileID: 9215319287458789997, guid: 77de627c031fbab48b482ef154c120b9, type: 3}
-  body: {fileID: 4459620892670186946, guid: c064e1de785953e4aa36672f0d4d3c8b, type: 3}
+  pipe: {fileID: 0}
+  entrance: {fileID: 0}
+  exit: {fileID: 0}
+  body: {fileID: 0}
   multiplePoints: []
   pipeConnection: []
   centerPoints: []
