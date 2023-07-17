@@ -66,29 +66,29 @@ public class ComponentWheel : MonoBehaviour
         if (selectComponent)
         {
             txtMode.text = "Select Component";
-            FindObjectOfType<LineManagerController>().enabled = false;
-            var lineParents = GameObject.FindGameObjectsWithTag("LineParent").ToList();
-            var lines = GameObject.FindGameObjectsWithTag("Line").ToList();
-            GameObject lineBoss = FindObjectOfType<LineManagerController>().gameObject;
-            List<GameObject> allLines = new();
-            allLines.AddRange(lineParents);
-            allLines.AddRange(lines);
-            allLines.Remove(lineBoss);
-            allLines.ForEach(line => Destroy(line));
+            //FindObjectOfType<LineManagerController>().enabled = false;
+            //var lineParents = GameObject.FindGameObjectsWithTag("LineParent").ToList();
+            //var lines = GameObject.FindGameObjectsWithTag("Line").ToList();
+            //GameObject lineBoss = FindObjectOfType<LineManagerController>().gameObject;
+            //List<GameObject> allLines = new();
+            //allLines.AddRange(lineParents);
+            //allLines.AddRange(lines);
+            //allLines.Remove(lineBoss);
+            //allLines.ForEach(line => Destroy(line));
 
-            foreach (Transform child in playArea)
-            {
-                if (child.CompareTag("Component"))
-                {
-                    child.GetComponent<ComponentEvent>().ResetAllowDraw();
-                    child.GetComponent<ComponentEvent>().CorrectConnection = false;
-                }
-            }
+            //foreach (Transform child in playArea)
+            //{
+            //    if (child.CompareTag("Component"))
+            //    {
+            //        child.GetComponent<ComponentEvent>().ResetAllowDraw();
+            //        child.GetComponent<ComponentEvent>().CorrectConnection = false;
+            //    }
+            //}
         }
         else
         {
             txtMode.text = "Draw Pipe";
-            FindObjectOfType<LineManagerController>().enabled = true;
+            //FindObjectOfType<LineManagerController>().enabled = true;
         }
     }
 
@@ -96,10 +96,10 @@ public class ComponentWheel : MonoBehaviour
     {
         foreach (Transform child in playArea)
         {
-            if (child.CompareTag("Component") || child.CompareTag("Component/Chiller"))
-            {
-                correctList.Add(child.GetComponent<ComponentEvent>().CorrectConnection);
-            }
+            //if (child.CompareTag("Component") || child.CompareTag("Component/Chiller"))
+            //{
+            //    correctList.Add(child.GetComponent<ComponentEvent>().CorrectConnection);
+            //}
         }
         Debug.Log(correctList.Count);
         if (correctList.Count >= numberOfCorrectConnections)

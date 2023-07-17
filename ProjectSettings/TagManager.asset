@@ -16,6 +16,7 @@ TagManager:
   - Component/CwpOptElavated
   - LineParent
   - Line
+  - RectGrid
   layers:
   - Default
   - TransparentFX
@@ -52,6 +53,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Placeholder
+    uniqueID: 3993706917
+    locked: 0
+  - name: Component
+    uniqueID: 3164532785
     locked: 0
   - name: Line
     uniqueID: 904215643

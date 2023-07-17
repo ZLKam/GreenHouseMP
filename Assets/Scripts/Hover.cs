@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Level3;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
@@ -29,7 +30,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     [HideInInspector]
     public GameObject componentPrefab;
 
-    
+    private bool isLevel3 = false;
 
     void Start()
     {
@@ -40,6 +41,11 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
         //transform.localPosition = startPosition;
         //startPosition = transform.localPosition;
         startSize = transform.localScale;
+
+        if (SceneManager.GetActiveScene().name == "Level 3")
+        {
+            isLevel3 = true;
+        }
     }
     void Update()
     {
@@ -80,6 +86,8 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 
         if (Input.touchCount == 0)
         {
+            if (isLevel3)
+                return;
             cameraMovement.hover = null;
             componentSelected = false;
             Destroy(componentPrefab);
@@ -119,7 +127,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void OnPointerDown(PointerEventData eventData)
     //handles instantiting the object component to be placed in the scene
     {
-        if (componentSelected)
+        if (componentSelected || isLevel3)
             return;
 
         buttonLetgo = false;
@@ -153,7 +161,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (component == null || componentPrefab == null)
+        if (component == null || componentPrefab == null || isLevel3)
             return;
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 50));
         componentPrefab.transform.position = mousePos;
@@ -161,6 +169,8 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void Selection()
     {
+        if (isLevel3)
+            return;
         if (!isTab && placement != null)
         {
             placement.selectedPrefab = component;

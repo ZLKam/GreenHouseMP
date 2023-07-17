@@ -10,44 +10,48 @@ namespace Level3
     {
         ComponentWheel componentWheel;
 
-        private Transform component;
-        private static int spawnedComponentCount = 0;
+        public GameObject component;
+        private Transform instantiatedComponent;
+        //private static int spawnedComponentCount = 0;
 
         private Vector3 mousePos;
 
         private void Start()
         {
             componentWheel = transform.parent.GetComponent<ComponentWheel>();
-            spawnedComponentCount = 0;
+            //spawnedComponentCount = 0;
         }
 
         public void OnPointerDown(PointerEventData eventData)
         //handles instantiting the object component to be placed in the scene
         {
-            if (spawnedComponentCount >= 7)
-                return;
-            transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
+            //if (spawnedComponentCount >= 7)
+            //    return;
+            //transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
 
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
 
-            component = Instantiate(transform.GetChild(transform.childCount - 1), mousePos, Quaternion.identity, componentWheel.playArea);
-            component.GetComponent<ComponentEvent>().buttonEvent = this;
+            instantiatedComponent = Instantiate(component, mousePos, Quaternion.identity, componentWheel.playArea).transform;
+            instantiatedComponent.GetComponent<ComponentEvent>().buttonEvent = this;
 
-            transform.GetChild(transform.childCount - 1).gameObject.SetActive(false);
-            spawnedComponentCount++;
+            //component = Instantiate(transform.GetChild(transform.childCount - 1), mousePos, Quaternion.identity, componentWheel.playArea);
+            //component.GetComponent<ComponentEvent>().buttonEvent = this;
 
-            if (componentWheel.drawLine && spawnedComponentCount > 1)
-            {
-                FindObjectOfType<LineManagerController>().GetComponent<LineManagerController>().linesToDraw++;
-            }
+            //transform.GetChild(transform.childCount - 1).gameObject.SetActive(false);
+            //spawnedComponentCount++;
+
+            //if (componentWheel.drawLine && spawnedComponentCount > 1)
+            //{
+            //    FindObjectOfType<LineManagerController>().GetComponent<LineManagerController>().linesToDraw++;
+            //}
         }
 
         public void OnDrag(PointerEventData eventData)
         {
             if (!component)
                 return;
-            FollowDragPosition(eventData, component);
+            FollowDragPosition(eventData, instantiatedComponent);
         }
 
         //handles moving the component with the mouse position
@@ -56,11 +60,12 @@ namespace Level3
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
-            if (componentWheel.IsWithinX(mousePos) && componentWheel.IsWithinY(mousePos))
-            {
-                component.transform.position = mousePos;
-                return;
-            }
+            component.transform.position = mousePos;
+            //if (componentWheel.IsWithinX(mousePos) && componentWheel.IsWithinY(mousePos))
+            //{
+            //    component.transform.position = mousePos;
+            //    return;
+            //}
         }
     }
 }
