@@ -42,7 +42,7 @@ public class Level2AnswerSheet : MonoBehaviour
         CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 2").ToArray();
         CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 3").ToArray();
         CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 4").ToArray();
-        Debug.Log(CHWR.Count());
+        //Debug.Log(CHWR.Count());
         //Debug.Log(CHWS.Count());
         //Debug.Log(CWS.Count());
         //Debug.Log(CWR.Count());
