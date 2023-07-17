@@ -5,9 +5,12 @@ using UnityEngine.EventSystems;
 
 namespace Level3
 {
-    public class ComponentEvent : MonoBehaviour, IDragHandler, IPointerDownHandler
+    public class ComponentEvent : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
     {
         internal ComponentButtonEvent buttonEvent;
+
+        [SerializeField]
+        internal Transform placeholder;
 
         #region Unused
         //internal ComponentButtonEvent buttonEvent;
@@ -89,12 +92,71 @@ namespace Level3
         #endregion
         public void OnDrag(PointerEventData eventData)
         {
-            buttonEvent.FollowDragPosition(eventData, transform);
+            GetComponent<BoxCollider2D>().enabled = false;
+            buttonEvent.FollowDragPosition(transform);
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
             
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            CheckPlaceholder(eventData);
+            GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        private void CheckPlaceholder(PointerEventData eventData)
+        {
+            GameObject currentRaycast = eventData.pointerCurrentRaycast.gameObject;
+            if (!currentRaycast)
+            {
+                placeholder.GetComponent<SpriteRenderer>().enabled = true;
+                Destroy(gameObject);
+                return;
+            }
+            if (currentRaycast.CompareTag("Selection"))
+            {
+                if (currentRaycast.transform == placeholder)
+                {
+                    // this placeholder
+                    transform.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    if (currentRaycast.transform != placeholder)
+                    {
+                        // other placeholder
+                        if (currentRaycast.transform.childCount == 0)
+                        {
+                            // not occupied
+                            placeholder.GetComponent<SpriteRenderer>().enabled = true;
+                            placeholder = currentRaycast.transform;
+                            placeholder.GetComponent<SpriteRenderer>().enabled = false;
+                            transform.parent = currentRaycast.transform;
+                            transform.localPosition = Vector3.zero;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (currentRaycast.CompareTag("Component"))
+                {
+                    // occupied, so swap components
+                    Transform otherComponent = currentRaycast.transform;
+                    Transform otherPlaceholder = currentRaycast.transform.parent;
+                    otherComponent.parent = placeholder;
+                    otherComponent.localPosition = Vector3.zero;
+                    placeholder = otherPlaceholder;
+                    transform.parent = placeholder;
+                    transform.localPosition = Vector3.zero;
+                    return;
+                }
+                placeholder.GetComponent<SpriteRenderer>().enabled = true;
+                Destroy(gameObject);
+            }
         }
     }
 }

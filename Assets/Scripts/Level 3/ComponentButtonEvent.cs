@@ -29,6 +29,7 @@ namespace Level3
             //    return;
             //transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
 
+            // On clicking on the button, instantiate the component to the mouse position
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
 
@@ -51,12 +52,14 @@ namespace Level3
         {
             if (!component)
                 return;
-            FollowDragPosition(eventData, instantiatedComponent);
+            FollowDragPosition(instantiatedComponent);
         }
 
-        //handles moving the component with the mouse position
-        //prevents component from going beyond set boundaries
-        internal void FollowDragPosition(PointerEventData eventData, Transform component)
+        /// <summary>
+        /// The component will follow the input position
+        /// </summary>
+        /// <param name="component">The component that will be dragged</param>
+        internal void FollowDragPosition(Transform component)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
@@ -70,14 +73,30 @@ namespace Level3
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            // On lift up
             if (instantiatedComponent)
             {
-                Debug.Log(eventData.pointerCurrentRaycast.gameObject.tag);
+                if (!eventData.pointerCurrentRaycast.gameObject)
+                {
+                    // Check if the pointer is over anything, when not, destroy the instantiated component
+                    Destroy(instantiatedComponent.gameObject);
+                    instantiatedComponent = null;
+                    return;
+                }
                 if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Selection"))
                 {
-                    Debug.Log("Component placed on selection");
-                    instantiatedComponent.transform.parent = eventData.pointerCurrentRaycast.gameObject.transform;
+                    // when pointer on a placeholder, place the component on the placeholder
+                    Transform placeholder = eventData.pointerCurrentRaycast.gameObject.transform;
+                    placeholder.GetComponent<SpriteRenderer>().enabled = false;
+                    instantiatedComponent.transform.parent = placeholder;
                     instantiatedComponent.transform.localPosition = Vector3.zero;
+                    instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
+                    instantiatedComponent.GetComponent<ComponentEvent>().placeholder = placeholder;
+                }
+                else
+                {
+                    Destroy(instantiatedComponent.gameObject);
+                    instantiatedComponent = null;
                 }
             }
         }

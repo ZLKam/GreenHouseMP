@@ -6,7 +6,7 @@ using Level3;
 public class RectGrid : MonoBehaviour
 {
     public int mX = 20; // maximum number of columns
-    public int mY = 20; // maximum number of rows.
+    public int mY = 11; // maximum number of rows.
 
     [SerializeField]
     private int startX = 0;
@@ -28,9 +28,8 @@ public class RectGrid : MonoBehaviour
 
     public bool noDiagonalMovement = false;
 
-    // The NPC
-    public NPCMovement npc;
-    private PathFinder pathFinder = new PathFinder();
+    public LinePathFind line;
+    public PathFinder pathFinder = new PathFinder();
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +40,8 @@ public class RectGrid : MonoBehaviour
             for (int j = startY; j < mY; j++)
             {
                 Vector2Int index = new Vector2Int(i, j);
-                cells[i, j] = Instantiate(rectGridCellPrefab, new Vector3(i, j, 0.0f), Quaternion.identity);
-                cells[i, j].transform.SetParent(transform, false);
+                cells[i, j] = Instantiate(rectGridCellPrefab, new Vector3(i, j, 0.0f), Quaternion.identity, transform);
+                //cells[i, j].transform.SetParent(transform, false);
 
                 RectGridCell gridCell = cells[i, j].GetComponent<RectGridCell>();
                 if (gridCell != null)
@@ -87,9 +86,9 @@ public class RectGrid : MonoBehaviour
         {
             GameObject obj = hit.transform.gameObject;
             RectGridCell gridCell = obj.GetComponent<RectGridCell>();
-            if (gridCell != null && npc != null)
+            if (gridCell != null && line != null)
             {
-                npc.SetDestination(gridCell.index, this, pathFinder);
+                //line.SetDestination(gridCell.index, this, pathFinder);
             }
         }
     }
@@ -162,7 +161,7 @@ public class RectGrid : MonoBehaviour
         return Vector2Int.Distance(a, b);
     }
 
-    public List<Vector2Int> GetNeighbours(Vector2Int a)
+    public List<Vector2Int> GetNeighbours(Vector2Int a, bool diagonalMovement)
     {
         List<Vector2Int> neighbours = new List<Vector2Int>();
 
@@ -182,7 +181,7 @@ public class RectGrid : MonoBehaviour
                 neighbours.Add(gridCell.index);
             }
         }
-        if (!noDiagonalMovement)
+        if (diagonalMovement)
         {
             // Check top-right
             if (y < mY - 1 && x < mX - 1)
@@ -211,7 +210,7 @@ public class RectGrid : MonoBehaviour
                 neighbours.Add(gridCell.index);
             }
         }
-        if (!noDiagonalMovement)
+        if (diagonalMovement)
         {
             // Check right-down
             if (x < mX - 1 && y > 0)
@@ -240,7 +239,7 @@ public class RectGrid : MonoBehaviour
                 neighbours.Add(gridCell.index);
             }
         }
-        if (!noDiagonalMovement)
+        if (diagonalMovement)
         {
             // Check down-left
             if (y > 0 && x > 0)
@@ -269,7 +268,7 @@ public class RectGrid : MonoBehaviour
                 neighbours.Add(gridCell.index);
             }
         }
-        if (!noDiagonalMovement)
+        if (diagonalMovement)
         {
             // Check left-top
             if (x > 0 && y < mY - 1)
@@ -286,11 +285,6 @@ public class RectGrid : MonoBehaviour
             }
         }
         return neighbours;
-    }
-
-    public RectGrid()
-    {
-        
     }
 
     public Color WalkableColor

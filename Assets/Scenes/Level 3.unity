@@ -450,11 +450,11 @@ MonoBehaviour:
   startX: 0
   startY: 0
   rectGridCellPrefab: {fileID: 3652615425527807359, guid: 522c81b79f1fda94a9b14fbdbb00e5f2, type: 3}
-  COLOR_WALKABLE: {r: 0, g: 1, b: 1, a: 1}
-  COLOR_NON_WALKABLE: {r: 0, g: 0, b: 0, a: 1}
+  COLOR_WALKABLE: {r: 0, g: 1, b: 1, a: 0.5}
+  COLOR_NON_WALKABLE: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.5}
   COLOR_PATH: {r: 0, g: 1, b: 0, a: 1}
   noDiagonalMovement: 0
-  npc: {fileID: 0}
+  line: {fileID: 1232624428}
 --- !u!1 &233958391
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,11 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.47
+      value: 12.55
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: 2.03
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3725,7 +3725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.45
+      value: 16.8
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4023,11 +4023,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.06
+      value: 12.34
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2104762158399420848, guid: a78e078522ae7204b9192eb2e44e1330, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4273,6 +4273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1232624427}
+  - component: {fileID: 1232624428}
   m_Layer: 0
   m_Name: PathFinder
   m_TagString: Untagged
@@ -4295,6 +4296,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1232624428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232624426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeca4604dbfc2748b38e31f3249853f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectGrid: {fileID: 222585390}
+  fromT: {fileID: 0}
+  toT: {fileID: 0}
 --- !u!1 &1263224617
 GameObject:
   m_ObjectHideFlags: 0

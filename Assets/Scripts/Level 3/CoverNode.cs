@@ -1,34 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class CoverNode : MonoBehaviour
+namespace Level3
 {
-    private string rectGrid = "RectGrid";
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class CoverNode : MonoBehaviour
     {
-        CheckCoveringRectGridCell(collision);
-    }
+        private string rectGrid = "RectGrid";
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        RecoverRectGridCell(collision);
-    }
+        [SerializeField]
+        private List<Transform> changedCells = new();
 
-    private void CheckCoveringRectGridCell(Collider2D collision)
-    {
-        if (collision.CompareTag(rectGrid))
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            collision.GetComponent<RectGridCell>().SetNonWalkable();
+            CheckCoveringRectGridCell(collision);
         }
-    }
 
-    private void RecoverRectGridCell(Collider2D collision)
-    {
-        if (collision.CompareTag(rectGrid))
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            collision.GetComponent<RectGridCell>().SetWalkable();
+            CheckCoveringRectGridCell(collision);
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            RecoverRectGridCell(collision);
+        }
+
+        private void CheckCoveringRectGridCell(Collider2D collision)
+        {
+            if (collision.CompareTag(rectGrid))
+            {
+                if (CompareTag("Component") && collision.GetComponent<RectGridCell>().isWalkable)
+                {
+                    changedCells.Add(collision.transform);
+                    collision.GetComponent<RectGridCell>().SetNonWalkable();
+                    return;
+                }
+                collision.GetComponent<RectGridCell>().SetNonWalkable();
+            }
+        }
+
+        private void RecoverRectGridCell(Collider2D collision)
+        {
+            if (collision.CompareTag(rectGrid))
+            {
+                if (CompareTag("Component"))
+                {
+                    foreach (Transform cell in changedCells)
+                    {
+                        cell.GetComponent<RectGridCell>().SetWalkable();
+                    }
+                    changedCells.Clear();
+                }
+            }
         }
     }
 }
