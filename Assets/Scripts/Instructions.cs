@@ -10,19 +10,30 @@ public class Instructions : MonoBehaviour
 
     public List<VideoClip> clips = new List<VideoClip>();
     public List<string> tutorialText = new List<string>();
+    public List<string> tutorialTitle = new List<string>();
     private int index = 0;
     public GameObject continueBtn;
     public GameObject nextBtn;
+    public GameObject previousBtn;
 
     [SerializeField]
     private TextMeshProUGUI textArea;
+    [SerializeField]
+    private TextMeshProUGUI textTitleArea;
 
     // Start is called before the first frame update
     void Start()
     {
+        index = 0;
         continueBtn.SetActive(false);
         video.clip = clips[index];
         textArea.text = tutorialText[index];
+        textTitleArea.text = tutorialTitle[index];
+
+        if (index == 0)
+        {
+            previousBtn.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -40,10 +51,22 @@ public class Instructions : MonoBehaviour
             video.clip = clips[index];
             video.Play();
             textArea.text = tutorialText[index];
+            if (index == 0 || index == 1)
+            {
+                textTitleArea.text = tutorialTitle[0];
+            }
+            else 
+            {
+                textTitleArea.text = tutorialTitle[index - 1];
+            }
             if (index == clips.Count - 1)
             {
                 nextBtn.SetActive(false);
                 continueBtn.SetActive(true);
+            }
+            else 
+            {
+                previousBtn.SetActive(true);
             }
         }
     }
@@ -51,6 +74,30 @@ public class Instructions : MonoBehaviour
     public void Previous() 
     {
         index--;
-        video.clip = clips[index];
+        if (index != -1)
+        {
+            previousBtn.SetActive(true);
+            video.clip = clips[index];
+            textArea.text = tutorialText[index];
+
+            if (index == 0 || index == 1)
+            {
+                textTitleArea.text = tutorialTitle[0];
+            }
+            else
+            {
+                textTitleArea.text = tutorialTitle[index - 1];
+            }
+
+            if (index == 0)
+            {
+                previousBtn.SetActive(false);
+            }
+            else if (index < clips.Count) 
+            {
+                nextBtn.SetActive(true);
+                continueBtn.SetActive(false);
+            }
+        }
     }
 }

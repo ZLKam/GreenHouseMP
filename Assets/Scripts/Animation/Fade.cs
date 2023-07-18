@@ -28,6 +28,10 @@ public class Fade : MonoBehaviour
     public GameObject Level;
     public GameObject GameMenu;
 
+    [SerializeField]
+    private GameObject pausePanel;
+    [SerializeField]
+    private GameObject instructionPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +71,6 @@ public class Fade : MonoBehaviour
             fadeImage.color = new Color32(red, green, blue, fadeAmount);
             fadeAmount += fadeSpeed;
             //fadeAmount = (byte)Mathf.Lerp(0, 255, fadeSpeed * Time.deltaTime);
-            Debug.Log("fade minus");
 
             if (fadeAmount >= 255)
             {
@@ -120,6 +123,7 @@ public class Fade : MonoBehaviour
 
     public void transition(string scene)
     {
+        Time.timeScale = 1;
         FindObjectOfType<AudioManager>().Play("Click");
         transitionScene = scene;
 
@@ -144,7 +148,25 @@ public class Fade : MonoBehaviour
         exit = true;
     }
 
+    //Pause Menus
+    public void PauseGame() 
+    {
+        if (!pausePanel.activeInHierarchy)
+        {
+            Time.timeScale = 0;
+            pausePanel.SetActive(true);
+        }
+        else 
+        {
+            Time.timeScale = 1;
+            pausePanel.SetActive(false);
+        }
+    }
 
+    public void InstructionBtn() 
+    {
+        instructionPanel.SetActive(true);
+    }
 
 
     //Section Selector / Level Selector
