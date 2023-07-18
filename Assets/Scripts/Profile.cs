@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class Profile : MonoBehaviour
@@ -10,16 +11,25 @@ public class Profile : MonoBehaviour
     public static string username;
     public bool genderFilled;
     public bool usernameFilled;
+    public bool ProfileSet;
 
     public GameObject MenuItems;
     public TMP_InputField inputField;
     public GameObject profilestuff;
+
+    public TextMeshProUGUI textcon;
+    public Image ProfileImage;
+
+    public Sprite MaleImage;
+    public Sprite FemaleImage;
 
     // Start is called before the first frame update
     void Start()
     {
         gender = null;
         username = null;
+        //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
+        //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
     }
 
     // Update is called once per frame
@@ -37,6 +47,19 @@ public class Profile : MonoBehaviour
         else { usernameFilled = false; } 
         //Debug.Log(genderFilled);
         //Debug.Log(usernameFilled);
+        if (ProfileSet)
+        {
+            //Image sprite = ProfileImage.GetComponent<Image>();
+            if (gender == "Male")
+            {
+                ProfileImage.sprite = MaleImage;
+            }
+            if (gender == "Female")
+            {
+                ProfileImage.sprite = FemaleImage;
+            }
+            textcon.text = username;
+        }
     }
 
 
@@ -63,7 +86,9 @@ public class Profile : MonoBehaviour
             //SceneManager.LoadScene("Main Menu");
             profilestuff.SetActive(false);
             MenuItems.SetActive(true);
-
+            ProfileSet = true;
         }
     }
+
+    
 }
