@@ -9,7 +9,7 @@ public class Profile : MonoBehaviour
     public string username;
     public bool genderFilled;
     public bool usernameFilled;
-
+    public GameObject[] MenuItems;
 
 
     // Start is called before the first frame update
@@ -48,6 +48,12 @@ public class Profile : MonoBehaviour
         if (genderFilled && usernameFilled)
         {
             SceneManager.LoadScene("Main Menu");
+            gameObject.SetActive(false);
+            foreach (GameObject t in MenuItems)
+            {
+                t.SetActive(true);
+            }
+
         }
     }
 }
