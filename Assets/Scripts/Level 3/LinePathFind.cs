@@ -46,7 +46,7 @@ public class LinePathFind : MonoBehaviour
     {
         if (findingPath)
             return;
-        if (Input.GetMouseButtonDown(0))
+        if (InputSystem.Instance.LeftClick())
         {
             // Hit detection
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);

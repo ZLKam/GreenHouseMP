@@ -293,9 +293,9 @@ public class CameraMovement : MonoBehaviour
                 {
                     zoomAmount = 100;
                 }
-                if (zoomAmount < 20)
+                if (zoomAmount < 10)
                 {
-                    zoomAmount = 20;
+                    zoomAmount = 10;
                 }
                 float zoom = Mathf.Clamp(zoomAmount, 20, 100);
                 Camera.main.fieldOfView = zoom;
