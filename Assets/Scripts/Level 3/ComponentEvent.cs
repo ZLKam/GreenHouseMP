@@ -92,17 +92,22 @@ namespace Level3
         #endregion
         public void OnDrag(PointerEventData eventData)
         {
+            if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
+                return;
             GetComponent<BoxCollider2D>().enabled = false;
             buttonEvent.FollowDragPosition(transform);
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            
+            if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
+                return;
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
+                return;
             CheckPlaceholder(eventData);
             GetComponent<BoxCollider2D>().enabled = true;
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Level3
@@ -8,6 +9,7 @@ namespace Level3
     {
         LineRenderer lr;
         ParticlesManager particlesManager;
+        internal RectGrid rectGrid;
 
         internal bool finishedAddingPoints = false;
 
@@ -16,9 +18,9 @@ namespace Level3
         private List<Vector3> vector3Points = new();
 
         [SerializeField]
-        private float lineThickness = 0.1f;
+        private float lineThickness = 0.3f;
         [SerializeField]
-        private Color lineColor = new Color(0, 0, 0);
+        private Color lineColor = new Color(255, 255, 255);
         [SerializeField]
         private Material lineMat;
 
@@ -48,6 +50,23 @@ namespace Level3
                 StartCoroutine(particlesManager.SpawnParticle(points[0], particlesManager));
                 yield break;
             }
+        }
+
+        public void ResetCellToWalkable()
+        {
+            //points.ForEach(point => rectGrid.transform.Find("cell_" + point.x + "_" + point.y).GetComponent<RectGridCell>());
+
+            int index = 0;
+            points.ForEach((x) =>
+            {
+                Vector2 point = points[index];
+                Transform cell = rectGrid.transform.Find("cell_" + point.x + "_" + point.y);
+                if (cell)
+                {
+                    cell.GetComponent<RectGridCell>()?.SetWalkable();
+                }
+                index++;
+            });
         }
     }
 }

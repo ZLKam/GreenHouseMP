@@ -17,11 +17,6 @@ namespace Level3
             CheckCoveringRectGridCell(collision);
         }
 
-        private void OnTriggerStay2D(Collider2D collision)
-        {
-            CheckCoveringRectGridCell(collision);
-        }
-
         private void OnTriggerExit2D(Collider2D collision)
         {
             RecoverRectGridCell(collision);
@@ -41,7 +36,7 @@ namespace Level3
             }
         }
 
-        private void RecoverRectGridCell(Collider2D collision)
+        public void RecoverRectGridCell(Collider2D collision)
         {
             if (collision.CompareTag(rectGrid))
             {

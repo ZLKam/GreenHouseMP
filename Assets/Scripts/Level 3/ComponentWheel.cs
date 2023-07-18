@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class ComponentWheel : MonoBehaviour
 {
+    public RectGrid rectGrid;
+
     [SerializeField]
     internal Transform playArea;
     private Transform top;
@@ -93,10 +95,12 @@ public class ComponentWheel : MonoBehaviour
             }
             FindObjectsOfType<LineLimit>().ToList().ForEach(x => x.AllowDrawLine = true);
             allLines.ForEach(line => Destroy(line));
+
+            FindObjectsOfType<DrawLine>().ToList().ForEach(x => x.ResetCellToWalkable());
         }
         else
         {
-            txtMode.text = "Draw Pipe";
+            txtMode.text = "Draw Line";
             //FindObjectOfType<LineManagerController>().enabled = true;
             FindObjectOfType<LinePathFind>().enabled = true;
         }

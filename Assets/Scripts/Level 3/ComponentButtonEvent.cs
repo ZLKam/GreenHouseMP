@@ -25,6 +25,8 @@ namespace Level3
         public void OnPointerDown(PointerEventData eventData)
         //handles instantiting the object component to be placed in the scene
         {
+            if (componentWheel.drawLine)
+                return;
             //if (spawnedComponentCount >= 7)
             //    return;
             //transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
@@ -50,7 +52,7 @@ namespace Level3
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!component)
+            if (!instantiatedComponent || componentWheel.drawLine)
                 return;
             FollowDragPosition(instantiatedComponent);
         }
@@ -73,6 +75,8 @@ namespace Level3
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            if (componentWheel.drawLine)
+                return;
             // On lift up
             if (instantiatedComponent)
             {

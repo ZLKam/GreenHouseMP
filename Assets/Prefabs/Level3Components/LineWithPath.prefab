@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6509680661341185980}
   - component: {fileID: 6509680661341185981}
   - component: {fileID: 1397653579473447643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LineWithPath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
-  lineThickness: 0.1
-  lineColor: {r: 0, g: 0, b: 0, a: 1}
-  lineMat: {fileID: 2100000, guid: 95aec8c532b51da47bb5dba21f33fb5b, type: 2}
+  lineThickness: 0.3
+  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  lineMat: {fileID: 2100000, guid: 5a46aa32d0d48dc48ae8037a1376c171, type: 2}
 --- !u!120 &6509680661341185981
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -69,8 +69,7 @@ LineRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

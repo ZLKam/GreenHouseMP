@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LinePathFind : MonoBehaviour
 {
     public RectGrid rectGrid;
+
+    public List<Transform> secretPoints = new();
 
     [SerializeField]
     private Transform fromT = null;
@@ -22,10 +25,27 @@ public class LinePathFind : MonoBehaviour
     private Vector2 lineStartPoint;
     private Vector2 lineEndPoint;
 
+    private Transform changedFrom;
+    private Transform changedTo;
+
+    private bool hitPlaceholder = false;
+    [SerializeField]
+    private bool findingPath = false;
+
+    [SerializeField]
+    private GameObject txtFindingPath;
+
+    private void OnDisable()
+    {
+        fromT = null;
+        toT = null;
+    }
+
     // Update is called once per frame
     void Update()
     {
-#if UNITY_STANDALONE
+        if (findingPath)
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             // Hit detection
@@ -34,16 +54,40 @@ public class LinePathFind : MonoBehaviour
                 return;
             if (!hit.transform.CompareTag("Component"))
             {
-                Debug.Log("Please select a component");
-                return;
+                if (hit.transform.CompareTag("Selection") && hit.transform.childCount != 0)
+                {
+                    Debug.Log("hit placeholder");
+                    hitPlaceholder = true;
+                }
+                else
+                {
+                    Debug.Log("Please select a component");
+                    return;
+                }
             }
             if (!fromT && !toT)
             {
-                fromT = hit.transform;
+                if (hitPlaceholder)
+                {
+                    fromT = hit.transform.GetChild(0);
+                    hitPlaceholder = false;
+                }
+                else
+                {
+                    fromT = hit.transform;
+                }
             }
             else if (fromT && !toT)
             {
-                toT = hit.transform;
+                if (hitPlaceholder)
+                {
+                    toT = hit.transform.GetChild(0);
+                    hitPlaceholder = false;
+                }
+                else
+                {
+                    toT = hit.transform;
+                }
                 if (toT == fromT)
                 {
                     Debug.Log("Please select a different component");
@@ -55,6 +99,10 @@ public class LinePathFind : MonoBehaviour
                 if (nearestNodes[0] == zeros[0] || nearestNodes[1] == zeros[1])
                 {
                     Debug.Log("No nodes found.");
+                    changedFrom.GetComponent<LineLimit>().AllowDrawLine = true;
+                    changedTo.GetComponent<LineLimit>().AllowDrawLine = true;
+                    changedFrom = null;
+                    changedTo = null;
                     fromT = null;
                     toT = null;
                     return;
@@ -69,7 +117,6 @@ public class LinePathFind : MonoBehaviour
                 }
             }
         }
-#endif
     }
 
     private List<Vector2Int> GetNearestNode()
@@ -171,7 +218,11 @@ public class LinePathFind : MonoBehaviour
             toConnectionPoints.Add(to.GetChild(i));
         }
         // initial distance
+        float distanceBetweenFromAndSecret = 10000f;
+        float distanceBetweenToAndSecret = 10000f;
         float distance = 10000f;
+        Transform nearestFromPointFromSecret = null;
+        Transform nearestToPointFromSecret = null;
         Transform fromPoint = null;
         Transform toPoint = null;
         for (int i = 0; i < fromConnectionPoints.Count; i++)
@@ -182,6 +233,21 @@ public class LinePathFind : MonoBehaviour
                 if (!fromConnectionPoints[i].GetComponent<LineLimit>().AllowDrawLine ||
                     !toConnectionPoints[j].GetComponent<LineLimit>().AllowDrawLine)
                     continue;
+                for (int k = 0; k < secretPoints.Count; k++)
+                {
+                    float newDistanceBetweenFromAndSecret = Vector2.Distance(fromConnectionPoints[i].position, secretPoints[k].position);
+                    if (newDistanceBetweenFromAndSecret < distanceBetweenFromAndSecret)
+                    {
+                        distanceBetweenFromAndSecret = newDistanceBetweenFromAndSecret;
+                        nearestFromPointFromSecret = fromConnectionPoints[i];
+                    }
+                    float newDistanceBetweenToAndSecret = Vector2.Distance(toConnectionPoints[j].position, secretPoints[k].position);
+                    if (newDistanceBetweenToAndSecret < distanceBetweenToAndSecret)
+                    {
+                        distanceBetweenToAndSecret = newDistanceBetweenToAndSecret;
+                        nearestToPointFromSecret = toConnectionPoints[j];
+                    }
+                }
                 float newDist = Vector2.Distance(fromConnectionPoints[i].position, toConnectionPoints[j].position);
                 if (newDist < distance)
                 {
@@ -192,11 +258,21 @@ public class LinePathFind : MonoBehaviour
                 }
             }
         }
+        if (distanceBetweenFromAndSecret < distance)
+        {
+            fromPoint = nearestFromPointFromSecret;
+        }
+        else if (distanceBetweenToAndSecret < distance)
+        {
+            toPoint = nearestToPointFromSecret;
+        }
         if (fromPoint && toPoint)
         {
             // set the two nearest connection points to be not allow draw line, then return the two points transform
-            fromPoint.GetComponent<LineLimit>().AllowDrawLine = false;
-            toPoint.GetComponent<LineLimit>().AllowDrawLine = false;
+            changedFrom = fromPoint;
+            changedTo = toPoint;
+            changedFrom.GetComponent<LineLimit>().AllowDrawLine = false;
+            changedTo.GetComponent<LineLimit>().AllowDrawLine = false;
         }
         lineStartPoint = fromPoint.position;
         lineEndPoint = toPoint.position;
@@ -219,13 +295,14 @@ public class LinePathFind : MonoBehaviour
 
     IEnumerator Coroutine_PathFinding(PathFinder pathFinder, RectGrid grid)
     {
+        txtFindingPath.SetActive(true);
         while (pathFinder.status == PathFinderStatus.RUNNING)
         {
+            findingPath = true;
             pathFinder.Step(false); ;
             yield return null;
         }
         // completed pathfinding.
-
         if (pathFinder.status == PathFinderStatus.FAILURE)
         {
             Debug.Log("Failed finding a path. No valid path exists");
@@ -242,6 +319,7 @@ public class LinePathFind : MonoBehaviour
                 node = node.parent;
             }
             GameObject line = Instantiate(this.line, transform);
+            line.GetComponent<DrawLine>().rectGrid = rectGrid;
             AddFromRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[reversePathLocations.Count - 1]);
             // add all these points to the waypoints.
             for (int i = reversePathLocations.Count - 1; i >= 0; i--)
@@ -253,6 +331,8 @@ public class LinePathFind : MonoBehaviour
             AddToRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[0]);
             line.GetComponent<DrawLine>().finishedAddingPoints = true;
         }
+        txtFindingPath.SetActive(false);
+        findingPath = false;
     }
 
     public void AddWayPoint(Vector2Int point)
