@@ -545,7 +545,7 @@ public class Connection : MonoBehaviour
                     pipeMain.AddComponent<ParticleFlow>();
 
                     Debug.Log("matches");
-                    level2AnswerSheet.AnswerCheck();
+                    //level2AnswerSheet.AnswerCheck();
                 }
                 else if (anomalyFound)
                 {

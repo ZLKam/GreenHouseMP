@@ -19,6 +19,7 @@ public class Level2AnswerSheet : MonoBehaviour
     public bool connectionCWR;
 
     public GameObject correctPanel;
+    public GameObject wrongPanel;
     bool showPopUp;
 
     GameObject[] CHWR;
@@ -62,6 +63,12 @@ public class Level2AnswerSheet : MonoBehaviour
             {
                 correctPanel.SetActive(true);
                 Debug.Log("Correct");
+                showPopUp = false;
+            }
+            else
+            {
+                wrongPanel.SetActive(true);
+                Debug.Log("wrong");
                 showPopUp = false;
             }
         }
