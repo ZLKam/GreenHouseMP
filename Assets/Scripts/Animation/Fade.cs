@@ -28,6 +28,9 @@ public class Fade : MonoBehaviour
     public GameObject Level;
     public GameObject GameMenu;
 
+    [SerializeField]
+    private GameObject pausePanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -144,7 +147,23 @@ public class Fade : MonoBehaviour
         exit = true;
     }
 
+    //Pause Menus
+    public void PauseGame() 
+    {
+        if (!pausePanel.activeInHierarchy)
+        {
+            pausePanel.SetActive(true);
+        }
+        else 
+        {
+            pausePanel.SetActive(false);
+        }
+    }
 
+    public void InstructionBtn() 
+    {
+
+    }
 
 
     //Section Selector / Level Selector

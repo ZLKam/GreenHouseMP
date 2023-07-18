@@ -166,7 +166,10 @@ public class Connection : MonoBehaviour
             }
             else
             {
-                selectedComponent.RemoveUI();
+                if (selectedComponent) 
+                {
+                    selectedComponent.RemoveUI();
+                }
             }
         }
         if (valueReturnBtn.pressedBtn)

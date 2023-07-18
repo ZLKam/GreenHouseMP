@@ -4,10 +4,12 @@ using UnityEngine;
 using Level3;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     bool hoverOver;
+    [SerializeField]
     bool hoverTab;
     Vector3 startSize;
     public bool isTab;
@@ -30,6 +32,8 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     [HideInInspector]
     public GameObject componentPrefab;
 
+    public TextMeshProUGUI test;
+
     private bool isLevel3 = false;
 
     void Start()
@@ -49,6 +53,11 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     }
     void Update()
     {
+        if (test)
+        {
+            test.text = hoverTab.ToString();
+        }
+
         if (hoverOver)
         {
             if(transform.localScale.x < desiredSize.x)
@@ -79,7 +88,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
                 if (transform.localPosition.x > startPosition.x)
                 {
                     //transform.position -= new Vector3(moveSpeed, 0f, 0f) * Time.deltaTime * 5;
-                    transform.localPosition = Vector3.Lerp(startPosition, transform.localPosition, Time.deltaTime * moveSpeed);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, startPosition, Time.deltaTime * moveSpeed);
                 }
             }
         }

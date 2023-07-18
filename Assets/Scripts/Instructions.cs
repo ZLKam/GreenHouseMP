@@ -13,6 +13,7 @@ public class Instructions : MonoBehaviour
     private int index = 0;
     public GameObject continueBtn;
     public GameObject nextBtn;
+    public GameObject previousBtn;
 
     [SerializeField]
     private TextMeshProUGUI textArea;
@@ -23,6 +24,11 @@ public class Instructions : MonoBehaviour
         continueBtn.SetActive(false);
         video.clip = clips[index];
         textArea.text = tutorialText[index];
+
+        if (index == 0)
+        {
+            previousBtn.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -45,12 +51,30 @@ public class Instructions : MonoBehaviour
                 nextBtn.SetActive(false);
                 continueBtn.SetActive(true);
             }
+            else 
+            {
+                previousBtn.SetActive(true);
+            }
         }
     }
 
     public void Previous() 
     {
         index--;
-        video.clip = clips[index];
+        if (index != -1)
+        {
+            previousBtn.SetActive(true);
+            video.clip = clips[index];
+            textArea.text = tutorialText[index];
+            if (index == 0)
+            {
+                previousBtn.SetActive(false);
+            }
+            else if (index < clips.Count) 
+            {
+                nextBtn.SetActive(true);
+                continueBtn.SetActive(false);
+            }
+        }
     }
 }
