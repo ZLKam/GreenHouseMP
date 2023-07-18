@@ -6399,8 +6399,8 @@ MonoBehaviour:
   profilestuff: {fileID: 1082873666}
   textcon: {fileID: 904157432}
   ProfileImage: {fileID: 739000105}
-  MaleImage: {fileID: 0}
-  FemaleImage: {fileID: 0}
+  MaleImage: {fileID: 21300000, guid: 897fe77376ad6f7418da2b3c81752d9f, type: 3}
+  FemaleImage: {fileID: 21300000, guid: 64732369ac212ad4a98def14fa3e4d81, type: 3}
 --- !u!1 &1318556290
 GameObject:
   m_ObjectHideFlags: 0
