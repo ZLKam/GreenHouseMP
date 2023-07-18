@@ -613,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -625,6 +626,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 9215319287458789997, guid: b64f07ac7ceccb64987f8c3170dbb339, type: 3}
   componentName: {fileID: 1404606952}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &103244302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2547,6 +2549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -2559,6 +2562,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 9215319287458789997, guid: 0288f2d4a01b51f43bdf99e7efce1d9d, type: 3}
   componentName: {fileID: 1404606952}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &348010277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3647,6 +3651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -3659,6 +3664,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 9215319287458789997, guid: 60cb30c1636aa9b4aaf5e78bc5ee3bf5, type: 3}
   componentName: {fileID: 433996748}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &451546393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3802,6 +3808,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  pausePanel: {fileID: 0}
 --- !u!114 &452815355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4118,6 +4125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -4130,6 +4138,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 9215319287458789997, guid: 7320242daef5d9a4d9134e50ae8c174d, type: 3}
   componentName: {fileID: 1117160313}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &471327944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5877,6 +5886,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  pausePanel: {fileID: 0}
 --- !u!114 &626370461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9351,7 +9361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1069926951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14922,6 +14932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 1
   moveSpeed: 2
   buttonLetgo: 0
@@ -14934,6 +14945,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 0}
   componentName: {fileID: 0}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &1779818139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17171,6 +17183,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  pausePanel: {fileID: 0}
 --- !u!114 &2022630539
 MonoBehaviour:
   m_ObjectHideFlags: 0
