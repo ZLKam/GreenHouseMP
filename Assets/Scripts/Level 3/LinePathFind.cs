@@ -17,6 +17,11 @@ public class LinePathFind : MonoBehaviour
 
     private List<Vector2Int> zeros = new List<Vector2Int>() { Vector2Int.zero, Vector2Int.zero };
 
+    public GameObject line;
+
+    private Vector2 lineStartPoint;
+    private Vector2 lineEndPoint;
+
     // Update is called once per frame
     void Update()
     {
@@ -47,9 +52,12 @@ public class LinePathFind : MonoBehaviour
                 }
                 // When from and to are selected, find the nearest nodes of them
                 List<Vector2Int> nearestNodes = GetNearestNode();
-                if (nearestNodes == zeros)
+                if (nearestNodes[0] == zeros[0] || nearestNodes[1] == zeros[1])
                 {
                     Debug.Log("No nodes found.");
+                    fromT = null;
+                    toT = null;
+                    return;
                 }
                 else
                 {
@@ -190,6 +198,8 @@ public class LinePathFind : MonoBehaviour
             fromPoint.GetComponent<LineLimit>().AllowDrawLine = false;
             toPoint.GetComponent<LineLimit>().AllowDrawLine = false;
         }
+        lineStartPoint = fromPoint.position;
+        lineEndPoint = toPoint.position;
         return new List<Transform>() { fromPoint, toPoint };
     }
 
@@ -201,7 +211,7 @@ public class LinePathFind : MonoBehaviour
                 wayPoints.Clear();
 
                 pathFinder.Init(origin, destination);
-                grid.ResetCellColors();
+                //grid.ResetCellColors();
                 // Start a coroutine to do go to loop the pathfinding steps.
                 StartCoroutine(Coroutine_PathFinding(pathFinder, grid));
         }
@@ -231,17 +241,34 @@ public class LinePathFind : MonoBehaviour
                 reversePathLocations.Add(node.location);
                 node = node.parent;
             }
+            GameObject line = Instantiate(this.line, transform);
+            AddFromRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[reversePathLocations.Count - 1]);
             // add all these points to the waypoints.
             for (int i = reversePathLocations.Count - 1; i >= 0; i--)
             {
                 AddWayPoint(reversePathLocations[i]);
-                grid.SetCellColor(reversePathLocations[i], grid.COLOR_PATH);
+                line.GetComponent<DrawLine>().points.Add(reversePathLocations[i]);
+                rectGrid.transform.Find("cell_" + reversePathLocations[i].x + "_" + reversePathLocations[i].y).GetComponent<RectGridCell>().SetNonWalkable();
             }
+            AddToRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[0]);
+            line.GetComponent<DrawLine>().finishedAddingPoints = true;
         }
     }
 
     public void AddWayPoint(Vector2Int point)
     {
         wayPoints.Enqueue(point);
+    }
+
+    private void AddFromRotatePoint(DrawLine line, Vector2Int firstNodePos)
+    {
+        line.points.Add(lineStartPoint);
+        line.points.Add(new Vector2(firstNodePos.x, lineStartPoint.y));
+    }
+
+    private void AddToRotatePoint(DrawLine line, Vector2Int lastNodePos)
+    {
+        line.points.Add(new Vector2(lastNodePos.x, lineEndPoint.y));
+        line.points.Add(lineEndPoint);
     }
 }

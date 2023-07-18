@@ -84,11 +84,21 @@ public class ComponentWheel : MonoBehaviour
             //        child.GetComponent<ComponentEvent>().CorrectConnection = false;
             //    }
             //}
+            GameObject lineBoss = FindObjectOfType<LinePathFind>().gameObject;
+            lineBoss.GetComponent<LinePathFind>().enabled = false;
+            List<GameObject> allLines = new();
+            for (int i = 0; i < lineBoss.transform.childCount; i++)
+            {
+                allLines.Add(lineBoss.transform.GetChild(i).gameObject);
+            }
+            FindObjectsOfType<LineLimit>().ToList().ForEach(x => x.AllowDrawLine = true);
+            allLines.ForEach(line => Destroy(line));
         }
         else
         {
             txtMode.text = "Draw Pipe";
             //FindObjectOfType<LineManagerController>().enabled = true;
+            FindObjectOfType<LinePathFind>().enabled = true;
         }
     }
 

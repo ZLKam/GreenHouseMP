@@ -40,7 +40,7 @@ namespace Level3
         //Spawn particles
         public void CheckAnswer()
         {
-            particleManager.StartToSpawnParticle(pipesTransform[0]);
+            //particleManager.StartToSpawnParticle(pipesTransform[0]);
         }
     }
 }

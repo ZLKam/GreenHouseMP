@@ -10,10 +10,7 @@ namespace Level3 {
 
         private bool spawnCoroutineRunning = false;
 
-        public void StartToSpawnParticle(Vector2 position)
-        {
-            StartCoroutine(SpawnParticle(position, this));
-        }
+        public List<Vector2> targetPoints = new();
 
         //Stops spawning particles through the coroutine
         public void StopSpawnParticle()
@@ -25,13 +22,12 @@ namespace Level3 {
         }
 
         //instantiate a new particle every 0.2s continously, as the coroutine is triggered
-        private IEnumerator SpawnParticle(Vector2 position, ParticlesManager manager)
+        public IEnumerator SpawnParticle(Vector2 position, ParticlesManager manager)
         {
             while (true)
             {
                 spawnCoroutineRunning = true;
-                GameObject particle = Instantiate(this.particle, position, Quaternion.identity);
-                particle.GetComponent<Transform>().SetParent(transform);
+                GameObject particle = Instantiate(this.particle, position, Quaternion.identity, transform);
                 particle.GetComponent<Particle>().manager = manager;
                 yield return new WaitForSecondsRealtime(0.2f);
             }

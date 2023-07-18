@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b1a912eb64300454d85c922448f91302, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 3989864240377790984, guid: c92004bdba70ccc4496a94e8855027d8, type: 3}
+  targetPoints: []
 --- !u!1 &133791215
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,8 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c66a4048f58ff24eaebd44c216c9efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mX: 20
-  mY: 11
+  mX: 60
+  mY: 33
   startX: 0
   startY: 0
   rectGridCellPrefab: {fileID: 3652615425527807359, guid: 522c81b79f1fda94a9b14fbdbb00e5f2, type: 3}
@@ -933,7 +934,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 21
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -957,7 +958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681972745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 5.5, z: -10}
+  m_LocalPosition: {x: 24.6, y: 18.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4303,7 +4304,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232624426}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddeca4604dbfc2748b38e31f3249853f, type: 3}
   m_Name: 
@@ -4311,6 +4312,7 @@ MonoBehaviour:
   rectGrid: {fileID: 222585390}
   fromT: {fileID: 0}
   toT: {fileID: 0}
+  line: {fileID: 6509680661341185978, guid: 2ce4862aa3d8cdd4cb9919cbe7fdef89, type: 3}
 --- !u!1 &1263224617
 GameObject:
   m_ObjectHideFlags: 0
@@ -4555,7 +4557,7 @@ Transform:
   m_GameObject: {fileID: 1328424844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1167856611}

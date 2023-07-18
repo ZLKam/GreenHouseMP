@@ -23,12 +23,14 @@ public class RectGridCell : MonoBehaviour
 
     public void SetInnerColor(Color col)
     {
-        innerSprite.color = col;
+        Color newColor = new Color(col.r, col.g, col.b, 0.0f);
+        innerSprite.color = newColor;
     }
 
     public void SetOuterColor(Color col)
     {
-        outerSprite.color = col;
+        Color newColor = new Color(col.r, col.g, col.b, 0.0f);
+        outerSprite.color = newColor;
     }
 
     public void SetWalkable()
