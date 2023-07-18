@@ -13,15 +13,12 @@ public class Placement : MonoBehaviour
     public CameraMovement cameraMovement;
     public Level1AnswerSheet1 answerSheet1;
     public Hover hover;
-    private Animator placeholderAnim;
-    private GameObject component;
+    [HideInInspector]
+    public GameObject component;
 
     [HideInInspector]
     public GameObject selectedPrefab;
     public Sprite originalSprite;
-    Transform highlight;
-    Transform selection;
-    RaycastHit raycastHit;
     Transform selected;
     Transform highlightedPlacement;
     GameObject[] selections;
@@ -43,7 +40,7 @@ public class Placement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //not sure if needed
+        //resets allow delete to true after object has been placed(no finger touching screen)
         if (!allowDelete && Input.touchCount > 0)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
@@ -51,7 +48,6 @@ public class Placement : MonoBehaviour
                 allowDelete = true;
             }
         }
-        //Highlight();
     }
 
     private void FixedUpdate()
@@ -172,6 +168,7 @@ public class Placement : MonoBehaviour
             {
                 if (highlighted == hit.transform)
                 {
+                    allowDelete = false;
                     return;
                 }
                 else
@@ -258,14 +255,16 @@ public class Placement : MonoBehaviour
                         deletingGO.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
                         deletingGO.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                         Destroy(deletingGO);
+                        deletingGO = null;
                         return;
                     }
                     else 
                     {
                         deletingGO.transform.localPosition = Vector3.zero;
+                        deletingGO = null;
                     }
                 }
-                deletingGO.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 50));
+                deletingGO.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
             }
             highlighted = null;
             highlightedPlacement = null;
@@ -306,6 +305,10 @@ public class Placement : MonoBehaviour
     private void Delete(Transform selectedTransform)
     //handles deletion of the component gameobjects
     {
+        if (!allowDelete) 
+        {
+            return;
+        }
         if (!cameraMovement.zooming)
         {
             //null exception
@@ -375,6 +378,7 @@ public class Placement : MonoBehaviour
                 {
                     selectedTransform.gameObject.transform.localPosition = Vector3.zero;
                 }
+                deletingGO = null;
                 deletingObject = false;
             }
 #endif

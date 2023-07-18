@@ -20,7 +20,6 @@ public class Connection : MonoBehaviour
     public List<GameObject> points;
     public List<GameObject> multiPoints;
     public SelectedComponent[] componentArray;
-    private SelectedComponent currentComponent;
 
     public int multiConnectLimit;
     public bool multiConnect;
@@ -53,8 +52,6 @@ public class Connection : MonoBehaviour
 
     bool allMatch;
     bool anomalyFound;
-
-    bool unselect;
 
     private void Awake()
     {

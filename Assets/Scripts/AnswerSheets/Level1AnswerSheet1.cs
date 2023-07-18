@@ -55,6 +55,8 @@ public class Level1AnswerSheet1 : MonoBehaviour
 
     void PlacementCheck()
     {
+        ResetChecks();
+
         if (correctSelection1[0].transform.childCount > 1 &&
             correctSelection1[0].transform.GetChild(1).CompareTag("Component/CoolingTower"))
         {
@@ -175,45 +177,13 @@ public class Level1AnswerSheet1 : MonoBehaviour
     }
 
 
-    //private void SetShaderColor(Transform gameobjectToChange, bool correct = false)
-    //{
-    //    //Finds the child in the model and sets the shader of the child(main gameobject dont have renderer)
-    //    if (gameobjectToChange.childCount > 0)
-    //    {
-    //        childrenInModel = gameobjectToChange.GetComponentsInChildren<Transform>();
-    //        foreach (Transform child in childrenInModel)
-    //        {
-    //            if (child.GetComponent<Renderer>() != null)
-    //            {
-    //                childRenderList.Add(child.GetComponent<Renderer>());
-    //                for (int i = 0; i < childRenderList.Count; i++)
-    //                {
-    //                    if (correct)
-    //                    {
-    //                        childRenderList[i].sharedMaterial.shader = shaderRight;
-    //                        childRenderList[i].sharedMaterial.SetColor("_OutlineColor", Color.green);
-    //                        childRenderList[i].sharedMaterial.SetFloat("_OutlineWidth", 1.20f);
-    //                    }
-    //                    else
-    //                    {
-    //                        childRenderList[i].sharedMaterial.shader = shaderWrong;
-    //                        childRenderList[i].sharedMaterial.SetColor("_OutlineColor", Color.red);
-    //                        childRenderList[i].sharedMaterial.SetFloat("_OutlineWidth", 1.20f);
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    else if (correct)
-    //    {
-    //        gameobjectToChange.GetComponent<Renderer>().material.shader = shaderRight;
-    //        gameobjectToChange.GetComponent<Renderer>().sharedMaterial.SetColor("_OutlineColor", Color.green);
-    //    }
-    //    else
-    //    {
-    //        gameobjectToChange.GetComponent<Renderer>().material.shader = shaderWrong;
-    //        gameobjectToChange.GetComponent<Renderer>().sharedMaterial.SetColor("_OutlineColor", Color.red);
-    //    }
-    //}
+    private void ResetChecks() 
+    {
+        coolingTower = false;
+        ahu = false;
+        chiller = false;
+        cwp_opt = false;
+        cwp_opt_Elav = false;
+    }
 
 }

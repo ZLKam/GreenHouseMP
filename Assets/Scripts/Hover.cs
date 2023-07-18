@@ -144,13 +144,14 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
         if (placement)
         {
             cameraMovement.hover = placement.hover = this;
+            placement.component = null;
         }
         else 
         {
             cameraMovement.hover = this;
         }
 
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150) );
         if (component && !componentPrefab)
         {
             componentSelected = true;
@@ -172,7 +173,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         if (component == null || componentPrefab == null || isLevel3)
             return;
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 50));
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
         componentPrefab.transform.position = mousePos;
     }
 
