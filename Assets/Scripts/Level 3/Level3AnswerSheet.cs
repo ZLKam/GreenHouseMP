@@ -11,6 +11,14 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerDownHandler
 
     private int numberOfCorrectConnections = 6;
 
+    List<DrawLine> correctLines = new();
+    List<DrawLine> wrongLines = new();
+
+    [SerializeField]
+    private Material correctMat;
+    [SerializeField]
+    private Material wrongMat;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (line.IsFindingPath())
@@ -21,15 +29,22 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerDownHandler
         {
             if (x.isCorrect())
             {
+                correctLines.Add(x);
                 correct++;
+            }
+            else
+            {
+                wrongLines.Add(x);
             }
         });
         if (correct == numberOfCorrectConnections)
         {
+            correctLines.ForEach(x => x.lr.material = correctMat);
             Debug.Log("Correct!!!");
         }
         else
         {
+            wrongLines.ForEach(x => x.lr.material = wrongMat);
             Debug.Log("You are so stupid!!! Wrong!!!!!!!!");
         }
     }

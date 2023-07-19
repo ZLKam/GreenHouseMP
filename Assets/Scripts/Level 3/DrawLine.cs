@@ -7,7 +7,7 @@ namespace Level3
 {
     public class DrawLine : MonoBehaviour
     {
-        LineRenderer lr;
+        public LineRenderer lr;
         ParticlesManager particlesManager;
         internal RectGrid rectGrid;
 

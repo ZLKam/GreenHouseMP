@@ -5908,6 +5908,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 1232624428}
+  correctMat: {fileID: 2100000, guid: 699472ba17cbd594ba59fc317d793bf5, type: 2}
+  wrongMat: {fileID: 2100000, guid: 1e3a034abb5d122459e3c3855ea09c48, type: 2}
 --- !u!1 &1789530514
 GameObject:
   m_ObjectHideFlags: 0

@@ -8122,7 +8122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1869772184}
   - component: {fileID: 1869772187}
-  - component: {fileID: 1869772186}
   - component: {fileID: 1869772185}
   m_Layer: 0
   m_Name: Skybox Camera
@@ -8165,14 +8164,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
   - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
---- !u!81 &1869772186
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869772183}
-  m_Enabled: 1
 --- !u!20 &1869772187
 Camera:
   m_ObjectHideFlags: 0

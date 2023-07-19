@@ -15171,7 +15171,6 @@ GameObject:
   m_Component:
   - component: {fileID: 202428932}
   - component: {fileID: 202428934}
-  - component: {fileID: 202428933}
   m_Layer: 0
   m_Name: Skybox Camera
   m_TagString: Untagged
@@ -15194,14 +15193,6 @@ Transform:
   m_Father: {fileID: 2065333684}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &202428933
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202428931}
-  m_Enabled: 1
 --- !u!20 &202428934
 Camera:
   m_ObjectHideFlags: 0
