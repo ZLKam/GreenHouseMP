@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -19,18 +18,13 @@ public class Profile : MonoBehaviour
 
     public TextMeshProUGUI textcon;
     public Image ProfileImage;
+    public static Image TransferInfo;
 
     public Sprite MaleImage;
     public Sprite FemaleImage;
 
     public GameObject maleBtn;
     public GameObject femaleBtn;
-
-    public string[] Speechoptions;
-    float timer = 5f;
-    public GameObject SpeechBubble;
-    public TextMeshProUGUI Speech;
-    public TextMeshProUGUI Speaker;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +36,7 @@ public class Profile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TransferInfo = ProfileImage;
         if (gender != null)
         {
             genderFilled = true;
@@ -104,17 +99,4 @@ public class Profile : MonoBehaviour
         }
     }
 
-    public void speech()
-    {
-        SpeechBubble.SetActive(true);
-        Speech.text = Speechoptions[Random.Range(0, Speechoptions.Length)];
-        Speaker.text = username;
-        StartCoroutine(Counter());
-    }
-
-    IEnumerator Counter()
-    {
-        yield return new WaitForSeconds(timer);
-        SpeechBubble.SetActive(false);
-    }
 }
