@@ -23,6 +23,9 @@ public class Profile : MonoBehaviour
     public Sprite MaleImage;
     public Sprite FemaleImage;
 
+    public GameObject maleBtn;
+    public GameObject femaleBtn;
+
     public string[] Speechoptions;
     float timer = 0f;
     float timing = 5f;
@@ -51,30 +54,37 @@ public class Profile : MonoBehaviour
         else { usernameFilled = false; } 
         //Debug.Log(genderFilled);
         //Debug.Log(usernameFilled);
-        if (ProfileSet)
-        {
-            //Image sprite = ProfileImage.GetComponent<Image>();
-            if (gender == "Male")
-            {
-                ProfileImage.sprite = MaleImage;
-            }
-            if (gender == "Female")
-            {
-                ProfileImage.sprite = FemaleImage;
-            }
+        //if (ProfileSet)
+        //{
+        //    //Image sprite = ProfileImage.GetComponent<Image>();
+        //    if (gender == "Male")
+        //    {
+        //        ProfileImage.sprite = MaleImage;
+        //    }
+        //    if (gender == "Female")
+        //    {
+        //        ProfileImage.sprite = FemaleImage;
+        //    }
             textcon.text = username;
-        }
+        //}
     }
 
 
     public void GenderSetMale()
     {
         gender = "Male";
+        ProfileImage.sprite = MaleImage;
+        femaleBtn.GetComponent<Image>().color = Color.white;
+        maleBtn.GetComponent<Image>().color = Color.yellow;
     }
 
     public void GenderSetFemale()
     {
         gender = "Female";
+        ProfileImage.sprite = FemaleImage;
+        femaleBtn.GetComponent<Image>().color = Color.yellow;
+        maleBtn.GetComponent<Image>().color = Color.white;
+
     }
 
     public void StoreName()

@@ -4211,7 +4211,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 2150773298
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.5}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4980,7 +4980,7 @@ RectTransform:
   - {fileID: 1964214158}
   - {fileID: 1111581377}
   m_Father: {fileID: 1310857072}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5374,7 +5374,7 @@ GameObject:
   - component: {fileID: 1157881866}
   - component: {fileID: 1157881865}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CharacterTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6369,8 +6369,8 @@ RectTransform:
   - {fileID: 1318556291}
   - {fileID: 1902156616}
   - {fileID: 1982832615}
-  - {fileID: 1438397863}
   - {fileID: 1082873667}
+  - {fileID: 1438397863}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6401,6 +6401,11 @@ MonoBehaviour:
   ProfileImage: {fileID: 739000105}
   MaleImage: {fileID: 21300000, guid: 897fe77376ad6f7418da2b3c81752d9f, type: 3}
   FemaleImage: {fileID: 21300000, guid: 64732369ac212ad4a98def14fa3e4d81, type: 3}
+  maleBtn: {fileID: 1507560151}
+  femaleBtn: {fileID: 1642866144}
+  Speechoptions: []
+  SpeechBubble: {fileID: 0}
+  Speech: {fileID: 0}
 --- !u!1 &1318556290
 GameObject:
   m_ObjectHideFlags: 0
@@ -7110,7 +7115,7 @@ RectTransform:
   - {fileID: 557512132}
   - {fileID: 1147775441}
   m_Father: {fileID: 1310857072}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
