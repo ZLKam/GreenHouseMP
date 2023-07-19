@@ -19,10 +19,16 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     private Material wrongMat;
 
+    [SerializeField]
+    private GameObject rightPanel;
+    [SerializeField]
+    private GameObject wrongPanel;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (line.IsFindingPath())
             return;
+
         Debug.Log("Check answer");
         int correct = 0;
         FindObjectsOfType<DrawLine>().ToList().ForEach((x) =>
@@ -45,7 +51,9 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerDownHandler
         else
         {
             wrongLines.ForEach(x => x.lr.material = wrongMat);
+            wrongPanel.SetActive(true);
             Debug.Log("You are so stupid!!! Wrong!!!!!!!!");
         }
     }
+
 }
