@@ -849,7 +849,7 @@ MonoBehaviour:
   pipe: {fileID: 3420256080813939742, guid: 304e1455dcae9d24ea49b24b8d5735a3, type: 3}
   pipeBody: {fileID: 4459620892670186946, guid: b09ebd193a29e7d46b7949a423a139c0, type: 3}
   pipeEntrance: {fileID: 9215319287458789997, guid: b64f07ac7ceccb64987f8c3170dbb339, type: 3}
-  componentName: {fileID: 1404606952}
+  componentName: {fileID: 1735576267}
   componentPrefab: {fileID: 0}
   test: {fileID: 0}
 --- !u!114 &103244302
