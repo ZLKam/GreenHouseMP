@@ -27,10 +27,10 @@ public class Profile : MonoBehaviour
     public GameObject femaleBtn;
 
     public string[] Speechoptions;
-    float timer = 0f;
-    float timing = 5f;
+    float timer = 5f;
     public GameObject SpeechBubble;
     public TextMeshProUGUI Speech;
+    public TextMeshProUGUI Speaker;
 
     // Start is called before the first frame update
     void Start()
@@ -106,16 +106,15 @@ public class Profile : MonoBehaviour
 
     public void speech()
     {
-        while (timer < timing)
-        {
-            SpeechBubble.SetActive(true);
-            //Speech.text = Speechoptions[Random.Range(0, )];
-        }
-        
+        SpeechBubble.SetActive(true);
+        Speech.text = Speechoptions[Random.Range(0, Speechoptions.Length)];
+        Speaker.text = username;
+        StartCoroutine(Counter());
     }
 
     IEnumerator Counter()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timer);
+        SpeechBubble.SetActive(false);
     }
 }
