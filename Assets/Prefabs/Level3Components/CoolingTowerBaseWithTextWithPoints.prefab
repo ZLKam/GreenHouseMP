@@ -102,7 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8fcea48a42bf44a9290311f491ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialID: 890
   placeholder: {fileID: 0}
+  correctTarget: {fileID: 5181900282403401910, guid: 9371f48ab4413974fb69647754992163, type: 3}
+  correctTarget2: {fileID: 0}
 --- !u!50 &-6780964955410501403
 Rigidbody2D:
   serializedVersion: 4

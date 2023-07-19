@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ComponentWheel : MonoBehaviour
 {
     public RectGrid rectGrid;
+    public LinePathFind linePathFind;
 
     [SerializeField]
     internal Transform playArea;
@@ -62,6 +63,8 @@ public class ComponentWheel : MonoBehaviour
 
     public void ChangeMode()
     {
+        if (linePathFind.IsFindingPath())
+            return;
         selectComponent = !selectComponent;
         drawLine = !drawLine;
 
@@ -108,31 +111,31 @@ public class ComponentWheel : MonoBehaviour
 
     public void CheckAnswer()
     {
-        foreach (Transform child in playArea)
-        {
-            //if (child.CompareTag("Component") || child.CompareTag("Component/Chiller"))
-            //{
-            //    correctList.Add(child.GetComponent<ComponentEvent>().CorrectConnection);
-            //}
-        }
-        Debug.Log(correctList.Count);
-        if (correctList.Count >= numberOfCorrectConnections)
-        {
-            foreach (bool correct in correctList)
-            {
-                if (!correct)
-                {
-                    Debug.Log("Incorrect");
-                    correctList.Clear();
-                    return;
-                }
-            }
-            Debug.Log("Correct");
-        }
-        else
-        {
-            Debug.Log("Incorrect");
-        }
-        correctList.Clear();
+        //foreach (Transform child in playArea)
+        //{
+        //    if (child.CompareTag("Component") || child.CompareTag("Component/Chiller"))
+        //    {
+        //        correctList.Add(child.GetComponent<ComponentEvent>().CorrectConnection);
+        //    }
+        //}
+        //Debug.Log(correctList.Count);
+        //if (correctList.Count >= numberOfCorrectConnections)
+        //{
+        //    foreach (bool correct in correctList)
+        //    {
+        //        if (!correct)
+        //        {
+        //            Debug.Log("Incorrect");
+        //            correctList.Clear();
+        //            return;
+        //        }
+        //    }
+        //    Debug.Log("Correct");
+        //}
+        //else
+        //{
+        //    Debug.Log("Incorrect");
+        //}
+        //correctList.Clear();
     }
 }

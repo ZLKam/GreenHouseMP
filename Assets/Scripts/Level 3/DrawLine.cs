@@ -24,6 +24,11 @@ namespace Level3
         [SerializeField]
         private Material lineMat;
 
+        [SerializeField]
+        internal Transform lineFrom;
+        [SerializeField]
+        internal Transform lineTo;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -67,6 +72,18 @@ namespace Level3
                 }
                 index++;
             });
+        }
+
+        public bool isCorrect()
+        {
+            ComponentEvent component = lineFrom.GetComponentInParent<ComponentEvent>();
+            Debug.Log(component.correctTarget + ", " + lineTo.parent);
+            if (component.correctTarget.GetComponent<ComponentEvent>().specialID == lineTo.parent.GetComponent<ComponentEvent>().specialID ||
+                (component.correctTarget2 ? component.correctTarget2.GetComponent<ComponentEvent>().specialID == lineTo.parent.GetComponent<ComponentEvent>().specialID : false))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

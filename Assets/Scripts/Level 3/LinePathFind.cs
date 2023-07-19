@@ -24,6 +24,8 @@ public class LinePathFind : MonoBehaviour
 
     private Vector2 lineStartPoint;
     private Vector2 lineEndPoint;
+    private Transform lineFrom;
+    private Transform lineTo;
 
     private Transform changedFrom;
     private Transform changedTo;
@@ -46,7 +48,12 @@ public class LinePathFind : MonoBehaviour
     {
         if (findingPath)
             return;
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+#endif
+#if UNITY_ANDROID
         if (InputSystem.Instance.LeftClick())
+#endif
         {
             // Hit detection
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -276,6 +283,8 @@ public class LinePathFind : MonoBehaviour
         }
         lineStartPoint = fromPoint.position;
         lineEndPoint = toPoint.position;
+        lineFrom = fromPoint;
+        lineTo = toPoint;
         return new List<Transform>() { fromPoint, toPoint };
     }
 
@@ -329,6 +338,8 @@ public class LinePathFind : MonoBehaviour
                 rectGrid.transform.Find("cell_" + reversePathLocations[i].x + "_" + reversePathLocations[i].y).GetComponent<RectGridCell>().SetNonWalkable();
             }
             AddToRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[0]);
+            line.GetComponent<DrawLine>().lineFrom = lineFrom;
+            line.GetComponent<DrawLine>().lineTo = lineTo;
             line.GetComponent<DrawLine>().finishedAddingPoints = true;
         }
         txtFindingPath.SetActive(false);
@@ -350,5 +361,10 @@ public class LinePathFind : MonoBehaviour
     {
         line.points.Add(new Vector2(lastNodePos.x, lineEndPoint.y));
         line.points.Add(lineEndPoint);
+    }
+
+    public bool IsFindingPath()
+    {
+        return findingPath;
     }
 }

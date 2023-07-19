@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -375,6 +376,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 0}
   componentName: {fileID: 1873150924}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &133791219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,6 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -1173,6 +1176,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 0}
   componentName: {fileID: 1482630117}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &738635917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,7 +1374,6 @@ GameObject:
   m_Component:
   - component: {fileID: 752657027}
   - component: {fileID: 752657026}
-  - component: {fileID: 752657025}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -1378,14 +1381,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &752657025
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752657024}
-  m_Enabled: 1
 --- !u!20 &752657026
 Camera:
   m_ObjectHideFlags: 0
@@ -4191,6 +4186,8 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  pausePanel: {fileID: 0}
+  instructionPanel: {fileID: 0}
 --- !u!114 &1146246941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4487,6 +4484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectGrid: {fileID: 0}
+  linePathFind: {fileID: 1232624428}
   playArea: {fileID: 0}
   selectComponent: 1
   drawLine: 0
@@ -4647,6 +4645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -4659,6 +4658,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 0}
   componentName: {fileID: 669049265}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &1263224621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5651,6 +5651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -5663,6 +5664,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 0}
   componentName: {fileID: 352344812}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &1640638424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5782,6 +5784,7 @@ GameObject:
   - component: {fileID: 1755687833}
   - component: {fileID: 1755687832}
   - component: {fileID: 1755687831}
+  - component: {fileID: 1755687834}
   m_Layer: 5
   m_Name: BtnCheckAnswer
   m_TagString: Untagged
@@ -5853,19 +5856,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1755687832}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1204287655}
-        m_TargetAssemblyTypeName: ComponentWheel, Assembly-CSharp
-        m_MethodName: CheckAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1755687832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5904,6 +5895,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755687829}
   m_CullTransparentMesh: 1
+--- !u!114 &1755687834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755687829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7942ef7bff2eebf4b9e94ba6beb14fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 1232624428}
 --- !u!1 &1789530514
 GameObject:
   m_ObjectHideFlags: 0
@@ -6111,6 +6115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 0
   moveSpeed: 0
   buttonLetgo: 0
@@ -6123,6 +6128,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 0}
   componentName: {fileID: 894295188}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &1803008020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6575,6 +6581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae143bcc9ef95419b21412556f98fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTab: 0
   isTab: 1
   moveSpeed: 125
   buttonLetgo: 0
@@ -6587,6 +6594,7 @@ MonoBehaviour:
   pipeEntrance: {fileID: 0}
   componentName: {fileID: 0}
   componentPrefab: {fileID: 0}
+  test: {fileID: 0}
 --- !u!114 &1996722956
 MonoBehaviour:
   m_ObjectHideFlags: 0

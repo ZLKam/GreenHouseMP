@@ -9,8 +9,13 @@ namespace Level3
     {
         internal ComponentButtonEvent buttonEvent;
 
+        public int specialID;
+
         [SerializeField]
         internal Transform placeholder;
+
+        public Transform correctTarget;
+        public Transform correctTarget2 = null;
 
         #region Unused
         //internal ComponentButtonEvent buttonEvent;
