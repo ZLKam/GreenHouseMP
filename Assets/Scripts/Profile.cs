@@ -23,11 +23,15 @@ public class Profile : MonoBehaviour
     public Sprite MaleImage;
     public Sprite FemaleImage;
 
+    public string[] Speechoptions;
+    float timer = 0f;
+    float timing = 5f;
+    public GameObject SpeechBubble;
+    public TextMeshProUGUI Speech;
+
     // Start is called before the first frame update
     void Start()
     {
-        gender = null;
-        username = null;
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
     }
@@ -90,5 +94,18 @@ public class Profile : MonoBehaviour
         }
     }
 
-    
+    public void speech()
+    {
+        while (timer < timing)
+        {
+            SpeechBubble.SetActive(true);
+            //Speech.text = Speechoptions[Random.Range(0, )];
+        }
+        
+    }
+
+    IEnumerator Counter()
+    {
+        yield return new WaitForSeconds(1f);
+    }
 }

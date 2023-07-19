@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class Level2AnswerSheet : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class Level2AnswerSheet : MonoBehaviour
     GameObject[] CWSans;
     GameObject[] CWRans;
 
+    public TextMeshProUGUI text;
+
     //public Transform[] CHWRans;
     //public Transform[] CHWSans;
     //public Transform[] CWSans;
@@ -52,6 +55,11 @@ public class Level2AnswerSheet : MonoBehaviour
         //Debug.Log(CHWS.Count());
         //Debug.Log(CWS.Count());
         //Debug.Log(CWR.Count());
+    }
+
+    private void Update()
+    {
+        text.text = connectionCWR.ToString();
     }
 
     public void AnswerCheck()
