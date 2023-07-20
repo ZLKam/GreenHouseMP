@@ -173,6 +173,7 @@ public class CameraMovement : MonoBehaviour
         if (Input.touchCount == 1)
         {
             if (connection)
+            // for level 2
             {
                 transform.LookAt(cameras[selectedCamera]);
                 Camera.main.transform.localRotation = Quaternion.identity;
@@ -224,7 +225,6 @@ public class CameraMovement : MonoBehaviour
                     //transform.Rotate(Vector3.right, rotationAmountX);
                     transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
                 }
-
 
                 transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
                 transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
