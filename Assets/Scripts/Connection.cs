@@ -353,18 +353,18 @@ public class Connection : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
-                Debug.Log("raycast");
                 if (selection.GetComponent<SelectedComponent>())
                 {
                     selectedComponent = selection.GetComponent<SelectedComponent>();
                     valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
-                    Debug.Log("Component");
+
                     foreach (SelectedComponent component in componentArray)
                     {
                         if (selectedComponent != component)
                         {
                             Debug.Log("NOT showing UI");
                             component.RemoveUI();
+                            multiConnectToggle.UpdateText();
                         }
                         else
                         {
@@ -403,7 +403,7 @@ public class Connection : MonoBehaviour
                 if (!multiPoints.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn())
                 {
                     multiPoints.Add(selectedComponent.IndexReturn().gameObject);
-                     multiConnectToggle.UpdateText();
+                    multiConnectToggle.UpdateText();
 
                     if (multiPoints.Count >= multiConnectLimit)
                     {
@@ -464,6 +464,7 @@ public class Connection : MonoBehaviour
             pipeConnection.Clear();
             centerPoints.Clear();
             lengths.Clear();
+            multiConnectToggle.UpdateText();
         }
 
         void ColourPipe(GameObject pipeMain)
