@@ -177,7 +177,7 @@ public class Level2AnswerSheet : MonoBehaviour
             Debug.Log("checking 1");
             for (int i = 0; i < connectionPoint1.Count; i++)
             {
-                if (connectionPoint1[i].transform.position == playerList[i].transform.position)
+                if (connectionPoint1[i].transform.position == playerList[i].transform.position) //(connectionPoint1[i].transform.position == playerList[i].transform.position) (playerList.Contains(connectionSubPoint3[i]))
                 {
                     if (i == connectionPoint1.Count - 1)
                     {
@@ -193,7 +193,7 @@ public class Level2AnswerSheet : MonoBehaviour
             Debug.Log("checking s1");
             for (int i = 0; i < connectionSubPoint1.Count; i++) //5,5
             {
-                if (connectionSubPoint1[i].transform.position == playerList[i].transform.position)
+                if (connectionSubPoint1[i].transform.position == playerList[i].transform.position) //(connectionSubPoint1[i].transform.position == playerList[i].transform.position) (playerList.Contains(connectionSubPoint3[i]))
                 {
                     if (i == connectionSubPoint1.Count - 1)
                     {
@@ -209,7 +209,7 @@ public class Level2AnswerSheet : MonoBehaviour
             Debug.Log("checking 2");
             for (int i = 0; i < connectionPoint2.Count; i++)
             {
-                if (connectionPoint2[i].transform.position == playerList[i].transform.position)
+                if (connectionPoint2[i].transform.position == playerList[i].transform.position) //(!playerList.Contains(connectionPoint2[i])) (connectionPoint2[i].transform.position == playerList[i].transform.position)
                 {
                     if (i == connectionPoint2.Count - 1)
                     {
@@ -225,7 +225,7 @@ public class Level2AnswerSheet : MonoBehaviour
             Debug.Log("checking 3");
             for (int i = 0; i < connectionPoint3.Count; i++)
             {
-                if (connectionPoint3[i].transform.position == playerList[i].transform.position)
+                if (connectionPoint3[i].transform.position == playerList[i].transform.position) //(connectionPoint3[i].transform.position == playerList[i].transform.position)  (playerList.Contains(connectionPoint3[i]))
                 {
                     if (i == connectionPoint3.Count - 1)
                     {
@@ -241,7 +241,7 @@ public class Level2AnswerSheet : MonoBehaviour
             Debug.Log("checking s3");
             for (int i = 0; i < connectionSubPoint3.Count; i++)
             {
-                if (connectionSubPoint3[i].transform.position == playerList[i].transform.position)
+                if (connectionSubPoint3[i].transform.position == playerList[i].transform.position) //(connectionSubPoint3[i].transform.position == playerList[i].transform.position) (!playerList.Contains(connectionSubPoint3[i]))
                 {
                     if (i == connectionSubPoint3.Count - 1)
                     {
@@ -257,7 +257,7 @@ public class Level2AnswerSheet : MonoBehaviour
             Debug.Log("checking 4"); 
             for (int i = 0; i < connectionPoint4.Count; i++)
             {
-                if (connectionPoint4[i].transform.position == playerList[i].transform.position)
+                if (connectionPoint4[i].transform.position == playerList[i].transform.position) //(connectionPoint4[i].transform.position == playerList[i].transform.position) (!playerList.Contains(connectionPoint4[i]))
                 {
                     Debug.Log("position mactches");
 
