@@ -29,6 +29,11 @@ public class Profile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!ProfileSet)
+        {
+            username = null;
+            gender = null;
+        }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
     }
