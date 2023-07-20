@@ -369,7 +369,7 @@ public class Connection : MonoBehaviour
                         else
                         {
                             Debug.Log("showing UI");
-                            component.ShowUI();
+                            component.ShowUI(selectedComponent.transform);
                         }
                     }
                 }

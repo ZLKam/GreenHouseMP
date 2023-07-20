@@ -19,11 +19,11 @@ public class SelectedComponent : MonoBehaviour
 
     private bool canChange = false;
 
-    public void ShowUI() 
+    public void ShowUI(Transform selectionPoint) 
     {
         if (!uiTemp)
         {
-            uiTemp = Instantiate(UIPrefab, new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y), Quaternion.identity);
+            uiTemp = Instantiate(UIPrefab, selectionPoint.position, Quaternion.identity);
             Camera.main.transform.parent.GetComponent<CameraMovement>().enabled = false;
             canChange = false;
             StartCoroutine(Co());

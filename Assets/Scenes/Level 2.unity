@@ -26112,6 +26112,8 @@ MonoBehaviour:
   - {fileID: 1214740350}
   - {fileID: 1417685233}
   - {fileID: 1212622565}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!1 &919132148016733955
 GameObject:
   m_ObjectHideFlags: 0
@@ -26142,12 +26144,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: b60b1b95ab3cb694f85f898eac26787b, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
   - {fileID: 1634895563}
   - {fileID: 860941023}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!65 &919132148016733957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26210,6 +26214,8 @@ MonoBehaviour:
   selectedTransform:
   - {fileID: 17620212}
   - {fileID: 1892371926}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!1 &919132148355577864
 GameObject:
   m_ObjectHideFlags: 0
@@ -26246,6 +26252,8 @@ MonoBehaviour:
   selectedTransform:
   - {fileID: 175784567}
   - {fileID: 867058256}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!65 &919132148355577866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26328,6 +26336,8 @@ MonoBehaviour:
   selectedTransform:
   - {fileID: 1583791414}
   - {fileID: 473384305}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!4 &924291444531868894
 Transform:
   m_ObjectHideFlags: 0
@@ -32663,6 +32673,8 @@ MonoBehaviour:
   selectedTransform:
   - {fileID: 120984857}
   - {fileID: 731289704}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!65 &2050539504272877857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40951,6 +40963,8 @@ MonoBehaviour:
   selectedTransform:
   - {fileID: 1562341210}
   - {fileID: 983382532}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!65 &3469287836661552419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47375,6 +47389,8 @@ MonoBehaviour:
   selectedTransform:
   - {fileID: 1290822753}
   - {fileID: 1286344519}
+  multiConnecta: {fileID: 0}
+  connection: {fileID: 0}
 --- !u!65 &4515957336812113702
 BoxCollider:
   m_ObjectHideFlags: 0
