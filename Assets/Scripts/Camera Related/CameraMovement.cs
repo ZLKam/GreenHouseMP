@@ -123,6 +123,10 @@ public class CameraMovement : MonoBehaviour
             if (Hover.componentSelected || hover.isTab)
                 return;
         }
+        if (zooming) 
+        {
+            return;
+        }
 
 #if UNITY_STANDALONE
         transform.LookAt(cameras[selectedCamera]);
@@ -266,6 +270,7 @@ public class CameraMovement : MonoBehaviour
                 {
 
                     transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+                    zooming = true;
                     transform.LookAt(hit.point);
                 }
             }
@@ -298,6 +303,10 @@ public class CameraMovement : MonoBehaviour
                 }
                 float zoom = Mathf.Clamp(zoomAmount, 20, 100);
                 Camera.main.fieldOfView = zoom;
+                if (zoom < 40) 
+                {
+                    zooming = false;
+                }
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(1).phase == TouchPhase.Ended)
             {
