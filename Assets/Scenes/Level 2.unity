@@ -9718,8 +9718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speechoptions:
-  - FishMonger
-  - SteelBoy
+  - MultiConnect Connects 5 Points Together!
+  - Look at the Component Book!
   SpeechBubble: {fileID: 1184406521}
   speechText: {fileID: 1083545772}
   Speaker: {fileID: 240730316}

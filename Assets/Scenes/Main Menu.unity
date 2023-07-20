@@ -4856,7 +4856,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 673814217}
         m_TargetAssemblyTypeName: Fade, Assembly-CSharp
-        m_MethodName: transition
+        m_MethodName: Transition
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6624,7 +6624,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   genderFilled: 0
   usernameFilled: 0
-  ProfileSet: 0
   MenuItems: {fileID: 1318556290}
   inputField: {fileID: 1964214159}
   profilestuff: {fileID: 1082873666}
