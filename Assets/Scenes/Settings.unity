@@ -5133,9 +5133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImages:
+  - {fileID: 1748379553}
   - {fileID: 772500850}
   - {fileID: 1051505894}
-  - {fileID: 1748379553}
 --- !u!1 &914771826
 GameObject:
   m_ObjectHideFlags: 0
