@@ -75,15 +75,18 @@ public class Fade : MonoBehaviour
 
             if (fadeAmount >= 255)
             {
-                Debug.Log("transition");
                 if (exit)
                 {
-                    Debug.Log("Quit");
                     Application.Quit();
                 }
-                else
+                else if (!string.IsNullOrEmpty(transitionScene))
                 {
                     SceneManager.LoadScene(transitionScene);
+                }
+                else 
+                {
+                    fadeOut = false;
+                    fadeIn = true;
                 }
             }
         }
@@ -122,12 +125,18 @@ public class Fade : MonoBehaviour
         }
     }
 
-    public void transition(string scene)
+    public void Transition(string scene)
     {
         Time.timeScale = 1;
         FindObjectOfType<AudioManager>().Play("Click");
         transitionScene = scene;
 
+        fadeOut = true;
+    }
+
+    public void TransitionNoSceneChange() 
+    {
+        FindAnyObjectByType<AudioManager>().Play("Click");
         fadeOut = true;
     }
 
@@ -173,7 +182,7 @@ public class Fade : MonoBehaviour
     //Section Selector / Level Selector
 
 
-    public void playbtn()
+    public void PlayButton()
     {
         GameMenu.SetActive(false);
         Section.SetActive(true);
