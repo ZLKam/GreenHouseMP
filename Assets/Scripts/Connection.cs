@@ -12,6 +12,7 @@ public class Connection : MonoBehaviour
     public SelectedComponent selectedComponent;
     public ReturnValue valueReturnBtn;
     public ToggleMultiConnect multiConnectToggle;
+    public CameraMovement cameraMovement;
 
     public GameObject particle;
 
@@ -146,20 +147,19 @@ public class Connection : MonoBehaviour
                     {
                         if (selectedComponent != component)
                         {
-                            Debug.Log("NOT showing UI");
                             component.RemoveUI();
                         }
                         else 
                         {
-                            Debug.Log("showing UI");
+                            cameraMovement.LookAtComponent(selectedComponent.transform);
                             component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
                         }
                     }
                 }
                 else 
                 {
-                    Debug.Log("Here");
                     selectedComponent.RemoveUI();
+                    cameraMovement.zooming = false;
                 }
             }
             else
@@ -167,6 +167,7 @@ public class Connection : MonoBehaviour
                 if (selectedComponent) 
                 {
                     selectedComponent.RemoveUI();
+                    cameraMovement.zooming = false;
                 }
             }
         }
@@ -202,60 +203,6 @@ public class Connection : MonoBehaviour
             }
             valueReturnBtn.pressedBtn = false;
         }
-
-        //if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject() || valueReturnBtn.pressedBtn)
-        //{
-        //    // checks if the raycast being drawn from the mouse hits an object
-        //    // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
-        //    if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit) || valueReturnBtn.pressedBtn)
-        //    {
-        //        selection = raycastHit.transform;
-        //        if (selection.GetComponent<SelectedComponent>() != null  || valueReturnBtn.pressedBtn)
-        //        {
-        //            if (selection != null)
-        //            {
-        //                selectedComponent = selection.GetComponent<SelectedComponent>();
-        //                selectedComponent.ShowUI();
-        //                valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
-        //            }
-        //            if (selectedComponent.IndexReturn() != null)
-        //            {
-        //                Debug.Log("test");
-        //                //using sharedMaterial to avoid having instance material
-        //                if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-        //                {
-        //                    selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-        //                    points.Remove(selection.gameObject);
-        //                    return;
-        //                }
-        //                originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
-        //                selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
-        //            }
-
-        //            if (!points.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn() != null)
-        //            {
-        //                valueReturnBtn.pressedBtn = false;
-        //                points.Add(selectedComponent.IndexReturn().gameObject);
-
-        //                if (points.Count >= 2)
-        //                {
-        //                    Connect();
-
-        //                    if (FindObjectOfType<Tutorial>() != null)
-        //                    {
-        //                        FindObjectOfType<Tutorial>().CheckConnection();
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            points.Remove(selection.gameObject);
-        //            selection = null;
-        //        }
-
-        //    }
-        //} 
     }
 
         void Connect()
@@ -362,25 +309,27 @@ public class Connection : MonoBehaviour
                     {
                         if (selectedComponent != component)
                         {
-                            Debug.Log("NOT showing UI");
                             component.RemoveUI();
                             multiConnectToggle.UpdateText();
                         }
                         else
                         {
-                            Debug.Log("showing UI");
+                            cameraMovement.LookAtComponent(selectedComponent.transform);
                             component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
+
                         }
                     }
                 }
                 else
                 {
                     selectedComponent.RemoveUI();
+                    cameraMovement.zooming = false;
                 }
             }
             else
             {
                     selectedComponent.RemoveUI();
+                cameraMovement.zooming = false;
             }
              
         }
@@ -550,7 +499,6 @@ public class Connection : MonoBehaviour
                     pipeMain.AddComponent<ParticleFlow>();
 
                     Debug.Log("matches");
-                    //level2AnswerSheet.AnswerCheck();
                 }
                 else if (anomalyFound)
                 {

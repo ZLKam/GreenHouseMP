@@ -2314,6 +2314,7 @@ MonoBehaviour:
   selectedComponent: {fileID: 0}
   valueReturnBtn: {fileID: 1435376668}
   multiConnectToggle: {fileID: 584271464}
+  cameraMovement: {fileID: 1914569113}
   particle: {fileID: 6937347189343736720, guid: bfa0d328f91dfc24db276391b3c7cf05, type: 3}
   highlightMat: {fileID: 2100000, guid: e8f2a314f04619740b04d2b91e337386, type: 2}
   selectionMat: {fileID: 2100000, guid: 54eb24558bf4f544eb32cac30bfe9406, type: 2}

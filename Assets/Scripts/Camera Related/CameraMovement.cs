@@ -172,6 +172,8 @@ public class CameraMovement : MonoBehaviour
         if (Input.touchCount == 1)
         {
             transform.LookAt(cameras[selectedCamera]);
+            Camera.main.transform.localRotation = Quaternion.identity;
+            Camera.main.fieldOfView = 40;
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 startPos = Input.GetTouch(0).position;
@@ -266,13 +268,6 @@ public class CameraMovement : MonoBehaviour
             if (Input.GetTouch(0).phase == TouchPhase.Began || Input.GetTouch(1).phase == TouchPhase.Began)
             {
                 initialDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-                if (Physics.Raycast(Camera.main.ScreenPointToRay((Input.GetTouch(0).position + Input.GetTouch(1).position) / 2), out RaycastHit hit, Mathf.Infinity))
-                {
-
-                    transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
-                    zooming = true;
-                    transform.LookAt(hit.point);
-                }
             }
             //else if (InputSystem.Instance.isStationary(2, deltaDistance) && deltaDistance != 0)
             //{
@@ -303,10 +298,6 @@ public class CameraMovement : MonoBehaviour
                 }
                 float zoom = Mathf.Clamp(zoomAmount, 20, 100);
                 Camera.main.fieldOfView = zoom;
-                if (zoom > 80) 
-                {
-                    zooming = false;
-                }
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(1).phase == TouchPhase.Ended)
             {
@@ -373,25 +364,11 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    //void ClipCheck(Vector3 position)
-    //{
-    //    Ray ray1 = new (position, transform.forward);
-    //    Ray ray2 = new(transform.position, transform.forward);
-    //    if (Physics.Raycast(ray2, out RaycastHit hit2, maxZoom))
-    //    {
-    //        if (hit2.distance < zoomStopDistance)
-    //        {
-    //            transform.position = new(hit2.point.x - zoomStopDistance, hit2.point.y, hit2.point.z);
-    //            return;
-    //        }
-    //    }
-    //    if (Physics.Raycast(ray1, out RaycastHit hit1, maxZoom))
-    //    {
-    //        if (hit1.distance < zoomStopDistance)
-    //        {
-    //            transform.position = new Vector3(hit1.point.x - zoomStopDistance, hit1.point.y, hit1.point.z);
-    //            return;
-    //        }
-    //    }
-    //}
+    public void LookAtComponent(Transform componentToLook) 
+    {
+        Debug.Log("test");
+        zooming = true;
+        Camera.main.fieldOfView = 10;
+        transform.LookAt(componentToLook);
+    }
 }
