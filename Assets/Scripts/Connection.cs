@@ -365,6 +365,7 @@ public class Connection : MonoBehaviour
                         {
                             Debug.Log("NOT showing UI");
                             component.RemoveUI();
+                            multiConnectToggle.UpdateText();
                         }
                         else
                         {
@@ -403,7 +404,7 @@ public class Connection : MonoBehaviour
                 if (!multiPoints.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn())
                 {
                     multiPoints.Add(selectedComponent.IndexReturn().gameObject);
-                     multiConnectToggle.UpdateText();
+                    multiConnectToggle.UpdateText();
 
                     if (multiPoints.Count >= multiConnectLimit)
                     {
@@ -464,6 +465,7 @@ public class Connection : MonoBehaviour
             pipeConnection.Clear();
             centerPoints.Clear();
             lengths.Clear();
+            multiConnectToggle.UpdateText();
         }
 
         void ColourPipe(GameObject pipeMain)

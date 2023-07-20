@@ -14,6 +14,9 @@ public class SelectedComponent : MonoBehaviour
     private List<GameObject> selectedTransform = new List<GameObject>();
     private GameObject connectionPoint;
 
+    public ToggleMultiConnect multiConnecta;
+    public Connection connection;
+
 
     public void ShowUI() 
     {
@@ -23,6 +26,7 @@ public class SelectedComponent : MonoBehaviour
         }
         uiTemp.transform.SetParent(canvas.transform);
         valueReturn = uiTemp.GetComponent<ReturnValue>();
+
     }
 
     public void RemoveUI() 

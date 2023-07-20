@@ -20,10 +20,18 @@ public class ToggleMultiConnect : MonoBehaviour
     {
         connection.multiConnect = !connection.multiConnect;
         connectionCountPanel.SetActive(connection.multiConnect);
+        connectionCountText.text = "Connection Points Left: " + "-";
     }
 
     public void UpdateText() 
     {
-        connectionCountText.text = "Connection Points Left: " + (connection.multiConnectLimit - connection.multiPoints.Count).ToString();
+        if (connection.multiPoints.Count <= 0)
+        {
+            connectionCountText.text = "Connection Points Left: " + "-";
+        }
+        else
+        {
+            connectionCountText.text = "Connection Points Left: " + (connection.multiConnectLimit - connection.multiPoints.Count).ToString();
+        }
     }
 }
