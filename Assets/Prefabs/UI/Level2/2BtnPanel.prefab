@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49.4, y: -28.0576}
-  m_SizeDelta: {x: 138.0459, y: 38.5489}
+  m_AnchoredPosition: {x: -2, y: -23.816}
+  m_SizeDelta: {x: 187.74, y: 47.0321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4187435224459164503
 CanvasRenderer:
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.59607846}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -307,8 +307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -130.20935, y: 194.35234}
-  m_SizeDelta: {x: 259.3179, y: 237.8938}
+  m_AnchoredPosition: {x: -110.28003, y: 119.5}
+  m_SizeDelta: {x: 232.7455, y: 138.0907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4187435225002579615
 CanvasRenderer:
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1af402c6e3357a3448fe822d4141c59d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0582114b860f80e45abfc93be99d40cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -536,8 +536,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 52.9, y: 40.84339}
-  m_SizeDelta: {x: 139.1826, y: 38.5132}
+  m_AnchoredPosition: {x: -1.9999914, y: 37.8109}
+  m_SizeDelta: {x: 187.7358, y: 44.5782}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4187435226274433443
 CanvasRenderer:
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.56078434}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

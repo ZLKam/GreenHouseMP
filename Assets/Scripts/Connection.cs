@@ -11,6 +11,7 @@ public class Connection : MonoBehaviour
     public Level2AnswerSheet level2AnswerSheet;
     public SelectedComponent selectedComponent;
     public ReturnValue valueReturnBtn;
+    public ToggleMultiConnect multiConnectToggle;
 
     public GameObject particle;
 
@@ -352,10 +353,12 @@ public class Connection : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
+                Debug.Log("raycast");
                 if (selection.GetComponent<SelectedComponent>())
                 {
                     selectedComponent = selection.GetComponent<SelectedComponent>();
                     valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
+                    Debug.Log("Component");
                     foreach (SelectedComponent component in componentArray)
                     {
                         if (selectedComponent != component)
@@ -400,6 +403,7 @@ public class Connection : MonoBehaviour
                 if (!multiPoints.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn())
                 {
                     multiPoints.Add(selectedComponent.IndexReturn().gameObject);
+                     multiConnectToggle.UpdateText();
 
                     if (multiPoints.Count >= multiConnectLimit)
                     {
