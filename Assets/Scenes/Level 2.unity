@@ -25888,7 +25888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 8148708777221217151, guid: cffec01ec39513645918fac741f7f71c, type: 3}
+  UIPrefab: {fileID: 8148708777221217151, guid: 8bded0b064d08d6448280811f46f2ef3, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
@@ -25926,7 +25926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: b60b1b95ab3cb694f85f898eac26787b, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
@@ -25988,7 +25988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: b60b1b95ab3cb694f85f898eac26787b, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
@@ -26024,7 +26024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: b60b1b95ab3cb694f85f898eac26787b, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
@@ -26106,7 +26106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: b60b1b95ab3cb694f85f898eac26787b, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
@@ -32441,7 +32441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: fdc78b079ac3d3a43a9117d4c6bfb54f, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
@@ -40729,7 +40729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: 7f96ce889a8c5924192c22638293d425, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
@@ -47153,7 +47153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc82088c6b5874a9076f59a74a6f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPrefab: {fileID: 4187435225002579610, guid: bad9dbeaa3fe54f47a70ac19852afc1c, type: 3}
+  UIPrefab: {fileID: 4187435225002579610, guid: b813fdec4239a1846b21a6eda71befda, type: 3}
   canvas: {fileID: 889600436}
   uiTemp: {fileID: 0}
   selectedTransform:
