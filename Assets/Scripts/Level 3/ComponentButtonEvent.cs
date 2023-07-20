@@ -37,6 +37,7 @@ namespace Level3
 
             instantiatedComponent = Instantiate(component, mousePos, Quaternion.identity, componentWheel.playArea).transform;
             instantiatedComponent.GetComponent<ComponentEvent>().buttonEvent = this;
+            instantiatedComponent.GetComponent<ComponentEvent>().holding = true;
 
             //component = Instantiate(transform.GetChild(transform.childCount - 1), mousePos, Quaternion.identity, componentWheel.playArea);
             //component.GetComponent<ComponentEvent>().buttonEvent = this;
@@ -80,6 +81,7 @@ namespace Level3
             // On lift up
             if (instantiatedComponent)
             {
+                instantiatedComponent.GetComponent<ComponentEvent>().holding = false;
                 if (!eventData.pointerCurrentRaycast.gameObject)
                 {
                     // Check if the pointer is over anything, when not, destroy the instantiated component

@@ -10,7 +10,7 @@ public class Profile : MonoBehaviour
     public static string username;
     public bool genderFilled;
     public bool usernameFilled;
-    public bool ProfileSet;
+    public static bool ProfileSet;
 
     public GameObject MenuItems;
     public TMP_InputField inputField;
@@ -34,6 +34,20 @@ public class Profile : MonoBehaviour
             username = null;
             gender = null;
         }
+        else
+        {
+            if (gender == "Male")
+            {
+                ProfileImage.sprite = MaleImage;
+            }
+            if (gender == "Female")
+            {
+                ProfileImage.sprite = FemaleImage;
+            }
+            TransferInfo = ProfileImage;
+            profilestuff.SetActive(false);
+            MenuItems.SetActive(true);
+        }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
     }
@@ -52,21 +66,8 @@ public class Profile : MonoBehaviour
             usernameFilled = true;
         }
         else { usernameFilled = false; } 
-        //Debug.Log(genderFilled);
-        //Debug.Log(usernameFilled);
-        //if (ProfileSet)
-        //{
-        //    //Image sprite = ProfileImage.GetComponent<Image>();
-        //    if (gender == "Male")
-        //    {
-        //        ProfileImage.sprite = MaleImage;
-        //    }
-        //    if (gender == "Female")
-        //    {
-        //        ProfileImage.sprite = FemaleImage;
-        //    }
-            textcon.text = username;
-        //}
+
+        textcon.text = username;
     }
 
 
