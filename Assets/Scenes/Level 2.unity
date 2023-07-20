@@ -1975,7 +1975,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -8944,7 +8944,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 1260d2075ac8a894ca097d23ee750ab1, type: 3}
   - {fileID: 32900000, guid: ceb1ded1064221e4dbed7df89ceae8d4, type: 3}
   - {fileID: 32900000, guid: b28e8b3c8b1a13241a91bacc816eaaf2, type: 3}
-  - {fileID: 32900000, guid: 50a2acfce8f5aa5409effb18bcc05dce, type: 3}
+  - {fileID: 32900000, guid: bea42d7a88290024a8661640e3921d34, type: 3}
   - {fileID: 32900000, guid: c2582367e88e904478aef524523211c6, type: 3}
   - {fileID: 32900000, guid: 5a4091a4094352e4fb1a8aa7d47bb2c2, type: 3}
   tutorialText:
@@ -10768,8 +10768,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -225.87183, y: -73.27524}
-  m_SizeDelta: {x: 96.7437, y: 93.5505}
+  m_AnchoredPosition: {x: -213.8, y: -70.7}
+  m_SizeDelta: {x: 87.1136, y: 73.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069926952
 MonoBehaviour:
@@ -10965,7 +10965,7 @@ MonoBehaviour:
   m_fontSize: 18
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -11651,7 +11651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1190323215
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18818,14 +18818,15 @@ MonoBehaviour:
   - {fileID: 1503147926}
   placement: {fileID: 0}
   hover: {fileID: 0}
+  connection: {fileID: 252340424}
   rotationSpeed: 60
   initialDistance: 0
   sensitivity: 5
   maxZoom: 140
   skyboxes:
+  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
-  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
   zooming: 0
   moved: 0
   zoomStopDistance: 60

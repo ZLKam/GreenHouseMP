@@ -16248,7 +16248,7 @@ MonoBehaviour:
   m_fontSize: 18
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -118947,10 +118947,10 @@ RectTransform:
   m_Father: {fileID: 1813309335}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1374, y: 822}
-  m_SizeDelta: {x: 112.3192, y: 100.1148}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -214.9, y: -71.3}
+  m_SizeDelta: {x: 88.8615, y: 73.0848}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2008036899
 MonoBehaviour:
@@ -122147,14 +122147,15 @@ MonoBehaviour:
   - {fileID: 422274368}
   placement: {fileID: 1668015404}
   hover: {fileID: 0}
+  connection: {fileID: 0}
   rotationSpeed: 50
   initialDistance: 0
   sensitivity: 5
   maxZoom: 140
   skyboxes:
+  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
-  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
   zooming: 0
   moved: 0
   zoomStopDistance: 60
