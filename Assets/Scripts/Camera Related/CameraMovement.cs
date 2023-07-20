@@ -303,7 +303,7 @@ public class CameraMovement : MonoBehaviour
                 }
                 float zoom = Mathf.Clamp(zoomAmount, 20, 100);
                 Camera.main.fieldOfView = zoom;
-                if (zoom < 40) 
+                if (zoom > 80) 
                 {
                     zooming = false;
                 }
