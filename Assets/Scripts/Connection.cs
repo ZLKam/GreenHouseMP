@@ -152,7 +152,7 @@ public class Connection : MonoBehaviour
                         else 
                         {
                             Debug.Log("showing UI");
-                            component.ShowUI(selectedComponent.transform);
+                            component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
                         }
                     }
                 }
@@ -369,7 +369,7 @@ public class Connection : MonoBehaviour
                         else
                         {
                             Debug.Log("showing UI");
-                            component.ShowUI(selectedComponent.transform);
+                            component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
                         }
                     }
                 }
