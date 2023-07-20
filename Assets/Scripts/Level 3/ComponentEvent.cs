@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 namespace Level3
 {
-    public class ComponentEvent : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class ComponentEvent : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler, IPointerCaptureEvent
     {
         internal ComponentButtonEvent buttonEvent;
 
@@ -16,6 +17,12 @@ namespace Level3
 
         public Transform correctTarget;
         public Transform correctTarget2 = null;
+
+        internal bool holding;
+        private Sprite defaultPlaceholder;
+        private Sprite highlightPlaceholder;
+        private SpriteRenderer highlighted;
+        private bool hitPlaceholder = false;
 
         #region Unused
         //internal ComponentButtonEvent buttonEvent;
@@ -95,6 +102,12 @@ namespace Level3
         //    return false;
         //}
         #endregion
+
+        private void Start()
+        {
+            highlightPlaceholder = Resources.Load<Sprite>("Game UI/BorderYellow");
+        }
+
         public void OnDrag(PointerEventData eventData)
         {
             if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
@@ -107,6 +120,37 @@ namespace Level3
         {
             if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
                 return;
+            holding = true;
+        }
+
+        private void Update()
+        {
+            if (!holding)
+                return;
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
+            if (hits.Length > 0)
+            {
+                foreach (RaycastHit2D hit in hits)
+                {
+                    if (hit.transform.CompareTag("Selection"))
+                    {
+                        hitPlaceholder = true;
+                        if (hit.transform.GetComponent<SpriteRenderer>().sprite != highlightPlaceholder)
+                        {
+                            defaultPlaceholder = hit.transform.GetComponent<SpriteRenderer>().sprite;
+                            highlighted = hit.transform.GetComponent<SpriteRenderer>();
+                            highlighted.sprite = highlightPlaceholder;
+                        }
+                        hitPlaceholder = false;
+                        return;
+                    }
+                }
+            }
+            if (!hitPlaceholder)
+            {
+                if (defaultPlaceholder)
+                    highlighted.sprite = defaultPlaceholder;
+            }
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -115,6 +159,7 @@ namespace Level3
                 return;
             CheckPlaceholder(eventData);
             GetComponent<BoxCollider2D>().enabled = true;
+            holding = false;
         }
 
         private void CheckPlaceholder(PointerEventData eventData)
