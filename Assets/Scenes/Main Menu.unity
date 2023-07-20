@@ -563,7 +563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 673814217}
         m_TargetAssemblyTypeName: Fade, Assembly-CSharp
-        m_MethodName: playbtn
+        m_MethodName: PlayButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3578,7 +3578,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 673814217}
         m_TargetAssemblyTypeName: Fade, Assembly-CSharp
-        m_MethodName: transition
+        m_MethodName: Transition
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3891,7 +3891,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 673814217}
         m_TargetAssemblyTypeName: Fade, Assembly-CSharp
-        m_MethodName: transition
+        m_MethodName: Transition
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
