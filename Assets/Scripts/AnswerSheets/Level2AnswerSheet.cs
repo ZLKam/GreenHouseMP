@@ -59,7 +59,10 @@ public class Level2AnswerSheet : MonoBehaviour
 
     private void Update()
     {
-        text.text = connectionCWR.ToString();
+        if (text)
+        {
+            text.text = connectionCWR.ToString();
+        }
     }
 
     public void AnswerCheck()

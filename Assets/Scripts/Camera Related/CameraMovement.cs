@@ -310,19 +310,6 @@ public class CameraMovement : MonoBehaviour
             }
         }
 #endif
-        //else
-        //{
-        //    if (!moved)
-        //    {
-        //        transform.position = Vector3.MoveTowards(transform.position, transform.forward, 100 * Time.deltaTime);
-        //        if (Vector3.Distance(transform.position, cameras[0].position) < 60)
-        //        {
-        //            moved = true;
-        //        }
-        //    }
-            
-            //zooming = false;
-        //}
     }
 
     //void RotateCamera()
