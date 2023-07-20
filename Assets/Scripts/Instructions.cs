@@ -51,13 +51,13 @@ public class Instructions : MonoBehaviour
             video.clip = clips[index];
             video.Play();
             textArea.text = tutorialText[index];
-            if (index == 0 || index == 1)
+            if ((index == 0 || index == 1) && clips.Count < 4) 
             {
                 textTitleArea.text = tutorialTitle[0];
             }
             else 
             {
-                textTitleArea.text = tutorialTitle[index - 1];
+                textTitleArea.text = tutorialTitle[index];
             }
             if (index == clips.Count - 1)
             {
@@ -80,15 +80,14 @@ public class Instructions : MonoBehaviour
             video.clip = clips[index];
             textArea.text = tutorialText[index];
 
-            if (index == 0 || index == 1)
+            if ((index == 0 || index == 1) && clips.Count < 4)
             {
                 textTitleArea.text = tutorialTitle[0];
             }
             else
             {
-                textTitleArea.text = tutorialTitle[index - 1];
+                textTitleArea.text = tutorialTitle[index];
             }
-
             if (index == 0)
             {
                 previousBtn.SetActive(false);
