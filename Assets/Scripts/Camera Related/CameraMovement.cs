@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
     int selectedCamera;
     public Placement placement;
     public Hover hover;
+    public Connection connection;
 
     float originalSpeed;
     public float rotationSpeed;
@@ -171,9 +172,13 @@ public class CameraMovement : MonoBehaviour
 #if UNITY_ANDROID
         if (Input.touchCount == 1)
         {
-            transform.LookAt(cameras[selectedCamera]);
-            Camera.main.transform.localRotation = Quaternion.identity;
-            Camera.main.fieldOfView = 40;
+            if (connection)
+            {
+                transform.LookAt(cameras[selectedCamera]);
+                Camera.main.transform.localRotation = Quaternion.identity;
+                Camera.main.fieldOfView = 40;
+            }
+
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 startPos = Input.GetTouch(0).position;
@@ -366,7 +371,6 @@ public class CameraMovement : MonoBehaviour
 
     public void LookAtComponent(Transform componentToLook) 
     {
-        Debug.Log("test");
         zooming = true;
         Camera.main.fieldOfView = 10;
         transform.LookAt(componentToLook);
