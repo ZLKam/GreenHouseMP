@@ -353,12 +353,11 @@ public class Connection : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
-                Debug.Log("raycast");
                 if (selection.GetComponent<SelectedComponent>())
                 {
                     selectedComponent = selection.GetComponent<SelectedComponent>();
                     valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
-                    Debug.Log("Component");
+
                     foreach (SelectedComponent component in componentArray)
                     {
                         if (selectedComponent != component)

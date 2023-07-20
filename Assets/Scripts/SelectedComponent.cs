@@ -17,20 +17,27 @@ public class SelectedComponent : MonoBehaviour
     public ToggleMultiConnect multiConnecta;
     public Connection connection;
 
+    private bool canChange = false;
 
     public void ShowUI() 
     {
         if (!uiTemp)
         {
             uiTemp = Instantiate(UIPrefab, new Vector2(Input.GetTouch(0).position.x - 50, Input.GetTouch(0).position.y), Quaternion.identity);
+            Camera.main.transform.parent.GetComponent<CameraMovement>().enabled = false;
+            canChange = false;
+            StartCoroutine(Co());
         }
         uiTemp.transform.SetParent(canvas.transform);
         valueReturn = uiTemp.GetComponent<ReturnValue>();
-
-    }
+}
 
     public void RemoveUI() 
     {
+        if (canChange)
+        {
+            Camera.main.transform.parent.GetComponent<CameraMovement>().enabled = true;
+        }
         Destroy(uiTemp);
     }
 
@@ -40,5 +47,11 @@ public class SelectedComponent : MonoBehaviour
             return null;
         connectionPoint = selectedTransform[valueReturn.ReturnIndex()-1];
         return connectionPoint;
+    }
+
+    private IEnumerator Co()
+    {
+        yield return new WaitForEndOfFrame();
+        canChange = true;
     }
 }
