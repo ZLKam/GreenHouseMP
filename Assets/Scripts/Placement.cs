@@ -351,7 +351,7 @@ public class Placement : MonoBehaviour
                     return;
                 //Set the vector finger point from the screen into a world point
                 //set the gameobject we referenced to the world point
-                Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 50));
+                Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
                 deletableGameobject.transform.position = tempPos;
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled)
@@ -364,7 +364,7 @@ public class Placement : MonoBehaviour
                 //creates a raycast, ignores the component layer and checks if it does not hit any object with a collider
                 //if there is no collider will delete the gameobject as it is outside the boundaries
                 //if the raycast hits a collider, it will return the game object to its parent transform
-                deletableGameobject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 50));
+                deletableGameobject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
                 if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)))
                 {
                     deletableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
