@@ -1,6 +1,7 @@
 using Level3;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +36,12 @@ public class LinePathFind : MonoBehaviour
     private bool findingPath = false;
 
     [SerializeField]
-    private GameObject txtFindingPath;
+    private GameObject imgFindingPath;
+
+    [SerializeField]
+    private GameObject imgError;
+
+    private bool fullConnectionPoints = false;
 
     private void OnDisable()
     {
@@ -48,7 +54,7 @@ public class LinePathFind : MonoBehaviour
     {
         if (findingPath)
             return;
-#if UNITY_EDITOR
+#if UNITY_STANDALONE
         if (Input.GetMouseButtonDown(0))
 #endif
 #if UNITY_ANDROID
@@ -106,8 +112,13 @@ public class LinePathFind : MonoBehaviour
                 if (nearestNodes[0] == zeros[0] || nearestNodes[1] == zeros[1])
                 {
                     Debug.Log("No nodes found.");
-                    changedFrom.GetComponent<LineLimit>().AllowDrawLine = true;
-                    changedTo.GetComponent<LineLimit>().AllowDrawLine = true;
+                    StartCoroutine(ShowError());
+                    if (!fullConnectionPoints)
+                    {
+                        changedFrom.GetComponent<LineLimit>().AllowDrawLine = true;
+                        changedTo.GetComponent<LineLimit>().AllowDrawLine = true;
+                    }
+                    fullConnectionPoints = false;
                     changedFrom = null;
                     changedTo = null;
                     fromT = null;
@@ -123,6 +134,40 @@ public class LinePathFind : MonoBehaviour
                     toT = null;
                 }
             }
+        }
+    }
+
+    private IEnumerator ShowError()
+    {
+        imgError.SetActive(true);
+        yield return StartCoroutine(CloseErrorImg());
+    }
+
+    private IEnumerator CloseErrorImg()
+    {
+        float time = 0f;
+        yield return new WaitForNextFrameUnit();
+        while (true)
+        {
+            {
+#if UNITY_STANDALONE
+                if (Input.GetMouseButtonDown(0))
+#endif
+#if UNITY_ANDROID
+                if (InputSystem.Instance.LeftClick())
+#endif
+                {
+                    imgError.SetActive(false);
+                    yield break;
+                }
+                time += Time.deltaTime;
+                if (time >= 2f)
+                {
+                    imgError.SetActive(false);
+                    yield break;
+                }
+            }
+            yield return null;
         }
     }
 
@@ -280,11 +325,13 @@ public class LinePathFind : MonoBehaviour
             changedTo = toPoint;
             changedFrom.GetComponent<LineLimit>().AllowDrawLine = false;
             changedTo.GetComponent<LineLimit>().AllowDrawLine = false;
+            lineStartPoint = fromPoint.position;
+            lineEndPoint = toPoint.position;
+            lineFrom = fromPoint;
+            lineTo = toPoint;
         }
-        lineStartPoint = fromPoint.position;
-        lineEndPoint = toPoint.position;
-        lineFrom = fromPoint;
-        lineTo = toPoint;
+        else
+            fullConnectionPoints = true;
         return new List<Transform>() { fromPoint, toPoint };
     }
 
@@ -304,7 +351,7 @@ public class LinePathFind : MonoBehaviour
 
     IEnumerator Coroutine_PathFinding(PathFinder pathFinder, RectGrid grid)
     {
-        txtFindingPath.SetActive(true);
+        imgFindingPath.SetActive(true);
         while (pathFinder.status == PathFinderStatus.RUNNING)
         {
             findingPath = true;
@@ -342,7 +389,7 @@ public class LinePathFind : MonoBehaviour
             line.GetComponent<DrawLine>().lineTo = lineTo;
             line.GetComponent<DrawLine>().finishedAddingPoints = true;
         }
-        txtFindingPath.SetActive(false);
+        imgFindingPath.SetActive(false);
         findingPath = false;
     }
 
