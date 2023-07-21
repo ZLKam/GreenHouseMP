@@ -14572,7 +14572,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 626370460}
         m_TargetAssemblyTypeName: Fade, Assembly-CSharp
-        m_MethodName: transition
+        m_MethodName: Transition
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

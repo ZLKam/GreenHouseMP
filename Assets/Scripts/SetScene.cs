@@ -13,20 +13,7 @@ public class SetScene : MonoBehaviour
 
     public void ResetScene()
     {
-        scene1 = SceneManager.GetActiveScene();
-        if (scene1.name == "Level 1")
-        {
-            Instructions.Readlvl1 = true;
-        }
-        if (scene1.name == "Level 2")
-        {
-            Instructions.Readlvl2 = true;
-        }
-        if (scene1.name == "Level 3") 
-        {
-            Instructions.Readlvl3 = true;
-        }
-        Debug.Log(scene1.name);
+        Instructions.Read = true;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     } 

@@ -133,6 +133,7 @@ public class Fade : MonoBehaviour
         transitionScene = scene;
 
         fadeOut = true;
+        Instructions.Read = false;
     }
 
     public void TransitionNoSceneChange() 
