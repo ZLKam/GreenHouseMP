@@ -96889,7 +96889,7 @@ MonoBehaviour:
   previousBtn: {fileID: 1018909242}
   textArea: {fileID: 655027228}
   textTitleArea: {fileID: 193128917}
-  InstructionalPopUps: {fileID: 0}
+  InstructionalPopUps: {fileID: 1645966586}
 --- !u!114 &1645966588
 MonoBehaviour:
   m_ObjectHideFlags: 0
