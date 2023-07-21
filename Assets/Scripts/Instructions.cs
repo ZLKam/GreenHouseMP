@@ -22,7 +22,9 @@ public class Instructions : MonoBehaviour
     private TextMeshProUGUI textTitleArea;
 
     public GameObject InstructionalPopUps;
-    public static bool Read;
+    public static bool Readlvl1;
+    public static bool Readlvl2;
+    public static bool Readlvl3;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class Instructions : MonoBehaviour
         {
             previousBtn.SetActive(false);
         }
-        if (Read == true)
+        if (Readlvl1 == true || Readlvl2 == true || Readlvl3 == true)
         {
             InstructionalPopUps.SetActive(false);
         }

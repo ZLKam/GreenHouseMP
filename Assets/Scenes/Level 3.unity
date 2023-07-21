@@ -11057,8 +11057,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1204287655}
-        m_TargetAssemblyTypeName: ComponentWheel, Assembly-CSharp
+      - m_Target: {fileID: 2007340952463666844}
+        m_TargetAssemblyTypeName: SetScene, Assembly-CSharp
         m_MethodName: ResetScene
         m_Mode: 1
         m_Arguments:
@@ -11270,3 +11270,15 @@ MonoBehaviour:
   speechText: {fileID: 1557673174}
   Speaker: {fileID: 676174974}
   Profilebutton: {fileID: 1371335283}
+--- !u!114 &2007340952463666844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007340952463666842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32189bbdcc7356b45b8b2f828472bfc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

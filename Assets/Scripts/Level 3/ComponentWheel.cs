@@ -116,11 +116,11 @@ public class ComponentWheel : MonoBehaviour
         }
     }
 
-    public void ResetScene()
-    {
-        Instructions.Read = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    //public void ResetScene()
+    //{
+    //    Instructions.Read = true;
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 
     //public void CheckAnswer()
     //{
