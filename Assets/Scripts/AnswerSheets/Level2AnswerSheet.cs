@@ -44,6 +44,7 @@ public class Level2AnswerSheet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CHWSans = CHWRans = CWSans = CWRans = null;
         showPopUp = true;
         //Debug.Log(connectionPoint1.Count);
 
@@ -81,6 +82,7 @@ public class Level2AnswerSheet : MonoBehaviour
                 wrongPanel.SetActive(true);
                 Debug.Log("wrong");
                 showPopUp = false;
+                CHWSans = CHWRans = CWSans = CWRans = null;
             }
         }
     }
