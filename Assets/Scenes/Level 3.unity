@@ -6037,6 +6037,7 @@ MonoBehaviour:
   previousBtn: {fileID: 1878064070}
   textArea: {fileID: 1929668770}
   textTitleArea: {fileID: 685510037}
+  InstructionalPopUps: {fileID: 1100470212}
 --- !u!114 &1100470215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10285,6 +10286,7 @@ MonoBehaviour:
   previousBtn: {fileID: 1878064070}
   textArea: {fileID: 1929668770}
   textTitleArea: {fileID: 685510037}
+  InstructionalPopUps: {fileID: 0}
 --- !u!114 &1953659423
 MonoBehaviour:
   m_ObjectHideFlags: 0
