@@ -22,7 +22,10 @@ public class ComponentWheel : MonoBehaviour
     [SerializeField]
     internal bool drawLine = false;
 
-    public Text txtMode;
+    //public Text txtMode;
+    public Button btnChangeMode;
+    public Sprite drawLineSprite;
+    public Sprite selectComponentSprite;
 
     public Vector2 centerPointOfPlayArea = new();
 
@@ -40,7 +43,8 @@ public class ComponentWheel : MonoBehaviour
 
         centerPointOfPlayArea = new Vector2((top.position.y + bottom.position.y) / 2, (left.position.x + right.position.x) / 2);
 
-        txtMode.text = "Select Component";
+        //txtMode.text = "Select Component";
+        btnChangeMode.GetComponent<SpriteRenderer>().sprite = selectComponentSprite;
     }
 
     internal bool IsWithinX(Vector3 check)
@@ -70,7 +74,8 @@ public class ComponentWheel : MonoBehaviour
 
         if (selectComponent)
         {
-            txtMode.text = "Select Component";
+            //txtMode.text = "Select Component";
+            btnChangeMode.GetComponent<SpriteRenderer>().sprite = selectComponentSprite;
             //FindObjectOfType<LineManagerController>().enabled = false;
             //var lineParents = GameObject.FindGameObjectsWithTag("LineParent").ToList();
             //var lines = GameObject.FindGameObjectsWithTag("Line").ToList();
@@ -103,14 +108,15 @@ public class ComponentWheel : MonoBehaviour
         }
         else
         {
-            txtMode.text = "Draw Line";
+            //txtMode.text = "Draw Line";
+            btnChangeMode.GetComponent<SpriteRenderer>().sprite = drawLineSprite;
             //FindObjectOfType<LineManagerController>().enabled = true;
             FindObjectOfType<LinePathFind>().enabled = true;
         }
     }
 
-    public void CheckAnswer()
-    {
+    //public void CheckAnswer()
+    //{
         //foreach (Transform child in playArea)
         //{
         //    if (child.CompareTag("Component") || child.CompareTag("Component/Chiller"))
@@ -137,5 +143,5 @@ public class ComponentWheel : MonoBehaviour
         //    Debug.Log("Incorrect");
         //}
         //correctList.Clear();
-    }
+    //}
 }
