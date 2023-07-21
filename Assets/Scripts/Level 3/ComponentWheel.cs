@@ -23,7 +23,7 @@ public class ComponentWheel : MonoBehaviour
     internal bool drawLine = false;
 
     //public Text txtMode;
-    public Button btnChangeMode;
+    public Image btnChangeMode;
     public Sprite drawLineSprite;
     public Sprite selectComponentSprite;
 
@@ -44,7 +44,7 @@ public class ComponentWheel : MonoBehaviour
         centerPointOfPlayArea = new Vector2((top.position.y + bottom.position.y) / 2, (left.position.x + right.position.x) / 2);
 
         //txtMode.text = "Select Component";
-        btnChangeMode.GetComponent<SpriteRenderer>().sprite = selectComponentSprite;
+        btnChangeMode.sprite = selectComponentSprite;
     }
 
     internal bool IsWithinX(Vector3 check)
@@ -75,7 +75,7 @@ public class ComponentWheel : MonoBehaviour
         if (selectComponent)
         {
             //txtMode.text = "Select Component";
-            btnChangeMode.GetComponent<SpriteRenderer>().sprite = selectComponentSprite;
+            btnChangeMode.sprite = selectComponentSprite;
             //FindObjectOfType<LineManagerController>().enabled = false;
             //var lineParents = GameObject.FindGameObjectsWithTag("LineParent").ToList();
             //var lines = GameObject.FindGameObjectsWithTag("Line").ToList();
@@ -109,7 +109,7 @@ public class ComponentWheel : MonoBehaviour
         else
         {
             //txtMode.text = "Draw Line";
-            btnChangeMode.GetComponent<SpriteRenderer>().sprite = drawLineSprite;
+            btnChangeMode.sprite = drawLineSprite;
             //FindObjectOfType<LineManagerController>().enabled = true;
             FindObjectOfType<LinePathFind>().enabled = true;
         }
