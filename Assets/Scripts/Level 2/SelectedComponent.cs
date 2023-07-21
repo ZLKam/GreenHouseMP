@@ -19,6 +19,11 @@ public class SelectedComponent : MonoBehaviour
 
     private bool canChange = false;
 
+    private void Start()
+    {
+        connection = FindObjectOfType<Connection>();
+    }
+
     public void ShowUI(Vector3 selectionPoint) 
     {
         if (!uiTemp)
@@ -28,7 +33,7 @@ public class SelectedComponent : MonoBehaviour
             canChange = false;
             StartCoroutine(Co());
         }
-        uiTemp.transform.SetParent(canvas.transform);
+        uiTemp.transform.SetParent(connection.uiParent.transform);
         valueReturn = uiTemp.GetComponent<ReturnValue>();
     }
 

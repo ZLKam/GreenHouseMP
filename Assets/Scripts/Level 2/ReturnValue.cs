@@ -18,6 +18,11 @@ public class ReturnValue : MonoBehaviour
 
     public void ButtonPress1() 
     {
+        if (connection.pipeWarning)
+        {
+            connection.pipeWarningPanel.SetActive(true);
+            return;
+        }
         pressedBtn = !pressedBtn;
         indexValue = 1;
         scriptRef();
@@ -25,6 +30,11 @@ public class ReturnValue : MonoBehaviour
 
     public void ButtonPress2() 
     {
+        if (connection.pipeWarning)
+        {
+            connection.pipeWarningPanel.SetActive(true);
+            return;
+        }
         pressedBtn = !pressedBtn;
         indexValue = 2;
         scriptRef();
@@ -32,6 +42,11 @@ public class ReturnValue : MonoBehaviour
 
     public void ButtonPress3()
     {
+        if (connection.pipeWarning)
+        {
+            connection.pipeWarningPanel.SetActive(true);
+            return;
+        }
         pressedBtn = !pressedBtn;
         indexValue = 3;
         scriptRef();
@@ -39,6 +54,11 @@ public class ReturnValue : MonoBehaviour
 
     public void ButtonPress4()
     {
+        if (connection.pipeWarning)
+        {
+            connection.pipeWarningPanel.SetActive(true);
+            return;
+        }
         pressedBtn = !pressedBtn;
         indexValue = 4;
         scriptRef();

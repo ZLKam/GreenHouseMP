@@ -54,7 +54,10 @@ public class Connection : MonoBehaviour
 
     bool allMatch;
     bool anomalyFound;
+    public bool pipeWarning;
+    public GameObject pipeWarningPanel;
     public Fade fade;
+    public GameObject uiParent;
 
     private void Awake()
     {
@@ -104,6 +107,14 @@ public class Connection : MonoBehaviour
 
     void Highlight()
     {
+        if (!pipe && !entrance && !exit && !body)
+        {
+            pipeWarning = true;
+        }
+        else 
+        {
+            pipeWarning = false;
+        }
         // checks if there is an object being highlighted
         // if so, remove highlight by resetting the object's material to it's original material
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -146,7 +157,8 @@ public class Connection : MonoBehaviour
                     //Debug.Log("Reached two");
                     selectedComponent = selection.GetComponent<SelectedComponent>();
                     //selectedComponent.valueReturn.selectedComponentBtn = selectedComponent;
-                    valueReturnBtn.selectedComponentBtn = selectedComponent;
+                    //valueReturnBtn.selectedComponentBtn = selectedComponent;
+
                     foreach (SelectedComponent component in componentArray) 
                     {
                         if (selectedComponent != component)
@@ -212,8 +224,10 @@ public class Connection : MonoBehaviour
         void Connect()
         {
             if (!pipe && !entrance && !exit && !body)
+            {
                 return;
-            for (int i = 0; i < points.Count; i++)
+            }
+        for (int i = 0; i < points.Count; i++)
             {
                 point1 = points[0].transform;
                 point2 = points[1].transform;
@@ -265,8 +279,14 @@ public class Connection : MonoBehaviour
 
         void MultiHighlight()
         {
-            if (!pipe && !entrance && !exit && !body)
-                 return;
+        if (!pipe && !entrance && !exit && !body)
+        {
+            pipeWarning = true;
+        }
+        else 
+        {
+            pipeWarning = false;
+        }
             // checks if there is an object being highlighted
             // if so, remove highlight by resetting the object's material to it's original material
             if (highlight != null)
@@ -375,7 +395,11 @@ public class Connection : MonoBehaviour
 
         void MultiConnect()
         {
-            for (int i = 0; i < multiPoints.Count; i++)
+        if (!pipe && !entrance && !exit && !body)
+        {
+            return;
+        }
+        for (int i = 0; i < multiPoints.Count; i++)
             {
                 multiplePoints.Add(multiPoints[i].transform);
             }

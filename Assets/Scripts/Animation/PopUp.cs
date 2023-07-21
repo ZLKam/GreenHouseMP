@@ -55,6 +55,7 @@ public class PopUp : MonoBehaviour
             }
             
             //they do all of this just for an animation
+            //check local scale and set the max size to be bigger than the gameobject
             if(popImage.rectTransform.localScale.x < maxSize)
             {
                 popImage.rectTransform.localScale += popSpeed;
