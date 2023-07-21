@@ -54,6 +54,7 @@ public class Connection : MonoBehaviour
 
     bool allMatch;
     bool anomalyFound;
+    public Fade fade;
 
     private void Awake()
     {
@@ -64,19 +65,22 @@ public class Connection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckUndoPipes();
-
-        if (multiConnect)
+        if (!fade.PauseCheck)
         {
-            MultiHighlight();
-        }
-        else
-        {
-            Highlight();
-        }
+            CheckUndoPipes();
 
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (multiConnect)
+            {
+                MultiHighlight();
+            }
+            else
+            {
+                Highlight();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     void CheckUndoPipes()

@@ -5259,6 +5259,7 @@ MonoBehaviour:
   GameMenu: {fileID: 1318556290}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
+  PauseCheck: 0
 --- !u!114 &673814218
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2503,6 +2503,7 @@ MonoBehaviour:
   pipeConnection: []
   centerPoints: []
   lengths: []
+  fade: {fileID: 626370460}
 --- !u!114 &252340425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5097,6 +5098,7 @@ MonoBehaviour:
   GameMenu: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
+  PauseCheck: 0
 --- !u!114 &452815355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7279,6 +7281,7 @@ MonoBehaviour:
   GameMenu: {fileID: 0}
   pausePanel: {fileID: 32163965}
   instructionPanel: {fileID: 860568394}
+  PauseCheck: 0
 --- !u!114 &626370461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20355,6 +20358,7 @@ MonoBehaviour:
   GameMenu: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
+  PauseCheck: 0
 --- !u!114 &2022630539
 MonoBehaviour:
   m_ObjectHideFlags: 0
