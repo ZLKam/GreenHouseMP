@@ -39,7 +39,6 @@ public class Instructions : MonoBehaviour
         }
         if (Read == true)
         {
-            InstructionalPopUps = GameObject.Find("Instruction Panel");
             InstructionalPopUps.SetActive(false);
         }
 
