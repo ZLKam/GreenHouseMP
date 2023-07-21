@@ -6158,7 +6158,7 @@ RectTransform:
   m_GameObject: {fileID: 762596714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75249, y: 0.97108835, z: 0.75249}
+  m_LocalScale: {x: 1.0061308, y: 1.2984117, z: 1.0061308}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1516517725}
@@ -6190,7 +6190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c16313bd07fb0284fbb87afc38e0a9c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7903adde92a0f0140b7796c0d3861e90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12947,8 +12947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061a89519d0cc524db878f5daadef514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSize: 200
-  maxSize: 225
+  minSize: 175
+  maxSize: 200
   fadeAmount: 0
   fadeSpeed: 9
   fadeImage: {fileID: 1516517723}
@@ -12999,7 +12999,7 @@ RectTransform:
   m_GameObject: {fileID: 1516517721}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3289214, y: 1.0297724, z: 1.3289214}
+  m_LocalScale: {x: 1.1292378, y: 0.8750388, z: 1.1292378}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 762596715}
