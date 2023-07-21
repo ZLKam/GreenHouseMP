@@ -19,14 +19,27 @@ public class TheoryBook : MonoBehaviour
     [Header("Poloroid Frame")]
     public GameObject frame;
 
+    [Header("Main Menu Reference")]
+    [SerializeField] private GameObject quitBtn;
+
 
     public void OpenTheoryBook()
     {
+        if (quitBtn)
+        { 
+            quitBtn.SetActive(false);
+        }
+
         TheoryBookComponent.SetActive(true);
     }
 
     public void CloseTheoryBook()
     {
+        if (quitBtn)
+        {
+            quitBtn.SetActive(true);
+        }
+
         TheoryBookComponent.SetActive(false);
     }
 

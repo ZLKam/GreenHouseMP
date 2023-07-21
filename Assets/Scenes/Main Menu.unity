@@ -6353,6 +6353,7 @@ MonoBehaviour:
   Pipepage1: {fileID: 1924268628}
   Pipepage2: {fileID: 396779337}
   frame: {fileID: 290791295}
+  quitBtn: {fileID: 370486630}
 --- !u!1 &773696155
 GameObject:
   m_ObjectHideFlags: 0
