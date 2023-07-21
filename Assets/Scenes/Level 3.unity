@@ -6037,7 +6037,9 @@ MonoBehaviour:
   previousBtn: {fileID: 1878064070}
   textArea: {fileID: 1929668770}
   textTitleArea: {fileID: 685510037}
-  InstructionalPopUps: {fileID: 1100470212}
+  InstructionalPopUpslvl1: {fileID: 0}
+  InstructionalPopUpslvl2: {fileID: 0}
+  InstructionalPopUpslvl3: {fileID: 1100470212}
 --- !u!114 &1100470215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7462,7 +7464,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2007340952463666843}
         m_TargetAssemblyTypeName: Speech, Assembly-CSharp
         m_MethodName: speech
         m_Mode: 1
@@ -10286,7 +10288,9 @@ MonoBehaviour:
   previousBtn: {fileID: 1878064070}
   textArea: {fileID: 1929668770}
   textTitleArea: {fileID: 685510037}
-  InstructionalPopUps: {fileID: 0}
+  InstructionalPopUpslvl1: {fileID: 0}
+  InstructionalPopUpslvl2: {fileID: 0}
+  InstructionalPopUpslvl3: {fileID: 0}
 --- !u!114 &1953659423
 MonoBehaviour:
   m_ObjectHideFlags: 0

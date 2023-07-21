@@ -21,7 +21,9 @@ public class Instructions : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textTitleArea;
 
-    public GameObject InstructionalPopUps;
+    public GameObject InstructionalPopUpslvl1;
+    public GameObject InstructionalPopUpslvl2;
+    public GameObject InstructionalPopUpslvl3;
     public static bool Readlvl1;
     public static bool Readlvl2;
     public static bool Readlvl3;
@@ -39,10 +41,15 @@ public class Instructions : MonoBehaviour
         {
             previousBtn.SetActive(false);
         }
-        if (Readlvl1 == true || Readlvl2 == true || Readlvl3 == true)
+        if (Readlvl1 == true)
         {
-            InstructionalPopUps.SetActive(false);
+            InstructionalPopUpslvl1.SetActive(false);
         }
+        if(Readlvl2 == true) { InstructionalPopUpslvl2.SetActive(false);}
+        if(Readlvl3 == true) { InstructionalPopUpslvl3.SetActive(false);}
+        Debug.Log(Readlvl3);
+        Debug.Log(Readlvl2);
+        Debug.Log(Readlvl1);
     }
 
     public void Next()

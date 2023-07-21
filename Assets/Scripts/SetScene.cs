@@ -18,11 +18,15 @@ public class SetScene : MonoBehaviour
         {
             Instructions.Readlvl1 = true;
         }
-        else if (scene1.name == "Level 2")
+        if (scene1.name == "Level 2")
         {
             Instructions.Readlvl2 = true;
         }
-        else if(scene1.name == "Level 3") { Instructions.Readlvl3 = true; }
+        if (scene1.name == "Level 3") 
+        {
+            Instructions.Readlvl3 = true;
+        }
+        Debug.Log(scene1.name);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     } 

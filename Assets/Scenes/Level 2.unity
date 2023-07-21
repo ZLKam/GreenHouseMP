@@ -8968,7 +8968,9 @@ MonoBehaviour:
   previousBtn: {fileID: 1960133745}
   textArea: {fileID: 71580105}
   textTitleArea: {fileID: 209436819}
-  InstructionalPopUps: {fileID: 860568394}
+  InstructionalPopUpslvl1: {fileID: 0}
+  InstructionalPopUpslvl2: {fileID: 860568394}
+  InstructionalPopUpslvl3: {fileID: 0}
 --- !u!114 &860568397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12381,7 +12383,9 @@ MonoBehaviour:
   previousBtn: {fileID: 1960133745}
   textArea: {fileID: 71580105}
   textTitleArea: {fileID: 209436819}
-  InstructionalPopUps: {fileID: 0}
+  InstructionalPopUpslvl1: {fileID: 0}
+  InstructionalPopUpslvl2: {fileID: 0}
+  InstructionalPopUpslvl3: {fileID: 0}
 --- !u!114 &1222821906
 MonoBehaviour:
   m_ObjectHideFlags: 0
