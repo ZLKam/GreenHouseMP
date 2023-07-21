@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Placement : MonoBehaviour
 //Handles the Placement of component gameobjects
@@ -163,7 +164,6 @@ public class Placement : MonoBehaviour
         //constantly generates a raycast from the mouse position
         //checks if the mouse is over a game object and the returns the hit object using raycast
         {
-
             if (hit.collider.CompareTag("Selection"))
             {
                 if (highlighted == hit.transform)
