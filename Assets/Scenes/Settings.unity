@@ -767,9 +767,9 @@ MonoBehaviour:
     m_Options:
     - m_Text: Singapore Skyline
       m_Image: {fileID: 0}
-    - m_Text: Default
-      m_Image: {fileID: 0}
     - m_Text: Sunset
+      m_Image: {fileID: 0}
+    - m_Text: Default
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1710,6 +1710,7 @@ MonoBehaviour:
   GameMenu: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
+  PauseCheck: 0
 --- !u!114 &198328468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5134,8 +5135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundImages:
   - {fileID: 1748379553}
-  - {fileID: 772500850}
   - {fileID: 1051505894}
+  - {fileID: 772500850}
 --- !u!1 &914771826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5554,6 +5555,7 @@ MonoBehaviour:
   GameMenu: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
+  PauseCheck: 0
 --- !u!114 &950101204
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9673,6 +9673,7 @@ MonoBehaviour:
   Pipepage1: {fileID: 1443662697}
   Pipepage2: {fileID: 926295281}
   frame: {fileID: 648437682}
+  quitBtn: {fileID: 0}
 --- !u!114 &889600443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18818,8 +18819,8 @@ MonoBehaviour:
   maxZoom: 140
   skyboxes:
   - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
-  - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
+  - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   zooming: 0
   moved: 0
   zoomStopDistance: 60
