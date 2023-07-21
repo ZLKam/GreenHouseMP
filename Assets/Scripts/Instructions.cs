@@ -21,6 +21,9 @@ public class Instructions : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textTitleArea;
 
+    public GameObject InstructionalPopUps;
+    public static bool Read;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,10 @@ public class Instructions : MonoBehaviour
         if (index == 0)
         {
             previousBtn.SetActive(false);
+        }
+        if (Read == true)
+        {
+            InstructionalPopUps.SetActive(false);
         }
     }
 
