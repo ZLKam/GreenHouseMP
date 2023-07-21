@@ -172,13 +172,11 @@ public class CameraMovement : MonoBehaviour
 #if UNITY_ANDROID
         if (Input.touchCount == 1)
         {
+            transform.LookAt(cameras[selectedCamera]);
+            Camera.main.transform.localRotation = Quaternion.identity;
+            
             if (connection)
-            // for level 2
-            {
-                transform.LookAt(cameras[selectedCamera]);
-                Camera.main.transform.localRotation = Quaternion.identity;
                 Camera.main.fieldOfView = 40;
-            }
 
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
@@ -194,6 +192,7 @@ public class CameraMovement : MonoBehaviour
                 float rotationAmountX = -swipeDelta.y / 100f * rotationSpeed * Time.deltaTime;
                 float currentEulerAngleY = transform.rotation.eulerAngles.y;
                 float currentEulerAngleX = transform.rotation.eulerAngles.x;
+                Debug.Log(transform.rotation.eulerAngles.z);
                 if (rotationAmountY != 0)
                 {
                     if ((currentEulerAngleY + rotationAmountY) > maxRotationY)
