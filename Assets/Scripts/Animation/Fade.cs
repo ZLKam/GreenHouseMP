@@ -33,6 +33,8 @@ public class Fade : MonoBehaviour
     [SerializeField]
     private GameObject instructionPanel;
 
+    public bool PauseCheck;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -167,11 +169,15 @@ public class Fade : MonoBehaviour
         {
             Time.timeScale = 0;
             pausePanel.SetActive(true);
+            PauseCheck = true;
+            Debug.Log(PauseCheck);
         }
         else 
         {
             Time.timeScale = 1;
             pausePanel.SetActive(false);
+            PauseCheck = false;
+            Debug.Log(PauseCheck);
         }
     }
 
