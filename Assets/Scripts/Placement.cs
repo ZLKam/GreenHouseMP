@@ -234,7 +234,7 @@ public class Placement : MonoBehaviour
                 foreach (GameObject selection in selections)
                 {
                     // if the selection is not in the selected array, change the material back to original material
-                    if (selected == null || selection.transform != selected)
+                    if (selected.GetChild(1).gameObject.layer != 6 || selection.transform != selected)
                     {
                         selection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
                     }

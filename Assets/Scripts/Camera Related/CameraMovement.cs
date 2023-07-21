@@ -192,7 +192,6 @@ public class CameraMovement : MonoBehaviour
                 float rotationAmountX = -swipeDelta.y / 100f * rotationSpeed * Time.deltaTime;
                 float currentEulerAngleY = transform.rotation.eulerAngles.y;
                 float currentEulerAngleX = transform.rotation.eulerAngles.x;
-                Debug.Log(transform.rotation.eulerAngles.z);
                 if (rotationAmountY != 0)
                 {
                     if ((currentEulerAngleY + rotationAmountY) > maxRotationY)

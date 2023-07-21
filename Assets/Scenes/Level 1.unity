@@ -4503,9 +4503,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TheoryBookPipes, Assembly-CSharp
-        m_MethodName: Page1
+      - m_Target: {fileID: 1813309337}
+        m_TargetAssemblyTypeName: TheoryBook, Assembly-CSharp
+        m_MethodName: PipePage1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6263,7 +6263,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1813309337}
         m_TargetAssemblyTypeName: TheoryBook, Assembly-CSharp
-        m_MethodName: Page1
+        m_MethodName: ComponentPage1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20294,6 +20294,18 @@ MonoBehaviour:
           m_StringArgument: Main Menu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1521730576}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &285895148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31510,7 +31522,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1813309337}
         m_TargetAssemblyTypeName: TheoryBook, Assembly-CSharp
-        m_MethodName: Page2
+        m_MethodName: ComponentPage2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -44762,9 +44774,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TheoryBookPipes, Assembly-CSharp
-        m_MethodName: Page2
+      - m_Target: {fileID: 1813309337}
+        m_TargetAssemblyTypeName: TheoryBook, Assembly-CSharp
+        m_MethodName: PipePage2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45450,6 +45462,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1521730576}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &734427630
@@ -55090,7 +55114,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1813309337}
         m_TargetAssemblyTypeName: TheoryBook, Assembly-CSharp
-        m_MethodName: Page3
+        m_MethodName: ComponentPage3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -84769,6 +84793,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1521730576}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1439859909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108000,13 +108036,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a539690c20e08b445ac8cb5ff95e6a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TheoryBookComponent: {fileID: 0}
+  TheoryBookComponent: {fileID: 477689256}
   TheoryBookPipes: {fileID: 478060810}
-  Comppage1: {fileID: 0}
-  Comppage2: {fileID: 0}
-  Comppage3: {fileID: 0}
-  Pipepage1: {fileID: 0}
-  Pipepage2: {fileID: 0}
+  Comppage1: {fileID: 1561108159}
+  Comppage2: {fileID: 749564033}
+  Comppage3: {fileID: 2018674271}
+  Pipepage1: {fileID: 923277355}
+  Pipepage2: {fileID: 710976862}
   frame: {fileID: 803682016}
 --- !u!114 &1813309338
 MonoBehaviour:
@@ -110556,7 +110592,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1813309337}
         m_TargetAssemblyTypeName: TheoryBook, Assembly-CSharp
-        m_MethodName: Page2
+        m_MethodName: ComponentPage2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -111268,6 +111304,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Main Menu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1521730576}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1868952798
