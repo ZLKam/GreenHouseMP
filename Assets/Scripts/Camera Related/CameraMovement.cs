@@ -37,20 +37,12 @@ public class CameraMovement : MonoBehaviour
     private float maxRotationY = 150f;
     private float minRotationY = 30f;
 
+    public float cameraDist;
+
     void Start()
     {
-        //PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
-        /*
-        if (level1)
-        {
-            
-        }
+        cameraDist = Vector3.Distance(cameras[0].transform.position, transform.position);
 
-        if (level2)
-        {
-            PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
-        }
-        */
         rotationSpeed = PlayerPrefs.GetFloat("rotationSpeed");
         sensitivity = PlayerPrefs.GetFloat("zoomSensitivity");
         originalSpeed = rotationSpeed;
@@ -96,6 +88,13 @@ public class CameraMovement : MonoBehaviour
             SwitchCamera();
             CameraRotation();
             ZoomCamera();
+        }
+
+        Debug.DrawLine(cameras[0].position, transform.position - cameras[0].position, Color.yellow);
+        if (Physics.Raycast(cameras[0].position, transform.position - cameras[0].position, out RaycastHit hit, cameraDist))
+        {
+            Vector3 newCamPos = hit.point;
+            transform.position = newCamPos;
         }
         //EnhancedCamera();
     }
@@ -172,7 +171,7 @@ public class CameraMovement : MonoBehaviour
 #if UNITY_ANDROID
         if (Input.touchCount == 1)
         {
-            transform.LookAt(cameras[selectedCamera]);
+            transform.LookAt(cameras[0]);
             Camera.main.transform.localRotation = Quaternion.identity;
             
             if (connection)
