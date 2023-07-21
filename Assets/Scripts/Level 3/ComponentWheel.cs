@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ComponentWheel : MonoBehaviour
@@ -113,6 +114,11 @@ public class ComponentWheel : MonoBehaviour
             //FindObjectOfType<LineManagerController>().enabled = true;
             FindObjectOfType<LinePathFind>().enabled = true;
         }
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     //public void CheckAnswer()
