@@ -4893,7 +4893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &452815354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6098,7 +6098,7 @@ RectTransform:
   m_Children:
   - {fileID: 178526603}
   m_Father: {fileID: 889600440}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9674,6 +9674,7 @@ RectTransform:
   - {fileID: 954244141}
   - {fileID: 1435376671}
   - {fileID: 1555898005}
+  - {fileID: 1190323215}
   - {fileID: 1941359189}
   - {fileID: 547613675}
   m_Father: {fileID: 0}
@@ -19136,7 +19137,7 @@ RectTransform:
   m_Children:
   - {fileID: 1184406522}
   m_Father: {fileID: 889600440}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -63238,7 +63239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7320950918112663533, guid: e2421a1bd3fb87548a1533e3c8b8a41c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: transition
+      value: Transition
       objectReference: {fileID: 0}
     - target: {fileID: 7320950918112663533, guid: e2421a1bd3fb87548a1533e3c8b8a41c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

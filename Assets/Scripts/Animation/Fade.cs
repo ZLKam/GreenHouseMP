@@ -78,6 +78,7 @@ public class Fade : MonoBehaviour
                 if (exit)
                 {
                     Profile.ProfileSet = false;
+                    Instructions.Read = false;
                     Application.Quit();
                 }
                 else if (!string.IsNullOrEmpty(transitionScene))

@@ -12,6 +12,7 @@ public class SetScene : MonoBehaviour
 
     public void ResetScene()
     {
+        Instructions.Read = true;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     } 
