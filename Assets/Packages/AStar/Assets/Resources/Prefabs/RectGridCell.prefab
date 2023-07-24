@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2789570067947377317}
   - component: {fileID: 4562412919491831044}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6946120837487167500}
   - component: {fileID: 8718577537863009754}
   - component: {fileID: 8539238920702493411}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RectGridCell
   m_TagString: RectGrid
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4012606189667303462}
   - component: {fileID: 7257920071213394702}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

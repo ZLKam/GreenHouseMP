@@ -20,7 +20,7 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerDownHandler
     private Material wrongMat;
 
     [SerializeField]
-    private GameObject rightPanel;
+    private GameObject correctPanel;
     [SerializeField]
     private GameObject wrongPanel;
 
@@ -46,6 +46,7 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerDownHandler
         if (correct == numberOfCorrectConnections)
         {
             correctLines.ForEach(x => x.lr.material = correctMat);
+            correctPanel.SetActive(true);
             Debug.Log("Correct!!!");
         }
         else
