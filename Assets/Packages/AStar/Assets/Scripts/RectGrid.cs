@@ -59,57 +59,6 @@ public class RectGrid : MonoBehaviour
         pathFinder.traversalCost = EuclideanCost;
         pathFinder.getNeighbours = GetNeighbours;
     }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        ToggleWalkable();
-    //    }
-
-    //    if (Input.GetMouseButtonDown(1))
-    //    {
-    //        SetNPCDestination();
-    //    }
-    //}
-
-    void SetNPCDestination()
-    {
-        // Non pathfinding region
-        // Ray cast to check which cell is intersected.
-        Vector2 rayPos = new Vector2(
-          Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-          Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0.0f);
-        if (hit)
-        {
-            GameObject obj = hit.transform.gameObject;
-            RectGridCell gridCell = obj.GetComponent<RectGridCell>();
-            if (gridCell != null && line != null)
-            {
-                //line.SetDestination(gridCell.index, this, pathFinder);
-            }
-        }
-    }
-
-    void ToggleWalkable()
-    {
-        // Ray cast to check which cell is intersected.
-        Vector2 rayPos = new Vector2(
-          Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-          Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0.0f);
-        if (hit)
-        {
-            GameObject obj = hit.transform.gameObject;
-            RectGridCell gridCell = obj.GetComponent<RectGridCell>();
-            if (gridCell != null)
-            {
-                ToggleWalkable(gridCell);
-            }
-        }
-    }
     void ToggleWalkable(RectGridCell gridCell)
     {
         if (gridCell.isWalkable)
