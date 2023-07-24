@@ -89,8 +89,6 @@ public class CameraMovement : MonoBehaviour
             CameraRotation();
             ZoomCamera();
         }
-
-        Debug.DrawLine(cameras[0].position, transform.position - cameras[0].position, Color.yellow);
         if (Physics.Raycast(cameras[0].position, transform.position - cameras[0].position, out RaycastHit hit, cameraDist))
         {
             Vector3 newCamPos = hit.point;
