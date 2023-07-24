@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Profile : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class Profile : MonoBehaviour
 
     public GameObject maleBtn;
     public GameObject femaleBtn;
+   
+    public Image alertPopUp;
+    private string alertText = "Make sure a <color=red>Character</color> and a <color=red>Username</color> has been inputted.";
+    private bool justShowedAlert = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,27 +58,28 @@ public class Profile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        TransferInfo = ProfileImage;
-        if (gender != null)
-        {
-            genderFilled = true;
-        }
-        else { genderFilled = false; }
-        if (username != null)
-        {
-            usernameFilled = true;
-        }
-        else { usernameFilled = false; } 
+    //void Update()
+    //{
+    //    TransferInfo = ProfileImage;
+    //    if (gender != null)
+    //    {
+    //        genderFilled = true;
+    //    }
+    //    else { genderFilled = false; }
+    //    if (username != null)
+    //    {
+    //        usernameFilled = true;
+    //    }
+    //    else { usernameFilled = false; } 
 
-        textcon.text = username;
-    }
+    //    textcon.text = username;
+    //}
 
 
     public void GenderSetMale()
     {
         gender = "Male";
+        genderFilled = true;
         ProfileImage.sprite = MaleImage;
         femaleBtn.GetComponent<Image>().color = Color.white;
         maleBtn.GetComponent<Image>().color = Color.yellow;
@@ -82,6 +88,7 @@ public class Profile : MonoBehaviour
     public void GenderSetFemale()
     {
         gender = "Female";
+        genderFilled = true;
         ProfileImage.sprite = FemaleImage;
         femaleBtn.GetComponent<Image>().color = Color.yellow;
         maleBtn.GetComponent<Image>().color = Color.white;
@@ -90,18 +97,70 @@ public class Profile : MonoBehaviour
 
     public void StoreName()
     {
-        username = inputField.text;
+        if (inputField.text == string.Empty)
+        {
+            usernameFilled = false;
+        }
+        else
+        {
+            username = inputField.text;
+            usernameFilled = true;
+        }
     }
 
 
     public void Continue()
     {
+        if (justShowedAlert)
+            return;
         if (genderFilled && usernameFilled)
         {
             //SceneManager.LoadScene("Main Menu");
             profilestuff.SetActive(false);
             MenuItems.SetActive(true);
             ProfileSet = true;
+            TransferInfo = ProfileImage;
+            textcon.text = username;
+        }
+        else if (!genderFilled || !usernameFilled)
+        {
+            Debug.Log("Show alert");
+            alertPopUp.gameObject.SetActive(true);
+            alertPopUp.GetComponentInChildren<TextMeshProUGUI>().text = alertText;
+            StartCoroutine(CloseAlert());
+        }
+    }
+
+    private IEnumerator CloseAlert()
+    {
+        yield return new WaitForNextFrameUnit();
+        float time = 0f;
+        while (true)
+        {
+            if (justShowedAlert)
+            {
+                time += Time.deltaTime;
+                if (time >= 0.5f)
+                {
+                    justShowedAlert = false;
+                    yield break;
+                }
+                yield return null;
+            }
+            time += Time.deltaTime;
+            if (InputSystem.Instance.LeftClick())
+            {
+                alertPopUp.gameObject.SetActive(false);
+                time = 0f;
+                justShowedAlert = true;
+            }
+            if (time >= 2f)
+            {
+                alertPopUp.gameObject.SetActive(false);
+                time = 0f;
+                justShowedAlert = true;
+            }
+            yield return null;
         }
     }
 
