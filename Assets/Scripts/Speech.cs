@@ -13,17 +13,11 @@ public class Speech : MonoBehaviour
     public TextMeshProUGUI Speaker;
     public GameObject Profilebutton;
 
-    // Start is called before the first frame update
     void Start()
     {
         Profilebutton.GetComponent<Image>().sprite = Profile.TransferInfo.sprite;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void speech()
     {
         SpeechBubble.SetActive(true);
