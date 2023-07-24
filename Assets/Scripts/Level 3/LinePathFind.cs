@@ -43,6 +43,8 @@ public class LinePathFind : MonoBehaviour
 
     private bool fullConnectionPoints = false;
 
+    private float startTime;
+
     private void OnDisable()
     {
         fromT = null;
@@ -62,7 +64,7 @@ public class LinePathFind : MonoBehaviour
 #endif
         {
             // Hit detection
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, ~3);
             if (!hit)
                 return;
             if (!hit.transform.CompareTag("Component"))
@@ -345,6 +347,7 @@ public class LinePathFind : MonoBehaviour
                 pathFinder.Init(origin, destination);
                 //grid.ResetCellColors();
                 // Start a coroutine to do go to loop the pathfinding steps.
+                startTime = Time.time;
                 StartCoroutine(Coroutine_PathFinding(pathFinder, grid));
         }
     }
@@ -352,19 +355,29 @@ public class LinePathFind : MonoBehaviour
     IEnumerator Coroutine_PathFinding(PathFinder pathFinder, RectGrid grid)
     {
         imgFindingPath.SetActive(true);
+        int pathFindCount = 0;
         while (pathFinder.status == PathFinderStatus.RUNNING)
         {
             findingPath = true;
-            pathFinder.Step(false); ;
+            if (pathFindCount > 250)
+            {
+                Debug.Log("PathFinding is taking too long, break it.");
+                pathFinder.status = PathFinderStatus.FAILURE;
+                break;
+            }
+            pathFinder.Step(false);
+            pathFindCount++;
             yield return null;
         }
         // completed pathfinding.
         if (pathFinder.status == PathFinderStatus.FAILURE)
         {
+            StartCoroutine(ShowError());
             Debug.Log("Failed finding a path. No valid path exists");
         }
         if (pathFinder.status == PathFinderStatus.SUCCESS)
         {
+            Debug.Log("Found a path, time taken: " + (Time.time - startTime));
             // found a valid path.
             // accumulate all the locations by traversing from goal to the start.
             List<Vector2Int> reversePathLocations = new List<Vector2Int>();
