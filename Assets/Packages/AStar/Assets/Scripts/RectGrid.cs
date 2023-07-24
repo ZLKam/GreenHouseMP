@@ -54,7 +54,6 @@ public class RectGrid : MonoBehaviour
                 cells[i, j].name = "cell_" + i + "_" + j;
             }
         }
-        Debug.Log(transform.childCount);
 
         pathFinder.heuristicCost = ManhattanCost;
         pathFinder.traversalCost = EuclideanCost;
