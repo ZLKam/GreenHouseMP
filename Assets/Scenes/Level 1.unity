@@ -52618,7 +52618,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1813309339}
         m_TargetAssemblyTypeName: Speech, Assembly-CSharp
         m_MethodName: speech
         m_Mode: 1
@@ -98676,14 +98676,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e60fed1d9db8844ae3dd5f5235d507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightSprite: {fileID: 21300000, guid: b51e4cfff7378f844bb95a5e03c6b31c, type: 3}
-  selectionSprite: {fileID: 21300000, guid: 642700a5aec25204195f6947373cd393, type: 3}
   cameraMovement: {fileID: 1586243751}
   answerSheet1: {fileID: 1686206209}
   hover: {fileID: 0}
+  highlightSprite: {fileID: 21300000, guid: b51e4cfff7378f844bb95a5e03c6b31c, type: 3}
+  selectionSprite: {fileID: 21300000, guid: 642700a5aec25204195f6947373cd393, type: 3}
+  originalSprite: {fileID: 21300000, guid: b7a58407a8a05904a93f7d7ee038d7ba, type: 3}
   component: {fileID: 0}
   selectedPrefab: {fileID: 0}
-  originalSprite: {fileID: 21300000, guid: b7a58407a8a05904a93f7d7ee038d7ba, type: 3}
   tutorial: 0
   deletingObject: 0
 --- !u!1 &1668210592
