@@ -9,17 +9,18 @@ public class Placement : MonoBehaviour
 //Handles the Placement of component gameobjects
 //Also handles the highlighting of the selected gameobjects(green boxes) in the scene
 {
-    public Sprite highlightSprite;
-    public Sprite selectionSprite;
     public CameraMovement cameraMovement;
     public Level1AnswerSheet1 answerSheet1;
     public Hover hover;
-    [HideInInspector]
-    public GameObject component;
+
+    public Sprite highlightSprite;
+    public Sprite selectionSprite;
+    public Sprite originalSprite;
 
     [HideInInspector]
+    public GameObject component;
+    [HideInInspector]
     public GameObject selectedPrefab;
-    public Sprite originalSprite;
     Transform selected;
     Transform highlightedPlacement;
     GameObject[] selections;

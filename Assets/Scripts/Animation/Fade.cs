@@ -52,15 +52,22 @@ public class Fade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Darken();
+       //Darken();
 
+        //when fading in is true
+        // and the fade amount(fade alpha) is more than 0
         if (fadeIn && fadeAmount > 0)
         {
+            //disables fading out
+            //sets the alpha to the fade amount
+            //reduces fade alpha over update
             fadeOut = false;
             fadeImage.color = new Color32(red, green, blue, fadeAmount);
             fadeAmount -= fadeSpeed;
 
             if (fadeAmount <= 0)
+            //once fade alpha is zero
+            //disables the fading in and the fade image 
             {
                 fadeIn = false;
                 fadeImage.enabled = false;
@@ -68,25 +75,33 @@ public class Fade : MonoBehaviour
         }
 
         if (fadeOut && fadeAmount < 255)
+        //when fading out of scene
+        //and fade amount(fade alpha) is less than 255(max alpha number)
         {
+            //disables fading in and renables the fade image
+            //sets the fade amount as the alph
+            //begins increasing fade alpha
             fadeIn = false;
             fadeImage.enabled = true;
             fadeImage.color = new Color32(red, green, blue, fadeAmount);
             fadeAmount += fadeSpeed;
-            //fadeAmount = (byte)Mathf.Lerp(0, 255, fadeSpeed * Time.deltaTime);
 
             if (fadeAmount >= 255)
+            //once fade alpha hits the limit
             {
                 if (exit)
+                //quits the game if true
                 {
                     Profile.ProfileSet = Instructions.Read = false;
                     Application.Quit();
                 }
                 else if (!string.IsNullOrEmpty(transitionScene))
+                //loads the next scene if transition scene is specificed, set in editor
                 {
                     SceneManager.LoadScene(transitionScene);
                 }
                 else 
+                //just switches between fading in and out
                 {
                     fadeOut = false;
                     fadeIn = true;
@@ -129,16 +144,22 @@ public class Fade : MonoBehaviour
     }
 
     public void Transition(string scene)
+    //takes in a string as the scene destination
     {
+        //resets time scale while playing click sound
         Time.timeScale = 1;
         FindObjectOfType<AudioManager>().Play("Click");
+
+        //specifies the scene to transition to for update
         transitionScene = scene;
 
+        //resets fadeout and read(past tense) for instructions
         fadeOut = true;
         Instructions.Read = false;
     }
 
     public void TransitionNoSceneChange() 
+    //fades in and out but does not change the scene
     {
         FindAnyObjectByType<AudioManager>().Play("Click");
         fadeOut = true;
@@ -156,6 +177,7 @@ public class Fade : MonoBehaviour
     }
 
     public void Quit()
+    //quits the game after click sound
     {
         FindObjectOfType<AudioManager>().Play("Click");
         fadeOut = true;
@@ -170,7 +192,6 @@ public class Fade : MonoBehaviour
             Time.timeScale = 0;
             pausePanel.SetActive(true);
             PauseCheck = true;
-            Debug.Log(PauseCheck);
         }
         else 
         {
