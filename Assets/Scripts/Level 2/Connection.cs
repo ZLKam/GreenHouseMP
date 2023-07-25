@@ -174,8 +174,11 @@ public class Connection : MonoBehaviour
                 }
                 else 
                 {
-                    selectedComponent.RemoveUI();
-                    cameraMovement.zooming = false;
+                    if (selectedComponent)
+                    {
+                        selectedComponent.RemoveUI();
+                        cameraMovement.zooming = false;
+                    }
                 }
             }
             else
@@ -187,7 +190,7 @@ public class Connection : MonoBehaviour
                 }
             }
         }
-        if (valueReturnBtn.pressedBtn)
+        if (valueReturnBtn && valueReturnBtn.pressedBtn)
         {
             if (selectedComponent.IndexReturn() != null)
             {
@@ -359,7 +362,7 @@ public class Connection : MonoBehaviour
             }
              
         }
-            if (valueReturnBtn.pressedBtn)
+            if (valueReturnBtn && valueReturnBtn.pressedBtn)
             {
                 if (selectedComponent.IndexReturn() != null)
                 {
