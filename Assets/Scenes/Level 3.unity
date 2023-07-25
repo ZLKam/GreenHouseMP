@@ -6457,7 +6457,7 @@ RectTransform:
   m_Children:
   - {fileID: 1953659421}
   m_Father: {fileID: 1829925477}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10999,7 +10999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -11015,10 +11015,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
         - m_Target: {fileID: 1996722955}
           m_TargetAssemblyTypeName: Hover, Assembly-CSharp
           m_MethodName: TabExit

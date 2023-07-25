@@ -16,6 +16,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     public float moveSpeed;
     public static bool componentSelected;
     public bool buttonLetgo;
+    private bool tabbing;
 
     public Vector3 startPosition;
     public Vector3 desiredPosition;
@@ -53,6 +54,7 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
     }
     void Update()
     {
+        //Debug.Log(transform.localPosition.x + "," + desiredPosition.x + "," + (transform.localPosition.x >= desiredPosition.x));
         if (test)
         {
             test.text = hoverTab.ToString();
@@ -74,13 +76,21 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
         }
 
         if (isTab)
+        //checks if the gameobject is the tab itself
         {
             if (hoverTab)
+            //triggers the tab moving in and out
             {
                 if (transform.localPosition.x < desiredPosition.x)
                 {
                     //transform.position += new Vector3(moveSpeed, 0f, 0f) * Time.deltaTime * 5;
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, desiredPosition, Time.deltaTime* moveSpeed);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, desiredPosition * 0.9f, Time.deltaTime* moveSpeed);
+                    if (transform.localPosition.x >= desiredPosition.x)
+                    {
+                        transform.localPosition = desiredPosition;
+                        tabbing = true;
+
+                    }
                 }
             }
             else
@@ -88,7 +98,13 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
                 if (transform.localPosition.x > startPosition.x)
                 {
                     //transform.position -= new Vector3(moveSpeed, 0f, 0f) * Time.deltaTime * 5;
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, startPosition, Time.deltaTime * moveSpeed);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, startPosition * 1.1f, Time.deltaTime * moveSpeed);
+                    if (transform.localPosition.x <= startPosition.x) 
+                    {
+                        transform.localPosition = startPosition;
+                        tabbing = false;
+
+                    }
                 }
             }
         }
@@ -125,12 +141,19 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void TabEnter()
     {
-        hoverTab = true;
+        if (tabbing == false)
+        {
+            hoverTab = true;
+        }
     }
 
     public void TabExit()
     {
-        hoverTab = false;
+        if (tabbing == true)
+        {
+            hoverTab = false;
+
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
