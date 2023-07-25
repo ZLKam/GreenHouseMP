@@ -19,7 +19,7 @@ public class TheoryBook : MonoBehaviour
     [Header("Poloroid Frame")]
     public GameObject frame;
 
-    [Header("Main Menu Reference")]
+    [Header("For Main Menu Use")]
     [SerializeField] private GameObject quitBtn;
 
 
