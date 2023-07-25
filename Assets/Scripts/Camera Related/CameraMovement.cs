@@ -39,17 +39,31 @@ public class CameraMovement : MonoBehaviour
 
     public float cameraDist;
 
+    private bool isPrelevel = false;
+
+    private void OnEnable()
+    {
+        //if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().name == "PreviewLevel")
+        {
+            isPrelevel = true;
+        }
+    }
+
     void Start()
     {
-        cameraDist = Vector3.Distance(cameras[0].transform.position, transform.position);
-
         rotationSpeed = PlayerPrefs.GetFloat("rotationSpeed");
         sensitivity = PlayerPrefs.GetFloat("zoomSensitivity");
         originalSpeed = rotationSpeed;
-
-        Camera.main.fieldOfView = 40f;
         zoomAmount = Camera.main.fieldOfView;
-        StartCoroutine(ZoomCameraCoroutine());
+
+        if (!isPrelevel)
+        {
+            cameraDist = Vector3.Distance(cameras[0].transform.position, transform.position);
+            Camera.main.fieldOfView = 40f;
+            zoomAmount = Camera.main.fieldOfView;
+            StartCoroutine(ZoomCameraCoroutine());
+        }
     }
 
     private IEnumerator ZoomCameraCoroutine()
@@ -71,6 +85,12 @@ public class CameraMovement : MonoBehaviour
     void Update()
     { 
         CheckSkybox();
+        if (isPrelevel)
+        {
+            CameraRotation();
+            ZoomCamera();
+            return;
+        }
         if (placement != null)
         {
             if (!placement.deletingObject)
@@ -133,6 +153,25 @@ public class CameraMovement : MonoBehaviour
         float rotationAmountX = Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime;
         float currentEulerAngleY = transform.rotation.eulerAngles.y;
         float currentEulerAngleX = transform.rotation.eulerAngles.x;
+        if (isPrelevel)
+        {
+            if (rotationAmountX != 0)
+            {
+                if ((currentEulerAngleX + rotationAmountX) > maxRotationX + 30f && (currentEulerAngleX + rotationAmountX) < 180)
+                {
+                    rotationAmountX = 0;
+                    //rotationAmountX = maxRotationX - currentEulerAngleX;
+                }
+                else if ((currentEulerAngleX + rotationAmountX) < minRotationX && (currentEulerAngleX + rotationAmountX > 180))
+                {
+                    rotationAmountX = 0;
+                    //rotationAmountX = maxRotationX - currentEulerAngleX;
+                }
+            }
+            transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
+            transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
+            return;
+        }
         if (rotationAmountY != 0)
         {
             if ((currentEulerAngleY + rotationAmountY) > maxRotationY)
@@ -188,6 +227,12 @@ public class CameraMovement : MonoBehaviour
                 float rotationAmountX = -swipeDelta.y / 100f * rotationSpeed * Time.deltaTime;
                 float currentEulerAngleY = transform.rotation.eulerAngles.y;
                 float currentEulerAngleX = transform.rotation.eulerAngles.x;
+                if (isPrelevel)
+                {
+                    transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
+                    transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
+                    return;
+                }
                 if (rotationAmountY != 0)
                 {
                     if ((currentEulerAngleY + rotationAmountY) > maxRotationY)
@@ -242,7 +287,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (placement)
         {
-            if (placement.deletingObject) 
+            if (placement.deletingObject)
             {
                 return;
             }
@@ -256,6 +301,14 @@ public class CameraMovement : MonoBehaviour
         if (Input.mouseScrollDelta.y != 0)
         {
             zoomAmount += -Input.mouseScrollDelta.y * sensitivity * 50f * Time.deltaTime;
+            if (zoomAmount > 100)
+            {
+                zoomAmount = 100;
+            }
+            if (zoomAmount < 20)
+            {
+                zoomAmount = 20;
+            }
             float zoom = Mathf.Clamp(zoomAmount, 20, 100);
 
             Camera.main.fieldOfView = zoom;
@@ -291,9 +344,9 @@ public class CameraMovement : MonoBehaviour
                 {
                     zoomAmount = 100;
                 }
-                if (zoomAmount < 10)
+                if (zoomAmount < 20)
                 {
-                    zoomAmount = 10;
+                    zoomAmount = 20;
                 }
                 float zoom = Mathf.Clamp(zoomAmount, 20, 100);
                 Camera.main.fieldOfView = zoom;
