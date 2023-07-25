@@ -61,8 +61,7 @@ public class CameraMovement : MonoBehaviour
             {
                 Camera.main.fieldOfView = 25;
                 zoomAmount = Camera.main.fieldOfView;
-                StopCoroutine(ZoomCameraCoroutine());
-                break;
+                yield break;
             }
             yield return null;
         }
