@@ -512,7 +512,7 @@ RectTransform:
   - {fileID: 6305942689979087622}
   - {fileID: 6305942688853555933}
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -627,7 +627,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -723,6 +723,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: 5371a939769abcf498ed17528ab598bf, type: 3}
+        m_TargetAssemblyTypeName: TheoryBook1, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1030,7 +1042,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.713}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1166,7 +1178,7 @@ RectTransform:
   - {fileID: 6305942690021094462}
   - {fileID: 6305942689575116814}
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1314,8 +1326,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a2cca3c3dfd3ce0469ba39513475bd97, type: 3}
   - {fileID: 21300000, guid: 17d0be2fe6cbb0c47914f62a2778e9f2, type: 3}
   - {fileID: 21300000, guid: 4db71bbe9d0649f44b0529116b9962d9, type: 3}
-  - {fileID: 21300000, guid: b1ed970439a85624dbd7f2b841caeba6, type: 3}
-  - {fileID: 21300000, guid: b1ed970439a85624dbd7f2b841caeba6, type: 3}
   - {fileID: 21300000, guid: b1ed970439a85624dbd7f2b841caeba6, type: 3}
   pipeSprite:
   - {fileID: 21300000, guid: 1f4e12515c8cd17499716bd89480eb86, type: 3}
@@ -1574,7 +1584,7 @@ RectTransform:
   - {fileID: 6305942688963923978}
   - {fileID: 6305942689367605341}
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1751,7 +1761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6305942690049101126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1765,7 +1775,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 9
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.713}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1898,7 +1908,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1999,6 +2009,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: 5371a939769abcf498ed17528ab598bf, type: 3}
+        m_TargetAssemblyTypeName: TheoryBook1, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6305942690520259007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,13 +2032,14 @@ GameObject:
   - component: {fileID: 6305942690520259004}
   - component: {fileID: 6305942690520259002}
   - component: {fileID: 6305942690520259005}
+  - component: {fileID: 2254099625093063098}
   m_Layer: 5
   m_Name: TheoryTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6305942690520259004
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2026,11 +2049,12 @@ RectTransform:
   m_GameObject: {fileID: 6305942690520259007}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6305942689699950322}
   - {fileID: 6305942689052585048}
+  - {fileID: 6305942690049101126}
   - {fileID: 6305942689396879606}
   - {fileID: 6305942690538312931}
   - {fileID: 6305942689039538579}
@@ -2038,7 +2062,6 @@ RectTransform:
   - {fileID: 6305942689408191958}
   - {fileID: 6305942689068246764}
   - {fileID: 6305942690118015567}
-  - {fileID: 6305942690049101126}
   m_Father: {fileID: 6305942689636936392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2085,6 +2108,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2254099625093063098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305942690520259007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f62f38e1e1f1c249aa1f959d639838d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSize: 1
+  maxSize: 1.25
+  timer: 0
+  popSpeed: {x: 0.02, y: 0.02, z: 0.02}
+  popImage: {fileID: 6305942690520259005}
+  fade: {fileID: 0}
+  pop: 0
+  wrong: 0
+  popAtBeginning: 0
 --- !u!1 &6305942690538312930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,7 +2161,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6305942690520259004}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

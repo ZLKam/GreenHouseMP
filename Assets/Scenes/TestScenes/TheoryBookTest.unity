@@ -6471,6 +6471,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6305942689636936393, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: componentSprite.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6305942689636936395, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_Name
       value: TheoryBook
