@@ -7,133 +7,93 @@ using TMPro;
 using Unity.VisualScripting;
 
 public class TheoryBook1 : MonoBehaviour
+//Uses TheoryBookFormat.txt to process text info to place into the theorybook
+//make sure there is always an image for both the left and right pages before adding a new page
 {
 
-    public Sprite blankSprite;
-    public GameObject previousBtn, nextBtn;
-    public TextMeshProUGUI title1, title2;
-    public TextMeshProUGUI description1, description2;
-    public GameObject template;
+    private int currentLine;
+    private int currentImage;
+
+    private List<string> componentsLines = new List<string>();
+
+    private List<string> theoryBookList = new List<string>();
+
+    private int componentStartLine = 0;
+    private int componentEndLine = 0;
+    private bool pipe;
+
+    [Header("Theory Book Text Reference")]
+    [Tooltip("Found at Resources/TextFiles")]
     [SerializeField]
     private TextAsset theoryBookFormat;
-    public string[] test;
-    public string[] test2;
-    public string[] test4;
-    public List<string> componentsLines = new List<string>();
-    public GameObject componentBtn, pipeBtn;
-
-    private int currentLine;
-
-    public List<string> testList = new List<string>();
 
     [Header("Theory Book")]
     public GameObject TheoryBookComponent;
     public GameObject TheoryBookPipes;
+    public GameObject TheoryBookTemplate;
+
+    public GameObject previousBtn, nextBtn;
+
+    public GameObject componentBtn, pipeBtn;
+    public TextMeshProUGUI leftHeader, rightHeader;
 
     [Header("Pages")]
     [SerializeField]
     private List<Sprite> componentSprite = new List<Sprite>();
-
     [SerializeField]
-    private Image image1, image2;
+    private List<Sprite> pipeSprite = new List<Sprite>();
 
-    private int i;
+    public TextMeshProUGUI leftTitle, rightTitle;
+    public TextMeshProUGUI leftDescription, rightDescription;
+    public Image leftIamge, rightImage;
+
+    private string[] leftList;
+    private string[] rightList;
+    private string[] leftRightArray;
 
     [Header("Poloroid Frame")]
-    public GameObject frame;
+    public GameObject leftFrame;
 
     [Header("For Main Menu Use")]
     [SerializeField] private GameObject quitBtn;
 
-    public int componentStartLine = 0;
-    public int componentEndLine = 0;
-
-    public bool component;
-
     private void Start()
     {
-        image1.GetComponent<Image>().sprite = componentSprite[i];
-        image2.GetComponent<Image>().sprite = componentSprite[i + 1];
         string[] lines = theoryBookFormat.text.Split('\n');
-        testList = lines.ToList();
+        theoryBookList = lines.ToList();
 
         Initialize();
-
-
     }
 
     public void OpenTheoryBook()
+    //open theory book
     {
         if (quitBtn)
+        //closes the quit button that is in main menu
         { 
             quitBtn.SetActive(false);
         }
 
-        TheoryBookComponent.SetActive(true);
+        TheoryBookTemplate.SetActive(true);
     }
 
     public void CloseTheoryBook()
+    //close theorybook
     {
         if (quitBtn)
+        //turns back on the quit button in main menu
         {
             quitBtn.SetActive(true);
         }
 
-        TheoryBookComponent.SetActive(false);
+        TheoryBookTemplate.SetActive(false);
     }
 
-    public void NextPage()
-    {
-        if (i+2 > componentSprite.Count)
-            return;
-
-        if (i + 2 < componentSprite.Count)
-        {
-            i += 2;
-            if (i + 1 < componentSprite.Count)
-            {
-                image2.GetComponent<Image>().sprite = componentSprite[i + 1];
-                //title2.text = componentName[i + 1];
-            }
-            else 
-            {
-                template.SetActive(false);
-                image2.gameObject.SetActive(false);
-                title2.gameObject.SetActive(false);
-                description2.gameObject.SetActive(false);
-                nextBtn.SetActive(false);
-            }
-        }
-        image1.GetComponent<Image>().sprite = componentSprite[i];
-        //title1.text = componentName[i];
-        previousBtn.SetActive(true);
-    }
-
-    public void PreviousPage() 
-    {
-        if (i - 2 > -1) 
-        {
-            nextBtn.SetActive(true);
-            template.SetActive(true);
-            title2.gameObject.SetActive(true);
-            description2.gameObject.SetActive(true);
-            image2.gameObject.SetActive(true);
-
-            i -= 2;
-            image1.GetComponent<Image>().sprite = componentSprite[i];
-            image2.GetComponent<Image>().sprite = componentSprite[i + 1];
-            //title1.text = componentName[i];
-            //title2.text = componentName[i + 1];
-            if (i - 2 < 0) 
-            {
-                previousBtn.SetActive(false);
-            }
-        }
-    }
-
-    public void NextPageTest() 
+    public void NextPage() 
+    //updates the name, description and image when incrementing upwards in pages
     {
         currentLine++;
+        currentImage += 2;
 
         if (currentLine + 1 > componentsLines.Count - 1)
         {
@@ -142,36 +102,81 @@ public class TheoryBook1 : MonoBehaviour
         if (!previousBtn.activeInHierarchy)
             previousBtn.SetActive(true);
 
-        test4 = componentsLines[currentLine].Split(" & ");
+        leftRightArray = componentsLines[currentLine].Split(" & ");
 
-        test = test4[0].Split(" | ");
-        test2 = test4[1].Split(" | ");
+        leftList = leftRightArray[0].Split(" | ");
+        rightList = leftRightArray[1].Split(" | ");
 
-        textAssign(test, title1, description1);
-        textAssign(test2, title2, description2);
+        TextAssign(leftList, leftTitle, leftDescription);
+        TextAssign(rightList, rightTitle, rightDescription);
+
+        if (!pipe)
+        {
+            ImageAssign(leftIamge, componentSprite, currentImage);
+            if (currentImage + 2 <= componentSprite.Count)
+            {
+                ImageAssign(rightImage, componentSprite, currentImage + 1);
+            }
+            else 
+            {
+                leftFrame.SetActive(false);
+                rightImage.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            ImageAssign(leftIamge, pipeSprite, currentImage);
+            if (currentImage + 2 <= pipeSprite.Count)
+            {
+                ImageAssign(rightImage, pipeSprite, currentImage + 1);
+            }
+            else
+            {
+                leftFrame.SetActive(false);
+                rightImage.gameObject.SetActive(false);
+            }
+        }
     }
 
-    public void PreviousPageTest() 
+    public void PreviousPage() 
+    //updates the name, description and image when incrementing downwards in pages
     {
         currentLine--;
+        currentImage -= 2;
+
         if (currentLine - 1 < 0)
         {
             previousBtn.SetActive(false);
         }
         if (!nextBtn.activeInHierarchy)
+        {
             nextBtn.SetActive(true);
+            leftFrame.SetActive(true);
+            rightImage.gameObject.SetActive(true);
+        }
 
+        leftRightArray = componentsLines[currentLine].Split(" & ");
 
-        test4 = componentsLines[currentLine].Split(" & ");
+        leftList = leftRightArray[0].Split(" | ");
+        rightList = leftRightArray[1].Split(" | ");
 
-        test = test4[0].Split(" | ");
-        test2 = test4[1].Split(" | ");
+        TextAssign(leftList, leftTitle, leftDescription);
+        TextAssign(rightList, rightTitle, rightDescription);
 
-        textAssign(test, title1, description1);
-        textAssign(test2, title2, description2);
+        if (!pipe)
+        {
+            ImageAssign(leftIamge, componentSprite, currentImage);
+            ImageAssign(rightImage, componentSprite, currentImage + 1);
+        }
+        else 
+        {
+            ImageAssign(leftIamge, pipeSprite, currentImage);
+            ImageAssign(rightImage, pipeSprite, currentImage + 1);
+        }
     }
 
-    private void textAssign(string[] array, TextMeshProUGUI title, TextMeshProUGUI description) 
+    private void TextAssign(string[] array, TextMeshProUGUI title, TextMeshProUGUI description) 
+    //assigns the text bassed on specific checkpoints in the array
     {
         foreach (string item in array)
         {
@@ -189,30 +194,43 @@ public class TheoryBook1 : MonoBehaviour
         }
     }
 
+    private void ImageAssign(Image image, List<Sprite> spriteList, int index) 
+    //assings images based on paramteres
+    {
+        image.GetComponent<Image>().sprite = spriteList[index];
+    }
+
     private void Initialize() 
+    //for initializing the theorybook whenever changing scenes or changing books
     {
         componentsLines.Clear();
         currentLine = 0;
-        for (int i = 0; i < testList.Count; i++)
+        currentImage = 0;
+        previousBtn.SetActive(false);
+        nextBtn.SetActive(true);
+        leftFrame.SetActive(true);
+        rightImage.gameObject.SetActive(true);
+
+        for (int i = 0; i < theoryBookList.Count; i++)
         {
-            if (component)
+            if (!pipe)
             {
-                if (testList[i].StartsWith("Components"))
+                if (theoryBookList[i].StartsWith("Components"))
                 {
                     componentStartLine = i + 1;
                 }
-                if (testList[i].StartsWith("EndComponents"))
+                if (theoryBookList[i].StartsWith("EndComponents"))
                 {
                     componentEndLine = i;
                 }
             }
-            else if (!component)
+            else if (pipe)
             {
-                if (testList[i].StartsWith("Pipe"))
+                if (theoryBookList[i].StartsWith("Pipe"))
                 {
                     componentStartLine = i + 1;
                 }
-                if (testList[i].StartsWith("EndPipes"))
+                if (theoryBookList[i].StartsWith("EndPipes"))
                 {
                     componentEndLine = i;
                 }
@@ -220,34 +238,51 @@ public class TheoryBook1 : MonoBehaviour
         }
         for (int i = componentStartLine; i < componentEndLine; i++)
         {
-            componentsLines.Add(testList[i]);
+            componentsLines.Add(theoryBookList[i]);
         }
 
-        test4 = componentsLines[currentLine].Split(" & ");
+        leftRightArray = componentsLines[currentLine].Split(" & ");
 
-        test = test4[0].Split(" | ");
-        test2 = test4[1].Split(" | ");
+        leftList = leftRightArray[0].Split(" | ");
+        rightList = leftRightArray[1].Split(" | ");
 
-        textAssign(test, title1, description1);
-        textAssign(test2, title2, description2);
+        TextAssign(leftList, leftTitle, leftDescription);
+        TextAssign(rightList, rightTitle, rightDescription);
+
+        if (!pipe)
+        {
+            leftHeader.text = rightHeader.text = "COMPONENTS";
+            ImageAssign(leftIamge, componentSprite, currentImage);
+            ImageAssign(rightImage, componentSprite, currentImage + 1);
+        }
+        else
+        {
+            leftHeader.text = rightHeader.text = "PIPES";
+            ImageAssign(leftIamge, pipeSprite, currentImage);
+            ImageAssign(rightImage, pipeSprite, currentImage + 1);
+        }
     }
 
     public void ComponentBook()
+    //opens component book while closing pipe book
     {
         TheoryBookComponent.SetActive(true);
         TheoryBookPipes.SetActive(false);
         componentBtn.SetActive(false);
         pipeBtn.SetActive(true);
-        component = true;
+
+        pipe = TheoryBookPipes.activeSelf;
         Initialize();
     }
     public void PipeBook()
+    //opens pipe book whiel closing component book
     {
         TheoryBookComponent.SetActive(false);
         TheoryBookPipes.SetActive(true);
         componentBtn.SetActive(true);
         pipeBtn.SetActive(false);
-        component = false;
+
+        pipe = TheoryBookPipes.activeSelf;
         Initialize();
     }
 }
