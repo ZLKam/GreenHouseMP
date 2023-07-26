@@ -18,15 +18,13 @@ public class ComponentWheel : MonoBehaviour
     private Transform left;
     private Transform right;
 
-    [SerializeField]
-    internal bool selectComponent = true;
-    [SerializeField]
-    internal bool drawLine = false;
-
     //public Text txtMode;
-    public Image btnChangeMode;
     public Sprite drawLineSprite;
     public Sprite selectComponentSprite;
+
+    public ChangeMode btnChangeMode;
+    internal bool selectComponent { get { return btnChangeMode.SelectComponent; } }
+    internal bool drawLine { get { return btnChangeMode.DrawLine; } }
 
     public Vector2 centerPointOfPlayArea = new();
 
@@ -45,7 +43,6 @@ public class ComponentWheel : MonoBehaviour
         centerPointOfPlayArea = new Vector2((top.position.y + bottom.position.y) / 2, (left.position.x + right.position.x) / 2);
 
         //txtMode.text = "Select Component";
-        btnChangeMode.sprite = selectComponentSprite;
     }
 
     internal bool IsWithinX(Vector3 check)
@@ -64,56 +61,6 @@ public class ComponentWheel : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void ChangeMode()
-    {
-        if (linePathFind.IsFindingPath())
-            return;
-        selectComponent = !selectComponent;
-        drawLine = !drawLine;
-
-        if (selectComponent)
-        {
-            //txtMode.text = "Select Component";
-            btnChangeMode.sprite = selectComponentSprite;
-            //FindObjectOfType<LineManagerController>().enabled = false;
-            //var lineParents = GameObject.FindGameObjectsWithTag("LineParent").ToList();
-            //var lines = GameObject.FindGameObjectsWithTag("Line").ToList();
-            //GameObject lineBoss = FindObjectOfType<LineManagerController>().gameObject;
-            //List<GameObject> allLines = new();
-            //allLines.AddRange(lineParents);
-            //allLines.AddRange(lines);
-            //allLines.Remove(lineBoss);
-            //allLines.ForEach(line => Destroy(line));
-
-            //foreach (Transform child in playArea)
-            //{
-            //    if (child.CompareTag("Component"))
-            //    {
-            //        child.GetComponent<ComponentEvent>().ResetAllowDraw();
-            //        child.GetComponent<ComponentEvent>().CorrectConnection = false;
-            //    }
-            //}
-            GameObject lineBoss = FindObjectOfType<LinePathFind>().gameObject;
-            lineBoss.GetComponent<LinePathFind>().enabled = false;
-            List<GameObject> allLines = new();
-            for (int i = 0; i < lineBoss.transform.childCount; i++)
-            {
-                allLines.Add(lineBoss.transform.GetChild(i).gameObject);
-            }
-            FindObjectsOfType<LineLimit>().ToList().ForEach(x => x.AllowDrawLine = true);
-            allLines.ForEach(line => Destroy(line));
-
-            FindObjectsOfType<DrawLine>().ToList().ForEach(x => x.ResetCellToWalkable());
-        }
-        else
-        {
-            //txtMode.text = "Draw Line";
-            btnChangeMode.sprite = drawLineSprite;
-            //FindObjectOfType<LineManagerController>().enabled = true;
-            FindObjectOfType<LinePathFind>().enabled = true;
-        }
     }
 
     //public void ResetScene()
