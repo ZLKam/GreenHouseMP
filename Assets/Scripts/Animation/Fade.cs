@@ -212,6 +212,10 @@ public class Fade : MonoBehaviour
 
     //Section Selector / Level Selector
 
+    public void PreviewTrue()
+    {
+        Previewed = true;
+    }
 
     public void PlayButton()
     {
