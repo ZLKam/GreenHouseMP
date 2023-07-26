@@ -94,7 +94,7 @@ public class Fade : MonoBehaviour
                 if (exit)
                 //quits the game if true
                 {
-                    Profile.ProfileSet = Instructions.Read = false;
+                    Profile.ProfileSet = Instructions.Read = Previewed =false;
                     Application.Quit();
                 }
                 else if (!string.IsNullOrEmpty(transitionScene))
