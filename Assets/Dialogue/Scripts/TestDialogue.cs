@@ -63,6 +63,17 @@ namespace Test
             string textToShow = string.Empty;
             if (dialogueLines[currentLine].StartsWith("[A]"))
             {
+                int rightSide = dialogueLines.IndexOf("[R]");
+                string text = string.Empty;
+                dialogueLines.ForEach(x =>
+                {
+                    if (dialogueLines.IndexOf(x) >= rightSide)
+                    {
+                        text += x;
+                        rightSide++;
+                    }
+                });
+
                 personA.gameObject.SetActive(true);
                 personB.gameObject.SetActive(false);
                 textToCheck = dialogueLines[currentLine].Replace("[A]", "");

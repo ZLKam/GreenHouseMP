@@ -12,6 +12,8 @@ public class TheoryBook1 : MonoBehaviour
     public TextMeshProUGUI title1, title2;
     public TextMeshProUGUI description1, description2;
     public GameObject template;
+    [SerializeField]
+    private TextAsset theoryBookFormat;
 
     [Header("Theory Book")]
     public GameObject TheoryBookComponent;
@@ -105,6 +107,7 @@ public class TheoryBook1 : MonoBehaviour
             title2.gameObject.SetActive(true);
             description2.gameObject.SetActive(true);
             image2.gameObject.SetActive(true);
+
             i -= 2;
             image1.GetComponent<Image>().sprite = componentSprite[i];
             image2.GetComponent<Image>().sprite = componentSprite[i + 1];
