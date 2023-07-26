@@ -45,6 +45,8 @@ public class LinePathFind : MonoBehaviour
 
     private float startTime;
 
+    public bool typeOfLineSelected = false;
+
     private void OnDisable()
     {
         fromT = null;
@@ -54,7 +56,7 @@ public class LinePathFind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (findingPath)
+        if (findingPath || !typeOfLineSelected)
             return;
 #if UNITY_STANDALONE
         if (Input.GetMouseButtonDown(0))
