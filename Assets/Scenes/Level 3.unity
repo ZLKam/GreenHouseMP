@@ -6602,6 +6602,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 1829925477}
     m_Modifications:
     - target: {fileID: 2254099625093063098, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254099625093063098, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: timer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254099625093063098, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: maxSize
       value: 1.25
       objectReference: {fileID: 0}
@@ -6630,6 +6638,30 @@ PrefabInstance:
       value: Click
       objectReference: {fileID: 0}
     - target: {fileID: 6305942689068246765, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942689396879607, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942689396879607, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 295859789}
+    - target: {fileID: 6305942689396879607, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942689396879607, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942689396879607, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942689396879607, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -6721,6 +6753,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheoryBook
       objectReference: {fileID: 0}
+    - target: {fileID: 6305942690049101127, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690049101127, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 295859789}
+    - target: {fileID: 6305942690049101127, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690049101127, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690049101127, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690049101127, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6305942690118015564, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -6750,6 +6806,30 @@ PrefabInstance:
       value: Click
       objectReference: {fileID: 0}
     - target: {fileID: 6305942690118015564, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690538312928, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690538312928, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 295859789}
+    - target: {fileID: 6305942690538312928, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690538312928, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690538312928, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690538312928, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}

@@ -191,14 +191,14 @@ public class TheoryBook : MonoBehaviour
         {
             if (item.Contains("ComponentName"))
             {
-                int test2 = item.IndexOf(":");
-                title.text = item.Substring(test2 + 1);
+                int index = item.IndexOf(":");
+                title.text = item.Substring(index + 1);
 
             }
             else if (item.Contains("ComponentDescription"))
             {
-                int test2 = item.IndexOf(":");
-                description.text = item.Substring(test2 + 1);
+                int index = item.IndexOf(":");
+                description.text = item.Substring(index + 1);
             }
         }
     }
