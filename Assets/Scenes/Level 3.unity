@@ -11207,7 +11207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverTab: 0
   isTab: 1
-  moveSpeed: 125
+  moveSpeed: 2
   buttonLetgo: 0
   startPosition: {x: -749, y: 0, z: 0}
   desiredPosition: {x: -521, y: 0, z: 0}
