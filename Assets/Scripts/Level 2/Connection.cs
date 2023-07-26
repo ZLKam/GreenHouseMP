@@ -274,7 +274,7 @@ public class Connection : MonoBehaviour
 
             pipes.Add(pipeMain);
 
-            ColourPipe(pipeMain);
+            //ColourPipe(pipeMain);         Check HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
             point1 = null;
             point2 = null;
             points.Clear();
@@ -438,9 +438,8 @@ public class Connection : MonoBehaviour
 
             pipes.Add(pipeMain);
 
-            //pipeMain.AddComponent<ParticleFlow>();
-
-            ColourPipe(pipeMain);
+            //ColourPipe(pipeMain);
+            pipeMain.AddComponent<ParticleFlow>();
             multiPoints.Clear();
             multiplePoints.Clear();
             pipeConnection.Clear();
@@ -449,95 +448,95 @@ public class Connection : MonoBehaviour
             multiConnectToggle.UpdateText();
         }
 
-        void ColourPipe(GameObject pipeMain)
-        {
-            string name = "";
+        //void ColourPipe(GameObject pipeMain)
+        //{
+        //    string name = "";
 
-            if (level2AnswerSheet.ListComparison(multiPoints) || level2AnswerSheet.ListComparison(points))
-            {
-                if (multiConnect)
-                {
-                    for (int i = 0; i < multiPoints.Count; i++)
-                    {
-                        for (int j = 0; j < multiPoints.Count; j++)
-                        {
-                            if (multiPoints[i].name.Equals(multiPoints[j].name))
-                            {
-                                allMatch = true;
-                                name = multiPoints[i].name;
-                            }
-                            else if (!multiPoints[i].name.Equals(multiPoints[j].name))
-                            {
-                                anomalyFound = true;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (point1.name.Equals(point2.name))
-                    {
-                        allMatch = true;
-                        name = point1.name;
-                    }
-                    else if (!point1.name.Equals(point2.name))
-                    {
-                        anomalyFound = true;
-                    }
-                }
+        //    if (level2AnswerSheet.ListComparison(multiPoints) || level2AnswerSheet.ListComparison(points))
+        //    {
+        //        if (multiConnect)
+        //        {
+        //            for (int i = 0; i < multiPoints.Count; i++)
+        //            {
+        //                for (int j = 0; j < multiPoints.Count; j++)
+        //                {
+        //                    if (multiPoints[i].name.Equals(multiPoints[j].name))
+        //                    {
+        //                        allMatch = true;
+        //                        name = multiPoints[i].name;
+        //                    }
+        //                    else if (!multiPoints[i].name.Equals(multiPoints[j].name))
+        //                    {
+        //                        anomalyFound = true;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (point1.name.Equals(point2.name))
+        //            {
+        //                allMatch = true;
+        //                name = point1.name;
+        //            }
+        //            else if (!point1.name.Equals(point2.name))
+        //            {
+        //                anomalyFound = true;
+        //            }
+        //        }
 
 
-                if (allMatch && !anomalyFound)
-                {
-                    Debug.Log("everything matches");
-                    renderers = pipeMain.GetComponentsInChildren<Renderer>();
+        //        if (allMatch && !anomalyFound)
+        //        {
+        //            Debug.Log("everything matches");
+        //            renderers = pipeMain.GetComponentsInChildren<Renderer>();
 
-                    if (name == "Connection Point 1")
-                    {
-                        pipeMain.name = "Connection 1";
-                        foreach (Renderer renderer in renderers)
-                        {
-                            renderer.material.color = new Color32(0, 0, 255, 175);
+        //            if (name == "Connection Point 1")
+        //            {
+        //                pipeMain.name = "Connection 1";
+        //                foreach (Renderer renderer in renderers)
+        //                {
+        //                    renderer.material.color = new Color32(0, 0, 255, 175);
 
-                        }
-                    }
+        //                }
+        //            }
 
-                    if (name == "Connection Point 2")
-                    {
-                        pipeMain.name = "Connection 2";
-                        foreach (Renderer renderer in renderers)
-                        {
-                            renderer.material.color = new Color32(0, 255, 255, 175);
-                        }
-                    }
+        //            if (name == "Connection Point 2")
+        //            {
+        //                pipeMain.name = "Connection 2";
+        //                foreach (Renderer renderer in renderers)
+        //                {
+        //                    renderer.material.color = new Color32(0, 255, 255, 175);
+        //                }
+        //            }
 
-                    if (name == "Connection Point 3")
-                    {
-                        pipeMain.name = "Connection 3";
-                        foreach (Renderer renderer in renderers)
-                        {
-                            renderer.material.color = new Color32(255, 0, 0, 175);
-                        }
-                    }
+        //            if (name == "Connection Point 3")
+        //            {
+        //                pipeMain.name = "Connection 3";
+        //                foreach (Renderer renderer in renderers)
+        //                {
+        //                    renderer.material.color = new Color32(255, 0, 0, 175);
+        //                }
+        //            }
 
-                    if (name == "Connection Point 4")
-                    {
-                        pipeMain.name = "Connection 4";
-                        foreach (Renderer renderer in renderers)
-                        {
-                            renderer.material.color = new Color32(232, 0, 254, 175);
-                        }
-                    }
+        //            if (name == "Connection Point 4")
+        //            {
+        //                pipeMain.name = "Connection 4";
+        //                foreach (Renderer renderer in renderers)
+        //                {
+        //                    renderer.material.color = new Color32(232, 0, 254, 175);
+        //                }
+        //            }
 
-                    pipeMain.AddComponent<ParticleFlow>();
+        //            pipeMain.AddComponent<ParticleFlow>();
 
-                    Debug.Log("matches");
-                }
-                else if (anomalyFound)
-                {
-                    Debug.Log("anomaly present");
-                    Debug.Log("no match");
-                }
-            }
-        }
+        //            Debug.Log("matches");
+        //        }
+        //        else if (anomalyFound)
+        //        {
+        //            Debug.Log("anomaly present");
+        //            Debug.Log("no match");
+        //        }
+        //    }
+        //}
     }
