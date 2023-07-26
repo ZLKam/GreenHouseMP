@@ -12,6 +12,9 @@ public class CameraMovement : MonoBehaviour
     public Hover hover;
     public Connection connection;
 
+    public bool allowRotation = true;
+    public bool allowZoom = true;
+
     float originalSpeed;
     public float rotationSpeed;
 
@@ -127,7 +130,8 @@ public class CameraMovement : MonoBehaviour
     //switches the camera's rotation based on different points in the scene
     //allows movement of the camera getting it from input, applying the vector direction then set it across the delta time
     {
-
+        if (!allowRotation)
+            return;
         if (placement)
         {
             if (placement.deletingObject)
@@ -285,6 +289,8 @@ public class CameraMovement : MonoBehaviour
 
     void ZoomCamera() 
     {
+        if (!allowZoom)
+            return;
         if (placement)
         {
             if (placement.deletingObject)

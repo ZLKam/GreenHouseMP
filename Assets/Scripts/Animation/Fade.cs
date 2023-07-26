@@ -148,7 +148,7 @@ public class Fade : MonoBehaviour
     {
         //resets time scale while playing click sound
         Time.timeScale = 1;
-        FindObjectOfType<AudioManager>().Play("Click");
+        FindObjectOfType<AudioManager>()?.Play("Click");
 
         //specifies the scene to transition to for update
         transitionScene = scene;
@@ -161,7 +161,7 @@ public class Fade : MonoBehaviour
     public void TransitionNoSceneChange() 
     //fades in and out but does not change the scene
     {
-        FindAnyObjectByType<AudioManager>().Play("Click");
+        FindAnyObjectByType<AudioManager>()?.Play("Click");
         fadeOut = true;
     }
 

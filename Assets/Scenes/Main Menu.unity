@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.57325566, g: 0.72896343, b: 0.66798943, a: 1}
+  m_IndirectSpecularColor: {r: 0.59135014, g: 0.7299921, b: 0.67947215, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9258,6 +9258,9 @@ MonoBehaviour:
   focusPoint: {fileID: 1427880354}
   rotationSpeed: 20
   menu: 1
+  mainMenuPanel: {fileID: 1318556290}
+  levelSelectPanel: {fileID: 1982832614}
+  characterSelect: {fileID: 1082873666}
   skyboxes:
   - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
@@ -9404,6 +9407,9 @@ MonoBehaviour:
   focusPoint: {fileID: 1427880354}
   rotationSpeed: 20
   menu: 1
+  mainMenuPanel: {fileID: 0}
+  levelSelectPanel: {fileID: 0}
+  characterSelect: {fileID: 0}
   skyboxes:
   - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
   - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
@@ -10513,7 +10519,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8563030734830958089, guid: e3979f2b4e0b7c74d9757c41c4e4a81e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8563030734917306237, guid: e3979f2b4e0b7c74d9757c41c4e4a81e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10521,11 +10527,11 @@ PrefabInstance:
       objectReference: {fileID: 762596721}
     - target: {fileID: 8563030735127054341, guid: e3979f2b4e0b7c74d9757c41c4e4a81e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8563030735659406805, guid: e3979f2b4e0b7c74d9757c41c4e4a81e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8563030735681029193, guid: e3979f2b4e0b7c74d9757c41c4e4a81e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10537,7 +10543,7 @@ PrefabInstance:
       objectReference: {fileID: 762596721}
     - target: {fileID: 8563030735962143699, guid: e3979f2b4e0b7c74d9757c41c4e4a81e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8563030736427380083, guid: e3979f2b4e0b7c74d9757c41c4e4a81e, type: 3}
       propertyPath: m_Name

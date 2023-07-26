@@ -11,6 +11,10 @@ public class CameraRotate : MonoBehaviour
     public float rotationSpeed;
     public bool menu;
 
+    public GameObject mainMenuPanel;
+    public GameObject levelSelectPanel;
+    public GameObject characterSelect;
+
     public List<Material> skyboxes;
 
     void Start()
@@ -34,7 +38,11 @@ public class CameraRotate : MonoBehaviour
         else
         {
             Debug.Log("NOT First Time Opening");
-
+            if (FloorSelection.FromPreviewLevel)
+            {
+                DirectlyShowLevelSelect();
+                FloorSelection.FromPreviewLevel = false;
+            }
         }
         
         if (!menu)
@@ -53,5 +61,13 @@ public class CameraRotate : MonoBehaviour
     void CheckSkybox()
     {
         RenderSettings.skybox = skyboxes[PlayerPrefs.GetInt("backgroundIndex")];
+    }
+
+    private void DirectlyShowLevelSelect()
+    {
+        if (mainMenuPanel.activeSelf)
+            mainMenuPanel.SetActive(false);
+        levelSelectPanel.SetActive(true);
+        characterSelect.SetActive(false);
     }
 }
