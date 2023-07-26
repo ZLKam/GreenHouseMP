@@ -1,3 +1,4 @@
 [A][a0]<b><size=50>Hi!</size></b>
 [B]Hi! Who are you?
 [A]I am <color=#FF0000>XXX</color>
+[B]<link="https://www.youtube.com">Visit my website</link>

@@ -27,6 +27,7 @@ public class Fade : MonoBehaviour
     public GameObject Section;
     public GameObject Level;
     public GameObject GameMenu;
+    public GameObject PreLevelItems;
 
     [SerializeField]
     private GameObject pausePanel;
@@ -220,8 +221,15 @@ public class Fade : MonoBehaviour
     public void SectionSelect()
     {
         //open up the level select popup
-        Level.SetActive(true);
+        PreLevelItems.SetActive(true);
         Section.SetActive(false);
+    }
+
+    public void LevelSelect()
+    {
+        //if (Static Prelevel == true){}
+        PreLevelItems.SetActive(false);
+        Level.SetActive(true);
     }
 
     public void SectionBack()
@@ -233,7 +241,12 @@ public class Fade : MonoBehaviour
     public void LevelBack()
     {
         Level.SetActive(false);
-        Section.SetActive(true);
+        PreLevelItems.SetActive(true);
     }
 
+    public void PrelevelBack()
+    {
+        PreLevelItems.SetActive(false);
+        Section.SetActive(true);
+    }
 }

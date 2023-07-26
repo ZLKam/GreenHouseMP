@@ -34,7 +34,8 @@ namespace Test
             personA = transform.Find("PersonA").GetComponent<Image>();
             personB = transform.Find("PersonB").GetComponent<Image>();
             personA.gameObject.SetActive(false);
-            personB.gameObject.SetActive(false);            text.text = CheckCurrentTextBehaviour(currentLine); ;
+            personB.gameObject.SetActive(false);
+            text.text = CheckCurrentTextBehaviour(currentLine); ;
         }
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -43,6 +44,8 @@ namespace Test
 
         private void NextLine()
         {
+            //if (currentLine == dialogueLines.Count - 1)
+                //Application.OpenURL("https://www.youtube.com");
             if (currentLine < dialogueLines.Count - 1)
             {
                 currentLine++;
@@ -60,6 +63,17 @@ namespace Test
             string textToShow = string.Empty;
             if (dialogueLines[currentLine].StartsWith("[A]"))
             {
+                int rightSide = dialogueLines.IndexOf("[R]");
+                string text = string.Empty;
+                dialogueLines.ForEach(x =>
+                {
+                    if (dialogueLines.IndexOf(x) >= rightSide)
+                    {
+                        text += x;
+                        rightSide++;
+                    }
+                });
+
                 personA.gameObject.SetActive(true);
                 personB.gameObject.SetActive(false);
                 textToCheck = dialogueLines[currentLine].Replace("[A]", "");
