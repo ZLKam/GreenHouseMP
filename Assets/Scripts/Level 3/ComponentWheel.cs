@@ -63,11 +63,6 @@ public class ComponentWheel : MonoBehaviour
         return false;
     }
 
-    //public void ResetScene()
-    //{
-    //    Instructions.Read = true;
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //}
 
     //public void CheckAnswer()
     //{
