@@ -59,6 +59,9 @@ public class Connection : MonoBehaviour
     public Fade fade;
     public GameObject uiParent;
 
+    public List<GameObject> AHUPoint1;
+    public List<GameObject> AHUPoint2;
+
     private void Awake()
     {
         Camera.main.transform.parent.GetComponent<CameraMovement>().zoomStopDistance = 30f;
@@ -72,14 +75,14 @@ public class Connection : MonoBehaviour
         {
             CheckUndoPipes();
 
-            if (multiConnect)
-            {
-                MultiHighlight();
-            }
-            else
-            {
-                Highlight();
-            }
+            //if (multiConnect)
+            //{
+            //    MultiHighlight();
+            //}
+            //else
+            //{
+            Highlight();
+            //}
 
             if (Input.GetKeyDown(KeyCode.R))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -212,6 +215,45 @@ public class Connection : MonoBehaviour
 
                 if (points.Count >= 2)
                 {
+                    for (int i = 0; i < points.Count; i++)
+                    {
+                        var pointlist = new List<GameObject>();
+                        foreach (GameObject t in AHUPoint1)
+                        {
+                            if (points[i].transform.position == t.transform.position)
+                            {
+                                if (i == 0)
+                                {
+                                    pointlist = AHUPoint1;
+                                    pointlist.Add(points[1]);
+                                }
+                                else if (i == 1)
+                                {
+                                    pointlist = AHUPoint1;
+                                    pointlist.Add(points[0]);
+                                    MultiConnect(pointlist);
+                                }
+                                MultiConnect(pointlist);
+                            }
+                        }
+                        foreach (GameObject t in AHUPoint2)
+                        {
+                            if (points[i].transform.position == t.transform.position)
+                            {
+                                if (i == 0)
+                                {
+                                    pointlist = AHUPoint2;
+                                    pointlist.Add(points[1]);
+                                }
+                                else if (i == 1)
+                                {
+                                    pointlist = AHUPoint2;
+                                    pointlist.Add(points[0]);
+                                }
+                                MultiConnect(pointlist);
+                            }
+                        }
+                    }
                     Connect();
 
                     if (FindObjectOfType<Tutorial>() != null)
@@ -280,263 +322,266 @@ public class Connection : MonoBehaviour
             points.Clear();
         }
 
-        void MultiHighlight()
-        {
-        if (!pipe && !entrance && !exit && !body)
-        {
-            pipeWarning = true;
-        }
-        else 
-        {
-            pipeWarning = false;
-        }
-            // checks if there is an object being highlighted
-            // if so, remove highlight by resetting the object's material to it's original material
-            if (highlight != null)
-            {
-                highlight.GetComponent<MeshRenderer>().material = originalMat;
-                highlight = null;
-            }
+    //        void MultiHighlight()
+    //        {
+    //        if (!pipe && !entrance && !exit && !body)
+    //        {
+    //            pipeWarning = true;
+    //        }
+    //        else 
+    //        {
+    //            pipeWarning = false;
+    //        }
+    //            // checks if there is an object being highlighted
+    //            // if so, remove highlight by resetting the object's material to it's original material
+    //            if (highlight != null)
+    //            {
+    //                highlight.GetComponent<MeshRenderer>().material = originalMat;
+    //                highlight = null;
+    //            }
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-#if UNITY_STANDALONE
-        // checks if the raycast being drawn from the mouse hits an object
-        // if so, check if the tag of the highlight is called "Connection" before setting the colour of the object's material
-        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
-            {
-                highlight = raycastHit.transform;
-                if (highlight.CompareTag("Connection") && highlight != selection)
-                {
-                    if (highlight.GetComponent<MeshRenderer>().material != highlightMat)
-                    {
-                        originalMat = highlight.GetComponent<MeshRenderer>().material;
-                        highlight.GetComponent<MeshRenderer>().material = highlightMat;
-                    }
-                }
-                else
-                {
-                    highlight = null;
-                }
-            }
-#endif
+    //            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //#if UNITY_STANDALONE
+    //        // checks if the raycast being drawn from the mouse hits an object
+    //        // if so, check if the tag of the highlight is called "Connection" before setting the colour of the object's material
+    //        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
+    //            {
+    //                highlight = raycastHit.transform;
+    //                if (highlight.CompareTag("Connection") && highlight != selection)
+    //                {
+    //                    if (highlight.GetComponent<MeshRenderer>().material != highlightMat)
+    //                    {
+    //                        originalMat = highlight.GetComponent<MeshRenderer>().material;
+    //                        highlight.GetComponent<MeshRenderer>().material = highlightMat;
+    //                    }
+    //                }
+    //                else
+    //                {
+    //                    highlight = null;
+    //                }
+    //            }
+    //#endif
 
-        if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject())
-        {
-            // checks if the raycast being drawn from the mouse hits an object
-            // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
-            if (EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject.layer == 5)
-                return;
-            if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
-            {
-                selection = raycastHit.transform;
-                if (selection.GetComponent<SelectedComponent>())
-                {
-                    selectedComponent = selection.GetComponent<SelectedComponent>();
-                    valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
+    //            if (InputSystem.Instance.LeftClick() && !EventSystem.current.IsPointerOverGameObject())
+    //            {
+    //            // checks if the raycast being drawn from the mouse hits an object
+    //            // if so, check if the tag of the selection is called "Connection" before setting the colour of the object's material
+    //                if (EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject.layer == 5)
+    //                    return;
+    //                if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
+    //                {
+    //                    selection = raycastHit.transform;
+    //                    if (selection.GetComponent<SelectedComponent>())
+    //                    {
+    //                        selectedComponent = selection.GetComponent<SelectedComponent>();
+    //                        valueReturnBtn.selectedComponentBtn = selection.GetComponent<SelectedComponent>();
 
-                    foreach (SelectedComponent component in componentArray)
-                    {
-                        if (selectedComponent != component)
-                        {
-                            component.RemoveUI();
-                            multiConnectToggle.UpdateText();
-                        }
-                        else
-                        {
-                            cameraMovement.LookAtComponent(selectedComponent.transform);
-                            component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
+    //                        foreach (SelectedComponent component in componentArray)
+    //                        {
+    //                            if (selectedComponent != component)
+    //                            {
+    //                                component.RemoveUI();
+    //                                multiConnectToggle.UpdateText();
+    //                            }
+    //                            else
+    //                            {
+    //                                cameraMovement.LookAtComponent(selectedComponent.transform);
+    //                                component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
 
-                        }
-                    }
-                }
-                else
-                {
-                    selectedComponent.RemoveUI();
-                    cameraMovement.zooming = false;
-                }
-            }
-            else
-            {
-                    selectedComponent.RemoveUI();
-                cameraMovement.zooming = false;
-            }
-             
-        }
-            if (valueReturnBtn && valueReturnBtn.pressedBtn)
-            {
-                if (selectedComponent.IndexReturn() != null)
-                {
-                    if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-                    {
-                        selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                        points.Remove(selection.gameObject);
-                        valueReturnBtn.pressedBtn = false;
-                        return;
-                    }
-                    originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
-                    selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
-                }
+    //                            }
+    //                        }
+    //                    }
+    //                    else
+    //                    {
+    //                        selectedComponent.RemoveUI();
+    //                        cameraMovement.zooming = false;
+    //                    }
+    //                }
+    //                else
+    //                {
+    //                    selectedComponent.RemoveUI();
+    //                    cameraMovement.zooming = false;
+    //                }
+
+    //            }
+
+    //            if (valueReturnBtn && valueReturnBtn.pressedBtn)
+    //            {
+    //                if (selectedComponent.IndexReturn() != null)
+    //                {
+    //                    if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+    //                    {
+    //                        selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+    //                        points.Remove(selection.gameObject);
+    //                        valueReturnBtn.pressedBtn = false;
+    //                        return;
+    //                    }
+    //                    originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
+    //                    selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
+    //                }
 
 
-                if (!multiPoints.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn())
-                {
-                    multiPoints.Add(selectedComponent.IndexReturn().gameObject);
-                    multiConnectToggle.UpdateText();
+    //                if (!multiPoints.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn())
+    //                {
+    //                    multiPoints.Add(selectedComponent.IndexReturn().gameObject);
+    //                    multiConnectToggle.UpdateText();
 
-                    if (multiPoints.Count >= multiConnectLimit)
-                    {
-                        MultiConnect();
-                    }
+    //                    if (multiPoints.Count >= multiConnectLimit)
+    //                    {
+    //                        MultiConnect();
+    //                    }
 
-                }
-            valueReturnBtn.pressedBtn = false;  
-        }
+    //                }
+    //            valueReturnBtn.pressedBtn = false;  
+    //            }
 
-        }
-            
-        
+    //        }
 
-        void MultiConnect()
-        {
+
+
+    void MultiConnect(List<GameObject> pointList)
+    {
         if (!pipe && !entrance && !exit && !body)
         {
             return;
         }
-        for (int i = 0; i < multiPoints.Count; i++)
-            {
-                multiplePoints.Add(multiPoints[i].transform);
-            }
-
-            GameObject pipeMain = Instantiate(pipe, transform.position, Quaternion.identity);
-
-            for (int i = 0; i < multiPoints.Count; i++)
-            {
-                GameObject pipeEntry = Instantiate(entrance, multiPoints[i].transform.position, multiPoints[i].transform.rotation);
-                pipeEntry.transform.LookAt(multiPoints[i].transform);
-                pipeEntry.transform.parent = pipeMain.transform;
-
-                pipeConnection.Add(pipeEntry.transform.GetChild(1).transform.position);
-            }
-
-            for (int i = 0; i < pipeConnection.Count - 1; i++)
-            {
-                centerPoints.Add((pipeConnection[i] + pipeConnection[i + 1]) / 2);
-            }
-
-            for (int i = 0; i < centerPoints.Count; i++)
-            {
-                lengths.Add(Vector3.Distance(pipeConnection[i], pipeConnection[i + 1]));
-            }
-
-            for (int i = 0; i < centerPoints.Count; i++)
-            {
-                GameObject pipeBody = Instantiate(body, centerPoints[i], Quaternion.identity);
-                pipeBody.transform.localScale = new Vector3(pipeBody.transform.localScale.x, pipeBody.transform.localScale.y, lengths[i]);
-                pipeBody.transform.LookAt(pipeConnection[i]);
-                pipeBody.transform.parent = pipeMain.transform;
-            }
-
-            pipes.Add(pipeMain);
-
-            //ColourPipe(pipeMain);
-            pipeMain.AddComponent<ParticleFlow>();
-            multiPoints.Clear();
-            multiplePoints.Clear();
-            pipeConnection.Clear();
-            centerPoints.Clear();
-            lengths.Clear();
-            multiConnectToggle.UpdateText();
+        for (int i = 0; i < pointList.Count; i++)
+        {
+            multiplePoints.Add(pointList[i].transform);
         }
 
-        //void ColourPipe(GameObject pipeMain)
-        //{
-        //    string name = "";
+        GameObject pipeMain = Instantiate(pipe, transform.position, Quaternion.identity);
 
-        //    if (level2AnswerSheet.ListComparison(multiPoints) || level2AnswerSheet.ListComparison(points))
-        //    {
-        //        if (multiConnect)
-        //        {
-        //            for (int i = 0; i < multiPoints.Count; i++)
-        //            {
-        //                for (int j = 0; j < multiPoints.Count; j++)
-        //                {
-        //                    if (multiPoints[i].name.Equals(multiPoints[j].name))
-        //                    {
-        //                        allMatch = true;
-        //                        name = multiPoints[i].name;
-        //                    }
-        //                    else if (!multiPoints[i].name.Equals(multiPoints[j].name))
-        //                    {
-        //                        anomalyFound = true;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (point1.name.Equals(point2.name))
-        //            {
-        //                allMatch = true;
-        //                name = point1.name;
-        //            }
-        //            else if (!point1.name.Equals(point2.name))
-        //            {
-        //                anomalyFound = true;
-        //            }
-        //        }
+        for (int i = 0; i < pointList.Count; i++)
+        {
+            GameObject pipeEntry = Instantiate(entrance, pointList[i].transform.position, pointList[i].transform.rotation);
+            pipeEntry.transform.LookAt(pointList[i].transform);
+            pipeEntry.transform.parent = pipeMain.transform;
 
+            pipeConnection.Add(pipeEntry.transform.GetChild(1).transform.position);
+        }
 
-        //        if (allMatch && !anomalyFound)
-        //        {
-        //            Debug.Log("everything matches");
-        //            renderers = pipeMain.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < pipeConnection.Count - 1; i++)
+        {
+            centerPoints.Add((pipeConnection[i] + pipeConnection[i + 1]) / 2);
+        }
 
-        //            if (name == "Connection Point 1")
-        //            {
-        //                pipeMain.name = "Connection 1";
-        //                foreach (Renderer renderer in renderers)
-        //                {
-        //                    renderer.material.color = new Color32(0, 0, 255, 175);
+        for (int i = 0; i < centerPoints.Count; i++)
+        {
+            lengths.Add(Vector3.Distance(pipeConnection[i], pipeConnection[i + 1]));
+        }
 
-        //                }
-        //            }
+        for (int i = 0; i < centerPoints.Count; i++)
+        {
+            GameObject pipeBody = Instantiate(body, centerPoints[i], Quaternion.identity);
+            pipeBody.transform.localScale = new Vector3(pipeBody.transform.localScale.x, pipeBody.transform.localScale.y, lengths[i]);
+            pipeBody.transform.LookAt(pipeConnection[i]);
+            pipeBody.transform.parent = pipeMain.transform;
+        }
 
-        //            if (name == "Connection Point 2")
-        //            {
-        //                pipeMain.name = "Connection 2";
-        //                foreach (Renderer renderer in renderers)
-        //                {
-        //                    renderer.material.color = new Color32(0, 255, 255, 175);
-        //                }
-        //            }
+        pipes.Add(pipeMain);
 
-        //            if (name == "Connection Point 3")
-        //            {
-        //                pipeMain.name = "Connection 3";
-        //                foreach (Renderer renderer in renderers)
-        //                {
-        //                    renderer.material.color = new Color32(255, 0, 0, 175);
-        //                }
-        //            }
+        //ColourPipe(pipeMain);
+        //pipeMain.AddComponent<ParticleFlow>();
+        pointList.Clear();
+        multiplePoints.Clear();
+        points.Clear();
+        pipeConnection.Clear();
+        centerPoints.Clear();
+        lengths.Clear();
+        //multiConnectToggle.UpdateText();
 
-        //            if (name == "Connection Point 4")
-        //            {
-        //                pipeMain.name = "Connection 4";
-        //                foreach (Renderer renderer in renderers)
-        //                {
-        //                    renderer.material.color = new Color32(232, 0, 254, 175);
-        //                }
-        //            }
-
-        //            pipeMain.AddComponent<ParticleFlow>();
-
-        //            Debug.Log("matches");
-        //        }
-        //        else if (anomalyFound)
-        //        {
-        //            Debug.Log("anomaly present");
-        //            Debug.Log("no match");
-        //        }
-        //    }
-        //}
     }
+
+    //void ColourPipe(GameObject pipeMain)
+    //{
+    //    string name = "";
+
+    //    if (level2AnswerSheet.ListComparison(multiPoints) || level2AnswerSheet.ListComparison(points))
+    //    {
+    //        if (multiConnect)
+    //        {
+    //            for (int i = 0; i < multiPoints.Count; i++)
+    //            {
+    //                for (int j = 0; j < multiPoints.Count; j++)
+    //                {
+    //                    if (multiPoints[i].name.Equals(multiPoints[j].name))
+    //                    {
+    //                        allMatch = true;
+    //                        name = multiPoints[i].name;
+    //                    }
+    //                    else if (!multiPoints[i].name.Equals(multiPoints[j].name))
+    //                    {
+    //                        anomalyFound = true;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (point1.name.Equals(point2.name))
+    //            {
+    //                allMatch = true;
+    //                name = point1.name;
+    //            }
+    //            else if (!point1.name.Equals(point2.name))
+    //            {
+    //                anomalyFound = true;
+    //            }
+    //        }
+
+
+    //        if (allMatch && !anomalyFound)
+    //        {
+    //            Debug.Log("everything matches");
+    //            renderers = pipeMain.GetComponentsInChildren<Renderer>();
+
+    //            if (name == "Connection Point 1")
+    //            {
+    //                pipeMain.name = "Connection 1";
+    //                foreach (Renderer renderer in renderers)
+    //                {
+    //                    renderer.material.color = new Color32(0, 0, 255, 175);
+
+    //                }
+    //            }
+
+    //            if (name == "Connection Point 2")
+    //            {
+    //                pipeMain.name = "Connection 2";
+    //                foreach (Renderer renderer in renderers)
+    //                {
+    //                    renderer.material.color = new Color32(0, 255, 255, 175);
+    //                }
+    //            }
+
+    //            if (name == "Connection Point 3")
+    //            {
+    //                pipeMain.name = "Connection 3";
+    //                foreach (Renderer renderer in renderers)
+    //                {
+    //                    renderer.material.color = new Color32(255, 0, 0, 175);
+    //                }
+    //            }
+
+    //            if (name == "Connection Point 4")
+    //            {
+    //                pipeMain.name = "Connection 4";
+    //                foreach (Renderer renderer in renderers)
+    //                {
+    //                    renderer.material.color = new Color32(232, 0, 254, 175);
+    //                }
+    //            }
+
+    //            pipeMain.AddComponent<ParticleFlow>();
+
+    //            Debug.Log("matches");
+    //        }
+    //        else if (anomalyFound)
+    //        {
+    //            Debug.Log("anomaly present");
+    //            Debug.Log("no match");
+    //        }
+    //    }
+    //}
+}
