@@ -2057,6 +2057,16 @@ MonoBehaviour:
   pipeWarningPanel: {fileID: 610186177}
   fade: {fileID: 626370460}
   uiParent: {fileID: 750109458}
+  AHUPoint1:
+  - {fileID: 1583791414}
+  - {fileID: 17620212}
+  - {fileID: 175784567}
+  - {fileID: 1634895563}
+  AHUPoint2:
+  - {fileID: 473384305}
+  - {fileID: 860941023}
+  - {fileID: 867058256}
+  - {fileID: 1892371926}
 --- !u!114 &252340425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3969,6 +3979,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
@@ -4980,7 +4991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &584271462
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5654,6 +5665,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 817959895}
   instructionPanel: {fileID: 860568394}
   PauseCheck: 0
@@ -12756,7 +12768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1786014048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13981,6 +13993,8 @@ MonoBehaviour:
   placement: {fileID: 0}
   hover: {fileID: 0}
   connection: {fileID: 252340424}
+  allowRotation: 1
+  allowZoom: 1
   rotationSpeed: 60
   initialDistance: 0
   sensitivity: 5
@@ -14913,6 +14927,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
