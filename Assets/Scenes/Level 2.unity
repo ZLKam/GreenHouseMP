@@ -13981,8 +13981,6 @@ MonoBehaviour:
   placement: {fileID: 0}
   hover: {fileID: 0}
   connection: {fileID: 252340424}
-  allowRotation: 1
-  allowZoom: 1
   rotationSpeed: 60
   initialDistance: 0
   sensitivity: 5

@@ -7943,7 +7943,6 @@ MonoBehaviour:
   imgFindingPath: {fileID: 1486794527}
   imgError: {fileID: 189878264}
   typeOfLineSelected: 0
-  colorOfLineSelected: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1263224617
 GameObject:
   m_ObjectHideFlags: 0
