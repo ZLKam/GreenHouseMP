@@ -108,7 +108,7 @@ public class PopUp : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("Click");
 
-        pop = true;
+        pop = Level2AnswerSheet.showPopUp = true;
         fade.darken = false;
         gameObject.SetActive(false);
     }
