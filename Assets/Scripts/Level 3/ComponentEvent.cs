@@ -10,6 +10,7 @@ namespace Level3
     {
         internal ComponentButtonEvent buttonEvent;
 
+        public string componentName;
         public int specialID;
 
         [SerializeField]

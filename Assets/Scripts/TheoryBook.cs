@@ -93,6 +93,8 @@ public class TheoryBook : MonoBehaviour
             quitBtn.SetActive(true);
         }
 
+        //TheoryBookComponent.SetActive(false);
+        //TheoryBookPipes.SetActive(false);
         TheoryBookTemplate.SetActive(false);
     }
 
