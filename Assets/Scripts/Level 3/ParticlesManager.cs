@@ -8,21 +8,28 @@ namespace Level3 {
     {
         public GameObject particle;
 
+        private Coroutine spawnCoroutine;
+
         private bool spawnCoroutineRunning = false;
 
         public List<Vector2> targetPoints = new();
+
+        public void SpawnParticle(Vector2 position)
+        {
+            spawnCoroutine = StartCoroutine(SpawnParticle(position, this));
+        }
 
         //Stops spawning particles through the coroutine
         public void StopSpawnParticle()
         {
             if (!spawnCoroutineRunning)
                 return;
-            StopAllCoroutines();
+            StopCoroutine(spawnCoroutine);
             spawnCoroutineRunning = false;
         }
 
         //instantiate a new particle every 0.2s continously, as the coroutine is triggered
-        public IEnumerator SpawnParticle(Vector2 position, ParticlesManager manager)
+        private IEnumerator SpawnParticle(Vector2 position, ParticlesManager manager)
         {
             while (true)
             {

@@ -1042,7 +1042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222585389}
   - component: {fileID: 222585390}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RectGridMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9372,7 +9372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5289512879016409947, guid: 8ad7ef8aa7d7c50409a281600d0536f4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5289512879016409947, guid: 8ad7ef8aa7d7c50409a281600d0536f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

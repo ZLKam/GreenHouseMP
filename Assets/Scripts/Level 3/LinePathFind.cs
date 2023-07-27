@@ -10,6 +10,9 @@ public class LinePathFind : MonoBehaviour
 {
     public RectGrid rectGrid;
 
+    private int gridLayer = 1 << 3;
+    private int lineLayer = 1 << 8;
+
     public List<Transform> secretPoints = new();
 
     [SerializeField]
@@ -66,8 +69,12 @@ public class LinePathFind : MonoBehaviour
         if (InputSystem.Instance.LeftClick())
 #endif
         {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit3D, lineLayer))
+            {
+                hit3D.transform.GetComponent<DrawLine>()?.ReverseLine();
+            }
             // Hit detection
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, ~3);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, ~gridLayer);
             if (!hit)
                 return;
             if (!hit.transform.CompareTag("Component"))
@@ -79,7 +86,7 @@ public class LinePathFind : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Please select a component");
+                    Debug.Log("Hitting " + hit.transform.name + ". Please select a component");
                     return;
                 }
             }
