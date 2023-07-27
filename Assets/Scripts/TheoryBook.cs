@@ -14,12 +14,11 @@ public class TheoryBook : MonoBehaviour
     private int currentLine;
     private int currentImage;
 
-    private List<string> componentsLines = new List<string>();
     private List<string> theoryBookList = new List<string>();
+    private List<string> componentsLines = new List<string>();
 
     private int componentStartLine = 0;
     private int componentEndLine = 0;
-    private bool pipe;
 
     #region TextFile
     [Header("Theory Book Text Reference")]
@@ -32,11 +31,12 @@ public class TheoryBook : MonoBehaviour
     [Header("Theory Book")]
     public GameObject TheoryBookComponent;
     public GameObject TheoryBookPipes;
+    public GameObject TheoryBookDiagrams;
     public GameObject TheoryBookTemplate;
 
     public GameObject previousBtn, nextBtn;
 
-    public GameObject componentBtn, pipeBtn;
+    public GameObject componentBtn, pipeBtn, diagramBtn;
     public TextMeshProUGUI leftHeader, rightHeader;
     #endregion
 
@@ -46,6 +46,8 @@ public class TheoryBook : MonoBehaviour
     private List<Sprite> componentSprite = new List<Sprite>();
     [SerializeField]
     private List<Sprite> pipeSprite = new List<Sprite>();
+    [SerializeField]
+    private List<Sprite> diagramSprite = new List<Sprite>();
 
     public TextMeshProUGUI leftTitle, rightTitle;
     public TextMeshProUGUI leftDescription, rightDescription;
@@ -115,7 +117,7 @@ public class TheoryBook : MonoBehaviour
         TextAssign(leftArray, leftTitle, leftDescription);
         TextAssign(rightArray, rightTitle, rightDescription);
 
-        if (!pipe)
+        if (TheoryBookComponent.activeSelf)
         {
             ImageAssign(leftIamge, componentSprite, currentImage);
             if (currentImage + 2 <= componentSprite.Count)
@@ -129,12 +131,26 @@ public class TheoryBook : MonoBehaviour
                 rightImage.gameObject.SetActive(false);
             }
         }
-        else
+        else if(TheoryBookPipes.activeSelf)
         {
             ImageAssign(leftIamge, pipeSprite, currentImage);
             if (currentImage + 2 <= pipeSprite.Count)
             {
                 ImageAssign(rightImage, pipeSprite, currentImage + 1);
+            }
+            else
+            {
+                rightHeader.text = "";
+                leftFrame.SetActive(false);
+                rightImage.gameObject.SetActive(false);
+            }
+        }
+        else if (TheoryBookDiagrams.activeSelf)
+        {
+            ImageAssign(leftIamge, diagramSprite, currentImage);
+            if (currentImage + 2 <= pipeSprite.Count)
+            {
+                ImageAssign(rightImage, diagramSprite, currentImage + 1);
             }
             else
             {
@@ -170,17 +186,23 @@ public class TheoryBook : MonoBehaviour
         TextAssign(leftArray, leftTitle, leftDescription);
         TextAssign(rightArray, rightTitle, rightDescription);
 
-        if (!pipe)
+        if (TheoryBookComponent.activeSelf)
         {
             rightHeader.text = "COMPONENTS";
             ImageAssign(leftIamge, componentSprite, currentImage);
             ImageAssign(rightImage, componentSprite, currentImage + 1);
         }
-        else 
+        else if (TheoryBookPipes.activeSelf)
         {
-            rightHeader.text = "PIPE";
+            rightHeader.text = "PIPES";
             ImageAssign(leftIamge, pipeSprite, currentImage);
             ImageAssign(rightImage, pipeSprite, currentImage + 1);
+        }
+        else if (TheoryBookDiagrams.activeSelf) 
+        {
+            rightHeader.text = "DIAGRAMS";
+            ImageAssign(leftIamge, diagramSprite, currentImage);
+            ImageAssign(rightImage, diagramSprite, currentImage + 1);
         }
     }
 
@@ -220,34 +242,17 @@ public class TheoryBook : MonoBehaviour
         leftFrame.SetActive(true);
         rightImage.gameObject.SetActive(true);
 
-        for (int i = 0; i < theoryBookList.Count; i++)
+        if (TheoryBookComponent.activeSelf)
         {
-            if (!pipe)
-            {
-                if (theoryBookList[i].StartsWith("Components"))
-                {
-                    componentStartLine = i + 1;
-                }
-                if (theoryBookList[i].StartsWith("EndComponents"))
-                {
-                    componentEndLine = i;
-                }
-            }
-            else if (pipe)
-            {
-                if (theoryBookList[i].StartsWith("Pipe"))
-                {
-                    componentStartLine = i + 1;
-                }
-                if (theoryBookList[i].StartsWith("EndPipes"))
-                {
-                    componentEndLine = i;
-                }
-            }
+            ComponentLinesAppend("Components", "EndComponents");
         }
-        for (int i = componentStartLine; i < componentEndLine; i++)
+        else if (TheoryBookPipes.activeSelf)
         {
-            componentsLines.Add(theoryBookList[i]);
+            ComponentLinesAppend("Pipes", "EndPipes");
+        }
+        else if (TheoryBookDiagrams.activeSelf) 
+        {
+            ComponentLinesAppend("Diagrams", "EndDiagrams");
         }
 
         leftRightArray = componentsLines[currentLine].Split(" & ");
@@ -258,40 +263,85 @@ public class TheoryBook : MonoBehaviour
         TextAssign(leftArray, leftTitle, leftDescription);
         TextAssign(rightArray, rightTitle, rightDescription);
 
-        if (!pipe)
+        if (TheoryBookComponent.activeSelf)
         {
             leftHeader.text = rightHeader.text = "COMPONENTS";
             ImageAssign(leftIamge, componentSprite, currentImage);
             ImageAssign(rightImage, componentSprite, currentImage + 1);
         }
-        else
+        else if(TheoryBookPipes.activeSelf)
         {
             leftHeader.text = rightHeader.text = "PIPES";
             ImageAssign(leftIamge, pipeSprite, currentImage);
             ImageAssign(rightImage, pipeSprite, currentImage + 1);
         }
+        else if (TheoryBookDiagrams.activeSelf)
+        {
+            leftHeader.text = rightHeader.text = "DIAGRAMS";
+            ImageAssign(leftIamge, diagramSprite, currentImage);
+            ImageAssign(rightImage, diagramSprite, currentImage + 1);
+        }
     }
 
+    private void ComponentLinesAppend(string startString, string endString)
+    //changes which part of the text file to take based on the text that seperates the segments
+    {
+        for (int i = 0; i < theoryBookList.Count; i++)
+        {
+            if (theoryBookList[i].StartsWith(startString))
+            {
+                componentStartLine = i + 1;
+            }
+            if (theoryBookList[i].StartsWith(endString))
+            {
+                componentEndLine = i;
+            }
+        }
+
+        for (int i = componentStartLine; i < componentEndLine; i++)
+        {
+            componentsLines.Add(theoryBookList[i]);
+        }
+
+    }
     public void ComponentBook()
-    //opens component book while closing pipe book
+    //opens component book while closing other books
     {
         TheoryBookComponent.SetActive(true);
         TheoryBookPipes.SetActive(false);
+        TheoryBookDiagrams.SetActive(false);
+
         componentBtn.SetActive(false);
         pipeBtn.SetActive(true);
+        diagramBtn.SetActive(true);
 
-        pipe = TheoryBookPipes.activeSelf;
         Initialize();
     }
     public void PipeBook()
-    //opens pipe book whiel closing component book
+    //opens pipe book while closing other books
     {
         TheoryBookComponent.SetActive(false);
         TheoryBookPipes.SetActive(true);
+        TheoryBookDiagrams.SetActive(false);
+
         componentBtn.SetActive(true);
         pipeBtn.SetActive(false);
+        diagramBtn.SetActive(true);
 
-        pipe = TheoryBookPipes.activeSelf;
+        Initialize();
+    }
+
+    public void DiagramBook()
+    //opens Diagram book while closing other books book
+    {
+        TheoryBookDiagrams.SetActive(true);
+        TheoryBookPipes.SetActive(false);
+        TheoryBookComponent.SetActive(false);
+
+        componentBtn.SetActive(true);
+        pipeBtn.SetActive(true);
+        diagramBtn.SetActive(false);
+
         Initialize();
     }
 }
