@@ -25,6 +25,7 @@ public class PopUp : MonoBehaviour
 
     [SerializeField]
     private bool popAtBeginning;
+    private Level2AnswerSheet Ans2;
 
     
     // Start is called before the first frame update
