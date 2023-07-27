@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8fcea48a42bf44a9290311f491ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  componentName: AHU
   specialID: 123
   placeholder: {fileID: 0}
   correctTarget: {fileID: 6828224839428028799, guid: 076a5b1c0c7982c429a69f2b33fc2d38, type: 3}

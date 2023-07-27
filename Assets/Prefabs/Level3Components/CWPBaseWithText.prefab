@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8fcea48a42bf44a9290311f491ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  componentName: CWP
   specialID: 1111
   placeholder: {fileID: 0}
   correctTarget: {fileID: 7110441119128168124, guid: d14ff99869f22e94996fc1b6f691b9cb, type: 3}
