@@ -17,6 +17,8 @@ namespace Level3
 
         public Transform correctTarget;
         public Transform correctTarget2 = null;
+        public Color correctColor;
+        public Color correctColor2;
 
         internal bool holding;
         private Sprite defaultPlaceholder;
@@ -110,7 +112,7 @@ namespace Level3
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
+            if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
             GetComponent<BoxCollider2D>().enabled = false;
             buttonEvent.FollowDragPosition(transform);
@@ -118,7 +120,7 @@ namespace Level3
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
+            if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
             holding = true;
         }
@@ -155,7 +157,7 @@ namespace Level3
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            if (buttonEvent.GetComponentInParent<ComponentWheel>().drawLine)
+            if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
             CheckPlaceholder(eventData);
             GetComponent<BoxCollider2D>().enabled = true;
