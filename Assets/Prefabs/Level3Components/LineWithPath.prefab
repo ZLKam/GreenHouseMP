@@ -46,10 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a4649669208f64186c749965d12652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 0}
   points: []
   lineThickness: 0.3
-  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  lineColor: {r: 1, g: 1, b: 1, a: 0.003921569}
   lineMat: {fileID: 2100000, guid: 5a46aa32d0d48dc48ae8037a1376c171, type: 2}
+  lineFrom: {fileID: 0}
+  lineTo: {fileID: 0}
 --- !u!120 &6509680661341185981
 LineRenderer:
   m_ObjectHideFlags: 0

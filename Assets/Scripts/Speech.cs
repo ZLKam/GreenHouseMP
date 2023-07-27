@@ -16,6 +16,10 @@ public class Speech : MonoBehaviour
     void Start()
     {
         Profilebutton.GetComponent<Image>().sprite = Profile.TransferInfo.sprite;
+        if (Profile.TransferInfo.sprite == null)
+        {
+            Profilebutton.GetComponent<Image>().sprite = null;
+        }
     }
 
     public void speech()
