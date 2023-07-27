@@ -21,7 +21,7 @@ public class Level2AnswerSheet : MonoBehaviour
 
     public GameObject correctPanel;
     public GameObject wrongPanel;
-    public static bool showPopUp;
+    bool showPopUp;
 
     GameObject[] CHWR;
     GameObject[] CHWS;
@@ -33,11 +33,13 @@ public class Level2AnswerSheet : MonoBehaviour
     GameObject[] CWSans;
     GameObject[] CWRans;
 
+    public TextMeshProUGUI text;
+
     //public Transform[] CHWRans;
     //public Transform[] CHWSans;
     //public Transform[] CWSans;
     //public Transform[] CWRans;
-    //public Transform[] pipes;
+    public Transform[] pipes;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +60,10 @@ public class Level2AnswerSheet : MonoBehaviour
 
     private void Update()
     {
+        if (text)
+        {
+            text.text = connectionCWR.ToString();
+        }
     }
 
     public void AnswerCheck()
@@ -275,69 +281,71 @@ public class Level2AnswerSheet : MonoBehaviour
 
         return false;
     }
-    
 
-
-    //public void ConnectionCheck(List<GameObject> ans)
+    //public void ListComparison(List<GameObject> playerList, List<GameObject> answerList)
     //{
-    //    if (ans[0] == pipes[0])
-    //    {
-    //        foreach (GameObject t in ans)
-    //        {
-    //            if (!CHWR.Contains(t))
-    //            {
-    //                connectionCHWR = false;
-    //            }
-    //            else
-    //            {
-    //                connectionCHWR = true;
-    //            }
-    //        }
-    //    }
-    //    if (ans[0] == pipes[1])
-    //    {
-    //        //CHWS Check
-    //        foreach (GameObject t in ans)
-    //        {
-    //            if (!CHWS.Contains(t))
-    //            {
-    //                connectionCHWS = false;
-    //            }
-    //            else
-    //            {
-    //                connectionCHWS = true;
-    //            }
-    //        }
-    //    }
-    //    if (ans[0] == pipes[2])
-    //    {
-    //        //CWR Check
-    //        foreach (GameObject t in ans)
-    //        {
-    //            if (!CWR.Contains(t) )
-    //            {
-    //                connectionCWR = false;
-    //            }
-    //            else
-    //            {
-    //                connectionCWR = true;
-    //            }
-    //        }
-    //    }
-    //    if (ans[0] == pipes[3])
-    //    {
-    //        //CWS Check
-    //        foreach (GameObject t in ans)
-    //        {
-    //            if (!CWS.Contains(t))
-    //            {
-    //                connectionCWS = false;
-    //            }
-    //            else
-    //            {
-    //                connectionCWS = true;
-    //            }
-    //        }
-    //    }
+
     //}
+    public void ConnectionCheck(List<GameObject> ans)
+    {
+        if (ans[0] == pipes[0])
+        {
+            foreach (GameObject t in ans)
+            {
+                if (!CHWR.Contains(t))
+                {
+                    connectionCHWR = false;
+                }
+                else
+                {
+                    connectionCHWR = true;
+                }
+            }
+        }
+        if (ans[0] == pipes[1])
+        {
+            //CHWS Check
+            foreach (GameObject t in ans)
+            {
+                if (!CHWS.Contains(t))
+                {
+                    connectionCHWS = false;
+                }
+                else
+                {
+                    connectionCHWS = true;
+                }
+            }
+        }
+        if (ans[0] == pipes[2])
+        {
+            //CWR Check
+            foreach (GameObject t in ans)
+            {
+                if (!CWR.Contains(t) )
+                {
+                    connectionCWR = false;
+                }
+                else
+                {
+                    connectionCWR = true;
+                }
+            }
+        }
+        if (ans[0] == pipes[3])
+        {
+            //CWS Check
+            foreach (GameObject t in ans)
+            {
+                if (!CWS.Contains(t))
+                {
+                    connectionCWS = false;
+                }
+                else
+                {
+                    connectionCWS = true;
+                }
+            }
+        }
+    }
 }

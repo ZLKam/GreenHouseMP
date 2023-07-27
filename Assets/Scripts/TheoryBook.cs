@@ -41,7 +41,6 @@ public class TheoryBook : MonoBehaviour
         }
 
         TheoryBookComponent.SetActive(false);
-        TheoryBookPipes.SetActive(false);
     }
 
     public void ComponentPage1()

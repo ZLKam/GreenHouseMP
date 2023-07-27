@@ -3720,7 +3720,6 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
@@ -5406,7 +5405,6 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 817959895}
   instructionPanel: {fileID: 860568394}
   PauseCheck: 0
@@ -6693,7 +6691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &860568395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14084,8 +14082,6 @@ MonoBehaviour:
   placement: {fileID: 0}
   hover: {fileID: 0}
   connection: {fileID: 252340424}
-  allowRotation: 1
-  allowZoom: 1
   rotationSpeed: 60
   initialDistance: 0
   sensitivity: 5
@@ -15018,7 +15014,6 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
