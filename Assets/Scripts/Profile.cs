@@ -52,6 +52,7 @@ public class Profile : MonoBehaviour
             TransferInfo = ProfileImage;
             profilestuff.SetActive(false);
             MenuItems.SetActive(true);
+            textcon.text = username;
         }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
