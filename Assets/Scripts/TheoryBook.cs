@@ -91,15 +91,9 @@ public class TheoryBook : MonoBehaviour
             quitBtn.SetActive(true);
         }
 
-<<<<<<< HEAD
-        TheoryBookComponent.SetActive(false);
-<<<<<<< HEAD
-=======
-        TheoryBookPipes.SetActive(false);
-=======
+        //TheoryBookComponent.SetActive(false);
+        //TheoryBookPipes.SetActive(false);
         TheoryBookTemplate.SetActive(false);
->>>>>>> main
->>>>>>> parent of 5e3523b (Revert "c")
     }
 
     public void NextPage() 
