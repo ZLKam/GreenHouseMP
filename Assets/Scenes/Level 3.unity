@@ -12232,9 +12232,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3783539975717279749, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
       propertyPath: m_text
-      value: 'No hint!
+      value: 'Drag and Drop components.
 
-        Good luck when you are playing!'
+        Then, connect them together.'
       objectReference: {fileID: 0}
     - target: {fileID: 3783539976202512056, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
       propertyPath: m_text
