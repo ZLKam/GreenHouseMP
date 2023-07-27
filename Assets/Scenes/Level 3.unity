@@ -7943,6 +7943,7 @@ MonoBehaviour:
   imgFindingPath: {fileID: 1486794527}
   imgError: {fileID: 189878264}
   typeOfLineSelected: 0
+  colorOfLineSelected: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1263224617
 GameObject:
   m_ObjectHideFlags: 0
@@ -12523,9 +12524,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3783539975717279749, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
       propertyPath: m_text
-      value: 'No hint!
+      value: 'Drag and Drop components.
 
-        Good luck when you are playing!'
+        Then, connect them together.'
       objectReference: {fileID: 0}
     - target: {fileID: 3783539976202512056, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
       propertyPath: m_text
