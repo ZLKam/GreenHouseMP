@@ -28,6 +28,7 @@ public class Fade : MonoBehaviour
     public GameObject Level;
     public GameObject GameMenu;
     public GameObject PreLevelItems;
+    public static bool Previewed;
 
     [SerializeField]
     private GameObject pausePanel;
@@ -93,7 +94,7 @@ public class Fade : MonoBehaviour
                 if (exit)
                 //quits the game if true
                 {
-                    Profile.ProfileSet = Instructions.Read = false;
+                    Profile.ProfileSet = Instructions.Read = Previewed =false;
                     Application.Quit();
                 }
                 else if (!string.IsNullOrEmpty(transitionScene))
@@ -211,6 +212,10 @@ public class Fade : MonoBehaviour
 
     //Section Selector / Level Selector
 
+    public void PreviewTrue()
+    {
+        Previewed = true;
+    }
 
     public void PlayButton()
     {
@@ -227,9 +232,11 @@ public class Fade : MonoBehaviour
 
     public void LevelSelect()
     {
-        //if (Static Prelevel == true){}
-        PreLevelItems.SetActive(false);
-        Level.SetActive(true);
+        if (Previewed)
+        {
+            PreLevelItems.SetActive(false);
+            Level.SetActive(true);
+        }
     }
 
     public void SectionBack()
