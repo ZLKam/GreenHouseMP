@@ -58,13 +58,14 @@ public class Connection : MonoBehaviour
     public GameObject pipeWarningPanel;
     public Fade fade;
     public GameObject uiParent;
-    public Level2AnswerSheet Level2Ans;
+
+    public List<GameObject> AHUPoint1;
+    public List<GameObject> AHUPoint2;
 
     private void Awake()
     {
         Camera.main.transform.parent.GetComponent<CameraMovement>().zoomStopDistance = 30f;
         componentArray = FindObjectsOfType<SelectedComponent>();
-        Level2Ans = transform.GetComponent<Level2AnswerSheet>();
     }
 
     // Update is called once per frame
@@ -216,22 +217,40 @@ public class Connection : MonoBehaviour
                 {
                     for (int i = 0; i < points.Count; i++)
                     {
-                        foreach (GameObject t in Level2Ans.connectionPoint1)
+                        var pointlist = new List<GameObject>();
+                        foreach (GameObject t in AHUPoint1)
                         {
                             if (points[i].transform.position == t.transform.position)
                             {
-                                if (i == 0) 
+                                if (i == 0)
                                 {
-                                    var pointlist = Level2Ans.connectionPoint1;
+                                    pointlist = AHUPoint1;
                                     pointlist.Add(points[1]);
-                                    MultiConnect(pointlist);
                                 }
                                 else if (i == 1)
                                 {
-                                    var pointlist = Level2Ans.connectionPoint1;
+                                    pointlist = AHUPoint1;
                                     pointlist.Add(points[0]);
                                     MultiConnect(pointlist);
                                 }
+                                MultiConnect(pointlist);
+                            }
+                        }
+                        foreach (GameObject t in AHUPoint2)
+                        {
+                            if (points[i].transform.position == t.transform.position)
+                            {
+                                if (i == 0)
+                                {
+                                    pointlist = AHUPoint2;
+                                    pointlist.Add(points[1]);
+                                }
+                                else if (i == 1)
+                                {
+                                    pointlist = AHUPoint2;
+                                    pointlist.Add(points[0]);
+                                }
+                                MultiConnect(pointlist);
                             }
                         }
                     }
@@ -463,13 +482,15 @@ public class Connection : MonoBehaviour
         pipes.Add(pipeMain);
 
         //ColourPipe(pipeMain);
-        pipeMain.AddComponent<ParticleFlow>();
+        //pipeMain.AddComponent<ParticleFlow>();
         pointList.Clear();
         multiplePoints.Clear();
+        points.Clear();
         pipeConnection.Clear();
         centerPoints.Clear();
         lengths.Clear();
         //multiConnectToggle.UpdateText();
+
     }
 
     //void ColourPipe(GameObject pipeMain)
