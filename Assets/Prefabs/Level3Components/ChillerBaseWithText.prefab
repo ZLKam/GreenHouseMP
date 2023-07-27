@@ -288,8 +288,6 @@ MonoBehaviour:
   placeholder: {fileID: 0}
   correctTarget: {fileID: 4852037129959223898, guid: bba347877d6239f46b9284b545b5c563, type: 3}
   correctTarget2: {fileID: 3058490348155394926, guid: f953293d37e78934eafb167b47fac70f, type: 3}
-  correctColor: {r: 1, g: 0, b: 0, a: 1}
-  correctColor2: {r: 0, g: 0, b: 1, a: 1}
 --- !u!50 &7294034458165425355
 Rigidbody2D:
   serializedVersion: 4

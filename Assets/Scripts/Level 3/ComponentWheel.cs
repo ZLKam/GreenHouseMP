@@ -23,8 +23,8 @@ public class ComponentWheel : MonoBehaviour
     public Sprite selectComponentSprite;
 
     public ChangeMode btnChangeMode;
-    internal bool SelectComponent { get { return btnChangeMode.SelectComponent; } }
-    internal bool DrawLine { get { return btnChangeMode.DrawLine; } }
+    internal bool selectComponent { get { return btnChangeMode.SelectComponent; } }
+    internal bool drawLine { get { return btnChangeMode.DrawLine; } }
 
     public Vector2 centerPointOfPlayArea = new();
 

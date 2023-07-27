@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ namespace Level3
         [SerializeField]
         private float lineThickness = 0.3f;
         [SerializeField]
-        internal Color lineColor = new Color(255, 255, 255);
+        private Color lineColor = new Color(255, 255, 255);
         [SerializeField]
         private Material lineMat;
 
@@ -38,8 +37,7 @@ namespace Level3
             lr.endWidth = lineThickness;
             lr.startColor = lineColor;
             lr.endColor = lineColor;
-            lr.material = Instantiate(lineMat);
-            lr.material.color = lineColor;
+            lr.material = lineMat;
 
             particlesManager = GetComponent<ParticlesManager>();
 
@@ -79,16 +77,11 @@ namespace Level3
         public bool isCorrect()
         {
             ComponentEvent component = lineFrom.GetComponentInParent<ComponentEvent>();
-            // check if the line is connected to the correct target
+            Debug.Log(component.correctTarget + ", " + lineTo.parent);
             if (component.correctTarget.GetComponent<ComponentEvent>().specialID == lineTo.parent.GetComponent<ComponentEvent>().specialID ||
                 (component.correctTarget2 ? component.correctTarget2.GetComponent<ComponentEvent>().specialID == lineTo.parent.GetComponent<ComponentEvent>().specialID : false))
             {
-                // check if the line is the correct type
-                if (component.GetComponent<ComponentEvent>().correctColor == lineColor ||
-                    (component.correctTarget2 ? component.GetComponent<ComponentEvent>().correctColor2 == lineColor : false))
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }

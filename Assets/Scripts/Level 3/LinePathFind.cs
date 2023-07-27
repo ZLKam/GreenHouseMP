@@ -46,7 +46,6 @@ public class LinePathFind : MonoBehaviour
     private float startTime;
 
     public bool typeOfLineSelected = false;
-    public Color colorOfLineSelected;
 
     private void OnDisable()
     {
@@ -362,7 +361,7 @@ public class LinePathFind : MonoBehaviour
         while (pathFinder.status == PathFinderStatus.RUNNING)
         {
             findingPath = true;
-            if (pathFindCount > 300)
+            if (pathFindCount > 250)
             {
                 Debug.Log("PathFinding is taking too long, break it.");
                 pathFinder.status = PathFinderStatus.FAILURE;
@@ -380,7 +379,7 @@ public class LinePathFind : MonoBehaviour
         }
         if (pathFinder.status == PathFinderStatus.SUCCESS)
         {
-            //Debug.Log("Found a path, time taken: " + (Time.time - startTime));
+            Debug.Log("Found a path, time taken: " + (Time.time - startTime));
             // found a valid path.
             // accumulate all the locations by traversing from goal to the start.
             List<Vector2Int> reversePathLocations = new List<Vector2Int>();
@@ -404,7 +403,6 @@ public class LinePathFind : MonoBehaviour
             line.GetComponent<DrawLine>().lineFrom = lineFrom;
             line.GetComponent<DrawLine>().lineTo = lineTo;
             line.GetComponent<DrawLine>().finishedAddingPoints = true;
-            line.GetComponent<DrawLine>().lineColor = colorOfLineSelected;
         }
         imgFindingPath.SetActive(false);
         findingPath = false;

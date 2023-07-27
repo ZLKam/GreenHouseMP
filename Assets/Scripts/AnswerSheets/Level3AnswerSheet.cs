@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
+public class Level3AnswerSheet : MonoBehaviour, IPointerDownHandler
 {
     public LinePathFind line;
 
@@ -24,7 +24,7 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private GameObject wrongPanel;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         if (line.IsFindingPath())
             return;

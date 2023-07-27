@@ -25,7 +25,7 @@ namespace Level3
         public void OnPointerDown(PointerEventData eventData)
         //handles instantiting the object component to be placed in the scene
         {
-            if (componentWheel.DrawLine)
+            if (componentWheel.drawLine)
                 return;
             //if (spawnedComponentCount >= 7)
             //    return;
@@ -53,7 +53,7 @@ namespace Level3
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!instantiatedComponent || componentWheel.DrawLine)
+            if (!instantiatedComponent || componentWheel.drawLine)
                 return;
             FollowDragPosition(instantiatedComponent);
         }
@@ -76,7 +76,7 @@ namespace Level3
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            if (componentWheel.DrawLine)
+            if (componentWheel.drawLine)
                 return;
             // On lift up
             if (instantiatedComponent)
@@ -93,16 +93,6 @@ namespace Level3
                 {
                     // when pointer on a placeholder, place the component on the placeholder
                     Transform placeholder = eventData.pointerCurrentRaycast.gameObject.transform;
-                    placeholder.GetComponent<SpriteRenderer>().enabled = false;
-                    instantiatedComponent.transform.parent = placeholder;
-                    instantiatedComponent.transform.localPosition = Vector3.zero;
-                    instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
-                    instantiatedComponent.GetComponent<ComponentEvent>().placeholder = placeholder;
-                }
-                else if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Component"))
-                {
-                    Transform placeholder = eventData.pointerCurrentRaycast.gameObject.transform.parent;
-                    Destroy(eventData.pointerCurrentRaycast.gameObject);
                     placeholder.GetComponent<SpriteRenderer>().enabled = false;
                     instantiatedComponent.transform.parent = placeholder;
                     instantiatedComponent.transform.localPosition = Vector3.zero;

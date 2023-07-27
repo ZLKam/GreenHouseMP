@@ -60,7 +60,6 @@ namespace Level3
                 allLines.ForEach(line => Destroy(line));
 
                 FindObjectsOfType<DrawLine>().ToList().ForEach(x => x.ResetCellToWalkable());
-                lineBoss.GetComponent<LinePathFind>().typeOfLineSelected = false;
                 componentWheel.SetActive(true);
                 lineWheel.SetActive(false);
             }

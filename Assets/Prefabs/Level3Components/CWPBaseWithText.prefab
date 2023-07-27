@@ -106,8 +106,6 @@ MonoBehaviour:
   placeholder: {fileID: 0}
   correctTarget: {fileID: 7110441119128168124, guid: d14ff99869f22e94996fc1b6f691b9cb, type: 3}
   correctTarget2: {fileID: 0}
-  correctColor: {r: 1, g: 0, b: 0, a: 1}
-  correctColor2: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &1555703448418485346
 Rigidbody2D:
   serializedVersion: 4
