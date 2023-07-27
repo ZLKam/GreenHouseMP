@@ -209,4 +209,9 @@ public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
             placement.selectedPrefab = component;
         }
     }
+
+    public bool SetHoverTab
+    {
+        set { hoverTab = value; }
+    }
 }

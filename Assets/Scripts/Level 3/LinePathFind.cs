@@ -10,6 +10,9 @@ public class LinePathFind : MonoBehaviour
 {
     public RectGrid rectGrid;
 
+    private int gridLayer = 1 << 3;
+    private int lineLayer = 1 << 8;
+
     public List<Transform> secretPoints = new();
 
     [SerializeField]
@@ -47,17 +50,36 @@ public class LinePathFind : MonoBehaviour
 
     public bool typeOfLineSelected = false;
     public Color colorOfLineSelected;
+    [SerializeField]
+    private Color informationBackgroundColor = new(102, 120, 143);
 
-    private void OnDisable()
+    public TextMeshProUGUI txtComponentFrom;
+    public TextMeshProUGUI txtComponentTo;
+    public Image imgColorSelected;
+
+    public GameObject selectColorPopUp;
+    public Hover hoverTab;
+
+    private void Awake()
+    {
+        txtComponentFrom.text = "";
+        txtComponentTo.text = "";
+        enabled = false;
+    }
+
+    private void OnEnable()
     {
         fromT = null;
         toT = null;
+        txtComponentFrom.text = "";
+        txtComponentTo.text = "";
+        imgColorSelected.color = informationBackgroundColor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (findingPath || !typeOfLineSelected)
+        if (findingPath)
             return;
 #if UNITY_STANDALONE
         if (Input.GetMouseButtonDown(0))
@@ -66,8 +88,12 @@ public class LinePathFind : MonoBehaviour
         if (InputSystem.Instance.LeftClick())
 #endif
         {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit3D, lineLayer))
+            {
+                hit3D.transform.GetComponent<DrawLine>()?.ReverseLine();
+            }
             // Hit detection
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, ~3);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, ~gridLayer);
             if (!hit)
                 return;
             if (!hit.transform.CompareTag("Component"))
@@ -79,7 +105,7 @@ public class LinePathFind : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Please select a component");
+                    Debug.Log("Hitting " + hit.transform.name + ". Please select a component");
                     return;
                 }
             }
@@ -88,11 +114,20 @@ public class LinePathFind : MonoBehaviour
                 if (hitPlaceholder)
                 {
                     fromT = hit.transform.GetChild(0);
+                    txtComponentFrom.text = fromT.GetComponent<ComponentEvent>().componentName;
                     hitPlaceholder = false;
                 }
                 else
                 {
                     fromT = hit.transform;
+                    txtComponentFrom.text = fromT.GetComponent<ComponentEvent>().componentName;
+                }
+                if (!typeOfLineSelected)
+                {
+                    selectColorPopUp.SetActive(true);
+                    hoverTab.SetHoverTab = true;
+                    fromT = null;
+                    return;
                 }
             }
             else if (fromT && !toT)
@@ -100,16 +135,19 @@ public class LinePathFind : MonoBehaviour
                 if (hitPlaceholder)
                 {
                     toT = hit.transform.GetChild(0);
+                    txtComponentTo.text = toT.GetComponent<ComponentEvent>().componentName;
                     hitPlaceholder = false;
                 }
                 else
                 {
                     toT = hit.transform;
+                    txtComponentTo.text = toT.GetComponent<ComponentEvent>().componentName;
                 }
                 if (toT == fromT)
                 {
                     Debug.Log("Please select a different component");
                     toT = null;
+                    txtComponentTo.text = "";
                     return;
                 }
                 // When from and to are selected, find the nearest nodes of them
@@ -128,6 +166,8 @@ public class LinePathFind : MonoBehaviour
                     changedTo = null;
                     fromT = null;
                     toT = null;
+                    txtComponentFrom.text = "";
+                    txtComponentTo.text = "";
                     return;
                 }
                 else
