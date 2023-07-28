@@ -11,7 +11,7 @@ public class TheoryTab : MonoBehaviour, IPointerClickHandler
 
     public Image tabImage;
 
-    public void OnPointerClick(PointerEventData eventData) 
+    public void OnPointerClick(PointerEventData eventData)
     {
         tabGroup.OnTabSelected(this);
     }
@@ -21,11 +21,5 @@ public class TheoryTab : MonoBehaviour, IPointerClickHandler
     {
         tabImage = GetComponent<Image>();
         tabGroup.Subscribe(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
