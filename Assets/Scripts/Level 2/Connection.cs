@@ -218,10 +218,12 @@ public class Connection : MonoBehaviour
                     for (int i = 0; i < points.Count; i++)
                     {
                         var pointlist = new List<GameObject>();
-                        foreach (GameObject t in AHUPoint1)
+                        Debug.Log(AHUPoint1.Count);
+                        for (int t = 0; t < AHUPoint1.Count; t++)
                         {
-                            if (points[i].transform.position == t.transform.position)
+                            if (points[i].transform.position == AHUPoint1[t].transform.position)
                             {
+                                Debug.Log("Reached");
                                 if (i == 0)
                                 {
                                     pointlist = AHUPoint1;
@@ -231,15 +233,13 @@ public class Connection : MonoBehaviour
                                 {
                                     pointlist = AHUPoint1;
                                     pointlist.Add(points[0]);
-                                    MultiConnect(pointlist);
                                 }
+                                Debug.Log("Multiconnect");
                                 MultiConnect(pointlist);
                             }
-                        }
-                        foreach (GameObject t in AHUPoint2)
-                        {
-                            if (points[i].transform.position == t.transform.position)
+                            else if(points[i].transform.position == AHUPoint2[t].transform.position)
                             {
+                                Debug.Log("Reached Here");
                                 if (i == 0)
                                 {
                                     pointlist = AHUPoint2;
