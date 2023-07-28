@@ -378,11 +378,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69126859}
   m_CullTransparentMesh: 1
---- !u!1 &250105317 stripped
+--- !u!1 &199973405 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6305942689052585051, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8366767027670648301, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
   m_PrefabInstance: {fileID: 6305942689206182334}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &199973409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199973405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5368587823f6a3d40bb6063b2f304fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabImage: {fileID: 0}
+  imageGroup: {fileID: 0}
 --- !u!1 &254692619
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,11 +846,6 @@ RectTransform:
   m_AnchoredPosition: {x: 174.99998, y: -64.399994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &459526471 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6305942689396879609, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
-  m_PrefabInstance: {fileID: 6305942689206182334}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &555772502
 GameObject:
   m_ObjectHideFlags: 0
@@ -5131,11 +5140,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1916939511 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6305942690049101129, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
-  m_PrefabInstance: {fileID: 6305942689206182334}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1919590219
 GameObject:
   m_ObjectHideFlags: 0
@@ -6220,12 +6224,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theoryBookFormat: {fileID: 4900000, guid: 9c10a441c2c8bbf46b33aa2adcaa943e, type: 3}
   TheoryBookComponent: {fileID: 1704087371}
-  TheoryBookPipes: {fileID: 250105317}
+  TheoryBookPipes: {fileID: 0}
+  TheoryBookDiagrams: {fileID: 0}
+  selectedTab: {fileID: 0}
+  unselectedTab: {fileID: 0}
   TheoryBookTemplate: {fileID: 0}
   previousBtn: {fileID: 1315945456}
   nextBtn: {fileID: 267994961}
-  componentBtn: {fileID: 1916939511}
-  pipeBtn: {fileID: 459526471}
+  componentBtn: {fileID: 0}
+  pipeBtn: {fileID: 0}
+  diagramBtn: {fileID: 0}
   leftHeader: {fileID: 0}
   rightHeader: {fileID: 0}
   componentSprite:
@@ -6239,6 +6247,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 88af9b1717fa2544cbb4fdc382cc7895, type: 3}
   - {fileID: 21300000, guid: 2f59115c4c7c3344ab8a29b05993e8b6, type: 3}
   - {fileID: 21300000, guid: 4a169fcd2e5288749ae0f5f746d31bf2, type: 3}
+  diagramSprite: []
   leftTitle: {fileID: 0}
   rightTitle: {fileID: 0}
   leftDescription: {fileID: 0}
@@ -6478,6 +6487,18 @@ PrefabInstance:
     - target: {fileID: 6305942689636936395, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_Name
       value: TheoryBook
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305942690520259007, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366767027670648301, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8593859976879291475, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}

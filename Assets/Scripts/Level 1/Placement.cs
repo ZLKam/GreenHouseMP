@@ -161,12 +161,15 @@ public class Placement : MonoBehaviour
             }
         }
 
+        
+        
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit,Mathf.Infinity))
         //constantly generates a raycast from the mouse position
         //checks if the mouse is over a game object and the returns the hit object using raycast
         {
             if (hit.collider.CompareTag("Selection"))
             {
+                cameraMovement.allowRotation = false;
                 if (highlighted == hit.transform)
                 {
                     allowDelete = false;
@@ -190,6 +193,21 @@ public class Placement : MonoBehaviour
             }
             if (InputSystem.Instance.LeftClick())
             //if there is a left click or a touch detected
+            {
+                if (!hit.transform.CompareTag("Selection"))
+                {
+                    //the game object is not the green boxes it will run the delete function
+#if UNITY_ANDROID
+                    Delete(hit.transform);
+                    return;
+#endif          
+                }
+
+                //if not it will run the select function
+                Select(hit.transform);
+                return;
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved) 
             {
                 if (!hit.transform.CompareTag("Selection"))
                 {
