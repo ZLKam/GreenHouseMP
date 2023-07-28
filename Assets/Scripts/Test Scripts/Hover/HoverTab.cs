@@ -9,10 +9,12 @@ public class HoverTab : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public HoverGroup hoverGroup;
 
     public Vector3 originTransform;
+    [HideInInspector]
     public Transform imageToChange;
 
     public GameObject componentPrefab;
     public string componentName;
+    public GameObject tempComponent;
 
     void Start()
     {
