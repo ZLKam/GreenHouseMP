@@ -2593,7 +2593,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 537856360}
   m_OnClick:
     m_PersistentCalls:
@@ -3742,6 +3742,7 @@ MonoBehaviour:
   Level: {fileID: 1982832614}
   GameMenu: {fileID: 1318556290}
   PreLevelItems: {fileID: 1854882983}
+  btnLevelSelect: {fileID: 537856359}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0

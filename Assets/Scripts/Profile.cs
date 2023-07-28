@@ -4,14 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System.Text;
+using System;
 
 public class Profile : MonoBehaviour
 {
-    public static string gender;
-    public static string username;
+    //public static string gender;
+    //public static string username;
+    private string username;
     public bool genderFilled;
     public bool usernameFilled;
-    public static bool ProfileSet;
+    //public static bool ProfileSet;
 
     public GameObject MenuItems;
     public TMP_InputField inputField;
@@ -19,7 +22,7 @@ public class Profile : MonoBehaviour
 
     public TextMeshProUGUI textcon;
     public Image ProfileImage;
-    public static Image TransferInfo;
+    //public static Image TransferInfo;
 
     public Sprite MaleImage;
     public Sprite FemaleImage;
@@ -31,69 +34,100 @@ public class Profile : MonoBehaviour
     private string alertText = "Make sure a <color=red>Character</color> and a <color=red>Username</color> has been inputted.";
     private bool justShowedAlert = false;
 
+    private byte[] selectedProfileImage;
+    private string timeProfileCreated;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (!ProfileSet)
+        //if (!ProfileSet)
+        //{
+        //    username = null;
+        //    gender = null;
+        //}
+        //else
+        //{
+        //    if (gender == "Male")
+        //    {
+        //        ProfileImage.sprite = MaleImage;
+        //    }
+        //    if (gender == "Female")
+        //    {
+        //        ProfileImage.sprite = FemaleImage;
+        //    }
+        //    TransferInfo = ProfileImage;
+        //    profilestuff.SetActive(false);
+        //    MenuItems.SetActive(true);
+        //    textcon.text = username;
+        //}
+        if (PlayerPrefs.HasKey("TimeProfileCreated"))
         {
-            username = null;
-            gender = null;
+            DateTime dateTime = DateTime.Now;
+            DateTime profileCreatedTime = DateTime.Parse(PlayerPrefs.GetString("TimeProfileCreated"));
+            double minutesSinceProfileCreated = (dateTime - profileCreatedTime).TotalMinutes;
+            if (minutesSinceProfileCreated > 10)
+            {
+                PlayerPrefs.DeleteKey("ProfileImage");
+                PlayerPrefs.DeleteKey("Username");
+                PlayerPrefs.DeleteKey("TimeProfileCreated");
+            }
         }
-        else
+        if (PlayerPrefs.HasKey("Username") && PlayerPrefs.HasKey("ProfileImage"))
         {
-            if (gender == "Male")
-            {
-                ProfileImage.sprite = MaleImage;
-            }
-            if (gender == "Female")
-            {
-                ProfileImage.sprite = FemaleImage;
-            }
-            TransferInfo = ProfileImage;
+            Texture2D texture2D = new(1, 1);
+            texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString("ProfileImage")));
+            ProfileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
             profilestuff.SetActive(false);
             MenuItems.SetActive(true);
-            textcon.text = username;
+            textcon.text = PlayerPrefs.HasKey("Username") ? PlayerPrefs.GetString("Username") : string.Empty;
         }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    TransferInfo = ProfileImage;
-    //    if (gender != null)
-    //    {
-    //        genderFilled = true;
-    //    }
-    //    else { genderFilled = false; }
-    //    if (username != null)
-    //    {
-    //        usernameFilled = true;
-    //    }
-    //    else { usernameFilled = false; } 
+    //Update is called once per frame
+    void Update()
+    {
+        if (Input.GetButtonDown("Submit"))
+        {
+            Continue();
+        }
+        //    TransferInfo = ProfileImage;
+        //    if (gender != null)
+        //    {
+        //        genderFilled = true;
+        //    }
+        //    else { genderFilled = false; }
+        //    if (username != null)
+        //    {
+        //        usernameFilled = true;
+        //    }
+        //    else { usernameFilled = false; } 
 
-    //    textcon.text = username;
-    //}
+        //    textcon.text = username;
+    }
 
 
     public void GenderSetMale()
     {
-        gender = "Male";
+        //gender = "Male";
         genderFilled = true;
         ProfileImage.sprite = MaleImage;
         femaleBtn.GetComponent<Image>().color = Color.white;
         maleBtn.GetComponent<Image>().color = Color.yellow;
+        selectedProfileImage = ImageConversion.EncodeToPNG(MaleImage.texture);
+        PlayerPrefs.SetString("ProfileImage", Convert.ToBase64String(selectedProfileImage));
     }
 
     public void GenderSetFemale()
     {
-        gender = "Female";
+        //gender = "Female";
         genderFilled = true;
         ProfileImage.sprite = FemaleImage;
         femaleBtn.GetComponent<Image>().color = Color.yellow;
         maleBtn.GetComponent<Image>().color = Color.white;
-
+        selectedProfileImage = ImageConversion.EncodeToPNG(FemaleImage.texture);
+        PlayerPrefs.SetString("ProfileImage", Convert.ToBase64String(selectedProfileImage));
     }
 
     public void StoreName()
@@ -119,9 +153,12 @@ public class Profile : MonoBehaviour
             //SceneManager.LoadScene("Main Menu");
             profilestuff.SetActive(false);
             MenuItems.SetActive(true);
-            ProfileSet = true;
-            TransferInfo = ProfileImage;
+            //ProfileSet = true;
+            //TransferInfo = ProfileImage;
             textcon.text = username;
+            PlayerPrefs.SetString("Username", username);
+            timeProfileCreated = DateTime.Now.ToString();
+            PlayerPrefs.SetString("TimeProfileCreated", timeProfileCreated);
         }
         else if (!genderFilled || !usernameFilled)
         {

@@ -30,6 +30,8 @@ public class Fade : MonoBehaviour
     public GameObject PreLevelItems;
     public static bool Previewed;
 
+    public UnityEngine.UI.Button btnLevelSelect;
+
     [SerializeField]
     private GameObject pausePanel;
     [SerializeField]
@@ -94,7 +96,10 @@ public class Fade : MonoBehaviour
                 if (exit)
                 //quits the game if true
                 {
-                    Profile.ProfileSet = Instructions.Read = Previewed =false;
+                    /*Profile.ProfileSet = */Instructions.Read = Previewed = false;
+                    PlayerPrefs.DeleteKey("ProfileImage");
+                    PlayerPrefs.DeleteKey("Username");
+                    PlayerPrefs.DeleteKey("TimeProfileCreated");
                     Application.Quit();
                 }
                 else if (!string.IsNullOrEmpty(transitionScene))
@@ -249,6 +254,7 @@ public class Fade : MonoBehaviour
     {
         Level.SetActive(false);
         PreLevelItems.SetActive(true);
+        btnLevelSelect.interactable = true;
     }
 
     public void PrelevelBack()

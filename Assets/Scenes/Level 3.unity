@@ -411,8 +411,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1332,8 +1332,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1989,7 +1989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &517489886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7188,7 +7188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1100470213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7672,6 +7672,7 @@ MonoBehaviour:
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
   PreLevelItems: {fileID: 0}
+  btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 1734517859}
   instructionPanel: {fileID: 1100470212}
   PauseCheck: 0
@@ -9308,6 +9309,7 @@ MonoBehaviour:
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
   PreLevelItems: {fileID: 0}
+  btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
@@ -11329,8 +11331,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11949,8 +11951,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13013,8 +13015,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13297,6 +13299,7 @@ MonoBehaviour:
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
   PreLevelItems: {fileID: 0}
+  btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
