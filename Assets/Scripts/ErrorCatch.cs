@@ -17,7 +17,25 @@ public class ErrorCatch : MonoBehaviour
     private void OnEnable()
     {
         DontDestroyOnLoad(gameObject);
+#if UNITY_STANDALONE
         filePath = Path.Combine(Application.persistentDataPath, "errorLog.txt");
+#endif
+#if UNITY_ANDROID
+        try
+        {
+            using (AndroidJavaClass ajc = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            {
+                using (AndroidJavaObject ajo = ajc.GetStatic<AndroidJavaObject>("currentActivity"))
+                {
+                    filePath = ajo.Call<AndroidJavaObject>("getExternalFilesDir").Call<string>("getAbsolutePath");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.Log("Error fetching native Android external storage dir: " + e.Message);
+        }
+#endif
         Application.logMessageReceivedThreaded += HandleLog;
         SceneManager.LoadScene("Main Menu");
     }

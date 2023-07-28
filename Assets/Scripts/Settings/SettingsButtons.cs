@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -97,11 +98,18 @@ public class SettingsButtons : MonoBehaviour
 
     public void ShowLogFile()
     {
+        try
+        {
 #if UNITY_STANDALONE
         Application.OpenURL("file://" + Application.persistentDataPath + "/errorLog.txt");
 #endif
 #if UNITY_ANDROID
-        Application.OpenURL(Application.persistentDataPath + "/errorLog.txt");
+            Application.OpenURL("/mnt/sdcard" + "/errorLog.txt");
 #endif
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Failed to open error log file. " + e.Message);
+        }
     }
 }
