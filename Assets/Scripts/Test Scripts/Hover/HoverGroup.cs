@@ -7,8 +7,10 @@ using TMPro;
 public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 {
     public List<HoverTab> componentTabs;
-    public Placement placement;
-    public CameraMovement cameraController;
+    [SerializeField]
+    private Placement placement;
+    [SerializeField]
+    private CameraMovement cameraController;
     public TextMeshProUGUI wheelTitle;
 
     private Vector3 mousePos;
@@ -36,12 +38,12 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     {
         if (openTab)
         {
-            transform.GetComponent<RectTransform>().position = Vector3.Lerp(transform.GetComponent<RectTransform>().position, new Vector3(postionToPassIn, transform.GetComponent<RectTransform>().position.y, transform.GetComponent<RectTransform>().position.z), Time.deltaTime * 2);
+            transform.GetComponent<RectTransform>().localPosition = Vector3.Lerp(transform.GetComponent<RectTransform>().localPosition, new Vector3(finalPosition, transform.GetComponent<RectTransform>().localPosition.y, transform.GetComponent<RectTransform>().localPosition.z), Time.deltaTime * 2);
             placeComponent = true;
         }
         else 
         {
-            transform.GetComponent<RectTransform>().position = Vector3.Lerp(transform.GetComponent<RectTransform>().position, new Vector3(startPosition, transform.GetComponent<RectTransform>().position.y, transform.GetComponent<RectTransform>().position.z), Time.deltaTime * 2);
+            transform.GetComponent<RectTransform>().localPosition = Vector3.Lerp(transform.GetComponent<RectTransform>().localPosition, new Vector3(startPosition, transform.GetComponent<RectTransform>().localPosition.y, transform.GetComponent<RectTransform>().localPosition.z), Time.deltaTime * 2);
             placeComponent = false;
         }
     }
