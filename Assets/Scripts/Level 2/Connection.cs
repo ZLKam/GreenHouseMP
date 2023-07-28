@@ -223,7 +223,6 @@ public class Connection : MonoBehaviour
                         {
                             if (points[i].transform.position == AHUPoint1[t].transform.position)
                             {
-                                Debug.Log("Reached");
                                 if (i == 0)
                                 {
                                     pointlist = AHUPoint1;
@@ -234,12 +233,10 @@ public class Connection : MonoBehaviour
                                     pointlist = AHUPoint1;
                                     pointlist.Add(points[0]);
                                 }
-                                Debug.Log("Multiconnect");
                                 MultiConnect(pointlist);
                             }
                             else if(points[i].transform.position == AHUPoint2[t].transform.position)
                             {
-                                Debug.Log("Reached Here");
                                 if (i == 0)
                                 {
                                     pointlist = AHUPoint2;
