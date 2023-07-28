@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +23,7 @@ public class SettingsButtons : MonoBehaviour
     public GameObject bgPanel;
     public GameObject volPanel;
     public GameObject sensPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,4 +95,8 @@ public class SettingsButtons : MonoBehaviour
         volOff.SetActive(true);
     }
 
+    public void ShowLogFile()
+    {
+        Application.OpenURL("file://" + Application.persistentDataPath + "/errorLog.txt");
+    }
 }
