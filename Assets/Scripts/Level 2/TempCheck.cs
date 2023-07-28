@@ -9,6 +9,7 @@ public class TempCheck : MonoBehaviour
     public GameObject AfterLevel;
     public Camera Camera;
     public TextMeshProUGUI[] TempValues;
+    public GameObject Light;
 
     [Range(0, 30)]
     public int[] Temps;
@@ -21,6 +22,7 @@ public class TempCheck : MonoBehaviour
     
     public void ReviewLevel()
     {
+        //Light.transform.localRotation = Quaternion.identity; 
         //Camera = Camera.main;
         //Camera.transform.position = (Location for more 2D view)
         Level2AnswerSheet.showPopUp = true;
