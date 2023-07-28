@@ -235,7 +235,7 @@ public class Connection : MonoBehaviour
                                 }
                                 MultiConnect(pointlist);
                             }
-                            else if(points[i].transform.position == AHUPoint2[t].transform.position)
+                            if(points[i].transform.position == AHUPoint2[t].transform.position)
                             {
                                 if (i == 0)
                                 {
