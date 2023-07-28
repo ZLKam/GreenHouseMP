@@ -25,6 +25,8 @@ public class SettingsButtons : MonoBehaviour
     public GameObject volPanel;
     public GameObject sensPanel;
 
+    public GameObject errorShow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -114,5 +116,13 @@ public class SettingsButtons : MonoBehaviour
         {
             Debug.Log("Failed to open error log file. " + e.Message);
         }
+    }
+
+    private IEnumerator ShowError()
+    {
+        GameObject error = Instantiate(errorShow, this.transform);
+        error.GetComponentInChildren<TextMeshProUGUI>().text = "No log file found";
+        yield return new WaitForSecondsRealtime(2f);
+        Destroy(error);
     }
 }
