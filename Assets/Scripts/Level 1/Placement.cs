@@ -160,8 +160,6 @@ public class Placement : MonoBehaviour
                 return;
             }
         }
-
-        
         
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out RaycastHit hit,Mathf.Infinity))
         //constantly generates a raycast from the mouse position
@@ -207,8 +205,9 @@ public class Placement : MonoBehaviour
                 Select(hit.transform);
                 return;
             }
-            else if (Input.GetTouch(0).phase == TouchPhase.Moved) 
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {
+                cameraMovement.allowRotation = false;
                 if (!hit.transform.CompareTag("Selection"))
                 {
                     //the game object is not the green boxes it will run the delete function
@@ -217,6 +216,7 @@ public class Placement : MonoBehaviour
                     return;
 #endif          
                 }
+
 
                 //if not it will run the select function
                 Select(hit.transform);
@@ -227,6 +227,10 @@ public class Placement : MonoBehaviour
             {
                 Delete(hit.transform);
                 return;
+            }
+            else 
+            {
+                cameraMovement.allowRotation = true;
             }
 #if UNITY_STANDALONE
             if (InputSystem.Instance.RightClick())
@@ -253,7 +257,7 @@ public class Placement : MonoBehaviour
                 foreach (GameObject selection in selections)
                 {
                     // if the selection is not in the selected array, change the material back to original material
-                    if (selected.GetChild(1).gameObject.layer != 6 || selection.transform != selected)
+                    if (selection.transform.childCount > 1 || selection.transform != selected)
                     {
                         selection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
                     }
@@ -275,6 +279,7 @@ public class Placement : MonoBehaviour
                         deletingGO.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                         Destroy(deletingGO);
                         deletingGO = null;
+                        cameraMovement.allowRotation = true;
                         return;
                     }
                     else 
@@ -399,6 +404,7 @@ public class Placement : MonoBehaviour
                 }
                 deletingGO = null;
                 deletingObject = false;
+                cameraMovement.allowRotation = true;
             }
 #endif
         }

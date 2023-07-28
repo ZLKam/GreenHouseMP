@@ -97,6 +97,11 @@ public class SettingsButtons : MonoBehaviour
 
     public void ShowLogFile()
     {
+#if UNITY_STANDALONE
         Application.OpenURL("file://" + Application.persistentDataPath + "/errorLog.txt");
+#endif
+#if UNITY_ANDROID
+        Application.OpenURL(Application.persistentDataPath + "/errorLog.txt");
+#endif
     }
 }

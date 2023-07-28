@@ -9,8 +9,8 @@ using TMPro;
 public class Hover : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     bool hoverOver;
-    [SerializeField]
-    bool hoverTab;
+    [HideInInspector]
+    public bool hoverTab;
     Vector3 startSize;
     public bool isTab;
     public float moveSpeed;
