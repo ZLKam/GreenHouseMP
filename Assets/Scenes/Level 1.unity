@@ -3904,6 +3904,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
@@ -12072,6 +12073,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
@@ -60853,7 +60855,7 @@ RectTransform:
   m_GameObject: {fileID: 1082435111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.43536, y: 0.43536, z: 0.43536}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1774710872}
@@ -87931,7 +87933,7 @@ MonoBehaviour:
   - {fileID: 1234995488}
   - {fileID: 422274368}
   placement: {fileID: 1668015404}
-  hover: {fileID: 0}
+  hover: {fileID: 462366849}
   connection: {fileID: 0}
   allowRotation: 1
   allowZoom: 1
@@ -90541,6 +90543,7 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
+  PreLevelItems: {fileID: 0}
   pausePanel: {fileID: 1817454496}
   instructionPanel: {fileID: 1645966586}
   PauseCheck: 0
@@ -99926,7 +99929,7 @@ RectTransform:
   m_GameObject: {fileID: 1774710871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78018105, y: 0.83206, z: 0.83206}
+  m_LocalScale: {x: 0.73191124, y: 0.78058046, z: 0.78058046}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1082435112}
@@ -99935,8 +99938,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 210.08, y: 3.7}
-  m_SizeDelta: {x: 208.4, y: 193.5}
+  m_AnchoredPosition: {x: 206.648, y: 6.4169}
+  m_SizeDelta: {x: 199.6019, y: 200.0306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774710873
 MonoBehaviour:
