@@ -12,6 +12,7 @@ public class Placement : MonoBehaviour
     public CameraMovement cameraMovement;
     public Level1AnswerSheet1 answerSheet1;
     public Hover hover;
+    public HoverGroup hoverGroup;
 
     public Sprite highlightSprite;
     public Sprite selectionSprite;
@@ -148,7 +149,7 @@ public class Placement : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         }
 
-        if (Input.touchCount == 0 && hover)
+        if (Input.touchCount == 0 && hoverGroup)
         {
             if (highlightedPlacement)
             {
@@ -280,6 +281,7 @@ public class Placement : MonoBehaviour
                         Destroy(deletingGO);
                         deletingGO = null;
                         cameraMovement.allowRotation = true;
+                        Debug.Log("destroy2");
                         return;
                     }
                     else 
@@ -326,7 +328,7 @@ public class Placement : MonoBehaviour
         }
     }
 
-    private void Delete(Transform selectedTransform)
+    public void Delete(Transform selectedTransform)
     //handles deletion of the component gameobjects
     {
         if (!allowDelete) 
@@ -397,6 +399,7 @@ public class Placement : MonoBehaviour
                     deletableGameobject.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                     Destroy(selectedTransform.gameObject);
                     deletingGO = null;
+                    Debug.Log("destroy1");
                 }
                 else
                 {
