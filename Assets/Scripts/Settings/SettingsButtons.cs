@@ -104,7 +104,10 @@ public class SettingsButtons : MonoBehaviour
         Application.OpenURL("file://" + Application.persistentDataPath + "/errorLog.txt");
 #endif
 #if UNITY_ANDROID
-            Application.OpenURL("/mnt/sdcard" + "/errorLog.txt");
+            //Application.OpenURL("file://" + Application.persistentDataPath "+ "/errorLog.txt");
+            string dataType = "application/txt";
+            string documentURL = Application.persistentDataPath + "/errorLog.txt";
+            AndroidOpenFile.OpenFile(documentURL, dataType);
 #endif
         }
         catch (Exception e)
