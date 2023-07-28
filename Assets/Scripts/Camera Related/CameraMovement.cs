@@ -111,11 +111,6 @@ public class CameraMovement : MonoBehaviour
             CameraRotation();
             ZoomCamera();
         }
-        if (Physics.Raycast(cameras[0].position, transform.position - cameras[0].position, out RaycastHit hit, cameraDist))
-        {
-            Vector3 newCamPos = hit.point;
-            transform.position = newCamPos;
-        }
         //EnhancedCamera();
     }
 
@@ -141,7 +136,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (hover != null)
         {
-            if (Hover.componentSelected || hover.isTab)
+            if (Hover.componentSelected && hover.hoverTab)
                 return;
         }
         if (zooming) 
@@ -216,7 +211,11 @@ public class CameraMovement : MonoBehaviour
             
             if (connection)
                 Camera.main.fieldOfView = 40;
-
+            if (Physics.Raycast(cameras[0].position, transform.position - cameras[0].position, out RaycastHit hit, cameraDist, ~(1 << 6)))
+            {
+                Vector3 newCamPos = hit.point;
+                transform.position = newCamPos;
+            }
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 startPos = Input.GetTouch(0).position;
