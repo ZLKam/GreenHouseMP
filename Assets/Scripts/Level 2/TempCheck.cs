@@ -6,8 +6,7 @@ using TMPro;
 public class TempCheck : MonoBehaviour
 {
     public GameObject AnswerCheck;
-    public GameObject Proceed;
-    public GameObject Temperature;
+    public GameObject AfterLevel;
     public Camera Camera;
     public TextMeshProUGUI[] TempValues;
 
@@ -17,7 +16,7 @@ public class TempCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Camera = null;
     }
     
     public void ReviewLevel()
@@ -25,8 +24,8 @@ public class TempCheck : MonoBehaviour
         //Camera = Camera.main;
         //Camera.transform.position = (Location for more 2D view)
         Level2AnswerSheet.showPopUp = true;
+        AfterLevel.SetActive(true);
         AnswerCheck.SetActive(false);
-        Proceed.SetActive(true);
     }
     
     public void TemperatureCheck()
