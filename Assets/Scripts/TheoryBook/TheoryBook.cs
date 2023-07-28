@@ -29,13 +29,12 @@ public class TheoryBook : MonoBehaviour
 
     #region Theory Book Components
     [Header("Theory Book")]
+    public GameObject TheoryBookTemplate;
     public Image TheoryBookComponent, TheoryBookPipes, TheoryBookDiagrams;
     public Sprite selectedTab, unselectedTab;
-    public GameObject TheoryBookTemplate;
 
     public GameObject previousBtn, nextBtn;
 
-    public GameObject componentBtn, pipeBtn, diagramBtn;
     public TextMeshProUGUI leftHeader, rightHeader;
     #endregion
 
