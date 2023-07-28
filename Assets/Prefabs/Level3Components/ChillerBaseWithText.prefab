@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8fcea48a42bf44a9290311f491ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  componentName: Chiller
   specialID: 345
   placeholder: {fileID: 0}
   correctTarget: {fileID: 4852037129959223898, guid: bba347877d6239f46b9284b545b5c563, type: 3}

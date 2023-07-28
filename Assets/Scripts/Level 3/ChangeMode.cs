@@ -20,6 +20,8 @@ namespace Level3
         public Sprite drawLineSprite;
         public Sprite selectComponentSprite;
 
+        public GameObject information;
+
         public void OnPointerClick(PointerEventData eventData)
         {
             GameObject lineBoss = FindObjectOfType<LinePathFind>().gameObject;
@@ -63,6 +65,7 @@ namespace Level3
                 lineBoss.GetComponent<LinePathFind>().typeOfLineSelected = false;
                 componentWheel.SetActive(true);
                 lineWheel.SetActive(false);
+                information.SetActive(false);
             }
             else
             {
@@ -72,6 +75,7 @@ namespace Level3
                 FindObjectOfType<LinePathFind>().enabled = true;
                 componentWheel.SetActive(false);
                 lineWheel.SetActive(true);
+                information.SetActive(true);
             }
         }
 

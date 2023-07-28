@@ -21,7 +21,7 @@ public class Level2AnswerSheet : MonoBehaviour
 
     public GameObject correctPanel;
     public GameObject wrongPanel;
-    bool showPopUp;
+    public static bool showPopUp;
 
     GameObject[] CHWR;
     GameObject[] CHWS;
@@ -60,10 +60,6 @@ public class Level2AnswerSheet : MonoBehaviour
 
     private void Update()
     {
-        if (text)
-        {
-            text.text = connectionCWR.ToString();
-        }
     }
 
     public void AnswerCheck()

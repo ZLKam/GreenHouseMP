@@ -43,18 +43,20 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
                 wrongLines.Add(x);
             }
         });
+        correctLines.ForEach(x => x.lr.material = correctMat);
+        wrongLines.ForEach(x => x.lr.material = wrongMat);
         if (correct == numberOfCorrectConnections)
         {
-            correctLines.ForEach(x => x.lr.material = correctMat);
             correctPanel.SetActive(true);
             Debug.Log("Correct!!!");
         }
         else
         {
-            wrongLines.ForEach(x => x.lr.material = wrongMat);
             wrongPanel.SetActive(true);
             Debug.Log("You are so stupid!!! Wrong!!!!!!!!");
         }
+        correctLines.Clear();
+        wrongLines.Clear();
     }
 
 }
