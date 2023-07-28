@@ -25,6 +25,8 @@ public class SettingsButtons : MonoBehaviour
     public GameObject volPanel;
     public GameObject sensPanel;
 
+    public GameObject errorShow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,21 +100,38 @@ public class SettingsButtons : MonoBehaviour
 
     public void ShowLogFile()
     {
-        try
+        if (System.IO.File.Exists(Application.persistentDataPath + "/errorLog.txt"))
         {
+            try
+            {
 #if UNITY_STANDALONE
-        Application.OpenURL("file://" + Application.persistentDataPath + "/errorLog.txt");
+                Application.OpenURL("file://" + Application.persistentDataPath + "/errorLog.txt");
 #endif
 #if UNITY_ANDROID
             //Application.OpenURL("file://" + Application.persistentDataPath "+ "/errorLog.txt");
             string dataType = "application/txt";
             string documentURL = Application.persistentDataPath + "/errorLog.txt";
-            AndroidOpenFile.OpenFile(documentURL, dataType);
+            UnityAndroidOpenUrl.AndroidOpenUrl.OpenFile(documentURL, dataType);
 #endif
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Failed to open error log file. " + e.Message);
+            }
         }
-        catch (Exception e)
+        else
         {
-            Debug.Log("Failed to open error log file. " + e.Message);
+            {
+                StartCoroutine(ShowError());
+            }
         }
+    }
+
+    private IEnumerator ShowError()
+    {
+        GameObject error = Instantiate(errorShow, this.transform);
+        error.GetComponentInChildren<TextMeshProUGUI>().text = "No log file found";
+        yield return new WaitForSecondsRealtime(2f);
+        Destroy(error);
     }
 }

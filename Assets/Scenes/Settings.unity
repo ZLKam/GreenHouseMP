@@ -7420,6 +7420,7 @@ MonoBehaviour:
   bgPanel: {fileID: 900824006}
   volPanel: {fileID: 2080748170}
   sensPanel: {fileID: 1723701647}
+  errorShow: {fileID: 6941849468914374160, guid: c2b745cb502e7c441b29a8a599763f47, type: 3}
 --- !u!114 &1150573652
 MonoBehaviour:
   m_ObjectHideFlags: 0
