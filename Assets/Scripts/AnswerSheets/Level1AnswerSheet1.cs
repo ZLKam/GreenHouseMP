@@ -31,13 +31,6 @@ public class Level1AnswerSheet1 : MonoBehaviour
     [SerializeField]
     private Sprite wrongSprite;
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        //PlacementCheck();
-    }
-
     public void AnswerCheck()
     {
         PlacementCheck();
