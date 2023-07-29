@@ -521,7 +521,11 @@ MonoBehaviour:
   originTransform: {x: 0, y: 0, z: 0}
   imageToChange: {fileID: 0}
   componentPrefab: {fileID: 0}
+  pipes: []
   componentName: Chilled Water Pump(CHWP)
+  parentPipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
 --- !u!1 &8974622822180051072
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +589,11 @@ MonoBehaviour:
   originTransform: {x: 0, y: 0, z: 0}
   imageToChange: {fileID: 0}
   componentPrefab: {fileID: 0}
+  pipes: []
   componentName: Chiller
+  parentPipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
 --- !u!1 &8974622822234834888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +1028,11 @@ MonoBehaviour:
   originTransform: {x: 0, y: 0, z: 0}
   imageToChange: {fileID: 0}
   componentPrefab: {fileID: 0}
+  pipes: []
   componentName: Condensed Water Pump(CWP)
+  parentPipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
 --- !u!1 &8974622822638789473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1096,11 @@ MonoBehaviour:
   originTransform: {x: 0, y: 0, z: 0}
   imageToChange: {fileID: 0}
   componentPrefab: {fileID: 0}
+  pipes: []
   componentName: Air Handling Unit(AHU)
+  parentPipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
 --- !u!1 &8974622822886277178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,10 +1191,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7caeab0a6df777f4aaaa3104aab3b304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentTabs: []
   placement: {fileID: 0}
+  cameraController: {fileID: 0}
+  connection: {fileID: 0}
+  moveSpeed: 2
+  finalPositionOfWheel: -500
+  startPositionOfWheel: -780
   wheelTitle: {fileID: 8974622822234834890}
-  openTab: 0
+  componentTabs: []
 --- !u!1 &8974622822959212756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1339,11 @@ MonoBehaviour:
   originTransform: {x: 0, y: 0, z: 0}
   imageToChange: {fileID: 0}
   componentPrefab: {fileID: 0}
+  pipes: []
   componentName: Cooling Tower
+  parentPipe: {fileID: 0}
+  pipeBody: {fileID: 0}
+  pipeEntrance: {fileID: 0}
 --- !u!1 &8974622823230098438
 GameObject:
   m_ObjectHideFlags: 0
