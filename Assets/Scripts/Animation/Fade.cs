@@ -267,7 +267,7 @@ public class Fade : MonoBehaviour
         {
             Level.GetComponentsInChildren<UnityEngine.UI.Button>().ToList().ForEach(x =>
             {
-                if (x.name != "BtnLevel0")
+                if (x.name != "BtnLevel0" && x.name != "Back")
                 {
                     x.interactable = false;
                     Color color = x.GetComponentInChildren<TextMeshProUGUI>().color;
@@ -307,6 +307,7 @@ public class Fade : MonoBehaviour
     public void PrelevelBack()
     {
         //PreLevelItems.SetActive(false);
+        Level.SetActive(false);
         Section.SetActive(true);
         ShowBadges();
     }
