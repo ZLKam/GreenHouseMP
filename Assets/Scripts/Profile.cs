@@ -70,6 +70,7 @@ public class Profile : MonoBehaviour
                 PlayerPrefs.DeleteKey("ProfileImage");
                 PlayerPrefs.DeleteKey("Username");
                 PlayerPrefs.DeleteKey("TimeProfileCreated");
+                PlayerPrefs.DeleteKey("LevelProgressions");
             }
         }
         if (PlayerPrefs.HasKey("Username") && PlayerPrefs.HasKey("ProfileImage"))
