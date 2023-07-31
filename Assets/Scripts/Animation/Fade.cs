@@ -28,6 +28,7 @@ public class Fade : MonoBehaviour
     public GameObject Level;
     public GameObject GameMenu;
     public GameObject PreLevelItems;
+    public GameObject objectiveitems;
     public static bool Previewed;
 
     public UnityEngine.UI.Button btnLevelSelect;
@@ -46,6 +47,14 @@ public class Fade : MonoBehaviour
     [SerializeField]
     private Image progressionChapter3;
 
+    private void Awake()
+    {
+        if ((SceneManager.GetActiveScene().name == "Main Menu") && !Previewed)
+        {
+            Debug.Log("reached");
+            objectiveitems.SetActive(true);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +67,11 @@ public class Fade : MonoBehaviour
 
         fadeImage = GetComponent<Image>();
         fadeImage.color = new Color32(0, 0, 0, fadeAmount);
+
+        //if (Previewed)
+        //{
+        //    objectiveitems.SetActive(false);
+        //}
     }
 
     // Update is called once per frame
@@ -241,6 +255,7 @@ public class Fade : MonoBehaviour
         //open up the level select popup
         PreLevelItems.SetActive(true);
         Section.SetActive(false);
+        objectiveitems.SetActive(false);
     }
 
     public void LevelSelect()
@@ -249,6 +264,7 @@ public class Fade : MonoBehaviour
         {
             PreLevelItems.SetActive(false);
             Level.SetActive(true);
+            objectiveitems.SetActive(false);
         }
     }
 
@@ -256,6 +272,7 @@ public class Fade : MonoBehaviour
     {
         GameMenu.SetActive(true);
         Section.SetActive(false);
+        objectiveitems.SetActive(false);
     }
 
     public void LevelBack()
@@ -263,6 +280,7 @@ public class Fade : MonoBehaviour
         Level.SetActive(false);
         PreLevelItems.SetActive(true);
         btnLevelSelect.interactable = true;
+        objectiveitems.SetActive(false);
     }
 
     public void PrelevelBack()

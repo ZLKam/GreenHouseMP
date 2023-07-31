@@ -81,7 +81,7 @@ public class Profile : MonoBehaviour
             ProfileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
             ObjProfileImg.sprite = ProfileImage.sprite;
             profilestuff.SetActive(false);
-            objectiveitems.SetActive(true);
+            //objectiveitems.SetActive(true);
             textcon.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
         }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
@@ -157,7 +157,7 @@ public class Profile : MonoBehaviour
         {
             //SceneManager.LoadScene("Main Menu");
             profilestuff.SetActive(false);
-            objectiveitems.SetActive(true);
+            //objectiveitems.SetActive(true);
             //ProfileSet = true;
             //TransferInfo = ProfileImage;
             textcon.text = username;
