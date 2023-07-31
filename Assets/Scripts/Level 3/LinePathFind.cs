@@ -50,11 +50,11 @@ public class LinePathFind : MonoBehaviour
 
     public bool typeOfLineSelected = false;
     public Color colorOfLineSelected;
-    [SerializeField]
-    private Color informationBackgroundColor = new(102, 120, 143);
 
-    public TextMeshProUGUI txtComponentFrom;
-    public TextMeshProUGUI txtComponentTo;
+    public Sprite transparentSprite;
+
+    public Image imgComponentFrom;
+    public Image imgComponentTo;
     public Image imgColorSelected;
 
     public GameObject selectColorPopUp;
@@ -62,8 +62,8 @@ public class LinePathFind : MonoBehaviour
 
     private void Awake()
     {
-        txtComponentFrom.text = "";
-        txtComponentTo.text = "";
+        imgComponentFrom.sprite = transparentSprite;
+        imgComponentTo.sprite = transparentSprite;
         enabled = false;
     }
 
@@ -71,9 +71,9 @@ public class LinePathFind : MonoBehaviour
     {
         fromT = null;
         toT = null;
-        txtComponentFrom.text = "";
-        txtComponentTo.text = "";
-        imgColorSelected.color = informationBackgroundColor;
+        imgComponentFrom.sprite = transparentSprite;
+        imgComponentTo.sprite = transparentSprite;
+        imgColorSelected.sprite = transparentSprite;
     }
 
     // Update is called once per frame
@@ -88,12 +88,18 @@ public class LinePathFind : MonoBehaviour
         if (InputSystem.Instance.LeftClick())
 #endif
         {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit3D, lineLayer))
+#if UNITY_STANDALONE
+            Vector3 touchPosition = Input.mousePosition;
+#endif
+#if UNITY_ANDROID
+            Vector3 touchPosition = Input.GetTouch(0).position;    
+#endif
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out RaycastHit hit3D, lineLayer))
             {
                 hit3D.transform.GetComponent<DrawLine>()?.ReverseLine();
             }
             // Hit detection
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, ~gridLayer);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero, Mathf.Infinity, ~gridLayer);
             if (!hit)
                 return;
             if (!hit.transform.CompareTag("Component"))
@@ -114,13 +120,13 @@ public class LinePathFind : MonoBehaviour
                 if (hitPlaceholder)
                 {
                     fromT = hit.transform.GetChild(0);
-                    txtComponentFrom.text = fromT.GetComponent<ComponentEvent>().componentName;
+                    imgComponentFrom.sprite = fromT.GetComponent<SpriteRenderer>().sprite;
                     hitPlaceholder = false;
                 }
                 else
                 {
                     fromT = hit.transform;
-                    txtComponentFrom.text = fromT.GetComponent<ComponentEvent>().componentName;
+                    imgComponentFrom.sprite = fromT.GetComponent<SpriteRenderer>().sprite;
                 }
                 if (!typeOfLineSelected)
                 {
@@ -135,19 +141,19 @@ public class LinePathFind : MonoBehaviour
                 if (hitPlaceholder)
                 {
                     toT = hit.transform.GetChild(0);
-                    txtComponentTo.text = toT.GetComponent<ComponentEvent>().componentName;
+                    imgComponentTo.sprite = toT.GetComponent<SpriteRenderer>().sprite;
                     hitPlaceholder = false;
                 }
                 else
                 {
                     toT = hit.transform;
-                    txtComponentTo.text = toT.GetComponent<ComponentEvent>().componentName;
+                    imgComponentTo.sprite = toT.GetComponent<SpriteRenderer>().sprite;
                 }
                 if (toT == fromT)
                 {
                     Debug.Log("Please select a different component");
                     toT = null;
-                    txtComponentTo.text = "";
+                    imgComponentTo.sprite = null;
                     return;
                 }
                 // When from and to are selected, find the nearest nodes of them
@@ -166,15 +172,14 @@ public class LinePathFind : MonoBehaviour
                     changedTo = null;
                     fromT = null;
                     toT = null;
-                    txtComponentFrom.text = "";
-                    txtComponentTo.text = "";
+                    imgComponentFrom.sprite = transparentSprite;
+                    imgComponentTo.sprite = transparentSprite;
                     return;
                 }
                 else
                 {
                     // Find path from from to to
                     SetDestination(nearestNodes[0], nearestNodes[1], rectGrid, rectGrid.pathFinder);
-
                     fromT = null;
                     toT = null;
                 }
@@ -448,6 +453,8 @@ public class LinePathFind : MonoBehaviour
         }
         imgFindingPath.SetActive(false);
         findingPath = false;
+        imgComponentFrom.sprite = transparentSprite;
+        imgComponentTo.sprite = transparentSprite;
     }
 
     public void AddWayPoint(Vector2Int point)
