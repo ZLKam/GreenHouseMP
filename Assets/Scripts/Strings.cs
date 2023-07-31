@@ -14,6 +14,7 @@ public static class Strings
     public static string ChapterTwoLevelOneCompleted = "ChapterTwoLevelOneCompleted";
     public static string ChapterTwoLevelTwoCompleted = "ChapterTwoLevelTwoCompleted";
     public static string ChapterTwoLevelThreeCompleted = "ChapterTwoLevelThreeCompleted";
+    public static string ChapterThreeLevelOneCompleted = "ChapterThreeLevelOneCompleted";
 
     public static void ResetProgress()
     {
