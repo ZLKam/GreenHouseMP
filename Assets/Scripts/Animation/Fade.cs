@@ -47,7 +47,7 @@ public class Fade : MonoBehaviour
     [SerializeField]
     private Image progressionChapter3;
 
-    private void Awake()
+    public void ShowObjective()
     {
         if ((SceneManager.GetActiveScene().name == "Main Menu") && !Previewed)
         {
