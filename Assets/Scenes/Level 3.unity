@@ -6844,7 +6844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1100470213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7328,6 +7328,7 @@ MonoBehaviour:
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
   PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 1734517859}
   instructionPanel: {fileID: 1100470212}
@@ -8979,6 +8980,7 @@ MonoBehaviour:
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
   PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
@@ -12567,6 +12569,7 @@ MonoBehaviour:
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
   PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}

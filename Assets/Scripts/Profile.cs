@@ -82,6 +82,8 @@ public class Profile : MonoBehaviour
             ObjProfileImg.sprite = ProfileImage.sprite;
             profilestuff.SetActive(false);
             //objectiveitems.SetActive(true);
+            if (!objectiveitems.activeSelf)
+                GetComponentInChildren<Fade>().GameMenu.SetActive(true);
             textcon.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
         }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");

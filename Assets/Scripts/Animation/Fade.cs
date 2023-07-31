@@ -72,12 +72,13 @@ public class Fade : MonoBehaviour
         //{
         //    objectiveitems.SetActive(false);
         //}
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       //Darken();
+        //Darken();
 
         //when fading in is true
         // and the fade amount(fade alpha) is more than 0
