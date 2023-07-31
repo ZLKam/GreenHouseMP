@@ -216,10 +216,10 @@ public class Connection : MonoBehaviour
                 if (points.Count >= 2)
                 {
                     var pointlist = new List<GameObject>();
-                    for (int i = 0; i <= points.Count; i++)
+                    for (int i = 0; i < points.Count; i++)
                     {
                         //Debug.Log(AHUPoint1.Count);
-                        for (int t = 0; t < AHUPoint1.Count; t++)
+                        for (int t = 0; t < AHUPoint1.Count; t++) 
                         {
                             Debug.Log(i + "," + t);
                             //if (points[i].transform.position == AHUPoint1[t].transform.position)
@@ -259,7 +259,9 @@ public class Connection : MonoBehaviour
                             if ((points[i].transform == AHUPoint1[t].transform) || (points[i].transform == AHUPoint2[t].transform))
                             {
                                 Debug.Log((points[i].transform));
+                                Debug.Log(t);
                                 Debug.Log(AHUPoint2[t].transform);
+
                                 if (i == 0)
                                 {
                                     if (points[i].transform.position == AHUPoint1[t].transform.position)
