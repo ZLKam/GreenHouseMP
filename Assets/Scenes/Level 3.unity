@@ -887,6 +887,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1755128578957703928, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+      propertyPath: boundary
+      value: 
+      objectReference: {fileID: 366847190}
+    - target: {fileID: 1755128578957703928, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+      propertyPath: resetDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3589026317650948730, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
       propertyPath: m_Name
       value: UIFORCOMPONENTSELECT
@@ -1812,6 +1820,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357996441}
   m_CullTransparentMesh: 1
+--- !u!224 &366847190 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1469685027977107618, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 140896164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &625655097
 GameObject:
   m_ObjectHideFlags: 0
@@ -7327,7 +7340,6 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
   objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 1734517859}
@@ -7336,6 +7348,7 @@ MonoBehaviour:
   progressionChapter1: {fileID: 0}
   progressionChapter2: {fileID: 0}
   progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &1146246941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8979,7 +8992,6 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
   objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
@@ -8988,6 +9000,7 @@ MonoBehaviour:
   progressionChapter1: {fileID: 0}
   progressionChapter2: {fileID: 0}
   progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &1396995347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12568,7 +12581,6 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
   objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
@@ -12577,6 +12589,7 @@ MonoBehaviour:
   progressionChapter1: {fileID: 0}
   progressionChapter2: {fileID: 0}
   progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &2008193936
 MonoBehaviour:
   m_ObjectHideFlags: 0
