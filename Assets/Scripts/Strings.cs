@@ -24,5 +24,6 @@ public static class Strings
         PlayerPrefs.DeleteKey(ChapterTwoLevelOneCompleted);
         PlayerPrefs.DeleteKey(ChapterTwoLevelTwoCompleted);
         PlayerPrefs.DeleteKey(ChapterTwoLevelThreeCompleted);
+        PlayerPrefs.DeleteKey("Reviewed");
     }
 }
