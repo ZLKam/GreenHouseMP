@@ -58,10 +58,6 @@ public class Level2AnswerSheet : MonoBehaviour
         //Debug.Log(CWR.Count());
     }
 
-    private void Update()
-    {
-    }
-
     public void AnswerCheck()
     {
         ConnectionCheck();
@@ -70,6 +66,20 @@ public class Level2AnswerSheet : MonoBehaviour
             if (connectionCHWR && connectionCHWS && connectionCWS && connectionCWR)
             {
                 correctPanel.SetActive(true);
+                if (!PlayerPrefs.HasKey(Strings.ChapterTwoLevelTwoCompleted))
+                {
+                    if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
+                    {
+                        int progress = PlayerPrefs.GetInt(Strings.ChapterTwoProgressions);
+                        progress++;
+                        PlayerPrefs.SetInt(Strings.ChapterTwoProgressions, progress);
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetInt(Strings.ChapterTwoProgressions, 1);
+                    }
+                    PlayerPrefs.SetInt(Strings.ChapterTwoLevelTwoCompleted, 1);
+                }
                 Debug.Log("Correct");
                 showPopUp = false;
             }

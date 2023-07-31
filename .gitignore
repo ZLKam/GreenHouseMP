@@ -71,4 +71,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 *.aar
-Assets/Plugins/release.aar.meta
+*.aar
+*.aar
+Assets/Plugins/release.aar

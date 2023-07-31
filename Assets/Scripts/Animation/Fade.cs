@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,7 +30,8 @@ public class Fade : MonoBehaviour
     public GameObject Section;
     public GameObject Level;
     public GameObject GameMenu;
-    public GameObject PreLevelItems;
+    //public GameObject PreLevelItems;
+    public GameObject objectiveitems;
     public static bool Previewed;
 
     public UnityEngine.UI.Button btnLevelSelect;
@@ -39,6 +43,24 @@ public class Fade : MonoBehaviour
 
     public bool PauseCheck;
 
+    [SerializeField]
+    private Image progressionChapter1;
+    [SerializeField]
+    private Image progressionChapter2;
+    [SerializeField]
+    private Image progressionChapter3;
+
+    [SerializeField]
+    private List<Image> chapterImages = new();
+
+    public void ShowObjective()
+    {
+        if ((SceneManager.GetActiveScene().name == "Main Menu") && !Previewed)
+        {
+            Debug.Log("reached");
+            objectiveitems.SetActive(true);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +73,18 @@ public class Fade : MonoBehaviour
 
         fadeImage = GetComponent<Image>();
         fadeImage.color = new Color32(0, 0, 0, fadeAmount);
+
+        //if (Previewed)
+        //{
+        //    objectiveitems.SetActive(false);
+        //}
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       //Darken();
+        //Darken();
 
         //when fading in is true
         // and the fade amount(fade alpha) is more than 0
@@ -226,21 +254,38 @@ public class Fade : MonoBehaviour
     {
         GameMenu.SetActive(false);
         Section.SetActive(true);
+        ShowBadges();
     }
 
-    public void SectionSelect()
+    public void SectionSelect(int chapter)
     {
         //open up the level select popup
-        PreLevelItems.SetActive(true);
+        //PreLevelItems.SetActive(true);
+        Level.SetActive(true);
+        Level.transform.GetChild(0).transform.Find("ImgChapterSelected").GetComponent<Image>().sprite = chapterImages[chapter].sprite;
+        if (!Previewed)
+        {
+            Level.GetComponentsInChildren<UnityEngine.UI.Button>().ToList().ForEach(x =>
+            {
+                if (x.name != "BtnLevel0" && x.name != "Back")
+                {
+                    x.interactable = false;
+                    Color color = x.GetComponentInChildren<TextMeshProUGUI>().color;
+                    x.GetComponentInChildren<TextMeshProUGUI>().color = new Color(color.r, color.g, color.b, 0.5f);
+                }
+            });
+        }
         Section.SetActive(false);
+        objectiveitems.SetActive(false);
     }
 
     public void LevelSelect()
     {
         if (Previewed)
         {
-            PreLevelItems.SetActive(false);
+            //PreLevelItems.SetActive(false);
             Level.SetActive(true);
+            objectiveitems.SetActive(false);
         }
     }
 
@@ -248,18 +293,31 @@ public class Fade : MonoBehaviour
     {
         GameMenu.SetActive(true);
         Section.SetActive(false);
+        objectiveitems.SetActive(false);
     }
 
     public void LevelBack()
     {
         Level.SetActive(false);
-        PreLevelItems.SetActive(true);
+        //PreLevelItems.SetActive(true);
         btnLevelSelect.interactable = true;
+        objectiveitems.SetActive(false);
     }
 
     public void PrelevelBack()
     {
-        PreLevelItems.SetActive(false);
+        //PreLevelItems.SetActive(false);
+        Level.SetActive(false);
         Section.SetActive(true);
+        ShowBadges();
+    }
+
+    private void ShowBadges()
+    {
+        if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
+        {
+            int progress = PlayerPrefs.GetInt(Strings.ChapterTwoProgressions);
+            progressionChapter2.fillAmount = progress / 3f;
+        }
     }
 }

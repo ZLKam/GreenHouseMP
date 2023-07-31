@@ -48,6 +48,20 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
         if (correct == numberOfCorrectConnections)
         {
             correctPanel.SetActive(true);
+            if (!PlayerPrefs.HasKey(Strings.ChapterTwoLevelThreeCompleted))
+            {
+                if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
+                {
+                    int progress = PlayerPrefs.GetInt(Strings.ChapterTwoProgressions);
+                    progress++;
+                    PlayerPrefs.SetInt(Strings.ChapterTwoProgressions, progress);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(Strings.ChapterTwoProgressions, 1);
+                }
+                PlayerPrefs.SetInt(Strings.ChapterTwoLevelThreeCompleted, 1);
+            }
             Debug.Log("Correct!!!");
         }
         else

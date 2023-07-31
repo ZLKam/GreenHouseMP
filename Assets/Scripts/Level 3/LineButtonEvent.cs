@@ -11,7 +11,7 @@ public class LineButtonEvent : MonoBehaviour, IPointerClickHandler
         FindObjectOfType<AudioManager>()?.Play("Click");
         if (linePathFind.IsFindingPath())
             return;
-        linePathFind.imgColorSelected.color = transform.GetChild(0).GetComponent<Image>().color;
+        linePathFind.imgColorSelected.sprite = transform.GetChild(0).GetComponent<Image>().sprite;
         linePathFind.typeOfLineSelected = true;
         linePathFind.colorOfLineSelected = transform.GetChild(0).GetComponent<Image>().color;
     }
