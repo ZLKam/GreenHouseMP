@@ -157,6 +157,7 @@ public class Profile : MonoBehaviour
         {
             //SceneManager.LoadScene("Main Menu");
             profilestuff.SetActive(false);
+            GetComponentInChildren<Fade>().ShowObjective();
             //objectiveitems.SetActive(true);
             //ProfileSet = true;
             //TransferInfo = ProfileImage;
