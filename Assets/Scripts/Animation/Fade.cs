@@ -255,6 +255,8 @@ public class Fade : MonoBehaviour
     {
         //open up the level select popup
         PreLevelItems.SetActive(true);
+        if (Previewed)
+            PreLevelItems.transform.Find("Levels").GetComponent<UnityEngine.UI.Button>().interactable = true;
         Section.SetActive(false);
         objectiveitems.SetActive(false);
     }
