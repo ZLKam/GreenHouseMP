@@ -13,7 +13,7 @@ public class Profile : MonoBehaviour
     public bool usernameFilled;
     public static bool ProfileSet;
 
-    public GameObject Objectiveitems;
+    public GameObject Objective;
     public TMP_InputField inputField;
     public GameObject profilestuff;
 
@@ -51,8 +51,12 @@ public class Profile : MonoBehaviour
             }
             TransferInfo = ProfileImage;
             profilestuff.SetActive(false);
-            Objectiveitems.SetActive(true);
+<<<<<<< Updated upstream
+            MenuItems.SetActive(true);
+=======
+            Objective.SetActive(true);
             textcon.text = PlayerPrefs.HasKey("Username") ? PlayerPrefs.GetString("Username") : string.Empty;
+>>>>>>> Stashed changes
         }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
@@ -118,11 +122,15 @@ public class Profile : MonoBehaviour
         {
             //SceneManager.LoadScene("Main Menu");
             profilestuff.SetActive(false);
-            Objectiveitems.SetActive(true);
+<<<<<<< Updated upstream
+            MenuItems.SetActive(true);
             ProfileSet = true;
             TransferInfo = ProfileImage;
+=======
+            Objective.SetActive(true);
             //ProfileSet = true;
             //TransferInfo = ProfileImage;
+>>>>>>> Stashed changes
             textcon.text = username;
         }
         else if (!genderFilled || !usernameFilled)
