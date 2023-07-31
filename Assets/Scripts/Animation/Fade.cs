@@ -128,6 +128,7 @@ public class Fade : MonoBehaviour
                     PlayerPrefs.DeleteKey("ProfileImage");
                     PlayerPrefs.DeleteKey("Username");
                     PlayerPrefs.DeleteKey("TimeProfileCreated");
+                    Strings.ResetProgress();
                     Application.Quit();
                 }
                 else if (!string.IsNullOrEmpty(transitionScene))
