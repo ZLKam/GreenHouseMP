@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,7 +30,7 @@ public class Fade : MonoBehaviour
     public GameObject Section;
     public GameObject Level;
     public GameObject GameMenu;
-    public GameObject PreLevelItems;
+    //public GameObject PreLevelItems;
     public GameObject objectiveitems;
     public static bool Previewed;
 
@@ -46,6 +49,9 @@ public class Fade : MonoBehaviour
     private Image progressionChapter2;
     [SerializeField]
     private Image progressionChapter3;
+
+    [SerializeField]
+    private List<Image> chapterImages = new();
 
     public void ShowObjective()
     {
@@ -251,12 +257,24 @@ public class Fade : MonoBehaviour
         ShowBadges();
     }
 
-    public void SectionSelect()
+    public void SectionSelect(int chapter)
     {
         //open up the level select popup
-        PreLevelItems.SetActive(true);
-        if (Previewed)
-            PreLevelItems.transform.Find("Levels").GetComponent<UnityEngine.UI.Button>().interactable = true;
+        //PreLevelItems.SetActive(true);
+        Level.SetActive(true);
+        Level.transform.GetChild(0).transform.Find("ImgChapterSelected").GetComponent<Image>().sprite = chapterImages[chapter].sprite;
+        if (!Previewed)
+        {
+            Level.GetComponentsInChildren<UnityEngine.UI.Button>().ToList().ForEach(x =>
+            {
+                if (x.name != "BtnLevel0")
+                {
+                    x.interactable = false;
+                    Color color = x.GetComponentInChildren<TextMeshProUGUI>().color;
+                    x.GetComponentInChildren<TextMeshProUGUI>().color = new Color(color.r, color.g, color.b, 0.5f);
+                }
+            });
+        }
         Section.SetActive(false);
         objectiveitems.SetActive(false);
     }
@@ -265,7 +283,7 @@ public class Fade : MonoBehaviour
     {
         if (Previewed)
         {
-            PreLevelItems.SetActive(false);
+            //PreLevelItems.SetActive(false);
             Level.SetActive(true);
             objectiveitems.SetActive(false);
         }
@@ -281,14 +299,14 @@ public class Fade : MonoBehaviour
     public void LevelBack()
     {
         Level.SetActive(false);
-        PreLevelItems.SetActive(true);
+        //PreLevelItems.SetActive(true);
         btnLevelSelect.interactable = true;
         objectiveitems.SetActive(false);
     }
 
     public void PrelevelBack()
     {
-        PreLevelItems.SetActive(false);
+        //PreLevelItems.SetActive(false);
         Section.SetActive(true);
         ShowBadges();
     }
