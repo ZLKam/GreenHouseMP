@@ -60,27 +60,27 @@ public class Profile : MonoBehaviour
         //    MenuItems.SetActive(true);
         //    textcon.text = username;
         //}
-        if (PlayerPrefs.HasKey("TimeProfileCreated"))
+        if (PlayerPrefs.HasKey(Strings.TimeProfileCreated))
         {
             DateTime dateTime = DateTime.Now;
-            DateTime profileCreatedTime = DateTime.Parse(PlayerPrefs.GetString("TimeProfileCreated"));
+            DateTime profileCreatedTime = DateTime.Parse(PlayerPrefs.GetString(Strings.TimeProfileCreated));
             double minutesSinceProfileCreated = (dateTime - profileCreatedTime).TotalMinutes;
             if (minutesSinceProfileCreated > 10)
             {
-                PlayerPrefs.DeleteKey("ProfileImage");
-                PlayerPrefs.DeleteKey("Username");
-                PlayerPrefs.DeleteKey("TimeProfileCreated");
-                PlayerPrefs.DeleteKey("LevelProgressions");
+                PlayerPrefs.DeleteKey(Strings.ProfileImage);
+                PlayerPrefs.DeleteKey(Strings.Username);
+                PlayerPrefs.DeleteKey(Strings.TimeProfileCreated);
+                Strings.ResetProgress();
             }
         }
-        if (PlayerPrefs.HasKey("Username") && PlayerPrefs.HasKey("ProfileImage"))
+        if (PlayerPrefs.HasKey(Strings.Username) && PlayerPrefs.HasKey(Strings.ProfileImage))
         {
             Texture2D texture2D = new(1, 1);
-            texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString("ProfileImage")));
+            texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(Strings.ProfileImage)));
             ProfileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
             profilestuff.SetActive(false);
             MenuItems.SetActive(true);
-            textcon.text = PlayerPrefs.HasKey("Username") ? PlayerPrefs.GetString("Username") : string.Empty;
+            textcon.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
         }
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
@@ -117,7 +117,7 @@ public class Profile : MonoBehaviour
         femaleBtn.GetComponent<Image>().color = Color.white;
         maleBtn.GetComponent<Image>().color = Color.yellow;
         selectedProfileImage = ImageConversion.EncodeToPNG(MaleImage.texture);
-        PlayerPrefs.SetString("ProfileImage", Convert.ToBase64String(selectedProfileImage));
+        PlayerPrefs.SetString(Strings.ProfileImage, Convert.ToBase64String(selectedProfileImage));
     }
 
     public void GenderSetFemale()
@@ -128,7 +128,7 @@ public class Profile : MonoBehaviour
         femaleBtn.GetComponent<Image>().color = Color.yellow;
         maleBtn.GetComponent<Image>().color = Color.white;
         selectedProfileImage = ImageConversion.EncodeToPNG(FemaleImage.texture);
-        PlayerPrefs.SetString("ProfileImage", Convert.ToBase64String(selectedProfileImage));
+        PlayerPrefs.SetString(Strings.ProfileImage, Convert.ToBase64String(selectedProfileImage));
     }
 
     public void StoreName()
@@ -157,9 +157,9 @@ public class Profile : MonoBehaviour
             //ProfileSet = true;
             //TransferInfo = ProfileImage;
             textcon.text = username;
-            PlayerPrefs.SetString("Username", username);
+            PlayerPrefs.SetString(Strings.Username, username);
             timeProfileCreated = DateTime.Now.ToString();
-            PlayerPrefs.SetString("TimeProfileCreated", timeProfileCreated);
+            PlayerPrefs.SetString(Strings.TimeProfileCreated, timeProfileCreated);
         }
         else if (!genderFilled || !usernameFilled)
         {
@@ -202,5 +202,4 @@ public class Profile : MonoBehaviour
             yield return null;
         }
     }
-
 }

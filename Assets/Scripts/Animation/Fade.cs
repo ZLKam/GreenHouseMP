@@ -39,6 +39,13 @@ public class Fade : MonoBehaviour
 
     public bool PauseCheck;
 
+    [SerializeField]
+    private Image progressionChapter1;
+    [SerializeField]
+    private Image progressionChapter2;
+    [SerializeField]
+    private Image progressionChapter3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -226,6 +233,7 @@ public class Fade : MonoBehaviour
     {
         GameMenu.SetActive(false);
         Section.SetActive(true);
+        ShowBadges();
     }
 
     public void SectionSelect()
@@ -261,5 +269,15 @@ public class Fade : MonoBehaviour
     {
         PreLevelItems.SetActive(false);
         Section.SetActive(true);
+        ShowBadges();
+    }
+
+    private void ShowBadges()
+    {
+        if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
+        {
+            int progress = PlayerPrefs.GetInt(Strings.ChapterTwoProgressions);
+            progressionChapter2.fillAmount = progress / 3f;
+        }
     }
 }

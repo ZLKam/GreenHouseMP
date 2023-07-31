@@ -37,6 +37,20 @@ public class Level1AnswerSheet1 : MonoBehaviour
         if (coolingTower && ahu && chiller && cwp_opt && cwp_opt_Elav && !wrongSelection)
         {
             correctPanel.SetActive(true);
+            if (!PlayerPrefs.HasKey(Strings.ChapterTwoLevelOneCompleted))
+            {
+                if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
+                {
+                    int progress = PlayerPrefs.GetInt(Strings.ChapterTwoProgressions);
+                    progress++;
+                    PlayerPrefs.SetInt(Strings.ChapterTwoProgressions, progress);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(Strings.ChapterTwoProgressions, 1);
+                }
+                PlayerPrefs.SetInt(Strings.ChapterTwoLevelOneCompleted, 1);
+            }
             Debug.Log("Correct");
         }
         else
