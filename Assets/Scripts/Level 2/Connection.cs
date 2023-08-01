@@ -150,8 +150,11 @@ public class Connection : MonoBehaviour
 #endif
         if (InputSystem.Instance.LeftClick())
         {
-            if (EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject.layer == 5)
-                return;
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                if (EventSystem.current.currentSelectedGameObject.layer == 5)
+                    return;
+            }
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
