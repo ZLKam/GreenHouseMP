@@ -42,6 +42,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     //After clicking the tabs
     {
         components.imageToChange.transform.localScale = components.originTransform;
+        cameraController.allowRotation = true;
     }
 
     public void OnTabSelected(HoverTab components)
@@ -67,6 +68,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+<<<<<<< Updated upstream
         if (placement.component)
         {
 #if UNITY_STANDALONE
@@ -78,6 +80,12 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
             placement.component.transform.position = mousePos;
             placement.Delete(placement.component.transform);
         }
+=======
+        dragToPlace = true;
+        cameraController.allowRotation = false;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
+        placement.component.transform.position = mousePos;
+>>>>>>> Stashed changes
     }
 
 

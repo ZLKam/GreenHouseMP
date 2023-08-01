@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
     int selectedCamera;
     public Placement placement;
     public Hover hover;
+    public HoverGroup hoverGrp;
     public Connection connection;
 
     public bool allowRotation = true;

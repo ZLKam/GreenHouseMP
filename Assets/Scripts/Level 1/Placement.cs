@@ -98,8 +98,9 @@ public class Placement : MonoBehaviour
             }
             else if (component.CompareTag("Component/CwpOptElavated") && selectedTransform.name.Equals("Selection Point (16)"))
             {
+                Debug.Log("test");
                 Vector3 scaleTemp = component.transform.localScale;
-                scaleTemp.x *= -1;
+                scaleTemp.z *= -1;
                 component.transform.localScale = scaleTemp;
             }
 

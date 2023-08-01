@@ -51,12 +51,10 @@ public class Level1AnswerSheet1 : MonoBehaviour
                 }
                 PlayerPrefs.SetInt(Strings.ChapterTwoLevelOneCompleted, 1);
             }
-            Debug.Log("Correct");
         }
         else
         {
             wrongPanel.SetActive(true);
-            Debug.Log("Wrong");
         }
     }
 
