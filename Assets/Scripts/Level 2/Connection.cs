@@ -152,7 +152,7 @@ public class Connection : MonoBehaviour
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                if (EventSystem.current.currentSelectedGameObject.layer == 5)
+                if (EventSystem.current.currentSelectedGameObject && EventSystem.current.currentSelectedGameObject.layer == 5)
                     return;
             }
             if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
