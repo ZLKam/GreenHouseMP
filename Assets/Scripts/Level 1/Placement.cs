@@ -18,7 +18,7 @@ public class Placement : MonoBehaviour
     public Sprite selectionSprite;
     public Sprite originalSprite;
 
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject component;
     [HideInInspector]
     public GameObject selectedPrefab;
@@ -101,10 +101,6 @@ public class Placement : MonoBehaviour
                 Vector3 scaleTemp = component.transform.localScale;
                 scaleTemp.x *= -1;
                 component.transform.localScale = scaleTemp;
-            }
-            else 
-            {
-                
             }
 
             highlighted = null;

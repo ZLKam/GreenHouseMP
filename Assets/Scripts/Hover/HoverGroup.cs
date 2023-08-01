@@ -67,9 +67,17 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
-        placement.component.transform.position = mousePos;
-        placement.Delete(placement.component.transform);
+        if (placement.component)
+        {
+#if UNITY_STANDALONE
+            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
+#endif
+#if UNITY_ANDROID
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
+#endif
+            placement.component.transform.position = mousePos;
+            placement.Delete(placement.component.transform);
+        }
     }
 
 
