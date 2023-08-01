@@ -291,8 +291,13 @@ public class Placement : MonoBehaviour
                 }
                 deletingGO.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
             }
+            else if (Input.touchCount <= 0)
+            {
+                cameraMovement.allowRotation = true;
+            }
             highlighted = null;
             highlightedPlacement = null;
+
 
             if (!answerSheet1.placementChecks)
             {
