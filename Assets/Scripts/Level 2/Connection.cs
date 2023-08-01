@@ -81,12 +81,28 @@ public class Connection : MonoBehaviour
             //}
             //else
             //{
+
             Highlight();
+            if (points.Count == 2)
+            {
+                Connect();
+            }
             //}
+
+
+            Checking();
 
             if (Input.GetKeyDown(KeyCode.R))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    public void Checking()
+    {
+        foreach (GameObject t in AHUPoint1)
+        {
+            Debug.Log(t.transform.position);
+        }  
     }
 
     void CheckUndoPipes()
@@ -213,6 +229,7 @@ public class Connection : MonoBehaviour
 
             if (!points.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn() != null)
             {
+                //if no points contains the index return and the index return not null
                 points.Add(selectedComponent.IndexReturn().gameObject);
 
                 Debug.Log(points.Count);
@@ -261,8 +278,7 @@ public class Connection : MonoBehaviour
 
                             if ((points[i].transform == AHUPoint1[t].transform) || (points[i].transform == AHUPoint2[t].transform))
                             {
-                                Debug.Log((points[i].transform));
-                                Debug.Log(AHUPoint2[t].transform);
+                                Debug.Log("AHU");
                                 if (i == 0)
                                 {
                                     if (points[i].transform.position == AHUPoint1[t].transform.position)
@@ -291,17 +307,18 @@ public class Connection : MonoBehaviour
                                 }
 
                                 MultiConnect(pointlist);
+                                return;
 
                             }
                         }
                     }
 
-                    Connect();
+                    //Connect();
 
-                    if (FindObjectOfType<Tutorial>() != null)
-                    {
-                        FindObjectOfType<Tutorial>().CheckConnection();
-                    }
+                    //if (FindObjectOfType<Tutorial>() != null)
+                    //{
+                    //    FindObjectOfType<Tutorial>().CheckConnection();
+                    //}
                 }
             }
             valueReturnBtn.pressedBtn = false;
