@@ -1708,11 +1708,15 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
+  progressionChapter1: {fileID: 0}
+  progressionChapter2: {fileID: 0}
+  progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &198328468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4656,7 +4660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 96.011, y: 89.68}
+  m_AnchoredPosition: {x: 298.41095, y: 89.67999}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &790561194
@@ -5558,11 +5562,15 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
+  progressionChapter1: {fileID: 0}
+  progressionChapter2: {fileID: 0}
+  progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &950101204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6690,7 +6698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 282.69, y: 90.481}
+  m_AnchoredPosition: {x: 485.08997, y: 90.48099}
   m_SizeDelta: {x: 122, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1098695340
@@ -7802,7 +7810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 447.6, y: 89.19995}
+  m_AnchoredPosition: {x: 650, y: 89.19995}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1256518028
