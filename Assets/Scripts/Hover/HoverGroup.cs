@@ -27,6 +27,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     private bool openTab;
     private bool placeComponent;
     private Vector3 mousePos;
+    public bool dragToPlace;
 
     public void Subscribe(HoverTab components)
     {
@@ -42,6 +43,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     //After clicking the tabs
     {
         components.imageToChange.transform.localScale = components.originTransform;
+        cameraController.allowRotation = true;
     }
 
     public void OnTabSelected(HoverTab components)
@@ -67,6 +69,8 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        dragToPlace = true;
+        cameraController.allowRotation = false;
         if (placement.component)
         {
 #if UNITY_STANDALONE
