@@ -3210,11 +3210,15 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
+  progressionChapter1: {fileID: 0}
+  progressionChapter2: {fileID: 0}
+  progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &452815355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4759,11 +4763,15 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 817959895}
   instructionPanel: {fileID: 860568394}
   PauseCheck: 0
+  progressionChapter1: {fileID: 0}
+  progressionChapter2: {fileID: 0}
+  progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &626370461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12028,6 +12036,7 @@ MonoBehaviour:
   - {fileID: 1503147926}
   placement: {fileID: 0}
   hover: {fileID: 0}
+  hoverGrp: {fileID: 0}
   connection: {fileID: 252340424}
   allowRotation: 1
   allowZoom: 1
@@ -12199,7 +12208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1941359189
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12887,11 +12896,15 @@ MonoBehaviour:
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
-  PreLevelItems: {fileID: 0}
+  objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
+  progressionChapter1: {fileID: 0}
+  progressionChapter2: {fileID: 0}
+  progressionChapter3: {fileID: 0}
+  chapterImages: []
 --- !u!114 &2022630539
 MonoBehaviour:
   m_ObjectHideFlags: 0

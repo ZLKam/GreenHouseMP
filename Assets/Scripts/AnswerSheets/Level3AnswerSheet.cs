@@ -24,6 +24,8 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private GameObject wrongPanel;
 
+    List<KeyValuePair<DrawLine, Material>> wrongLinesPreviousMaterials = new();
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (line.IsFindingPath())
@@ -44,7 +46,12 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
             }
         });
         correctLines.ForEach(x => x.lr.material = correctMat);
-        wrongLines.ForEach(x => x.lr.material = wrongMat);
+        wrongLines.ForEach((wrongLine) =>
+        {
+            KeyValuePair<DrawLine, Material> previousMaterial = new KeyValuePair<DrawLine, Material>(wrongLine, wrongLine.lr.material);
+            wrongLinesPreviousMaterials.Add(previousMaterial);
+            wrongLine.lr.material = wrongMat;
+        });
         if (correct == numberOfCorrectConnections)
         {
             correctPanel.SetActive(true);
@@ -67,10 +74,18 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
         else
         {
             wrongPanel.SetActive(true);
+            StartCoroutine(ResetLineColor(wrongPanel.GetComponent<PopUp>().timer, wrongLines));
             Debug.Log("You are so stupid!!! Wrong!!!!!!!!");
         }
         correctLines.Clear();
         wrongLines.Clear();
     }
 
+    private IEnumerator ResetLineColor(float time, List<DrawLine> wrongLines)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log(time);
+        wrongLinesPreviousMaterials.ForEach(x => x.Key.lr.material = x.Value);
+        wrongLinesPreviousMaterials.Clear();
+    }
 }
