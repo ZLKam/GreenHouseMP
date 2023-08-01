@@ -134,6 +134,7 @@ public class Placement : MonoBehaviour
                 selected = selectedTransform;
                 selectedTransform.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = selectionSprite;
             }
+            cameraMovement.allowRotation = true;
         }
     }
 
@@ -150,6 +151,7 @@ public class Placement : MonoBehaviour
         {
             if (highlightedPlacement)
             {
+                hoverGroup.dragToPlace = true;
                 Select(highlightedPlacement.transform);
             }
             else
@@ -203,7 +205,7 @@ public class Placement : MonoBehaviour
                 Select(hit.transform);
                 return;
             }
-            else if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved && !hoverGroup.dragToPlace)
             {
                 cameraMovement.allowRotation = false;
                 if (!hit.transform.CompareTag("Selection"))
