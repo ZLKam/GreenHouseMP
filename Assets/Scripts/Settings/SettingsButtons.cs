@@ -26,11 +26,15 @@ public class SettingsButtons : MonoBehaviour
     public GameObject sensPanel;
 
     public GameObject errorShow;
+    public GameObject btnClearLogFile;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (PlayerPrefs.GetString(Strings.Username) == "admin")
+        {
+            btnClearLogFile.SetActive(true);
+        }
         //ClickOnBg();
     }
 
@@ -133,5 +137,13 @@ public class SettingsButtons : MonoBehaviour
         error.GetComponentInChildren<TextMeshProUGUI>().text = "No log file found";
         yield return new WaitForSecondsRealtime(2f);
         Destroy(error);
+    }
+
+    public void ClearLogFile()
+    {
+        if (System.IO.File.Exists(Application.persistentDataPath + "/errorLog.txt"))
+        {
+            System.IO.File.Delete(Application.persistentDataPath + "/errorLog.txt");
+        }
     }
 }
