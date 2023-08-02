@@ -388,6 +388,7 @@ public class Connection : MonoBehaviour
                 GameObject Clone = pipes[pipes.Count - 1];
                 pipes.Remove(pipes[pipes.Count - 1]);
                 Destroy(Clone);
+
                 Debug.Log("Removed the lastest pipe");
                 if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
                 {
