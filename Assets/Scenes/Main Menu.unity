@@ -2334,9 +2334,25 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 76b5141b07e04574ca3464fb70ad6fac, type: 3}
+    - target: {fileID: 4367164856209604043, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 42.0113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367164856209604043, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367164856209604043, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 82
+      objectReference: {fileID: 0}
     - target: {fileID: 7392230416954645594, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
       propertyPath: m_Text
-      value: ACMV
+      value: "Water-cooled \nchiller plant system\u200B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392230416954645594, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
@@ -3712,9 +3728,29 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ab1e049dde4e90749965c0412db5258f, type: 3}
+    - target: {fileID: 4367164856209604043, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 162
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367164856209604043, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 41.2233
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367164856209604043, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000020981
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367164856209604043, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 83.61692
+      objectReference: {fileID: 0}
     - target: {fileID: 7392230416954645594, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
       propertyPath: m_Text
-      value: Air-Side System
+      value: Air-Distribution System
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392230416954645594, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
@@ -9256,7 +9292,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7392230416954645594, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
       propertyPath: m_Text
-      value: '      Refrigeration Cycle'
+      value: '       Fundamental Concepts'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392230416954645594, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}

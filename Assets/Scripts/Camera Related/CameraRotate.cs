@@ -19,7 +19,7 @@ public class CameraRotate : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("firstTime", 1) == 1)
+        if (!PlayerPrefs.HasKey("firstTime"))
         {
             Debug.Log("First Time Opening");
 
@@ -32,8 +32,7 @@ public class CameraRotate : MonoBehaviour
             PlayerPrefs.SetFloat("rotationSpeed", 60);
             PlayerPrefs.SetFloat("zoomSpeed", 75);
             PlayerPrefs.SetFloat("zoomSensitivity", 5);
-
-            PlayerPrefs.SetInt("firstTime", 0);
+            PlayerPrefs.SetInt("firstTime", 1);
         }
         else
         {

@@ -264,18 +264,18 @@ public class Fade : MonoBehaviour
         //PreLevelItems.SetActive(true);
         Level.SetActive(true);
         Level.transform.GetChild(0).transform.Find("ImgChapterSelected").GetComponent<Image>().sprite = chapterImages[chapter].sprite;
-        if (!Previewed)
-        {
-            Level.GetComponentsInChildren<UnityEngine.UI.Button>().ToList().ForEach(x =>
-            {
-                if (x.name != "BtnLevel0" && x.name != "Back")
-                {
-                    x.interactable = false;
-                    Color color = x.GetComponentInChildren<TextMeshProUGUI>().color;
-                    x.GetComponentInChildren<TextMeshProUGUI>().color = new Color(color.r, color.g, color.b, 0.5f);
-                }
-            });
-        }
+        //if (!Previewed)
+        //{
+        //    Level.GetComponentsInChildren<UnityEngine.UI.Button>().ToList().ForEach(x =>
+        //    {
+        //        if (x.name != "BtnLevel0" && x.name != "Back")
+        //        {
+        //            x.interactable = false;
+        //            Color color = x.GetComponentInChildren<TextMeshProUGUI>().color;
+        //            x.GetComponentInChildren<TextMeshProUGUI>().color = new Color(color.r, color.g, color.b, 0.5f);
+        //        }
+        //    });
+        //}
         Section.SetActive(false);
         objectiveitems.SetActive(false);
     }

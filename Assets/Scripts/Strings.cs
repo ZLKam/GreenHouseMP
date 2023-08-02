@@ -25,5 +25,18 @@ public static class Strings
         PlayerPrefs.DeleteKey(ChapterTwoLevelTwoCompleted);
         PlayerPrefs.DeleteKey(ChapterTwoLevelThreeCompleted);
         PlayerPrefs.DeleteKey("Reviewed");
+        PlayerPrefs.DeleteKey("firstTime");
+    }
+
+    public static bool IsFirstTime()
+    {
+        if (!PlayerPrefs.HasKey("firstTime"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
