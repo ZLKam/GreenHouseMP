@@ -273,11 +273,11 @@ public class Connection : MonoBehaviour
                             }
                             MultiConnect(pointlist);
                         }
-                        else
-                        {
-                            Connect();
-                        }
                     }
+                    if (points.Count >= 2)
+                    {
+                        Connect();
+                    } 
                     //Connect();
                     //if (FindObjectOfType<Tutorial>() != null)
                     //{
