@@ -11,6 +11,8 @@ public class TempCheck : MonoBehaviour
     public TextMeshProUGUI[] TempValues;
     public GameObject Light;
 
+    private bool showing;
+
     [Range(0, 30)]
     public int[] Temps;
 
@@ -33,12 +35,25 @@ public class TempCheck : MonoBehaviour
     
     public void TemperatureCheck()
     {
-        if (TempValues.Length == Temps.Length) { }
-        for (int i = 0; i < TempValues.Length; i++)
+        if (TempValues.Length == Temps.Length) 
         {
-            TempValues[i].gameObject.SetActive(true);
-            TempValues[i].text = Temps[i].ToString();
+            if (!showing)
+            {
+                for (int i = 0; i < TempValues.Length; i++)
+                {
+                    TempValues[i].gameObject.SetActive(true);
+                    TempValues[i].text = Temps[i].ToString();
+                }
+                showing = true;
+            }
+            else
+            {
+                for (int i = 0; i < TempValues.Length; i++)
+                {
+                    TempValues[i].gameObject.SetActive(false);
+                }
+                showing = false;
+            }
         }
-
     }
 }

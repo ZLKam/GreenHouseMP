@@ -6909,7 +6909,7 @@ MonoBehaviour:
   - {fileID: 1619274937}
   - {fileID: 1621577092}
   Light: {fileID: 1983349254}
-  Temps: 00000000000000000000000000000000
+  Temps: 0c00000008000000180000001e000000
 --- !u!1 &1057893578
 GameObject:
   m_ObjectHideFlags: 0
