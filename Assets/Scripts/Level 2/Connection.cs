@@ -75,30 +75,12 @@ public class Connection : MonoBehaviour
         {
             //CheckUndoPipes();
 
-            //if (multiConnect)
-            //{
-            //    MultiHighlight();
-            //}
-            //else
-            //{
-
             Highlight();
-            //}
-
-
-            //Checking();
+            
 
             if (Input.GetKeyDown(KeyCode.R))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-
-    public void Checking()
-    {
-        foreach (GameObject t in AHUPoint1)
-        {
-            Debug.Log(t.transform.position);
-        }  
     }
 
     void CheckUndoPipes()
@@ -241,7 +223,7 @@ public class Connection : MonoBehaviour
                 if (points.Count >= 2)
                 {
                     var pointlist = new List<GameObject>();
-                    for (int i = 0; i <= points.Count; i++)
+                    for (int i = 0; i < points.Count; i++)
                     {
                         if (AHUPoint1.Contains(points[i]))
                         {
@@ -258,7 +240,7 @@ public class Connection : MonoBehaviour
                             }
                             MultiConnect(pointlist);
                         }
-                        else if (AHUPoint2.Contains(points[i]))
+                        if (AHUPoint2.Contains(points[i]))
                         {
                             Debug.Log("AHU 2");
                             if (i == 0)
@@ -396,5 +378,29 @@ public class Connection : MonoBehaviour
         lengths.Clear();
     }
 
+    public void UndoPipe()
+    {
+        if (pipes.Count > 0)
+        {
+            //points.Clear();
+            if (pipes.Contains(pipes[pipes.Count - 1]))
+            {
+                GameObject Clone = pipes[pipes.Count - 1];
+                pipes.Remove(pipes[pipes.Count - 1]);
+                Destroy(Clone);
 
+                Debug.Log("Removed the lastest pipe");
+                if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+                {
+                    selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                }
+                // this unhighlights 1 of the highlights. trying to get both removed.
+            }
+        }
+        else
+        {
+            Debug.Log("No pipes left");
+            //Can do warning pop up here;
+        }
+    }
 }
