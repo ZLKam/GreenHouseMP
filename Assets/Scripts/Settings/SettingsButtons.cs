@@ -31,10 +31,9 @@ public class SettingsButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetString(Strings.Username) == "admin")
-        {
-            btnClearLogFile.SetActive(true);
-        }
+#if DEBUG
+        btnClearLogFile.SetActive(true);
+#endif
         //ClickOnBg();
     }
 
