@@ -1,6 +1,7 @@
 using Level3;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 
 public class LinePathFind : MonoBehaviour
 {
+    #region Variables
     public RectGrid rectGrid;
 
     private int gridLayer = 1 << 3;
@@ -59,6 +61,12 @@ public class LinePathFind : MonoBehaviour
 
     public GameObject selectColorPopUp;
     public Hover hoverTab;
+
+    [SerializeField]
+    private List<RectGridCell> affectedCellsList = new();
+    private Dictionary<GameObject, List<RectGridCell>> previousDrawnLineDict = new();
+    private List<List<LineLimit>> previousDrawnLineFromAndTo = new();
+    #endregion
 
     private void Awake()
     {
@@ -364,10 +372,13 @@ public class LinePathFind : MonoBehaviour
         {
             fromPoint = nearestFromPointFromSecret;
         }
-        else if (distanceBetweenToAndSecret < distance)
+        if (distanceBetweenToAndSecret < distance)
         {
             toPoint = nearestToPointFromSecret;
         }
+        Debug.Log($"From point: {fromPoint.position} and to point: {toPoint.position}" +
+            $"Distance between from point to secret is: {distanceBetweenFromAndSecret} and Distance between to point to secret is: {distanceBetweenToAndSecret}" +
+            $"Distance: {distance}");
         if (fromPoint && toPoint)
         {
             // set the two nearest connection points to be not allow draw line, then return the two points transform
@@ -379,6 +390,7 @@ public class LinePathFind : MonoBehaviour
             lineEndPoint = toPoint.position;
             lineFrom = fromPoint;
             lineTo = toPoint;
+            previousDrawnLineFromAndTo.Add(new() { fromPoint.GetComponent<LineLimit>(), toPoint.GetComponent<LineLimit>() });
         }
         else
             fullConnectionPoints = true;
@@ -436,6 +448,7 @@ public class LinePathFind : MonoBehaviour
                 node = node.parent;
             }
             GameObject line = Instantiate(this.line, transform);
+            previousDrawnLineDict.Add(line, new List<RectGridCell>());
             line.GetComponent<DrawLine>().rectGrid = rectGrid;
             AddFromRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[reversePathLocations.Count - 1]);
             // add all these points to the waypoints.
@@ -443,8 +456,11 @@ public class LinePathFind : MonoBehaviour
             {
                 AddWayPoint(reversePathLocations[i]);
                 line.GetComponent<DrawLine>().points.Add(reversePathLocations[i]);
-                rectGrid.transform.Find("cell_" + reversePathLocations[i].x + "_" + reversePathLocations[i].y).GetComponent<RectGridCell>().SetNonWalkable();
+                RectGridCell cell = rectGrid.transform.Find("cell_" + reversePathLocations[i].x + "_" + reversePathLocations[i].y).GetComponent<RectGridCell>();
+                cell.SetNonWalkable();
+                affectedCellsList.Add(cell);
             }
+            previousDrawnLineDict[line] = new (affectedCellsList);
             AddToRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[0]);
             line.GetComponent<DrawLine>().lineFrom = lineFrom;
             line.GetComponent<DrawLine>().lineTo = lineTo;
@@ -455,6 +471,7 @@ public class LinePathFind : MonoBehaviour
         findingPath = false;
         imgComponentFrom.sprite = transparentSprite;
         imgComponentTo.sprite = transparentSprite;
+        affectedCellsList.Clear();
     }
 
     public void AddWayPoint(Vector2Int point)
@@ -472,6 +489,31 @@ public class LinePathFind : MonoBehaviour
     {
         line.points.Add(new Vector2(lastNodePos.x, lineEndPoint.y));
         line.points.Add(lineEndPoint);
+    }
+
+    public void UndoFunction()
+    {
+        if (IsFindingPath())
+        {
+            return;
+        }
+        if (previousDrawnLineDict.Count > 0)
+        {
+            GameObject lastLine = previousDrawnLineDict.Keys.ToList()[^1];
+            List<RectGridCell> lastLineAffectedCells = previousDrawnLineDict[lastLine];
+            foreach (RectGridCell cell in lastLineAffectedCells)
+            {
+                cell.SetWalkable();
+            }
+            previousDrawnLineDict.Remove(lastLine);
+            Destroy(lastLine);
+            previousDrawnLineFromAndTo[^1].ForEach(x => x.AllowDrawLine = true);
+            previousDrawnLineFromAndTo.RemoveAt(previousDrawnLineFromAndTo.Count - 1);
+        }
+        else
+        {
+            return;
+        }
     }
 
     public bool IsFindingPath()
