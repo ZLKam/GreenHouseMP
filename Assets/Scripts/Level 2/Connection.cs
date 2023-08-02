@@ -387,6 +387,7 @@ public class Connection : MonoBehaviour
                 GameObject Clone = pipes[pipes.Count - 1];
                 pipes.Remove(pipes[pipes.Count - 1]);
                 Destroy(Clone);
+                points.Clear();
             }
         }
     }
