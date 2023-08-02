@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
 
 public class SelectedComponent : MonoBehaviour
 {
@@ -42,10 +41,6 @@ public class SelectedComponent : MonoBehaviour
     {
         if (canChange)
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
             Camera.main.transform.parent.GetComponent<CameraMovement>().enabled = true;
         }
         Destroy(uiTemp);
