@@ -1,0 +1,4 @@
+// [Cnum] is the number of the chapter. [num] is the number of the level.
+[c2][1]This is Level 1 objective. In this level, you will need to place components to their correct place.
+[c2][2]This is Level 2 objective. In this level, you will need to connect pipe between components to make the components work.
+[c2][3]This is Level 3 objective. In this level, you will need to do what you had done for Level 1 and Level 2 and combine them together.
