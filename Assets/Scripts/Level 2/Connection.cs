@@ -83,14 +83,10 @@ public class Connection : MonoBehaviour
             //{
 
             Highlight();
-            if (points.Count == 2)
-            {
-                Connect();
-            }
             //}
 
 
-            Checking();
+            //Checking();
 
             if (Input.GetKeyDown(KeyCode.R))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -230,9 +226,18 @@ public class Connection : MonoBehaviour
             if (!points.Contains(selectedComponent.IndexReturn()) && selectedComponent.IndexReturn() != null)
             {
                 //if no points contains the index return and the index return not null
-                points.Add(selectedComponent.IndexReturn().gameObject);
+                if (points.Contains(selectedComponent.IndexReturn().gameObject))
+                {
+                    points.Remove(selectedComponent.IndexReturn().gameObject);
+                }
+                else
+                {
+                    points.Add(selectedComponent.IndexReturn().gameObject);
+                }
+                
 
-                Debug.Log(points.Count);
+
+                //Debug.Log(points.Count);
                 if (points.Count >= 2)
                 {
                     var pointlist = new List<GameObject>();
@@ -276,16 +281,16 @@ public class Connection : MonoBehaviour
 
 
 
-                            if ((points[i].transform == AHUPoint1[t].transform) || (points[i].transform == AHUPoint2[t].transform))
+                            if (points[i].transform == AHUPoint1[t].transform)
                             {
-                                Debug.Log("AHU");
+                                Debug.Log("AHU 1");
                                 if (i == 0)
                                 {
-                                    if (points[i].transform.position == AHUPoint1[t].transform.position)
+                                    if (points[i].transform == AHUPoint1[t].transform)
                                     {
                                         pointlist = AHUPoint1;
                                     }
-                                    if (points[i].transform.position == AHUPoint2[t].transform.position)
+                                    if (points[i].transform == AHUPoint2[t].transform)
                                     {
                                         pointlist = AHUPoint2;
                                         Debug.Log(pointlist.Count);
@@ -294,11 +299,11 @@ public class Connection : MonoBehaviour
                                 }
                                 if (i == 1)
                                 {
-                                    if (points[i].transform.position == AHUPoint1[t].transform.position)
+                                    if (points[i].transform == AHUPoint1[t].transform)
                                     {
                                         pointlist = AHUPoint1;
                                     }
-                                    if (points[i].transform.position == AHUPoint2[t].transform.position)
+                                    if (points[i].transform == AHUPoint2[t].transform)
                                     {
                                         pointlist = AHUPoint2;
                                         Debug.Log(pointlist.Count);
@@ -306,14 +311,45 @@ public class Connection : MonoBehaviour
                                     pointlist.Add(points[0]);
                                 }
 
+
                                 MultiConnect(pointlist);
                                 return;
 
                             }
+
+                            if ((points[i].transform == AHUPoint2[t].transform))
+                            {
+                                Debug.Log("AHU 2");
+                                if (i == 0)
+                                {
+                                    if (points[i].transform == AHUPoint2[t].transform)
+                                    {
+                                        pointlist = AHUPoint2;
+                                    }
+                                    pointlist.Add(points[1]);
+                                }
+                                if (i == 1)
+                                {
+                                    if (points[i].transform == AHUPoint2[t].transform)
+                                    {
+                                        pointlist = AHUPoint2;
+                                        Debug.Log(pointlist.Count);
+                                    }
+                                    pointlist.Add(points[0]);
+                                }
+
+
+                                MultiConnect(pointlist);
+                                return;
+                            }
                         }
                     }
 
-                    //Connect();
+                    //if (points.Count == 2)
+                    //{
+                    //    Connect();
+                    //}
+                    Connect();
 
                     //if (FindObjectOfType<Tutorial>() != null)
                     //{
