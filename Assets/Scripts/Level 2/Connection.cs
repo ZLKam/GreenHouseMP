@@ -382,7 +382,7 @@ public class Connection : MonoBehaviour
     {
         if (pipes.Count > 0)
         {
-            //points.Clear();
+            points.Clear();
             if (pipes.Contains(pipes[pipes.Count - 1]))
             {
                 GameObject Clone = pipes[pipes.Count - 1];
