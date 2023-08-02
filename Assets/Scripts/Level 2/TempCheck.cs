@@ -9,7 +9,9 @@ public class TempCheck : MonoBehaviour
     public GameObject AfterLevel;
     public Camera Camera;
     public TextMeshProUGUI[] TempValues;
-    public GameObject Light;
+    public Light Light;
+
+    private bool showing;
 
     [Range(0, 30)]
     public int[] Temps;
@@ -22,10 +24,12 @@ public class TempCheck : MonoBehaviour
     
     public void ReviewLevel()
     {
+        Light = FindFirstObjectByType<Light>();
         Light.transform.localRotation = Quaternion.identity;
         Camera = Camera.main;
         Camera.transform.position = new Vector3(-120, -3, 0);
         Camera.transform.rotation = Quaternion.Euler(0,90,0);
+        Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
         Level2AnswerSheet.showPopUp = true;
         AfterLevel.SetActive(true);
         AnswerCheck.SetActive(false);
@@ -33,12 +37,25 @@ public class TempCheck : MonoBehaviour
     
     public void TemperatureCheck()
     {
-        if (TempValues.Length == Temps.Length) { }
-        for (int i = 0; i < TempValues.Length; i++)
+        if (TempValues.Length == Temps.Length) 
         {
-            TempValues[i].gameObject.SetActive(true);
-            TempValues[i].text = Temps[i].ToString();
+            if (!showing)
+            {
+                for (int i = 0; i < TempValues.Length; i++)
+                {
+                    TempValues[i].gameObject.SetActive(true);
+                    TempValues[i].text = Temps[i].ToString();
+                }
+                showing = true;
+            }
+            else
+            {
+                for (int i = 0; i < TempValues.Length; i++)
+                {
+                    TempValues[i].gameObject.SetActive(false);
+                }
+                showing = false;
+            }
         }
-
     }
 }
