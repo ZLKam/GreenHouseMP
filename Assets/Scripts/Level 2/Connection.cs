@@ -75,30 +75,12 @@ public class Connection : MonoBehaviour
         {
             //CheckUndoPipes();
 
-            //if (multiConnect)
-            //{
-            //    MultiHighlight();
-            //}
-            //else
-            //{
-
             Highlight();
-            //}
-
-
-            //Checking();
+            
 
             if (Input.GetKeyDown(KeyCode.R))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-
-    public void Checking()
-    {
-        foreach (GameObject t in AHUPoint1)
-        {
-            Debug.Log(t.transform.position);
-        }  
     }
 
     void CheckUndoPipes()
@@ -396,5 +378,16 @@ public class Connection : MonoBehaviour
         lengths.Clear();
     }
 
-
+    public void UndoPipe()
+    {
+        if (pipes.Count > 0)
+        {
+            if (pipes.Contains(pipes[pipes.Count - 1]))
+            {
+                GameObject Clone = pipes[pipes.Count - 1];
+                pipes.Remove(pipes[pipes.Count - 1]);
+                Destroy(Clone);
+            }
+        }
+    }
 }
