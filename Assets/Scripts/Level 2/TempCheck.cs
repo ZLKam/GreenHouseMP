@@ -9,7 +9,7 @@ public class TempCheck : MonoBehaviour
     public GameObject AfterLevel;
     public Camera Camera;
     public TextMeshProUGUI[] TempValues;
-    public GameObject Light;
+    public Light Light;
 
     private bool showing;
 
@@ -24,10 +24,12 @@ public class TempCheck : MonoBehaviour
     
     public void ReviewLevel()
     {
+        Light = FindFirstObjectByType<Light>();
         Light.transform.localRotation = Quaternion.identity;
         Camera = Camera.main;
         Camera.transform.position = new Vector3(-120, -3, 0);
         Camera.transform.rotation = Quaternion.Euler(0,90,0);
+        Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
         Level2AnswerSheet.showPopUp = true;
         AfterLevel.SetActive(true);
         AnswerCheck.SetActive(false);

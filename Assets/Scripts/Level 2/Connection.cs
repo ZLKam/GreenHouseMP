@@ -237,120 +237,48 @@ public class Connection : MonoBehaviour
                 
 
 
-                //Debug.Log(points.Count);
+                Debug.Log(points.Count);
                 if (points.Count >= 2)
                 {
                     var pointlist = new List<GameObject>();
                     for (int i = 0; i <= points.Count; i++)
                     {
-                        //Debug.Log(AHUPoint1.Count);
-                        for (int t = 0; t < AHUPoint1.Count; t++)
+                        if (AHUPoint1.Contains(points[i]))
                         {
-                            Debug.Log(i + "," + t);
-                            //if (points[i].transform.position == AHUPoint1[t].transform.position)
-                            //{
-                            //    if (i == 0)
-                            //    {
-                            //        pointlist = AHUPoint1;
-                            //        pointlist.Add(points[1]);
-                            //    }
-                            //    else if (i == 1)
-                            //    {
-                            //        pointlist = AHUPoint1;
-                            //        pointlist.Add(points[0]);
-                            //    }
-                            //    MultiConnect(pointlist);
-                            //}
-                            //else if (points[i].transform.position == AHUPoint2[t].transform.position)
-                            ////else if (points[i].transform.position == AHUPoint2[t].transform.position)
-
-                            //{
-                            //    Debug.Log(AHUPoint2);
-                            //    if (i == 0)
-                            //    {
-                            //        pointlist = AHUPoint2;
-                            //        pointlist.Add(points[1]);
-                            //    }
-                            //    else if (i == 1)
-                            //    {
-                            //        pointlist = AHUPoint2;
-                            //        pointlist.Add(points[0]);
-                            //    }
-                            //    MultiConnect(pointlist);
-                            //}
-
-
-
-                            if (points[i].transform == AHUPoint1[t].transform)
+                            Debug.Log("AHU 1");
+                            if (i == 0)
                             {
-                                Debug.Log("AHU 1");
-                                if (i == 0)
-                                {
-                                    if (points[i].transform == AHUPoint1[t].transform)
-                                    {
-                                        pointlist = AHUPoint1;
-                                    }
-                                    if (points[i].transform == AHUPoint2[t].transform)
-                                    {
-                                        pointlist = AHUPoint2;
-                                        Debug.Log(pointlist.Count);
-                                    }
-                                    pointlist.Add(points[1]);
-                                }
-                                if (i == 1)
-                                {
-                                    if (points[i].transform == AHUPoint1[t].transform)
-                                    {
-                                        pointlist = AHUPoint1;
-                                    }
-                                    if (points[i].transform == AHUPoint2[t].transform)
-                                    {
-                                        pointlist = AHUPoint2;
-                                        Debug.Log(pointlist.Count);
-                                    }
-                                    pointlist.Add(points[0]);
-                                }
-
-
-                                MultiConnect(pointlist);
-                                return;
-
+                                pointlist = new List<GameObject>(AHUPoint1);
+                                pointlist.Add(points[1]);
                             }
-
-                            if ((points[i].transform == AHUPoint2[t].transform))
+                            if (i == 1)
                             {
-                                Debug.Log("AHU 2");
-                                if (i == 0)
-                                {
-                                    if (points[i].transform == AHUPoint2[t].transform)
-                                    {
-                                        pointlist = AHUPoint2;
-                                    }
-                                    pointlist.Add(points[1]);
-                                }
-                                if (i == 1)
-                                {
-                                    if (points[i].transform == AHUPoint2[t].transform)
-                                    {
-                                        pointlist = AHUPoint2;
-                                        Debug.Log(pointlist.Count);
-                                    }
-                                    pointlist.Add(points[0]);
-                                }
-
-
-                                MultiConnect(pointlist);
-                                return;
+                                pointlist = new List<GameObject>(AHUPoint1);
+                                pointlist.Add(points[0]);
                             }
+                            MultiConnect(pointlist);
+                        }
+                        else if (AHUPoint2.Contains(points[i]))
+                        {
+                            Debug.Log("AHU 2");
+                            if (i == 0)
+                            {
+                                pointlist = new List<GameObject>(AHUPoint2);
+                                pointlist.Add(points[1]);
+                            }
+                            if (i == 1)
+                            {
+                                pointlist = new List<GameObject>(AHUPoint2);
+                                pointlist.Add(points[0]);
+                            }
+                            MultiConnect(pointlist);
+                        }
+                        else
+                        {
+                            Connect();
                         }
                     }
-
-                    //if (points.Count == 2)
-                    //{
-                    //    Connect();
-                    //}
-                    Connect();
-
+                    //Connect();
                     //if (FindObjectOfType<Tutorial>() != null)
                     //{
                     //    FindObjectOfType<Tutorial>().CheckConnection();
@@ -414,7 +342,7 @@ public class Connection : MonoBehaviour
             point1 = null;
             point2 = null;
             points.Clear();
-        }
+    }
 
 
     void MultiConnect(List<GameObject> pointList)
