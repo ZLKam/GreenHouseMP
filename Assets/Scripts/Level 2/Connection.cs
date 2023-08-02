@@ -395,11 +395,11 @@ public class Connection : MonoBehaviour
                 }
                 // this unhighlights 1 of the highlights. trying to get both removed.
             }
-            else
-            {
-                Debug.Log("No pipes left");
-                //Can do warning pop up here;
-            }
+        }
+        else
+        {
+            Debug.Log("No pipes left");
+            //Can do warning pop up here;
         }
     }
 }
