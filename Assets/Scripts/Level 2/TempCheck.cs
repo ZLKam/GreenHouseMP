@@ -19,7 +19,7 @@ public class TempCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Camera = null;
+        Camera = null;
     }
     
     public void ReviewLevel()
