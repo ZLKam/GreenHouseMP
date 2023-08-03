@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PreviewLevel.unity
     guid: 777995c28a04aea4387e49d63615d514
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/Level1Building.unity
+    guid: a21164b42664ed847a5a2bbba52f5b07
   m_configObjects: {}

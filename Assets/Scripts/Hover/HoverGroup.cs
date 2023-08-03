@@ -8,7 +8,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 {
     [Header("Script References")]
     [SerializeField]
-    private Placement placement;
+    private Placement1 placement;
     [SerializeField]
     private CameraMovement cameraController;
     [SerializeField]
@@ -43,7 +43,6 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     //After clicking the tabs
     {
         components.imageToChange.transform.localScale = components.originTransform;
-        cameraController.allowRotation = true;
     }
 
     public void OnTabSelected(HoverTab components)
@@ -80,7 +79,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
 #endif
             placement.component.transform.position = mousePos;
-            placement.Delete(placement.component.transform);
+            //placement.Delete(placement.component.transform);
         }
     }
 
@@ -95,10 +94,10 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     private void OnPlacementFound(HoverTab components) 
     {
         placement.selectedPrefab = placement.component = null;
-        placement.selectedPrefab = components.componentPrefab;
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
         components.componentPrefab.GetComponent<Collider>().enabled = false;
         placement.component = Instantiate(components.componentPrefab, mousePos, Quaternion.identity);
+        placement.selectedPrefab = components.componentPrefab;
     }
 
     private void OnConnectionFound(HoverTab components) 
@@ -113,7 +112,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     private void Start()
     {
         cameraController = FindAnyObjectByType<CameraMovement>();
-        placement = FindObjectOfType<Placement>();
+        placement = FindObjectOfType<Placement1>();
         connection = FindObjectOfType<Connection>();
     }
 
