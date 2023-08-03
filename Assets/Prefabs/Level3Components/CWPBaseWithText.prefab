@@ -109,6 +109,10 @@ MonoBehaviour:
   correctTarget2: {fileID: 0}
   correctColor: {r: 1, g: 0, b: 0, a: 1}
   correctColor2: {r: 1, g: 1, b: 1, a: 1}
+  CHWPLeft: {fileID: 0}
+  CHWPRight: {fileID: 0}
+  CWPRight: {fileID: 3298338565619205877, guid: 71d4624dcd89e514fa2ee3f683b99a50, type: 3}
+  CWPLeft: {fileID: 3298338565619205877}
 --- !u!50 &1555703448418485346
 Rigidbody2D:
   serializedVersion: 4

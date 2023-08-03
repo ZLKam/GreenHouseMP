@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
@@ -8,6 +10,7 @@ namespace Level3
 {
     public class ComponentEvent : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler, IPointerCaptureEvent
     {
+        [SerializeField]
         internal ComponentButtonEvent buttonEvent;
 
         public string componentName;
@@ -26,6 +29,15 @@ namespace Level3
         private Sprite highlightPlaceholder;
         private SpriteRenderer highlighted;
         private bool hitPlaceholder = false;
+
+        [SerializeField]
+        private GameObject CHWPLeft;
+        [SerializeField]
+        private GameObject CHWPRight;
+        [SerializeField]
+        private GameObject CWPRight;
+        [SerializeField]
+        private GameObject CWPLeft;
 
         #region Unused
         //internal ComponentButtonEvent buttonEvent;
@@ -109,6 +121,7 @@ namespace Level3
         private void Start()
         {
             highlightPlaceholder = Resources.Load<Sprite>("Game UI/BorderYellow");
+            //CheckDirection();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -163,6 +176,7 @@ namespace Level3
             CheckPlaceholder(eventData);
             GetComponent<BoxCollider2D>().enabled = true;
             holding = false;
+            CheckDirection(gameObject);
         }
 
         private void CheckPlaceholder(PointerEventData eventData)
@@ -207,6 +221,10 @@ namespace Level3
                     Transform otherPlaceholder = currentRaycast.transform.parent;
                     otherComponent.parent = placeholder;
                     otherComponent.localPosition = Vector3.zero;
+                    if (otherComponent.GetComponent<ComponentEvent>().specialID != specialID)
+                    {
+                        otherComponent.GetComponent<ComponentEvent>().CheckDirection(otherComponent.gameObject);
+                    }
                     placeholder = otherPlaceholder;
                     transform.parent = placeholder;
                     transform.localPosition = Vector3.zero;
@@ -214,6 +232,60 @@ namespace Level3
                 }
                 placeholder.GetComponent<SpriteRenderer>().enabled = true;
                 Destroy(gameObject);
+            }
+        }
+
+        public void CheckDirection(GameObject GOToCheck)
+        {
+            if (componentName == "CWP" || componentName == "CHWP")
+            {
+                FindObjectsOfType<ComponentEvent>().ToList().ForEach((component) =>
+                {
+                    if (component.componentName == "Chiller")
+                    {
+                        // Check the direction
+                        float angle = Vector2.SignedAngle(Vector2.right, component.transform.position - transform.position);
+                        if (angle < 90 && angle > -90)
+                        {
+                            // Chiller is at the right side
+                            if (componentName == "CWP")
+                            {
+                                GameObject cwp = Instantiate(CWPRight, transform.position, Quaternion.identity, transform.parent);
+                                cwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
+                                cwp.GetComponent<ComponentEvent>().placeholder = placeholder;
+                                cwp.GetComponent<BoxCollider2D>().enabled = true;
+                                Destroy(GOToCheck);
+                            }
+                            else
+                            {
+                                GameObject chwp = Instantiate(CHWPRight, transform.position, Quaternion.identity, transform.parent);
+                                chwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
+                                chwp.GetComponent<ComponentEvent>().placeholder = placeholder;
+                                chwp.GetComponent<BoxCollider2D>().enabled = true;
+                                Destroy(GOToCheck);
+                            }
+                        }
+                        else
+                        {
+                            if (componentName == "CHWP")
+                            {
+                                GameObject chwp = Instantiate(CHWPLeft, transform.position, Quaternion.identity, transform.parent);
+                                chwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
+                                chwp.GetComponent<ComponentEvent>().placeholder = placeholder;
+                                chwp.GetComponent<BoxCollider2D>().enabled = true;
+                                Destroy(GOToCheck);
+                            }
+                            else
+                            {
+                                GameObject cwp = Instantiate(CWPLeft, transform.position, Quaternion.identity, transform.parent);
+                                cwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
+                                cwp.GetComponent<ComponentEvent>().placeholder = placeholder;
+                                cwp.GetComponent<BoxCollider2D>().enabled = true;
+                                Destroy(GOToCheck);
+                            }
+                        }
+                    }
+                });
             }
         }
     }

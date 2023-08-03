@@ -98,6 +98,7 @@ namespace Level3
                     instantiatedComponent.transform.localPosition = Vector3.zero;
                     instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
                     instantiatedComponent.GetComponent<ComponentEvent>().placeholder = placeholder;
+                    instantiatedComponent.GetComponent<ComponentEvent>().CheckDirection(instantiatedComponent.gameObject);
                 }
                 else if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Component"))
                 {
@@ -108,6 +109,7 @@ namespace Level3
                     instantiatedComponent.transform.localPosition = Vector3.zero;
                     instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
                     instantiatedComponent.GetComponent<ComponentEvent>().placeholder = placeholder;
+                    instantiatedComponent.GetComponent<ComponentEvent>().CheckDirection(instantiatedComponent.gameObject);
                 }
                 else
                 {

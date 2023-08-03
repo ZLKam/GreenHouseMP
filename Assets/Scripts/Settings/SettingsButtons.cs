@@ -34,6 +34,10 @@ public class SettingsButtons : MonoBehaviour
 #if DEBUG
         btnClearLogFile.SetActive(true);
 #endif
+        if (PlayerPrefs.GetString(Strings.Username) == "Admin")
+        {
+            btnClearLogFile.SetActive(true);
+        }
         //ClickOnBg();
     }
 
