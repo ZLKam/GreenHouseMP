@@ -2089,7 +2089,6 @@ GameObject:
   - component: {fileID: 1297591366}
   - component: {fileID: 1297591365}
   - component: {fileID: 1297591364}
-  - component: {fileID: 1297591367}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2155,47 +2154,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297591363}
-  m_LocalRotation: {x: -0, y: -0.451712, z: -0, w: 0.8921638}
-  m_LocalPosition: {x: 741, y: 183, z: -346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2068408862}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -53.707, z: 0}
---- !u!114 &1297591367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297591363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3abc9c40f83e448bc9e071b99ff3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameras:
-  - {fileID: 774221238}
-  placement: {fileID: 0}
-  hover: {fileID: 0}
-  hoverGrp: {fileID: 0}
-  connection: {fileID: 0}
-  allowRotation: 1
-  allowZoom: 1
-  rotationSpeed: 0
-  initialDistance: 0
-  sensitivity: 5
-  maxZoom: 140
-  skyboxes:
-  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
-  - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
-  - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
-  zooming: 0
-  moved: 0
-  zoomStopDistance: 60
-  zoomAmount: 0
-  cameraDist: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390165812
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,6 +3195,72 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2068408860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2068408862}
+  - component: {fileID: 2068408861}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2068408861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068408860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3abc9c40f83e448bc9e071b99ff3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameras:
+  - {fileID: 774221238}
+  placement: {fileID: 0}
+  hover: {fileID: 0}
+  hoverGrp: {fileID: 0}
+  connection: {fileID: 0}
+  allowRotation: 1
+  allowZoom: 1
+  rotationSpeed: 0
+  initialDistance: 0
+  sensitivity: 5
+  maxZoom: 140
+  skyboxes:
+  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
+  - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
+  - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
+  zooming: 0
+  moved: 0
+  zoomStopDistance: 60
+  zoomAmount: 0
+  cameraDist: 0
+--- !u!4 &2068408862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068408860}
+  m_LocalRotation: {x: 0, y: -0.451712, z: 0, w: 0.8921638}
+  m_LocalPosition: {x: 681, y: 190, z: -327.42383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1297591366}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2075331596
 GameObject:
   m_ObjectHideFlags: 0
