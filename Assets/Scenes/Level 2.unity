@@ -6045,7 +6045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8974622822886277179, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 9.700012
+      value: 9.699951
       objectReference: {fileID: 0}
     - target: {fileID: 8974622822886277179, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8390,6 +8390,7 @@ MonoBehaviour:
   Camera: {fileID: 0}
   TempValues: []
   Light: {fileID: 0}
+  connection: {fileID: 0}
   Temps: 
 --- !u!1 &758618758
 GameObject:
@@ -10873,11 +10874,12 @@ MonoBehaviour:
   AfterLevel: {fileID: 1025317659}
   Camera: {fileID: 745149424}
   TempValues:
-  - {fileID: 1372006646}
-  - {fileID: 942958277}
-  - {fileID: 1619274937}
-  - {fileID: 1621577092}
+  - {fileID: 280553413}
+  - {fileID: 1914158776}
+  - {fileID: 624507570}
+  - {fileID: 1062166844}
   Light: {fileID: 1983349254}
+  connection: {fileID: 0}
   Temps: 0c00000008000000180000001e000000
 --- !u!1 &1032340146
 GameObject:

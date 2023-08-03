@@ -8,8 +8,9 @@ public class TempCheck : MonoBehaviour
     public GameObject AnswerCheck;
     public GameObject AfterLevel;
     public Camera Camera;
-    public TextMeshProUGUI[] TempValues;
+    public GameObject[] TempValues;
     public Light Light;
+    public GameObject connection;
 
     private bool showing;
 
@@ -20,6 +21,7 @@ public class TempCheck : MonoBehaviour
     void Start()
     {
         //Camera = null;
+        connection = GameObject.Find("Connections");
     }
     
     public void ReviewLevel()
@@ -27,9 +29,10 @@ public class TempCheck : MonoBehaviour
         Light = FindFirstObjectByType<Light>();
         Light.transform.localRotation = Quaternion.identity;
         Camera = Camera.main;
-        Camera.transform.position = new Vector3(-120, -3, 0);
-        Camera.transform.rotation = Quaternion.Euler(0,90,0);
+        Camera.transform.position = new Vector3(-390, -10, 0);
+        Camera.transform.rotation = Quaternion.Euler(1,90,0);
         Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
+        connection.transform.GetComponent<Connection>().enabled = false;
         Level2AnswerSheet.showPopUp = true;
         AfterLevel.SetActive(true);
         AnswerCheck.SetActive(false);
@@ -44,7 +47,8 @@ public class TempCheck : MonoBehaviour
                 for (int i = 0; i < TempValues.Length; i++)
                 {
                     TempValues[i].gameObject.SetActive(true);
-                    TempValues[i].text = Temps[i].ToString();
+                    TextMeshProUGUI texts = TempValues[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    texts.text = Temps[i].ToString();
                 }
                 showing = true;
             }
