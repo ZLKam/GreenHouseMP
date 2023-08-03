@@ -6770,7 +6770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSize: 1
   maxSize: 1.5
-  timer: 5
+  timer: 3
   popSpeed: {x: 0.02, y: 0.02, z: 0.02}
   popImage: {fileID: 610186180}
   fade: {fileID: 0}
