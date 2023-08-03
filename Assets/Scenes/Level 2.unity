@@ -2619,7 +2619,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280553413}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2630,7 +2630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 127, y: 215.5}
+  m_AnchoredPosition: {x: 59, y: 75}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &280553415
@@ -3001,7 +3001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60, y: -20}
+  m_AnchoredPosition: {x: 60, y: -40}
   m_SizeDelta: {x: 979.9999, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &309297147
@@ -3024,14 +3024,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "</b>Chilled Water pipe \u2013 Supply (CHWP-S)\u200B\r:\nSupplies chilled
-    water to affect exchange of heat between water and air to condition spaces. \u200B\r\n\r\nChilled
-    Water pipe - Return (CHWP-R)\u200B\r:\nReturns heat transferred from building
-    spaces to the refrigeration cycle enabled by a pump. \u200B\r\n\r\nCondenser
-    water pipe \u2013 Supply (CWP-S)\u200B\r:\nSupplies water carrying the heat-rejected
-    from the refrigeration cycle to the heat-rejection device.\u200B\r\n\r\nCondenser
-    water pipe \u2013 Return (CWP-R)\u200B\r:\nReturns the \u2018heat-rejected\u2019
-    water to the refrigeration cycle enabled by a pump.\u200B"
+  m_text: "Supplies chilled water to affect exchange of heat between water and air
+    to condition spaces. \u200B\r\n\r\n\nReturns heat transferred from building spaces
+    to the refrigeration cycle enabled by a pump. \u200B\r\n\r\n\nSupplies water
+    carrying the heat-rejected from the refrigeration cycle to the heat-rejection
+    device.\u200B\r\n\r\n\nReturns the \u2018heat-rejected\u2019 water to the refrigeration
+    cycle enabled by a pump.\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2787ccd959e84ae4d94a80777db230b8, type: 2}
   m_sharedMaterial: {fileID: 8542742584031740149, guid: 2787ccd959e84ae4d94a80777db230b8, type: 2}
@@ -6647,7 +6645,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624507570}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6658,7 +6656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.900002, y: 271}
+  m_AnchoredPosition: {x: -9.8, y: 235.1}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624507572
@@ -10289,7 +10287,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062166844}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10300,7 +10298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -138.5, y: 216}
+  m_AnchoredPosition: {x: -102, y: 148.8}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062166846
@@ -15623,7 +15621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 648, y: -284}
+  m_AnchoredPosition: {x: 640.6, y: -257.8}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1632598281
@@ -17695,7 +17693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 641.00006, y: -315.7}
+  m_AnchoredPosition: {x: 633.5998, y: -289.5}
   m_SizeDelta: {x: 150, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1799238615
@@ -18907,7 +18905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1716406527352575213, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
@@ -19292,7 +19290,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914158776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19303,7 +19301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: 190}
+  m_AnchoredPosition: {x: -7, y: 166}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1914158778

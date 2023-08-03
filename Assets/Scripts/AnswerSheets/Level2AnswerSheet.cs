@@ -41,11 +41,14 @@ public class Level2AnswerSheet : MonoBehaviour
     //public Transform[] CWRans;
     public Transform[] pipes;
 
+    GameObject connection;
+
     // Start is called before the first frame update
     void Start()
     {
         CHWSans = CHWRans = CWSans = CWRans = null;
         showPopUp = true;
+        connection = GameObject.Find("Connections");
         //Debug.Log(connectionPoint1.Count);
 
         CHWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 1").ToArray();
@@ -65,6 +68,7 @@ public class Level2AnswerSheet : MonoBehaviour
         {
             if (connectionCHWR && connectionCHWS && connectionCWS && connectionCWR)
             {
+                connection.GetComponent<Connection>().enabled = false; 
                 correctPanel.SetActive(true);
                 if (!PlayerPrefs.HasKey(Strings.ChapterTwoLevelTwoCompleted))
                 {
