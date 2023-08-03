@@ -352,11 +352,24 @@ public class Connection : MonoBehaviour
 
         for (int i = 0; i < pointList.Count; i++)
         {
-            GameObject pipeEntry = Instantiate(entrance, pointList[i].transform.position, pointList[i].transform.rotation);
-            pipeEntry.transform.LookAt(pointList[i].transform);
-            pipeEntry.transform.parent = pipeMain.transform;
+            if (entrance.transform.name == "Pipe Final CHWR") // this extends the pipe for CHWR so that it doesn't overlap with CHWS
+            {
+                GameObject pipeEntry = Instantiate(entrance, pointList[i].transform.position, pointList[i].transform.rotation);
+                pipeEntry.transform.localScale = new Vector3(pipeEntry.transform.localScale.x, pipeEntry.transform.localScale.y, pipeEntry.transform.localScale.z * 2f);
+                pipeEntry.transform.LookAt(pointList[i].transform);
+                pipeEntry.transform.parent = pipeMain.transform;
 
-            pipeConnection.Add(pipeEntry.transform.GetChild(1).transform.position);
+                pipeConnection.Add(pipeEntry.transform.GetChild(1).transform.position);
+            }
+            else //all other pipes stay the same length
+            {
+                GameObject pipeEntry = Instantiate(entrance, pointList[i].transform.position, pointList[i].transform.rotation);
+                pipeEntry.transform.LookAt(pointList[i].transform);
+                pipeEntry.transform.parent = pipeMain.transform;
+
+
+                pipeConnection.Add(pipeEntry.transform.GetChild(1).transform.position);
+            }
         }
 
         for (int i = 0; i < pipeConnection.Count - 1; i++)
@@ -391,22 +404,6 @@ public class Connection : MonoBehaviour
 
     public void UndoPipe()
     {
-
-        //if (HighlightedDC.Count > 0)
-        //{
-        //    GameObject lastpipe = HighlightedDC.Keys.ToList()[^1];
-        //    tobeunhighlighted = HighlightedDC[lastpipe];
-        //    foreach (GameObject high in tobeunhighlighted)
-        //    {
-        //        if (high.transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-        //        {
-        //            high.transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-        //        }
-        //    }
-        //    HighlightedDC.Remove(lastpipe);
-        //    Destroy(lastpipe);
-        //}
-
         if (pipes.Count > 0)
         {
             //points.Clear();
@@ -420,10 +417,8 @@ public class Connection : MonoBehaviour
 
                 if (tobeunhighlighted.Count % 2 == 0)
                 {
-                    Debug.Log("Start");
                     for (int i = 1; i <= 2; i++)
                     {
-                        Debug.Log("reached");
                         if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
                         {
                             tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
@@ -433,7 +428,6 @@ public class Connection : MonoBehaviour
                 }
                 else if (tobeunhighlighted.Count % 2 == 1)
                 {
-                    Debug.Log("Deep");
                     for (int i = 1; i <= 3; i++)
                     {
                         if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
@@ -444,11 +438,11 @@ public class Connection : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                Debug.Log("No pipes left");
-                //Can do warning pop up here;
-            }
+        }
+        else
+        {
+            Debug.Log("No pipes left");
+            //Can do warning pop up here;
         }
     }
 }
