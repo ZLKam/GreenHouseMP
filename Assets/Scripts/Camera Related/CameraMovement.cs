@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class CameraMovement : MonoBehaviour
     public Hover hover;
     public HoverGroup hoverGrp;
     public Connection connection;
+
+    public Sprite unlockCam, lockCam;
+    public Image cameraLockBtn;
 
     public bool allowRotation = true;
     public bool allowZoom = true;
@@ -431,5 +435,14 @@ public class CameraMovement : MonoBehaviour
     public void LockCamera() 
     {
         allowRotation = !allowRotation;
+        if (allowRotation) 
+        {
+            cameraLockBtn.GetComponent<Image>().sprite = lockCam;
+        }
+        else 
+        {
+            cameraLockBtn.GetComponent<Image>().sprite = unlockCam;
+        }
+
     }
 }
