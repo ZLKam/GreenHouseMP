@@ -2967,7 +2967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &280553414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6770,7 +6770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSize: 1
   maxSize: 1.5
-  timer: 5
+  timer: 3
   popSpeed: {x: 0.02, y: 0.02, z: 0.02}
   popImage: {fileID: 610186180}
   fade: {fileID: 0}
@@ -7125,7 +7125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &624507571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11104,7 +11104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1062166845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16005,7 +16005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e083fd3912625524796607e0ff2e4210, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 87a4fcc6fae1b6846bf8ff483c76a0c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20532,7 +20532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1914158777
 RectTransform:
   m_ObjectHideFlags: 0
