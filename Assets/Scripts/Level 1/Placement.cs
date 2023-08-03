@@ -9,6 +9,8 @@ public class Placement : MonoBehaviour
 //Handles the Placement of component gameobjects
 //Also handles the highlighting of the selected gameobjects(green boxes) in the scene
 {
+    public TextMeshProUGUI testingText;
+
     public CameraMovement cameraMovement;
     public Level1AnswerSheet1 answerSheet1;
     public Hover hover;
@@ -25,9 +27,10 @@ public class Placement : MonoBehaviour
     Transform selected;
     Transform highlightedPlacement;
     GameObject[] selections;
+    public GameObject[] duplicationPoints;
 
     public bool tutorial;
-    private bool allowDelete;
+    private bool allowDelete = false;
 
     private GameObject deletableGameobject;
     private GameObject deletingGO;
@@ -43,14 +46,15 @@ public class Placement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //resets allow delete to true after object has been placed(no finger touching screen)
-        if (!allowDelete && Input.touchCount > 0)
-        {
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
-            {
-                allowDelete = true;
-            }
-        }
+        Debug.Log(allowDelete);
+        ////resets allow delete to true after object has been placed(no finger touching screen)
+        //if (!allowDelete && Input.touchCount > 0)
+        //{
+        //    if (Input.GetTouch(0).phase == TouchPhase.Ended)
+        //    {
+        //        allowDelete = true;
+        //    }
+        //}
     }
 
     private void FixedUpdate()
@@ -67,9 +71,9 @@ public class Placement : MonoBehaviour
             //turns off the selected box, renderer and box collider, not visible after the prefab is placed down
             allowDelete = false;
 
-            if(component == null)
+            if (component == null)
             {
-                component = Instantiate(selectedPrefab, selectedTransform.position, selectedPrefab.transform.rotation);
+                //component = Instantiate(selectedPrefab, selectedTransform.position, selectedPrefab.transform.rotation);
             }
             else if(hover)
             { 
@@ -97,8 +101,7 @@ public class Placement : MonoBehaviour
                 component.transform.localScale = scaleTemp;
             }
             else if (component.CompareTag("Component/CwpOptElavated") && selectedTransform.name.Equals("Selection Point (16)"))
-            {
-                Debug.Log("test");
+            { 
                 Vector3 scaleTemp = component.transform.localScale;
                 scaleTemp.z *= -1;
                 component.transform.localScale = scaleTemp;
@@ -107,6 +110,7 @@ public class Placement : MonoBehaviour
             highlighted = null;
             component = null;
             highlightedPlacement = null;
+            allowDelete = true;
 
             if (tutorial)
             {
@@ -148,11 +152,19 @@ public class Placement : MonoBehaviour
         }
 
         if (Input.touchCount == 0 && hoverGroup)
-        {
+        { 
             if (highlightedPlacement)
             {
                 hoverGroup.dragToPlace = true;
-                Select(highlightedPlacement.transform);
+                if (highlighted.gameObject.name == "Selection Point (2)" && selectedPrefab)
+                {
+                    testingText.text = "I am running";
+                    autoPlace(highlighted);
+                }
+                else 
+                {
+                    Select(highlightedPlacement.transform);
+                }
             }
             else
             {
@@ -200,11 +212,21 @@ public class Placement : MonoBehaviour
                     return;
 #endif          
                 }
-
-                //if not it will run the select function
-                Select(hit.transform);
-                return;
+                else 
+                {
+                    if (highlighted.gameObject.name == "Selection Point (2)")
+                    {
+                        autoPlace(hit.transform);
+                    }
+                    else
+                    {
+                        //if not it will run the select function
+                        Select(hit.transform);
+                    }
+                    return;
+                }
             }
+
             else if (Input.GetTouch(0).phase == TouchPhase.Moved && !hoverGroup.dragToPlace)
             {
                 cameraMovement.allowRotation = false;
@@ -223,8 +245,10 @@ public class Placement : MonoBehaviour
                 return;
             }
             //not sure if needed
-            else if (Input.touchCount > 0 && allowDelete)
+            else if (hit.transform.tag.StartsWith("Component") && allowDelete && Input.touchCount > 0)
             {
+                Debug.Log("ad");
+                autoPlace(hit.transform);
                 Delete(hit.transform);
                 return;
             }
@@ -273,6 +297,7 @@ public class Placement : MonoBehaviour
                 {
                     if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit deletehit, Mathf.Infinity, ~(1 << 6)))
                     {
+                        autoPlace();
                         deletingGO.transform.parent.GetComponent<BoxCollider>().enabled = true;
                         deletingGO.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                         deletingGO.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
@@ -280,7 +305,6 @@ public class Placement : MonoBehaviour
                         Destroy(deletingGO);
                         deletingGO = null;
                         cameraMovement.allowRotation = true;
-                        Debug.Log("destroy2");
                         return;
                     }
                     else 
@@ -329,6 +353,35 @@ public class Placement : MonoBehaviour
             //        }
             //    }
             //}
+        }
+    }
+
+    private void autoPlace(Transform hitObject = null) 
+    {
+        if (!selectedPrefab)
+            return;
+        if (!deletableGameobject)
+        {
+            foreach (GameObject placementPoint in duplicationPoints)
+            {
+                if (hitObject.transform.tag != placementPoint.tag)
+                    return;
+                Select(placementPoint.transform);
+            }
+        }
+        else if(deletableGameobject == duplicationPoints[1].transform.GetChild(1).gameObject)
+        {
+            foreach (GameObject placementPoint in duplicationPoints)
+            {
+                if (placementPoint.transform.childCount > 1 && deletableGameobject != placementPoint.transform.GetChild(1).gameObject)
+                {
+                    if (placementPoint.transform.childCount < 1)
+                        return;
+                    Destroy(placementPoint.transform.GetChild(1).gameObject);
+                    
+                }
+            }
+            return;
         }
     }
 
@@ -407,6 +460,7 @@ public class Placement : MonoBehaviour
                 }
                 else
                 {
+                    autoPlace(selectedTransform);
                     selectedTransform.gameObject.transform.localPosition = Vector3.zero;
                 }
                 deletingGO = null;

@@ -233,6 +233,19 @@ public class CameraMovement : MonoBehaviour
                 float currentEulerAngleX = transform.rotation.eulerAngles.x;
                 if (isPrelevel)
                 {
+                    if (rotationAmountX != 0)
+                    {
+                        if ((currentEulerAngleX + rotationAmountX) > maxRotationX + 30f && (currentEulerAngleX + rotationAmountX) < 180)
+                        {
+                            rotationAmountX = 0;
+                            //rotationAmountX = maxRotationX - currentEulerAngleX;
+                        }
+                        else if ((currentEulerAngleX + rotationAmountX) < minRotationX && (currentEulerAngleX + rotationAmountX > 180))
+                        {
+                            rotationAmountX = 0;
+                            //rotationAmountX = maxRotationX - currentEulerAngleX;
+                        }
+                    }
                     transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
                     transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
                     return;
@@ -268,7 +281,6 @@ public class CameraMovement : MonoBehaviour
                     //transform.Rotate(Vector3.right, rotationAmountX);
                     transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
                 }
-
                 transform.RotateAround(cameras[0].position, transform.up, rotationAmountY);
                 transform.RotateAround(cameras[0].position, transform.right, rotationAmountX);
                 //transform.rotation = Quaternion.Euler(0, 0, rotationAmountXtemp);
@@ -414,5 +426,10 @@ public class CameraMovement : MonoBehaviour
         zooming = true;
         Camera.main.fieldOfView = 10;
         transform.LookAt(componentToLook);
+    }
+
+    public void LockCamera() 
+    {
+        allowRotation = !allowRotation;
     }
 }
