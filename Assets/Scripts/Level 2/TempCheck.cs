@@ -29,7 +29,7 @@ public class TempCheck : MonoBehaviour
         Light = FindFirstObjectByType<Light>();
         Light.transform.localRotation = Quaternion.identity;
         Camera = Camera.main;
-        Camera.transform.position = new Vector3(-390, -10, 0);
+        Camera.transform.position = new Vector3(-200, -10, 0);
         Camera.transform.rotation = Quaternion.Euler(1,90,0);
         Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
         connection.transform.GetComponent<Connection>().enabled = false;
