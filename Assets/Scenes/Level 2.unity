@@ -7775,7 +7775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &754042569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7879,6 +7879,7 @@ MonoBehaviour:
   AfterLevel: {fileID: 1025317659}
   Camera: {fileID: 0}
   TempValues: []
+  light: {fileID: 0}
   connection: {fileID: 0}
   undo: {fileID: 0}
   Temps: 
@@ -10063,6 +10064,7 @@ MonoBehaviour:
   - {fileID: 1914158776}
   - {fileID: 624507570}
   - {fileID: 1062166844}
+  light: {fileID: 0}
   connection: {fileID: 0}
   undo: {fileID: 1598964905}
   Temps: 03000000080000001800000015000000
@@ -18917,7 +18919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1716406527352575213, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
@@ -19408,6 +19410,9 @@ MonoBehaviour:
   hover: {fileID: 0}
   hoverGrp: {fileID: 0}
   connection: {fileID: 252340424}
+  unlockCam: {fileID: 0}
+  lockCam: {fileID: 0}
+  cameraLockBtn: {fileID: 0}
   allowRotation: 1
   allowZoom: 1
   rotationSpeed: 60
