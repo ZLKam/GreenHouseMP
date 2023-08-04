@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: FrontColor
-    second: {fileID: 2100000, guid: edb56784830ff6e48bc903e1da5bc5ff, type: 2}
+    second: {fileID: 2100000, guid: 0d8adcb7329a2b14681234301c7e53fa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
