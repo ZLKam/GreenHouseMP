@@ -5,9 +5,10 @@ using UnityAndroidOpenUrl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ShowURLLink : MonoBehaviour, IPointerClickHandler
+public class ShowURLLink : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
     private string url;
+    private Color initialColor;
 
     private void Start()
     {
@@ -22,5 +23,16 @@ public class ShowURLLink : MonoBehaviour, IPointerClickHandler
 #if UNITY_ANDROID
        Application.OpenURL(url);
 #endif
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        initialColor = GetComponent<TextMeshProUGUI>().color;
+        GetComponent<TextMeshProUGUI>().color = Color.red;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        GetComponent<TextMeshProUGUI>().color = initialColor;
     }
 }

@@ -1,4 +1,4 @@
 // [Cnum] is the number of the chapter. [num] is the number of the level.
-[c2][1]This is Level 1 objective. In this level, you will need to place components to their correct place.
-[c2][2]This is Level 2 objective. In this level, you will need to connect pipe between components to make the components work.
-[c2][3]This is Level 3 objective. In this level, you will need to do what you had done for Level 1 and Level 2 and combine them together.
+[c2][1]Place each components in its respective correct position to be clear the level.
+[c2][2]Connect each component connection points to the correct respective other points. Level will be cleared when all connections points are linked correctly.
+[c2][3]Place down the 2D schematic components and connect them to the correct components taking into account the correct direction flow of the chilled water/condensed water.
