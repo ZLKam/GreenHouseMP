@@ -18,6 +18,7 @@ public class Level2AnswerSheet : MonoBehaviour
     public bool connectionCHWS;
     public bool connectionCWS;
     public bool connectionCWR;
+    public bool connectionsChecked;
 
     public GameObject correctPanel;
     public GameObject wrongPanel;
@@ -55,6 +56,7 @@ public class Level2AnswerSheet : MonoBehaviour
         CHWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 2").ToArray();
         CWS = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 3").ToArray();
         CWR = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Connection Point 4").ToArray();
+        connectionsChecked = false;
         //Debug.Log(CHWR.Count());
         //Debug.Log(CHWS.Count());
         //Debug.Log(CWS.Count());
@@ -66,7 +68,7 @@ public class Level2AnswerSheet : MonoBehaviour
         ConnectionCheck();
         if (showPopUp)
         {
-            if (connectionCHWR && connectionCHWS && connectionCWS && connectionCWR)
+            if (connectionCHWR && connectionCHWS && connectionCWS && connectionCWR && connectionsChecked)
             {
                 connection.GetComponent<Connection>().enabled = false; 
                 correctPanel.SetActive(true);
@@ -91,7 +93,7 @@ public class Level2AnswerSheet : MonoBehaviour
             {
                 wrongPanel.SetActive(true);
                 Debug.Log("wrong");
-                showPopUp = false;
+                showPopUp = connectionsChecked = false;
                 CHWSans = CHWRans = CWSans = CWRans = null;
             }
         }
@@ -187,104 +189,99 @@ public class Level2AnswerSheet : MonoBehaviour
 
     public bool ListComparison(List<GameObject> playerList)
     {
-        if (playerList.Count == connectionPoint1.Count) //Connection 1 has 7 gameobjects,in fame 7, in script 5, answer 2
-        {
-            Debug.Log("checking 1");
-            for (int i = 0; i < connectionPoint1.Count; i++)
-            {
-                if (connectionPoint1[i].transform.position == playerList[i].transform.position) //(connectionPoint1[i].transform.position == playerList[i].transform.position) (playerList.Contains(connectionSubPoint3[i]))
-                {
-                    if (i == connectionPoint1.Count - 1)
-                    {
-                        Debug.Log("Matches set 1");
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        if (playerList.Count == connectionSubPoint1.Count)
-        {
-            Debug.Log("checking s1");
-            for (int i = 0; i < connectionSubPoint1.Count; i++) //5,5
-            {
-                if (connectionSubPoint1[i].transform.position == playerList[i].transform.position) //(connectionSubPoint1[i].transform.position == playerList[i].transform.position) (playerList.Contains(connectionSubPoint3[i]))
-                {
-                    if (i == connectionSubPoint1.Count - 1)
-                    {
-                        Debug.Log("Matches sub set 1");
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        if (playerList.Count == connectionPoint2.Count)
-        {
-            Debug.Log("checking 2");
-            for (int i = 0; i < connectionPoint2.Count; i++)
-            {
-                if (connectionPoint2[i].transform.position == playerList[i].transform.position) //(!playerList.Contains(connectionPoint2[i])) (connectionPoint2[i].transform.position == playerList[i].transform.position)
-                {
-                    if (i == connectionPoint2.Count - 1)
-                    {
-                        Debug.Log("Matches set 2");
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        if (playerList.Count == connectionPoint3.Count)
-        {
-            Debug.Log("checking 3");
-            for (int i = 0; i < connectionPoint3.Count; i++)
-            {
-                if (connectionPoint3[i].transform.position == playerList[i].transform.position) //(connectionPoint3[i].transform.position == playerList[i].transform.position)  (playerList.Contains(connectionPoint3[i]))
-                {
-                    if (i == connectionPoint3.Count - 1)
-                    {
-                        Debug.Log("Matches set 3");
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        if (playerList.Count == connectionSubPoint3.Count)
-        {
-            Debug.Log("checking s3");
-            for (int i = 0; i < connectionSubPoint3.Count; i++)
-            {
-                if (connectionSubPoint3[i].transform.position == playerList[i].transform.position) //(connectionSubPoint3[i].transform.position == playerList[i].transform.position) (!playerList.Contains(connectionSubPoint3[i]))
-                {
-                    if (i == connectionSubPoint3.Count - 1)
-                    {
-                        Debug.Log("Matches sub set 3");
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        if (playerList.Count == connectionPoint4.Count)
-        {
-            Debug.Log("checking 4"); 
-            for (int i = 0; i < connectionPoint4.Count; i++)
-            {
-                if (connectionPoint4[i].transform.position == playerList[i].transform.position) //(connectionPoint4[i].transform.position == playerList[i].transform.position) (!playerList.Contains(connectionPoint4[i]))
-                {
-                    Debug.Log("position mactches");
 
-                    if (i == connectionPoint4.Count - 1)
-                    {
-                        Debug.Log("Matches set 4");
-                        return true;
-                    }
+        foreach (GameObject g in playerList)
+        {
+
+            if (g.transform.name == "Connection Point 1")
+            {
+                if (!connectionPoint1.Contains(g))
+                {
+                    Debug.Log("no position match");
+                    return false;
                 }
                 else
                 {
+                    Debug.Log("Matches set 1");
+                    return true;
+                }
+            }
+
+            else if (g.transform.name == "Connection SubPoint 1")
+            {
+                //Debug.Log("checking s1");
+                if (!connectionSubPoint1.Contains(g)) 
+                {
                     Debug.Log("no position match");
+                    return false;
+                }
+                else
+                {
+                    Debug.Log("Matches sub set 1");
+                    return true;
+                }
+            }
+
+            else if (g.transform.name == "Connection Point 2")
+            {
+                //Debug.Log("checking 2");
+                if (!connectionPoint2.Contains(g)) 
+                {
+                    Debug.Log("no position match");
+                    return false;
+                }
+                else
+                {
+                    Debug.Log("Matches set 2");
+                    return true;
+                }
+            }
+
+
+            //Debug.Log("checking 3");
+            else if (g.transform.name == "Connection Point 3")
+            {
+                if ((!connectionPoint3.Contains(g))) 
+                {
+                    Debug.Log("no position match");
+                    return false;
+                }
+                else
+                {
+                    Debug.Log("Matches set 3");
+                    return true;
+                }
+            }
+
+            //Debug.Log("checking s3");
+            else if (g.transform.name == "Connection SubPoint 3")
+            {
+                if ((!connectionSubPoint3.Contains(g))) 
+                {
+                    Debug.Log("no position match");
+                    return false;
+                }
+                else
+                {
+                    Debug.Log("Matches sub set 3");
+                    return true;
+                }
+            }
+
+
+            else if (g.transform.name == "Connection Point 4")
+            {
+                //Debug.Log("checking 4"); 
+                if (!connectionPoint4.Contains(g)) 
+                {
+                    Debug.Log("no position match");
+                    return false;
+                }
+                else
+                {
+                    Debug.Log("position mactches");
+                    Debug.Log("Matches set 4");
+                    return true;
                 }
             }
         }
