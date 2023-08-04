@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
 {
     public LinePathFind line;
+    public Fade fade;
 
     private int numberOfCorrectConnections = 6;
 
@@ -69,6 +70,7 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
                 }
                 PlayerPrefs.SetInt(Strings.ChapterTwoLevelThreeCompleted, 1);
             }
+            fade.ShowChapterTwoBadge();
             Debug.Log("Correct!!!");
         }
         else

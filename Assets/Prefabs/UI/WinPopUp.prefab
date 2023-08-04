@@ -152,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8829131798581547431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   fade: {fileID: 0}
   pop: 1
   wrong: 0
+  popAtBeginning: 0
 --- !u!1 &8829131798982997622
 GameObject:
   m_ObjectHideFlags: 0

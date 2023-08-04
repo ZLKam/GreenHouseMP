@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class Strings
 {
@@ -8,13 +10,38 @@ public static class Strings
     public static string Username = "Username";
     public static string ProfileImage = "ProfileImage";
 
+    public static string ChapterOne = "ChapterOne";
+    public static string ChapterTwo = "ChapterTwo";
+    public static string ChapterThree = "ChapterThree";
+
     public static string ChapterOneProgressions = "ChapterOneProgressions";
     public static string ChapterTwoProgressions = "ChapterTwoProgressions";
     public static string ChapterThreeProgressions = "ChapterThreeProgressions";
+
+    public static string ChapterOneLevelOneCompleted = "ChapterOneLevelOneCompleted";
+    public static string ChapterOneLevelTwoCompleted = "ChapterOneLevelTwoCompleted";
+    public static string ChapterOneLevelThreeCompleted = "ChapterOneLevelThreeCompleted";
     public static string ChapterTwoLevelOneCompleted = "ChapterTwoLevelOneCompleted";
     public static string ChapterTwoLevelTwoCompleted = "ChapterTwoLevelTwoCompleted";
     public static string ChapterTwoLevelThreeCompleted = "ChapterTwoLevelThreeCompleted";
     public static string ChapterThreeLevelOneCompleted = "ChapterThreeLevelOneCompleted";
+    public static string ChapterThreeLevelTwoCompleted = "ChapterThreeLevelTwoCompleted";
+    public static string ChapterThreeLevelThreeCompleted = "ChapterThreeLevelThreeCompleted";
+
+    public static string ChapterOneBadge = "ChapterOneBadge";
+    public static string ChapterTwoBadge = "ChapterTwoBadge";
+    public static string ChapterThreeBadge = "ChapterThreeBadge";
+
+    public static string ChapterOneBadgePath = "Badge_Beginner";
+    public static string ChapterTwoBadgePath = "Badge_Advanced";
+    public static string ChapterThreeBadgePath = "Badge_Competent";
+
+    private static Dictionary<string, List<string>> ChaptersDictionary = new()
+    {
+        { ChapterOne,  new List<string>() { ChapterOneProgressions, ChapterOneBadge } },
+        { ChapterTwo, new List<string>() { ChapterTwoProgressions, ChapterTwoBadge } },
+        { ChapterThree, new List<string>() { ChapterThreeProgressions, ChapterThreeBadge } }
+    };
 
     public static void ResetProgress()
     {
@@ -37,6 +64,22 @@ public static class Strings
         else
         {
             return false;
+        }
+    }
+
+    public static void ShowBadges(string chapter, string badgePath, Image badge)
+    {
+        if (PlayerPrefs.HasKey(ChaptersDictionary[chapter][0]))
+        {
+            int progress = PlayerPrefs.GetInt(ChaptersDictionary[chapter][0]);
+            Debug.Log(progress);
+
+            badge.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(badgePath);
+            badge.fillAmount = (float)progress / 3;
+
+            //Texture2D texture2D = new(1, 1);
+            //texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(ChaptersDictionary[chapter][1])));
+            //badge.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
         }
     }
 }

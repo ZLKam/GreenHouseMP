@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -51,6 +52,9 @@ public class Fade : MonoBehaviour
     private Image progressionChapter3;
 
     [SerializeField]
+    private Image badge;
+
+    [SerializeField]
     private List<Image> chapterImages = new();
 
     public void ShowObjective()
@@ -78,7 +82,6 @@ public class Fade : MonoBehaviour
         //{
         //    objectiveitems.SetActive(false);
         //}
-        
     }
 
     // Update is called once per frame
@@ -255,7 +258,7 @@ public class Fade : MonoBehaviour
     {
         GameMenu.SetActive(false);
         Section.SetActive(true);
-        ShowBadges();
+        ShowAllBadges();
     }
 
     public void SectionSelect(int chapter)
@@ -310,15 +313,19 @@ public class Fade : MonoBehaviour
         //PreLevelItems.SetActive(false);
         Level.SetActive(false);
         Section.SetActive(true);
-        ShowBadges();
+        ShowAllBadges();
     }
 
-    private void ShowBadges()
+    private void ShowAllBadges()
     {
-        if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
-        {
-            int progress = PlayerPrefs.GetInt(Strings.ChapterTwoProgressions);
-            progressionChapter2.fillAmount = progress / 3f;
-        }
+        Strings.ShowBadges(Strings.ChapterOne, Strings.ChapterOneBadgePath, progressionChapter1);
+        Strings.ShowBadges(Strings.ChapterTwo, Strings.ChapterTwoBadgePath, progressionChapter2);
+        Strings.ShowBadges(Strings.ChapterThree, Strings.ChapterThreeBadgePath, progressionChapter3);
+    }
+
+    public void ShowChapterTwoBadge()
+    {
+        Debug.Log("Show level 2 badges");
+        Strings.ShowBadges(Strings.ChapterTwo, Strings.ChapterTwoBadgePath, badge);
     }
 }
