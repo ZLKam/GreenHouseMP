@@ -43,6 +43,7 @@ public class Level2AnswerSheet : MonoBehaviour
     public Transform[] pipes;
 
     GameObject connection;
+    public Fade fade;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +87,7 @@ public class Level2AnswerSheet : MonoBehaviour
                     }
                     PlayerPrefs.SetInt(Strings.ChapterTwoLevelTwoCompleted, 1);
                 }
+                fade.ShowChapterTwoBadge();
                 Debug.Log("Correct");
                 showPopUp = false;
             }
