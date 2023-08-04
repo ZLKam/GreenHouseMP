@@ -53,11 +53,11 @@ public class Instructions : MonoBehaviour
             video.clip = clips[index];
             video.Play();
             textArea.text = tutorialText[index];
-            if ((index == 0 || index == 1) && tutorialTitle.Count < 5)
+            if ((index == 0 || index == 1) && tutorialTitle.Count != tutorialText.Count)
             {
                 textTitleArea.text = tutorialTitle[0];
             }
-            else if (tutorialTitle.Count > 4)
+            else if (tutorialTitle.Count == tutorialText.Count)
             {
                 textTitleArea.text = tutorialTitle[index];
             }

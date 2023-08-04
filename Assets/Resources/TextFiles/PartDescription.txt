@@ -1,0 +1,29 @@
+﻿Chiller
+[Condenser]Removes heat from the refrigerant which was picked up in the evaporator. 
+[Evaporator]Collects the unwanted heat from the AHU (building) and moves this into the refrigerant​
+[Expansion Valve]Expand the refrigerant to reduce its pressure and increase its volume allowing it to pick up the unwanted heat in the evaporator
+[Compressor]Creates a pressure difference to move the refrigerant around the system
+EndChiller
+
+AHU
+[Cooling Coil]Cools and dehumidifies the air. Absorbs heat from air and transfers to the chilled-water loop
+[Supply Fans]Pulls the air in through the dampers, filters and coils and then pushes it into the ductwork for distribution
+EndAHU
+
+CoolingTower
+[Fans]To push and force the air into the cooling tower to enhance the evaporation of condenser water from the inlet
+[Collection Basin]Located at the bottom of the cooling tower, it collects directs ‘cooler’ water to the chiller
+[Motor]Drives the fans of a cooling tower
+EndCoolingTower
+
+CwpOpt
+[Motor]Transfer power to the pump by converting electrical energy into rotational mechanical energy​
+[Discharge]Connection for water discharge
+[Suction]Connection for water suction
+EndCwpOpt
+
+CwpOptElavated
+[Motor]Transfer power to the pump by converting electrical energy into rotational mechanical energy​
+[Discharge]Connection for water discharge
+[Suction]Connection for water suction
+EndCwpOptElavated
