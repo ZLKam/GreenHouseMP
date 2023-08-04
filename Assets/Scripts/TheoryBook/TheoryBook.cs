@@ -176,7 +176,7 @@ public class TheoryBook : MonoBehaviour
     }
 
     private void TextAssign(string[] array, TextMeshProUGUI title, TextMeshProUGUI description) 
-    //assigns the text bassed on specific checkpoints in the array
+    //assigns the text bassed on specific "checkpoints" in the array
     {
         foreach (string item in array)
         {
@@ -293,44 +293,4 @@ public class TheoryBook : MonoBehaviour
         }
     }
 
-    //public void ComponentBook()
-    ////opens component book while closing other books
-    //{
-    //    TheoryBookComponent.GetComponent<Image>().sprite = selectedTab;
-    //    TheoryBookPipes.GetComponent<Image>().sprite = unselectedTab;
-    //    TheoryBookDiagrams.GetComponent<Image>().sprite = unselectedTab;
-
-    //    componentBtn.SetActive(false);
-    //    pipeBtn.SetActive(true);
-    //    diagramBtn.SetActive(true);
-
-    //    Initialize();
-    //}
-    //public void PipeBook()
-    ////opens pipe book while closing other books
-    //{
-    //    TheoryBookComponent.GetComponent<Image>().sprite = unselectedTab;
-    //    TheoryBookPipes.GetComponent<Image>().sprite = selectedTab;
-    //    TheoryBookDiagrams.GetComponent<Image>().sprite = unselectedTab;
-
-    //    componentBtn.SetActive(true);
-    //    pipeBtn.SetActive(false);
-    //    diagramBtn.SetActive(true);
-
-    //    Initialize();
-    //}
-
-    //public void DiagramBook()
-    ////opens Diagram book while closing other books book
-    //{
-    //    TheoryBookDiagrams.GetComponent<Image>().sprite = selectedTab;
-    //    TheoryBookPipes.GetComponent<Image>().sprite = unselectedTab;
-    //    TheoryBookComponent.GetComponent<Image>().sprite = unselectedTab;
-
-    //    componentBtn.SetActive(true);
-    //    pipeBtn.SetActive(true);
-    //    diagramBtn.SetActive(false);
-
-    //    Initialize();
-    //}
 }

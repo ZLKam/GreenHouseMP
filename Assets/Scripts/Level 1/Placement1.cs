@@ -6,9 +6,6 @@ using TMPro;
 
 public class Placement1 : MonoBehaviour
 {
-
-    public TextMeshProUGUI testingText;
-
     public CameraMovement cameraMovement;
     public Level1AnswerSheet1 answerSheet1;
     public HoverGroup hoverGroup;
@@ -22,7 +19,7 @@ public class Placement1 : MonoBehaviour
     public GameObject selectedPrefab;
     Transform highlightedPlacement;
     GameObject[] selections;
-    public GameObject[] duplicationPoints;
+    public List<GameObject> duplicationPoints = new List<GameObject>();
 
     private bool allowDelete;
 
@@ -31,6 +28,9 @@ public class Placement1 : MonoBehaviour
     public bool deletingObject;
 
     public GameObject objectToCheck;
+    private bool dontClear;
+
+    private Color darkBlue = new Color(0, 6 / 255, 1);
 
     // Start is called before the first frame update
     void Start()
@@ -64,17 +64,26 @@ public class Placement1 : MonoBehaviour
             {
                 if (selectPoints == hit.collider.gameObject)
                 {
-                    selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = highlightSprite;
+                    selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
                 }
                 else
                 {
-                    selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
+                    if (selectPoints.transform.GetChild(0).CompareTag("SharedSelection"))
+                    {
+                        selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = darkBlue;
+                        //Debug.Log(darkBlue);
+                        //Debug.Log(selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color);
+                    }
+                    else 
+                    {
+                        selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.black;
+                    }
                 }
                 continue;
             }
 
 
-            if (hit.transform.CompareTag("Selection") && hit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite == highlightSprite)
+            if (hit.transform.CompareTag("Selection") && hit.transform.GetChild(0).GetComponent<SpriteRenderer>().color == Color.yellow)
             {
                 highlightedPlacement = hit.collider.transform;
                 allowDelete = false;
@@ -92,19 +101,17 @@ public class Placement1 : MonoBehaviour
             {
                 if (highlightedPlacement)
                 {
-                    foreach (GameObject dupepoint in duplicationPoints)
+                    if (duplicationPoints.Contains(highlightedPlacement.gameObject))
                     {
-                        //Debug.Log(highlightedPlacement.gameObject.name + "&" + dupepoint);
-                        if (dupepoint.name == highlightedPlacement.gameObject.name)
-                        {
-                            AutoPlace(dupepoint.transform , false);
-                            highlightedPlacement = null;
-                            return;
-                        }
-                        else
-                        {
-                            PlaceComponent(highlightedPlacement);
-                        }
+                        AutoPlace(highlightedPlacement.transform, false);
+                        highlightedPlacement = null;
+                        return;
+                    }
+                    else 
+                    {
+                        PlaceComponent(highlightedPlacement);
+                        highlightedPlacement = null;
+                        component = null;
                     }
                 }
                 else
@@ -119,32 +126,32 @@ public class Placement1 : MonoBehaviour
 
     private void AutoPlace(Transform objectToCheck, bool delete) 
     {
-        if (!objectToCheck)
+        if (!objectToCheck || !selectedPrefab)
             return;
 
-        Debug.Log(objectToCheck.childCount > 1);
-        if (objectToCheck.childCount > 1 && objectToCheck.GetChild(1).gameObject && !delete)
+        if (!delete)
         {
-            foreach (GameObject dupepoint in duplicationPoints)
+            PlaceComponent(objectToCheck);
+            for (int i = 0; i < duplicationPoints.Count; i++) 
             {
-                if (dupepoint.transform.childCount < 2)
+                if (duplicationPoints[i].transform.childCount < 2 && duplicationPoints[i] != objectToCheck)
                 {
-                    GameObject temp = Instantiate(selectedPrefab, dupepoint.transform.position, objectToCheck.GetChild(1).rotation);
-                    temp.transform.parent = dupepoint.transform;
+                    GameObject temp = Instantiate(selectedPrefab, duplicationPoints[i].transform.position, Quaternion.identity);
+                    temp.transform.parent = duplicationPoints[i].transform;
                     temp.transform.localScale = objectToCheck.GetChild(1).localScale;
                     temp.transform.localPosition = Vector3.zero;
-                    temp.GetComponent<Collider>().enabled = false;
+                    temp.GetComponent<Collider>().enabled = true;
 
-                    dupepoint.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
-                    dupepoint.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-                    dupepoint.transform.GetComponent<BoxCollider>().enabled = false;
-                    dupepoint.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-                    dupepoint.transform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
+                    duplicationPoints[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = darkBlue;
+                    duplicationPoints[i].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+                    duplicationPoints[i].transform.GetComponent<BoxCollider>().enabled = false;
+                    duplicationPoints[i].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                    duplicationPoints[i].transform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
                 }
-
             }
+            component = null;
         }
-        else if(delete)
+        else if(delete && duplicationPoints.Contains(objectToCheck.gameObject))
         {
             foreach (GameObject dupepoint in duplicationPoints) 
             {
@@ -162,7 +169,7 @@ public class Placement1 : MonoBehaviour
 
     private void PlaceComponent(Transform selectedTransform) 
     {
-        if (!highlightedPlacement)
+        if (!highlightedPlacement || !selectedPrefab)
             return;
 
         if (!component) 
@@ -174,11 +181,24 @@ public class Placement1 : MonoBehaviour
         component.transform.localPosition = Vector3.zero;
         component.GetComponent<Collider>().enabled = true;
 
-        selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().sprite = originalSprite;
+        if (selectedTransform.transform.GetChild(0).CompareTag("SharedSelection"))
+        {
+            selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().color = darkBlue;
+        }
+        else 
+        {
+            selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.black;
+        }
         selectedTransform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         selectedTransform.GetComponent<BoxCollider>().enabled = false;
         selectedTransform.GetChild(0).GetChild(0).gameObject.SetActive(false);
         selectedTransform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
+
+        if (!dontClear)
+        {
+            highlightedPlacement = null;
+        }
+        else { }
 
         if (component.CompareTag("Component/CwpOpt") && selectedTransform.name.Equals("Selection Point (17)"))
         {
@@ -195,7 +215,7 @@ public class Placement1 : MonoBehaviour
 
     }
 
-    private void DeleteComponent(Transform selectedTransform = null) 
+    public void DeleteComponent(Transform selectedTransform = null) 
     {
         if (!selectedTransform && allowDelete && component && !deletableGameobject)
         {

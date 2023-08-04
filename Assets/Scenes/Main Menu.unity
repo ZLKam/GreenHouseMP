@@ -4763,6 +4763,10 @@ PrefabInstance:
       propertyPath: quitBtn
       value: 
       objectReference: {fileID: 370486630}
+    - target: {fileID: 6305942689636936393, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: theoryBookFormat
+      value: 
+      objectReference: {fileID: 4900000, guid: da21c32984bc41f43ae25a8ca09dfcc0, type: 3}
     - target: {fileID: 6305942689636936395, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_Name
       value: TheoryBook

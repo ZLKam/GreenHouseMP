@@ -11,6 +11,9 @@ public class Level1AnswerSheet1 : MonoBehaviour
     public GameObject correctPanel;
     public GameObject wrongPanel;
 
+    public Level1Reward inspectComponentScript;
+    public Placement1 placement1;
+
     public bool coolingTower;
     public bool ahu;
     public bool chiller;
@@ -20,23 +23,14 @@ public class Level1AnswerSheet1 : MonoBehaviour
     public bool wrongSelection;
     public bool placementChecks;
 
-    //private Transform[] childrenInModel;
-    //private List<Renderer> childRenderList = new List<Renderer>();
-
-    public Shader shaderRight;
-    public Shader shaderWrong;
-
-    [SerializeField]
-    private Sprite correctSprite;
-    [SerializeField]
-    private Sprite wrongSprite;
-
     public void AnswerCheck()
     {
         PlacementCheck();
         if (coolingTower && ahu && chiller && cwp_opt && cwp_opt_Elav && !wrongSelection)
         {
             correctPanel.SetActive(true);
+            inspectComponentScript.enabled = true;
+            placement1.enabled = false;
             if (!PlayerPrefs.HasKey(Strings.ChapterTwoLevelOneCompleted))
             {
                 if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
@@ -140,14 +134,14 @@ public class Level1AnswerSheet1 : MonoBehaviour
 
         placementChecks = true;
 
-        if (incorrectSelection.Any(i => i.transform.childCount > 0))
-        {
-            wrongSelection = true;
-        }
-        else
-        {
-            wrongSelection = false;
-        }
+        //if (incorrectSelection.Any(i => i.transform.childCount > 0))
+        //{
+        //    wrongSelection = true;
+        //}
+        //else
+        //{
+        //    wrongSelection = false;
+        //}
     }
 
     private void SetBorderColor(Transform spriteToChange = null, bool correct = false, List<GameObject> listToCheck = null)
@@ -155,12 +149,12 @@ public class Level1AnswerSheet1 : MonoBehaviour
         if (correct && listToCheck == null)
         {
             spriteToChange.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            spriteToChange.gameObject.GetComponent<SpriteRenderer>().sprite = correctSprite;
+            spriteToChange.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
         }
         else if(listToCheck == null)
         {
             spriteToChange.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            spriteToChange.gameObject.GetComponent<SpriteRenderer>().sprite = wrongSprite;
+            spriteToChange.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         if (listToCheck != null)
@@ -170,12 +164,12 @@ public class Level1AnswerSheet1 : MonoBehaviour
                 if (listToCheck[i].transform.childCount > 1 && listToCheck[i].transform.GetChild(1).CompareTag("Component/AHU"))
                 {
                     listToCheck[i].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                    listToCheck[i].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = correctSprite;
+                    listToCheck[i].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                 }
                 else 
                 {
                     listToCheck[i].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                    listToCheck[i].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = wrongSprite;
+                    listToCheck[i].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 }
             }
         }

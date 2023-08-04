@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 
 public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
@@ -23,6 +24,8 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     public TextMeshProUGUI wheelTitle;
     public List<HoverTab> componentTabs;
+
+    public Image tab;
 
     private bool openTab;
     private bool placeComponent;
@@ -79,7 +82,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
 #endif
             placement.component.transform.position = mousePos;
-            //placement.Delete(placement.component.transform);
+            placement.DeleteComponent(placement.component.transform);
         }
     }
 
@@ -121,12 +124,19 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         if (openTab)
         {
             transform.GetComponent<RectTransform>().localPosition = Vector3.Lerp(transform.GetComponent<RectTransform>().localPosition, new Vector3(finalPositionOfWheel, transform.GetComponent<RectTransform>().localPosition.y, transform.GetComponent<RectTransform>().localPosition.z), moveSpeed * Time.deltaTime);
+            tab.GetComponent<RectTransform>().sizeDelta = new Vector2(35, 90);
             placeComponent = true;
         }
         else
         {
             transform.GetComponent<RectTransform>().localPosition = Vector3.Lerp(transform.GetComponent<RectTransform>().localPosition, new Vector3(startPositionOfWheel, transform.GetComponent<RectTransform>().localPosition.y, transform.GetComponent<RectTransform>().localPosition.z), moveSpeed * Time.deltaTime);
+            tab.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 90);
             placeComponent = false;
+        }
+
+        if (Input.touchCount == 0) 
+        {
+            Destroy(placement.component);
         }
     }
 

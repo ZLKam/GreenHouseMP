@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Button : MonoBehaviour
+public class NotButton : MonoBehaviour
 {
     float width;
     float height;

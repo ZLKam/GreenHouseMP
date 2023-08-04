@@ -17,6 +17,7 @@ TagManager:
   - LineParent
   - Line
   - RectGrid
+  - SharedSelection
   layers:
   - Default
   - TransparentFX

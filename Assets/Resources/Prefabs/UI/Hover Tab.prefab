@@ -1138,8 +1138,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 9.700012, y: 0}
-  m_SizeDelta: {x: 40, y: 100}
+  m_AnchoredPosition: {x: 9.699951, y: 0}
+  m_SizeDelta: {x: 100, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8974622822886277175
 CanvasRenderer:
@@ -1199,6 +1199,8 @@ MonoBehaviour:
   startPositionOfWheel: -780
   wheelTitle: {fileID: 8974622822234834890}
   componentTabs: []
+  tab: {fileID: 8974622822886277174}
+  dragToPlace: 0
 --- !u!1 &8974622822959212756
 GameObject:
   m_ObjectHideFlags: 0
