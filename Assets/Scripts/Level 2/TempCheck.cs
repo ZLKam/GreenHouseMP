@@ -9,8 +9,9 @@ public class TempCheck : MonoBehaviour
     public GameObject AfterLevel;
     public Camera Camera;
     public GameObject[] TempValues;
-    public Light Light;
+    public Light light;
     public GameObject connection;
+    public GameObject undo;
 
     private bool showing;
 
@@ -22,20 +23,23 @@ public class TempCheck : MonoBehaviour
     {
         //Camera = null;
         connection = GameObject.Find("Connections");
+        undo = GameObject.Find("Undo");
+        light = GameObject.Find("Directional Light").transform.GetComponent<Light>();
     }
     
     public void ReviewLevel()
     {
-        Light = FindFirstObjectByType<Light>();
-        Light.transform.localRotation = Quaternion.identity;
+        
+        light.transform.localRotation = Quaternion.identity;
         Camera = Camera.main;
         Camera.transform.position = new Vector3(-200, -10, 0);
         Camera.transform.rotation = Quaternion.Euler(1,90,0);
         Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
         connection.transform.GetComponent<Connection>().enabled = false;
         Level2AnswerSheet.showPopUp = true;
-        AfterLevel.SetActive(true);
+        undo.SetActive(false);  
         AnswerCheck.SetActive(false);
+        AfterLevel.SetActive(true);
     }
     
     public void TemperatureCheck()
