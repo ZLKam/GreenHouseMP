@@ -15,16 +15,13 @@ public class TempCheck : MonoBehaviour
 
     private bool showing;
 
-    [Range(0, 30)]
+    [Range(0, 35)]
     public int[] Temps;
 
     // Start is called before the first frame update
     void Start()
     {
         //Camera = null;
-        connection = GameObject.Find("Connections");
-        undo = GameObject.Find("Undo");
-        light = GameObject.Find("Directional Light").transform.GetComponent<Light>();
     }
     
     public void ReviewLevel()
