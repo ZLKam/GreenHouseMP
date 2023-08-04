@@ -2459,6 +2459,7 @@ MonoBehaviour:
   pipeConnection: []
   centerPoints: []
   lengths: []
+  anomalyFound: 0
   pipeWarning: 0
   pipeWarningPanel: {fileID: 610186177}
   fade: {fileID: 626370460}
@@ -2500,16 +2501,26 @@ MonoBehaviour:
   - {fileID: 17620212}
   - {fileID: 175784567}
   - {fileID: 1634895563}
+  - {fileID: 1474072068}
+  - {fileID: 7761103}
+  - {fileID: 1570968030}
+  - {fileID: 1805288273}
+  - {fileID: 1770512202}
   - {fileID: 1290822753}
   connectionSubPoint1:
   - {fileID: 1286344519}
   - {fileID: 1214740350}
   connectionPoint2:
   - {fileID: 1839530825}
-  - {fileID: 860941023}
-  - {fileID: 867058256}
-  - {fileID: 1892371926}
   - {fileID: 473384305}
+  - {fileID: 1892371926}
+  - {fileID: 867058256}
+  - {fileID: 860941023}
+  - {fileID: 1813397409}
+  - {fileID: 746173602}
+  - {fileID: 1705834101}
+  - {fileID: 1426874492}
+  - {fileID: 491109046}
   connectionPoint3:
   - {fileID: 983382532}
   - {fileID: 120984857}
@@ -2523,6 +2534,7 @@ MonoBehaviour:
   connectionCHWS: 0
   connectionCWS: 0
   connectionCWR: 0
+  connectionsChecked: 0
   correctPanel: {fileID: 754042568}
   wrongPanel: {fileID: 1625566558}
   text: {fileID: 0}
@@ -7763,7 +7775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &754042569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7867,8 +7879,8 @@ MonoBehaviour:
   AfterLevel: {fileID: 1025317659}
   Camera: {fileID: 0}
   TempValues: []
-  Light: {fileID: 0}
   connection: {fileID: 0}
+  undo: {fileID: 0}
   Temps: 
 --- !u!1 &758618758
 GameObject:
@@ -10051,9 +10063,9 @@ MonoBehaviour:
   - {fileID: 1914158776}
   - {fileID: 624507570}
   - {fileID: 1062166844}
-  Light: {fileID: 1983349254}
   connection: {fileID: 0}
-  Temps: 0c00000008000000180000001e000000
+  undo: {fileID: 1598964905}
+  Temps: 03000000080000001800000015000000
 --- !u!1 &1032340146
 GameObject:
   m_ObjectHideFlags: 0

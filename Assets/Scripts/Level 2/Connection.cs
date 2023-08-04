@@ -57,7 +57,7 @@ public class Connection : MonoBehaviour
     Renderer[] renderers;
 
     bool allMatch;
-    bool anomalyFound;
+    public bool anomalyFound;
     public bool pipeWarning;
     public GameObject pipeWarningPanel;
     public Fade fade;
@@ -330,6 +330,7 @@ public class Connection : MonoBehaviour
 
         pipes.Add(pipeMain);
 
+        Connected();
         point1 = null;
         point2 = null;
         //tobeunhighlighted = new List<GameObject>(points);
@@ -394,6 +395,8 @@ public class Connection : MonoBehaviour
 
         //pipeMain.AddComponent<ParticleFlow>();
         //tobeunhighlighted = new List<GameObject>(points);
+
+        Connected();
         pointList.Clear();
         multiplePoints.Clear();
         points.Clear();
@@ -412,6 +415,7 @@ public class Connection : MonoBehaviour
                 GameObject Clone = pipes[pipes.Count - 1];
                 pipes.Remove(pipes[pipes.Count - 1]);
                 Destroy(Clone);
+                anomalyFound = false;
 
                 Debug.Log("Removed the lastest pipe");
 
@@ -443,6 +447,47 @@ public class Connection : MonoBehaviour
         {
             Debug.Log("No pipes left");
             //Can do warning pop up here;
+        }
+    }
+
+
+    void Connected()
+    {
+        if (level2AnswerSheet.ListComparison(points))
+        {
+
+            for (int i = 0; i < points.Count; i++)
+            {
+                for (int j = 0; j < points.Count; j++)
+                {
+                    if (points[i].name.Equals(points[j].name))
+                    {
+                        allMatch = true;
+                        name = points[i].name;
+                    }
+                    else if (!points[i].name.Equals(points[j].name))
+                    {
+                        anomalyFound = true;
+                    }
+                }
+
+            }
+
+            if (allMatch && !anomalyFound)
+            {
+                //
+                level2AnswerSheet.connectionsChecked = true;
+
+                //pipeMain.AddComponent<ParticleFlow>();
+
+                Debug.Log("matches");
+            }
+            else if (anomalyFound)
+            {
+                Debug.Log("anomaly present");
+                Debug.Log("no match");
+                level2AnswerSheet.connectionsChecked = false;
+            }
         }
     }
 }
