@@ -554,8 +554,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1885, y: 752}
-  m_SizeDelta: {x: 160, y: 80}
+  m_AnchoredPosition: {x: 1885, y: 725}
+  m_SizeDelta: {x: 160, y: 44.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &905113626656359685
 CanvasRenderer:
@@ -585,8 +585,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f052bb4b11046e24cbe149d7a6f15df0, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -744,6 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905113626734718619}
   - component: {fileID: 905113626734718616}
+  - component: {fileID: 1957359771494580767}
   m_Layer: 11
   m_Name: Chiller_Inspect
   m_TagString: Component/Chiller
@@ -760,7 +761,7 @@ Transform:
   m_GameObject: {fileID: 905113626734718617}
   m_LocalRotation: {x: -0, y: 0.63888776, z: -0, w: -0.7692999}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.3986, y: 2.3986, z: 2.6425374}
+  m_LocalScale: {x: 4, y: 4, z: 4.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 905113627588500817}
@@ -794,6 +795,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35203958, y: 0.7030181, z: 1.2415613}
   m_Center: {x: 0.0038567781, y: 0.05206826, z: -0.019254884}
+--- !u!114 &1957359771494580767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905113626734718617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4c792e61b65304c95e43dab90f73e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TitleText: Chiller
 --- !u!1 &905113627105692013
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +836,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 905113627423653193}
   m_RootOrder: 0
@@ -862,15 +876,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Condenser
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57d1da49b5218e44d9a2cab9b9ac147d, type: 2}
+  m_sharedMaterial: {fileID: -6626407770715667710, guid: 57d1da49b5218e44d9a2cab9b9ac147d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -893,7 +907,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 0
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1298,8 +1312,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1885, y: -192}
-  m_SizeDelta: {x: 160, y: 80}
+  m_AnchoredPosition: {x: 1885, y: -147}
+  m_SizeDelta: {x: 160, y: 41.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &905113627423653194
 CanvasRenderer:
@@ -1329,8 +1343,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f052bb4b11046e24cbe149d7a6f15df0, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1795,15 +1809,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Evaporator
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57d1da49b5218e44d9a2cab9b9ac147d, type: 2}
+  m_sharedMaterial: {fileID: -6626407770715667710, guid: 57d1da49b5218e44d9a2cab9b9ac147d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1826,7 +1840,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 0
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

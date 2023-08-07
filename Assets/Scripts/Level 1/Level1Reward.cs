@@ -16,16 +16,16 @@ public class Level1Reward : MonoBehaviour
     [SerializeField]
     private GameObject LoadedObject;
     public GameObject Panel;
+    public Canvas canvasToHide;
+    public TextMeshProUGUI componentTitle, partName;
+    public GameObject titlePanel;
     public GameObject cross;
     public TextMeshProUGUI description;
     private GameObject inspectPrefab;
 
-    [SerializeField]
     private string[] tagArray;
 
-    [SerializeField]
     private List<string> lvl1RewardList = new List<string>();
-    [SerializeField]
     private List<string> descriptionList = new List<string>();
 
     private int descriptionListStart = 0;
@@ -75,8 +75,12 @@ public class Level1Reward : MonoBehaviour
             if (LoadedObject && instantiatePoint.transform.childCount < 1)
             {
                 inspectPrefab = Instantiate(LoadedObject, instantiatePoint.transform.position, Quaternion.identity);
+                canvasToHide.gameObject.SetActive(false);
                 inspectPrefab.GetComponentInChildren<Canvas>().worldCamera = inspectCamera;
+                titlePanel.SetActive(true);
+                componentTitle.text = inspectPrefab.GetComponent<InspectAttributes>().TitleText;
                 inspectPrefab.transform.parent = instantiatePoint.transform;
+                inspectPrefab.GetComponentInChildren<Canvas>().overrideSorting = true;
                 inspectPrefab.transform.localPosition = Vector3.zero;
                 foreach (Button btn in inspectPrefab.GetComponentsInChildren<Button>()) 
                 {
@@ -127,6 +131,7 @@ public class Level1Reward : MonoBehaviour
         if (!Panel.activeInHierarchy)
         {
             Panel.SetActive(true);
+            partName.text = ClickedBtnName;
             for (int i = 0; i < descriptionList.Count; i++)
             {
                 //Debug.Log(descriptionList[i].StartsWith("[" + ClickedBtnName + "]"));
@@ -149,6 +154,8 @@ public class Level1Reward : MonoBehaviour
         Destroy(inspectPrefab);
         Panel.SetActive(false);
         cross.SetActive(false);
+        titlePanel.SetActive(false);
         inspectCamera.gameObject.SetActive(false);
+        canvasToHide.gameObject.SetActive(true);
     }
 }
