@@ -183,7 +183,7 @@ public class Connection : MonoBehaviour
                     if (selectedComponent)
                     {
                         selectedComponent.RemoveUI();
-                        cameraMovement.zooming = false;
+                       cameraMovement.zooming = false;
                     }
                 }
             }
@@ -427,6 +427,7 @@ public class Connection : MonoBehaviour
                         {
                             tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
                             tobeunhighlighted.Remove(tobeunhighlighted[tobeunhighlighted.Count - 1]);
+                            points.Clear();
                         }
                     }
                 }
@@ -438,6 +439,7 @@ public class Connection : MonoBehaviour
                         {
                             tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
                             tobeunhighlighted.Remove(tobeunhighlighted[tobeunhighlighted.Count - 1]);
+                            points.Clear();
                         }
                     }
                 }
