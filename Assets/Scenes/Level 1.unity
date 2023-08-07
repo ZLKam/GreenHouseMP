@@ -30324,7 +30324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3710445670213536232, guid: 2158f0af6b838b343a2b45e49328c532, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3710445670213536233, guid: 2158f0af6b838b343a2b45e49328c532, type: 3}
       propertyPath: m_SizeDelta.x
@@ -42044,7 +42044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 764}
+  m_AnchoredPosition: {x: 0, y: 764}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &725188462
@@ -104292,7 +104292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881515039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 83.3, y: -4, z: -2}
+  m_LocalPosition: {x: 73, y: -4, z: 13.5}
   m_LocalScale: {x: 24, y: 74, z: 41.10544}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104310,8 +104310,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.03, z: 0}
+  m_Size: {x: 0.21761894, y: 1.6290641, z: 1.2533377}
+  m_Center: {x: -0.39119053, y: 0.15863454, z: -0.12474038}
 --- !u!54 &1881515042
 Rigidbody:
   m_ObjectHideFlags: 0
