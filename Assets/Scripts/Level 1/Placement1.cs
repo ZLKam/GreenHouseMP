@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 public class Placement1 : MonoBehaviour
+//quick drag and let go issues
 {
     public CameraMovement cameraMovement;
     public Level1AnswerSheet1 answerSheet1;
