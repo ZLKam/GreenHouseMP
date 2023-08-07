@@ -134,7 +134,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
             placeComponent = false;
         }
 
-        if (Input.touchCount == 0) 
+        if (Input.touchCount == 0 && placement) 
         {
             Destroy(placement.component);
         }

@@ -5715,7 +5715,7 @@ PrefabInstance:
     - target: {fileID: 8974622821272217110, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 760052abf3075d24dabf02a250b51fec, type: 3}
+      objectReference: {fileID: 21300000, guid: 78f0891f21cb62b4586ca3399008c4a5, type: 3}
     - target: {fileID: 8974622821378845048, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.40944776
@@ -5759,7 +5759,7 @@ PrefabInstance:
     - target: {fileID: 8974622821378845049, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 78f0891f21cb62b4586ca3399008c4a5, type: 3}
+      objectReference: {fileID: 21300000, guid: 4a169fcd2e5288749ae0f5f746d31bf2, type: 3}
     - target: {fileID: 8974622821634051241, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9929896
@@ -5812,6 +5812,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: dcd2eb891a4eee84182272f061f6eb86, type: 3}
+    - target: {fileID: 8974622822111781191, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: componentName
+      value: Condenser Water Return Pipe (CWR)
+      objectReference: {fileID: 0}
     - target: {fileID: 8974622822111781191, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: pipes.Array.size
       value: 3
@@ -5871,6 +5875,10 @@ PrefabInstance:
     - target: {fileID: 8974622822180051073, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -10.571
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622822180051074, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: componentName
+      value: Chilled Water Return Pipe (CHWR)
       objectReference: {fileID: 0}
     - target: {fileID: 8974622822180051074, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: pipes.Array.size
@@ -5945,6 +5953,10 @@ PrefabInstance:
       value: -15.704
       objectReference: {fileID: 0}
     - target: {fileID: 8974622822638789528, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: componentName
+      value: Chilled Water Supply Pipe CHWS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622822638789528, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: pipes.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -5970,7 +5982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8974622822886277178, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8974622822886277179, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_Pivot.x
@@ -6067,6 +6079,10 @@ PrefabInstance:
     - target: {fileID: 8974622822886277179, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622823169809061, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: componentName
+      value: Condenser Water Supply Pipe (CWS)
       objectReference: {fileID: 0}
     - target: {fileID: 8974622823169809061, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: pipes.Array.size
@@ -18111,7 +18127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1779818136
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20193,9 +20209,9 @@ MonoBehaviour:
   hover: {fileID: 0}
   hoverGrp: {fileID: 0}
   connection: {fileID: 252340424}
-  unlockCam: {fileID: 0}
-  lockCam: {fileID: 0}
-  cameraLockBtn: {fileID: 0}
+  unlockCam: {fileID: 21300000, guid: 36fa68b642ed3f240a674178217990d5, type: 3}
+  lockCam: {fileID: 21300000, guid: f23e1adae55a23641b91d69332ec9f52, type: 3}
+  cameraLockBtn: {fileID: 470143161}
   allowRotation: 1
   allowZoom: 1
   rotationSpeed: 60
@@ -21158,14 +21174,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983349254}
-  m_LocalRotation: {x: 0.09998884, y: 0.63728845, z: -0.08390059, w: 0.7594909}
+  m_LocalRotation: {x: 0.21786448, y: 0.31278083, z: -0.16576506, w: 0.90951926}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 15, y: 80, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 35, z: -11}
 --- !u!1 &1985952134
 GameObject:
   m_ObjectHideFlags: 0
