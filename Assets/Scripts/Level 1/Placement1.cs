@@ -24,6 +24,7 @@ public class Placement1 : MonoBehaviour
     private bool allowDelete;
 
     private GameObject deletableGameobject;
+    private GameObject objectToTrack;
     public LayerMask layerToIgnore;
     public bool deletingObject;
 
@@ -42,12 +43,12 @@ public class Placement1 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Highlight();
+        ComponentController();
         //AutoPlace(objectToCheck.transform);
 
     }
 
-    private void Highlight()
+    private void ComponentController()
     {
         Ray ray = new();
         if (Input.touchCount != 0)
@@ -57,46 +58,21 @@ public class Placement1 : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~layerToIgnore))
         {
-            //Debug.Log(hit.transform.name);
+            Debug.Log(hit.transform.tag);
             DeleteComponent(hit.transform);
 
-            foreach (GameObject selectPoints in selections)
-            {
-                if (selectPoints == hit.collider.gameObject)
-                {
-                    selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
-                }
-                else
-                {
-                    if (selectPoints.transform.GetChild(0).CompareTag("SharedSelection"))
-                    {
-                        selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = darkBlue;
-                        //Debug.Log(darkBlue);
-                        //Debug.Log(selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color);
-                    }
-                    else 
-                    {
-                        selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.black;
-                    }
-                }
-                continue;
-            }
-
-
-            if (hit.transform.CompareTag("Selection") && hit.transform.GetChild(0).GetComponent<SpriteRenderer>().color == Color.yellow)
-            {
-                highlightedPlacement = hit.collider.transform;
-                allowDelete = false;
-            }
-            else
-            {
-                //highlightedPlacement = null;
-                allowDelete = true;
-            }
-
+            Highlight(hit);
         }
         else
         {
+            if (deletingObject)
+            {
+                Debug.Log("Tracking Object");
+                DeleteComponent();
+            }
+            else 
+            {}
+
             if (Input.touchCount == 0)
             {
                 if (highlightedPlacement)
@@ -104,14 +80,10 @@ public class Placement1 : MonoBehaviour
                     if (duplicationPoints.Contains(highlightedPlacement.gameObject))
                     {
                         AutoPlace(highlightedPlacement.transform, false);
-                        highlightedPlacement = null;
-                        return;
                     }
                     else 
                     {
                         PlaceComponent(highlightedPlacement);
-                        highlightedPlacement = null;
-                        component = null;
                     }
                 }
                 else
@@ -122,6 +94,40 @@ public class Placement1 : MonoBehaviour
         }
 
 
+    }
+
+    private void Highlight(RaycastHit hit) 
+    {
+        foreach (GameObject selectPoints in selections)
+        {
+            if (selectPoints == hit.collider.gameObject)
+            {
+                selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
+            else
+            {
+                if (selectPoints.transform.GetChild(0).CompareTag("SharedSelection"))
+                {
+                    selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = darkBlue;
+                }
+                else
+                {
+                    selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.black;
+                }
+            }
+            continue;
+        }
+
+
+        if (hit.transform.CompareTag("Selection") && hit.transform.GetChild(0).GetComponent<SpriteRenderer>().color == Color.yellow)
+        {
+            highlightedPlacement = hit.collider.transform;
+            allowDelete = false;
+        }
+        else
+        {
+            allowDelete = true;
+        }
     }
 
     private void AutoPlace(Transform objectToCheck, bool delete) 
@@ -147,6 +153,11 @@ public class Placement1 : MonoBehaviour
                     duplicationPoints[i].transform.GetComponent<BoxCollider>().enabled = false;
                     duplicationPoints[i].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                     duplicationPoints[i].transform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
+
+                    if (i >= duplicationPoints.Count) 
+                    {
+                        highlightedPlacement = null;
+                    }
                 }
             }
             component = null;
@@ -198,7 +209,7 @@ public class Placement1 : MonoBehaviour
         {
             highlightedPlacement = null;
         }
-        else { }
+        else {}
 
         if (component.CompareTag("Component/CwpOpt") && selectedTransform.name.Equals("Selection Point (17)"))
         {
@@ -212,6 +223,10 @@ public class Placement1 : MonoBehaviour
             scaleTemp.z *= -1;
             component.transform.localScale = scaleTemp;
         }
+        else {}
+
+        highlightedPlacement = null;
+        component = null;
 
     }
 
@@ -223,16 +238,21 @@ public class Placement1 : MonoBehaviour
             return;
         }
 
-        if (selectedTransform && !deletableGameobject && selectedTransform.tag.StartsWith("Component"))
+        Debug.Log(deletableGameobject);
+        if (selectedTransform && !objectToTrack && selectedTransform.tag.StartsWith("Component"))
         {
             deletableGameobject = selectedTransform.gameObject;
+            objectToTrack = deletableGameobject;
+            deletingObject = true;
         }
 
-        if (Input.touchCount > 0 && deletableGameobject)
+        Debug.Log(objectToTrack);
+        if (Input.touchCount > 0 && objectToTrack)
         {
+            Debug.Log("Moving Object");
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {
-                deletableGameobject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
+                objectToTrack.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
                 cameraMovement.allowRotation = false;
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled)
@@ -240,17 +260,21 @@ public class Placement1 : MonoBehaviour
             {
                 if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)))
                 {
-                    deletableGameobject.transform.parent.GetComponent<BoxCollider>().enabled = true;
-                    deletableGameobject.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
-                    deletableGameobject.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
-                    deletableGameobject.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
+                    objectToTrack.transform.parent.GetComponent<BoxCollider>().enabled = true;
+                    objectToTrack.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+                    objectToTrack.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
+                    objectToTrack.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                     Destroy(selectedTransform.gameObject);
+                    objectToTrack = null;
                     highlightedPlacement = null;
+                    deletingObject = false;
                     AutoPlace(deletableGameobject.transform.parent, true);
                 }
                 else
                 {
-                    deletableGameobject.gameObject.transform.localPosition = Vector3.zero;
+                    objectToTrack.gameObject.transform.localPosition = Vector3.zero;
+                    objectToTrack = null;
+                    deletingObject = false;
                 }
             }
         }
