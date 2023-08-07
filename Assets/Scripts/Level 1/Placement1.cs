@@ -44,7 +44,6 @@ public class Placement1 : MonoBehaviour
     void FixedUpdate()
     {
         ComponentController();
-        //AutoPlace(objectToCheck.transform);
 
     }
 
@@ -58,16 +57,17 @@ public class Placement1 : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~layerToIgnore))
         {
-            Debug.Log(hit.transform.tag);
             DeleteComponent(hit.transform);
 
-            Highlight(hit);
+            if (Input.touchCount > 0)
+            {
+                Highlight(hit);
+            }
         }
         else
         {
             if (deletingObject)
             {
-                Debug.Log("Tracking Object");
                 DeleteComponent();
             }
             else 
@@ -78,7 +78,7 @@ public class Placement1 : MonoBehaviour
                 if (highlightedPlacement)
                 {
                     if (duplicationPoints.Contains(highlightedPlacement.gameObject))
-                    {
+                    { 
                         AutoPlace(highlightedPlacement.transform, false);
                     }
                     else 
@@ -98,6 +98,11 @@ public class Placement1 : MonoBehaviour
 
     private void Highlight(RaycastHit hit) 
     {
+        if (!selectedPrefab) 
+        {
+            Debug.Log("Please Select A Component!");
+        }
+
         foreach (GameObject selectPoints in selections)
         {
             if (selectPoints == hit.collider.gameObject)
@@ -137,14 +142,13 @@ public class Placement1 : MonoBehaviour
 
         if (!delete)
         {
-            PlaceComponent(objectToCheck);
             for (int i = 0; i < duplicationPoints.Count; i++) 
             {
-                if (duplicationPoints[i].transform.childCount < 2 && duplicationPoints[i] != objectToCheck)
+                Debug.Log(duplicationPoints[i].transform.childCount);
+                if (duplicationPoints[i].transform.childCount < 2 && duplicationPoints[i] != objectToCheck && duplicationPoints[i].transform.childCount > 0)
                 {
                     GameObject temp = Instantiate(selectedPrefab, duplicationPoints[i].transform.position, Quaternion.identity);
                     temp.transform.parent = duplicationPoints[i].transform;
-                    temp.transform.localScale = objectToCheck.GetChild(1).localScale;
                     temp.transform.localPosition = Vector3.zero;
                     temp.GetComponent<Collider>().enabled = true;
 
@@ -154,12 +158,11 @@ public class Placement1 : MonoBehaviour
                     duplicationPoints[i].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                     duplicationPoints[i].transform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
 
-                    if (i >= duplicationPoints.Count) 
-                    {
-                        highlightedPlacement = null;
-                    }
+                    temp.transform.localScale = objectToCheck.GetChild(1).localScale;
+
                 }
             }
+            highlightedPlacement = null;
             component = null;
         }
         else if(delete && duplicationPoints.Contains(objectToCheck.gameObject))
@@ -238,7 +241,6 @@ public class Placement1 : MonoBehaviour
             return;
         }
 
-        Debug.Log(deletableGameobject);
         if (selectedTransform && !objectToTrack && selectedTransform.tag.StartsWith("Component"))
         {
             deletableGameobject = selectedTransform.gameObject;
@@ -246,10 +248,8 @@ public class Placement1 : MonoBehaviour
             deletingObject = true;
         }
 
-        Debug.Log(objectToTrack);
         if (Input.touchCount > 0 && objectToTrack)
         {
-            Debug.Log("Moving Object");
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {
                 objectToTrack.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
