@@ -11,10 +11,6 @@ public class Placement1 : MonoBehaviour
     public Level1AnswerSheet1 answerSheet1;
     public HoverGroup hoverGroup;
 
-    public Sprite highlightSprite;
-    public Sprite selectionSprite;
-    public Sprite originalSprite;
-
     public GameObject component;
     [HideInInspector]
     public GameObject selectedPrefab;
@@ -37,6 +33,10 @@ public class Placement1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cameraMovement = FindObjectOfType<CameraMovement>();
+        answerSheet1 = FindObjectOfType<Level1AnswerSheet1>();
+        hoverGroup = FindObjectOfType<HoverGroup>();
+
         selections = GameObject.FindGameObjectsWithTag("Selection");
         allowDelete = true;
     }
@@ -45,7 +45,6 @@ public class Placement1 : MonoBehaviour
     void FixedUpdate()
     {
         ComponentController();
-
     }
 
     private void ComponentController()
@@ -60,37 +59,30 @@ public class Placement1 : MonoBehaviour
         {
             DeleteComponent(hit.transform);
 
-            if (Input.touchCount > 0)
+            Highlight(hit);
+
+
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                Highlight(hit);
+                if (highlightedPlacement)
+                {
+                    if (duplicationPoints.Contains(highlightedPlacement.gameObject))
+                    {
+                        AutoPlace(highlightedPlacement.transform, false);
+                    }
+                    else
+                    {
+                        PlaceComponent(highlightedPlacement);
+                    }
+                }
             }
         }
         else
         {
             if (deletingObject)
-            {
-                DeleteComponent();
-            }
-            else 
-            {}
-
-            if (Input.touchCount == 0)
-            {
-                if (highlightedPlacement)
-                {
-                    if (duplicationPoints.Contains(highlightedPlacement.gameObject))
-                    { 
-                        AutoPlace(highlightedPlacement.transform, false);
-                    }
-                    else 
-                    {
-                        PlaceComponent(highlightedPlacement);
-                    }
-                }
-                else
-                {
-                    DeleteComponent();
-                }
+            //prevents it being called when nothing is happening
+            { 
+                DeleteComponent(); 
             }
         }
 
@@ -99,10 +91,6 @@ public class Placement1 : MonoBehaviour
 
     private void Highlight(RaycastHit hit) 
     {
-        if (!selectedPrefab) 
-        {
-            Debug.Log("Please Select A Component!");
-        }
 
         foreach (GameObject selectPoints in selections)
         {
@@ -143,13 +131,13 @@ public class Placement1 : MonoBehaviour
 
         if (!delete)
         {
+            Destroy(component);
             for (int i = 0; i < duplicationPoints.Count; i++) 
             {
-                Debug.Log(duplicationPoints[i].transform.childCount);
                 if (duplicationPoints[i].transform.childCount < 2 && duplicationPoints[i] != objectToCheck && duplicationPoints[i].transform.childCount > 0)
                 {
-                    GameObject temp = Instantiate(selectedPrefab, duplicationPoints[i].transform.position, Quaternion.identity);
-                    temp.transform.parent = duplicationPoints[i].transform;
+                    GameObject temp = Instantiate(selectedPrefab, duplicationPoints[i].transform.position, Quaternion.identity, duplicationPoints[i].transform);
+                    temp.transform.localScale = temp.transform.localScale / 9;
                     temp.transform.localPosition = Vector3.zero;
                     temp.GetComponent<Collider>().enabled = true;
 
@@ -159,7 +147,6 @@ public class Placement1 : MonoBehaviour
                     duplicationPoints[i].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                     duplicationPoints[i].transform.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", true);
 
-                    temp.transform.localScale = objectToCheck.GetChild(1).localScale;
 
                 }
             }
@@ -236,7 +223,7 @@ public class Placement1 : MonoBehaviour
 
     public void DeleteComponent(Transform selectedTransform = null) 
     {
-        if (!selectedTransform && allowDelete && component && !deletableGameobject)
+        if (!selectedTransform && !allowDelete && component && !deletableGameobject && hoverGroup.dragToPlace)
         {
             Destroy(component);
             return;
@@ -265,7 +252,7 @@ public class Placement1 : MonoBehaviour
                     objectToTrack.transform.parent.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                     objectToTrack.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
                     objectToTrack.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
-                    Destroy(selectedTransform.gameObject);
+                    Destroy(objectToTrack.gameObject);
                     objectToTrack = null;
                     highlightedPlacement = null;
                     deletingObject = false;
