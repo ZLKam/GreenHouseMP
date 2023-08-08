@@ -376,11 +376,12 @@ public class LinePathFind : MonoBehaviour
         {
             toPoint = nearestToPointFromSecret;
         }
-        Debug.Log($"From point: {fromPoint.position} and to point: {toPoint.position}" +
-            $"Distance between from point to secret is: {distanceBetweenFromAndSecret} and Distance between to point to secret is: {distanceBetweenToAndSecret}" +
-            $"Distance: {distance}");
+        
         if (fromPoint && toPoint)
         {
+            Debug.Log($"From point: {fromPoint.position} and to point: {toPoint.position}" +
+            $"Distance between from point to secret is: {distanceBetweenFromAndSecret} and Distance between to point to secret is: {distanceBetweenToAndSecret}" +
+            $"Distance: {distance}");
             // set the two nearest connection points to be not allow draw line, then return the two points transform
             changedFrom = fromPoint;
             changedTo = toPoint;
