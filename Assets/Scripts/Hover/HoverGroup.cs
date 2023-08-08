@@ -134,10 +134,16 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         }
         dragToPlace = false;
 
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && placement.component && !dragToPlace)
         {
-            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)) && Input.GetTouch(0).phase == TouchPhase.Ended && placement.component && !dragToPlace)
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)))
+            {
                 Destroy(placement.component);
+            }
+            else if (hit.transform.CompareTag("Untagged")) 
+            {
+                Destroy(placement.component);
+            }
         }
     }
 
