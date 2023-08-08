@@ -217,6 +217,7 @@ public class Placement1 : MonoBehaviour
             component.transform.localScale = scaleTemp;
         }
 
+        cameraMovement.allowRotation = true;
         highlightedPlacement = null;
         component = null;
 
