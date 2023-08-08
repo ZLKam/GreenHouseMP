@@ -53,13 +53,13 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     {
         components.imageToChange.transform.localScale = components.originTransform;
         components.imageToChange.transform.localScale = Vector3.Lerp(components.imageToChange.transform.localScale, components.imageToChange.transform.localScale * 0.8f, 1);
-        cameraController.allowRotation = false;
 
         wheelTitle.text = components.componentName;
 
         if (placement && placeComponent)
         //For level 1
         {
+            dragToPlace = true;
             OnPlacementFound(components);
         }
         else if (connection) 
@@ -82,7 +82,6 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
 #endif
             placement.component.transform.position = mousePos;
-            placement.DeleteComponent(placement.component.transform);
         }
     }
 
@@ -133,10 +132,12 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
             tab.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 90);
             placeComponent = false;
         }
+        dragToPlace = false;
 
-        if (Input.touchCount == 0 && placement) 
+        if (Input.touchCount > 0)
         {
-            Destroy(placement.component);
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)) && Input.GetTouch(0).phase == TouchPhase.Ended && placement.component && !dragToPlace)
+                Destroy(placement.component);
         }
     }
 

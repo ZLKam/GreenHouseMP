@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform[] cameras;
     int selectedCamera;
-    public Placement placement;
+    public Placement1 placement;
     public Hover hover;
     public HoverGroup hoverGrp;
     public Connection connection;
@@ -101,13 +101,8 @@ public class CameraMovement : MonoBehaviour
         }
         if (placement != null)
         {
-            if (!placement.deletingObject)
-            //for level 1
-            {
-                SwitchCamera();
-                CameraRotation();
-                ZoomCamera();
-            }
+            CameraScroll();
+            ZoomCamera();
         }
         else
         //level 2
@@ -444,5 +439,18 @@ public class CameraMovement : MonoBehaviour
             cameraLockBtn.GetComponent<Image>().sprite = unlockCam;
         }
 
+    }
+
+    private void CameraScroll() 
+    {
+        if (!allowRotation)
+            return;
+
+        if (Input.touchCount > 0)
+        {
+            var pos = transform.position;
+            pos.y = Mathf.Clamp(transform.position.y + Input.GetTouch(0).deltaPosition.y / 8, -15, 100);
+            transform.position = pos;
+        }
     }
 }
