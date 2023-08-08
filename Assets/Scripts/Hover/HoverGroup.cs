@@ -46,6 +46,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     //After clicking the tabs
     {
         components.imageToChange.transform.localScale = components.originTransform;
+        openTab = true;
     }
 
     public void OnTabSelected(HoverTab components)
@@ -55,6 +56,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         components.imageToChange.transform.localScale = Vector3.Lerp(components.imageToChange.transform.localScale, components.imageToChange.transform.localScale * 0.8f, 1);
 
         wheelTitle.text = components.componentName;
+        openTab = true;
 
         if (placement && placeComponent)
         //For level 1
@@ -90,7 +92,6 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     {
         openTab = !openTab;
         cameraController = FindAnyObjectByType<CameraMovement>();
-        wheelTitle.text = "";
     }
 
     private void OnPlacementFound(HoverTab components) 
