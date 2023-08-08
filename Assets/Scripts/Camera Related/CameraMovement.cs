@@ -213,7 +213,7 @@ public class CameraMovement : MonoBehaviour
         {
             transform.LookAt(cameras[0]);
             Camera.main.transform.localRotation = Quaternion.identity;
-
+            
             if (connection)
                 Camera.main.fieldOfView = 40;
             if (Physics.Raycast(cameras[0].position, transform.position - cameras[0].position, out RaycastHit hit, cameraDist, ~(1 << 6)))

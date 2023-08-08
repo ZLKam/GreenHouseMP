@@ -53,7 +53,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     {
         components.imageToChange.transform.localScale = components.originTransform;
         components.imageToChange.transform.localScale = Vector3.Lerp(components.imageToChange.transform.localScale, components.imageToChange.transform.localScale * 0.8f, 1);
-       // cameraController.allowRotation = false;
+        cameraController.allowRotation = false;
 
         wheelTitle.text = components.componentName;
 
