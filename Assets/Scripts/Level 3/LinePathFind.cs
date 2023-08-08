@@ -141,6 +141,9 @@ public class LinePathFind : MonoBehaviour
                     selectColorPopUp.SetActive(true);
                     hoverTab.SetHoverTab = true;
                     fromT = null;
+                    toT = null;
+                    imgComponentFrom.sprite = transparentSprite;
+                    imgComponentTo.sprite = transparentSprite;
                     return;
                 }
             }

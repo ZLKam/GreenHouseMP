@@ -25,7 +25,8 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private GameObject wrongPanel;
 
-    List<KeyValuePair<DrawLine, Material>> wrongLinesPreviousMaterials = new();
+    private List<KeyValuePair<DrawLine, Material>> correctLinesPreviousMaterials = new();
+    private List<KeyValuePair<DrawLine, Material>> wrongLinesPreviousMaterials = new();
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -46,7 +47,12 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
                 wrongLines.Add(x);
             }
         });
-        correctLines.ForEach(x => x.lr.material = correctMat);
+        correctLines.ForEach((correctLine) =>
+        {
+            KeyValuePair<DrawLine, Material> previousMaterial = new KeyValuePair<DrawLine, Material>(correctLine, correctLine.lr.material);
+            correctLinesPreviousMaterials.Add(previousMaterial);
+            correctLine.lr.material = correctMat;
+        });
         wrongLines.ForEach((wrongLine) =>
         {
             KeyValuePair<DrawLine, Material> previousMaterial = new KeyValuePair<DrawLine, Material>(wrongLine, wrongLine.lr.material);
@@ -76,18 +82,27 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
         else
         {
             wrongPanel.SetActive(true);
-            StartCoroutine(ResetLineColor(wrongPanel.GetComponent<PopUp>().timer, wrongLines));
+            StartCoroutine(ResetLineColor(correctPanel.GetComponent<PopUp>().timer * 5, correctLines));
+            StartCoroutine(ResetLineColor(wrongPanel.GetComponent<PopUp>().timer * 3, wrongLines));
             Debug.Log("You are so stupid!!! Wrong!!!!!!!!");
         }
         correctLines.Clear();
         wrongLines.Clear();
     }
 
-    private IEnumerator ResetLineColor(float time, List<DrawLine> wrongLines)
+    private IEnumerator ResetLineColor(float time, List<DrawLine> lines)
     {
         yield return new WaitForSeconds(time);
         Debug.Log(time);
-        wrongLinesPreviousMaterials.ForEach(x => x.Key.lr.material = x.Value);
-        wrongLinesPreviousMaterials.Clear();
+        if (lines == wrongLines)
+        {
+            wrongLinesPreviousMaterials.ForEach(x => x.Key.lr.material = x.Value);
+            wrongLinesPreviousMaterials.Clear();
+        }
+        else if (lines == correctLines)
+        {
+            correctLinesPreviousMaterials.ForEach(x => x.Key.lr.material = x.Value);
+            correctLinesPreviousMaterials.Clear();
+        }
     }
 }
