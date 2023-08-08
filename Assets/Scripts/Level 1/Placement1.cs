@@ -57,7 +57,8 @@ public class Placement1 : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~layerToIgnore))
         {
-            DeleteComponent(hit.transform);
+            if(!component)
+                DeleteComponent(hit.transform);
 
             Highlight(hit);
 
@@ -81,7 +82,8 @@ public class Placement1 : MonoBehaviour
         {
             if (deletingObject)
             //prevents it being called when nothing is happening
-            { 
+            {
+                Debug.Log("tracking Object");
                 DeleteComponent(); 
             }
         }
@@ -214,7 +216,6 @@ public class Placement1 : MonoBehaviour
             scaleTemp.z *= -1;
             component.transform.localScale = scaleTemp;
         }
-        else {}
 
         highlightedPlacement = null;
         component = null;
@@ -223,7 +224,7 @@ public class Placement1 : MonoBehaviour
 
     public void DeleteComponent(Transform selectedTransform = null) 
     {
-        if (!selectedTransform && !allowDelete && component && !deletableGameobject && hoverGroup.dragToPlace)
+        if (!selectedTransform && !allowDelete && !deletableGameobject && !hoverGroup.dragToPlace)
         {
             Destroy(component);
             return;

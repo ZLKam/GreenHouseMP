@@ -7651,7 +7651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4c792e61b65304c95e43dab90f73e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleText: Condensed Water Pump
+  TitleText: Condenser Water Pump
 --- !u!1 &4512006957755723811
 GameObject:
   m_ObjectHideFlags: 0
