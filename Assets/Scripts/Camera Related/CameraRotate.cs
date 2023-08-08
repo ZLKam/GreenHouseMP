@@ -54,7 +54,7 @@ public class CameraRotate : MonoBehaviour
         CheckSkybox();
 
         transform.LookAt(focusPoint);
-        transform.Translate(Vector3.right * rotationSpeed * Time.deltaTime);
+        transform.Translate(rotationSpeed * Time.deltaTime * Vector3.right);
     }
 
     void CheckSkybox()
