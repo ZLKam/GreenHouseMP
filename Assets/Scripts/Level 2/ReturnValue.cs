@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReturnValue : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class ReturnValue : MonoBehaviour
             return;
         }
         pressedBtn = !pressedBtn;
+        if (pressedBtn)
+        {
+            //button
+            gameObject.GetComponent<Image>().color = Color.green;
+        }
+        else gameObject.GetComponent<Image>().color = Color.white;
         indexValue = 1;
         scriptRef();
     }
@@ -77,4 +84,6 @@ public class ReturnValue : MonoBehaviour
             connection.valueReturnBtn = this;
         }
     }
+
+    
 }
