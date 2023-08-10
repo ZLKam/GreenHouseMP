@@ -24,6 +24,10 @@ public class ReturnValue : MonoBehaviour
             return;
         }
         pressedBtn = !pressedBtn;
+        if (pressedBtn)
+        {
+            //button
+        }
         indexValue = 1;
         scriptRef();
     }
