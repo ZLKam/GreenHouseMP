@@ -96,7 +96,14 @@ namespace Level3
                     placeholder.GetComponent<SpriteRenderer>().enabled = false;
                     instantiatedComponent.transform.parent = placeholder;
                     instantiatedComponent.transform.localPosition = Vector3.zero;
-                    instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
+                    if (instantiatedComponent.GetComponent<ComponentEvent>().componentName == "Cooling Tower")
+                    {
+                        instantiatedComponent.GetComponent<PolygonCollider2D>().enabled = true;
+                    }
+                    else
+                    {
+                        instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
+                    }
                     instantiatedComponent.GetComponent<ComponentEvent>().placeholder = placeholder;
                     instantiatedComponent.GetComponent<ComponentEvent>().CheckDirection(instantiatedComponent.gameObject);
                 }
@@ -107,7 +114,14 @@ namespace Level3
                     placeholder.GetComponent<SpriteRenderer>().enabled = false;
                     instantiatedComponent.transform.parent = placeholder;
                     instantiatedComponent.transform.localPosition = Vector3.zero;
-                    instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
+                    if (instantiatedComponent.GetComponent<ComponentEvent>().componentName == "Cooling Tower")
+                    {
+                        instantiatedComponent.GetComponent<PolygonCollider2D>().enabled = true;
+                    }
+                    else
+                    {
+                        instantiatedComponent.GetComponent<BoxCollider2D>().enabled = true;
+                    }
                     instantiatedComponent.GetComponent<ComponentEvent>().placeholder = placeholder;
                     instantiatedComponent.GetComponent<ComponentEvent>().CheckDirection(instantiatedComponent.gameObject);
                 }

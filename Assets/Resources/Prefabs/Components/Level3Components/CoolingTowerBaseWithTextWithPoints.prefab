@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6780964955410501403}
   - component: {fileID: -7860505040977219168}
   - component: {fileID: 756176188035140738}
+  - component: {fileID: 7271062178851274315}
   m_Layer: 6
   m_Name: CoolingTowerBaseWithTextWithPoints
   m_TagString: Component
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8fcea48a42bf44a9290311f491ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent: {fileID: 0}
   componentName: Cooling Tower
   specialID: 890
   placeholder: {fileID: 0}
@@ -109,6 +111,10 @@ MonoBehaviour:
   correctTarget2: {fileID: 0}
   correctColor: {r: 1, g: 0, b: 0, a: 1}
   correctColor2: {r: 1, g: 1, b: 1, a: 1}
+  CHWPLeft: {fileID: 0}
+  CHWPRight: {fileID: 0}
+  CWPRight: {fileID: 0}
+  CWPLeft: {fileID: 0}
 --- !u!50 &-6780964955410501403
 Rigidbody2D:
   serializedVersion: 4
@@ -156,7 +162,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13374156, y: 0.0467695}
+  m_Offset: {x: -0.07413614, y: 0.0467695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -167,8 +173,55 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9138557, y: 1.9926822}
+  m_Size: {x: 1.2512455, y: 1.9926822}
   m_EdgeRadius: 0
+--- !u!60 &7271062178851274315
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3037316124552288827}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.055232, y: 0.10543725}
+      - {x: 0.9613704, y: 0.10136841}
+      - {x: 1.2892399, y: 0.7935191}
+      - {x: 1.1814417, y: 0.7930406}
+      - {x: 0.9157771, y: 0.79199165}
+      - {x: 0.90999997, y: 1.0799999}
+      - {x: -0.90999997, y: 1.0799999}
+      - {x: -0.91999996, y: 1.0699999}
+      - {x: -0.9111738, y: 0.79433644}
+      - {x: -1.2913964, y: 0.7966959}
+      - {x: -1.2771046, y: 0.74947643}
+      - {x: -1.1588006, y: 0.51}
+      - {x: -0.57631415, y: -0.715}
+      - {x: -0.72999996, y: -0.715}
+      - {x: -0.74, y: -0.72499996}
+      - {x: -0.7434189, y: -0.93631417}
+      - {x: -0.5843644, y: -0.93413544}
+      - {x: -0.5851616, y: -0.9750692}
+      - {x: 0.585, y: -0.98999995}
+      - {x: 0.5801154, y: -0.69}
+      - {x: 0.85262835, y: -0.11683774}
+      - {x: 1.0526283, y: -0.125}
 --- !u!1 &4449022483011630397
 GameObject:
   m_ObjectHideFlags: 0

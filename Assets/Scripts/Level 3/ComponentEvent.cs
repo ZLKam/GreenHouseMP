@@ -128,7 +128,14 @@ namespace Level3
         {
             if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
-            GetComponent<BoxCollider2D>().enabled = false;
+            if (componentName == "Cooling Tower")
+            {
+                GetComponent<PolygonCollider2D>().enabled = false;
+            }
+            else
+            {
+                GetComponent<BoxCollider2D>().enabled = false;
+            }
             buttonEvent.FollowDragPosition(transform);
         }
 
@@ -174,7 +181,14 @@ namespace Level3
             if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
             CheckPlaceholder(eventData);
-            GetComponent<BoxCollider2D>().enabled = true;
+            if (componentName == "Cooling Tower")
+            {
+                GetComponent<PolygonCollider2D>().enabled = true;
+            }
+            else
+            {
+                GetComponent<BoxCollider2D>().enabled = true;
+            }
             holding = false;
             CheckDirection(gameObject);
         }
