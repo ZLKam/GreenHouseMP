@@ -3073,6 +3073,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1813309335}
     m_Modifications:
+    - target: {fileID: 8974622821449936111, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622821449936111, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622821449936111, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622822002387271, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622822002387271, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622822002387271, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8974622822111781191, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: componentPrefab
       value: 
