@@ -79,13 +79,16 @@ public class Level1Reward : MonoBehaviour
                 inspectPrefab.GetComponentInChildren<Canvas>().worldCamera = inspectCamera;
                 titlePanel.SetActive(true);
                 componentTitle.text = inspectPrefab.GetComponent<InspectAttributes>().TitleText;
+
                 inspectPrefab.transform.parent = instantiatePoint.transform;
                 inspectPrefab.GetComponentInChildren<Canvas>().overrideSorting = true;
                 inspectPrefab.transform.localPosition = Vector3.zero;
+
                 foreach (Button btn in inspectPrefab.GetComponentsInChildren<Button>()) 
                 {
                     btn.onClick.AddListener(delegate { DisplayDescription(); });
                 }
+
                 ComponentLinesAppend(tagArray[1], "End" + tagArray[1]);
                 cross.SetActive(true);
                 LoadedObject = null;
@@ -125,7 +128,7 @@ public class Level1Reward : MonoBehaviour
 
     }
 
-    public void DisplayDescription()
+    private void DisplayDescription()
     {
         string ClickedBtnName = EventSystem.current.currentSelectedGameObject.name;
         if (!Panel.activeInHierarchy)

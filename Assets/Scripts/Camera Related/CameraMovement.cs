@@ -23,8 +23,7 @@ public class CameraMovement : MonoBehaviour
     float originalSpeed;
     public float rotationSpeed;
 
-    float xRotation;
-    float yRotation;
+    public float scrollFloor, scrollCeiling;
 
     public float initialDistance;
     public float sensitivity = 5;
@@ -128,18 +127,6 @@ public class CameraMovement : MonoBehaviour
     {
         if (!allowRotation)
             return;
-        if (placement)
-        {
-            if (placement.deletingObject)
-            {
-                return;
-            }
-        }
-        if (hover != null)
-        {
-            if (Hover.componentSelected && hover.hoverTab)
-                return;
-        }
         if (zooming) 
         {
             return;
@@ -303,18 +290,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (!allowZoom)
             return;
-        if (placement)
-        {
-            if (placement.deletingObject)
-            {
-                return;
-            }
-        }
-        if (hover != null)
-        {
-            if (Hover.componentSelected || hover.isTab)
-                return;
-        }
+
 #if UNITY_STANDALONE
         if (Input.mouseScrollDelta.y != 0)
         {
@@ -423,8 +399,10 @@ public class CameraMovement : MonoBehaviour
 
     public void LookAtComponent(Transform componentToLook) 
     {
+        allowRotation = false;
         zooming = true;
         transform.position = new Vector3(transform.position.x,componentToLook.position.y);
+        transform.LookAt(componentToLook);
         Camera.main.fieldOfView = 10;
 
     }
@@ -443,6 +421,7 @@ public class CameraMovement : MonoBehaviour
 
     }
 
+    //-15, 100
     private void CameraScroll() 
     {
         if (!allowRotation)
@@ -451,7 +430,7 @@ public class CameraMovement : MonoBehaviour
         if (Input.touchCount > 0)
         {
             var pos = transform.position;
-            pos.y = Mathf.Clamp(transform.position.y + Input.GetTouch(0).deltaPosition.y / 8, -15, 100);
+            pos.y = Mathf.Clamp(transform.position.y + Input.GetTouch(0).deltaPosition.y / 8, scrollFloor, scrollCeiling);
             transform.position = pos;
         }
     }
