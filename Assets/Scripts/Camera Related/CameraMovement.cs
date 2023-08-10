@@ -25,7 +25,7 @@ public class CameraMovement : MonoBehaviour
 
     public float scrollFloor, scrollCeiling;
 
-    public float initialDistance;
+    private float initialDistance;
     public float sensitivity = 5;
     public float maxZoom = 140;
     public List<Material> skyboxes;

@@ -17,12 +17,12 @@ public class ReturnValue : MonoBehaviour
         pressedBtn = false;
         indexValue = 0;
 
-        /*
-        foreach (Button btn in transform.GetComponentsInChildren<Button>())
-        {
-            btn.onClick.AddListener(delegate { ReturnConnectionPoint(); });
-        }
-        */
+
+        //foreach (Button btn in transform.GetComponentsInChildren<Button>())
+        //{
+        //    btn.onClick.AddListener(delegate { ReturnConnectionPoint(); });
+        //}
+
     }
 
     public void ButtonPress1()
@@ -78,29 +78,29 @@ public class ReturnValue : MonoBehaviour
         scriptRef();
     }
 
-    /*
-    private void ReturnConnectionPoint() 
-    {
-        if (connection.pipeWarning)
-        {
-            connection.pipeWarningPanel.SetActive(true);
-            return;
-        }
-        pressedBtn = !pressedBtn;
 
-        if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color == Color.green)
-        {
-            EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = Color.white;
-            indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        }
-        else 
-        {
-            EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = Color.green;
-            indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        }
-        scriptRef();
-    }
-    */
+    //private void ReturnConnectionPoint()
+    //{
+    //    if (connection.pipeWarning)
+    //    {
+    //        connection.pipeWarningPanel.SetActive(true);
+    //        return;
+    //    }
+    //    pressedBtn = !pressedBtn;
+
+    //    if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color == Color.green)
+    //    {
+    //        EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = Color.white;
+    //        indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+    //    }
+    //    else
+    //    {
+    //        EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = Color.green;
+    //        indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+    //    }
+    //    scriptRef();
+    //}
+
     public int ReturnIndex() 
     {
         connection.valueReturnBtn = this;
