@@ -806,7 +806,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d7191870fe3924a4bbd9dbcc68f220db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3100ade3055addc4085962db359e228d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7818,6 +7818,7 @@ MonoBehaviour:
   pop: 0
   wrong: 1
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!114 &610186180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9996,6 +9997,7 @@ MonoBehaviour:
   pop: 1
   wrong: 0
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!114 &754042571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10591,6 +10593,7 @@ MonoBehaviour:
   pop: 0
   wrong: 0
   popAtBeginning: 1
+  rewardHintPop: {fileID: 0}
 --- !u!114 &860568398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13117,7 +13120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5a2d68cc21dc1e949980d5a6d671b325, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15e5f03885ed84945a3469386492fba9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14591,6 +14594,7 @@ MonoBehaviour:
   pop: 0
   wrong: 0
   popAtBeginning: 1
+  rewardHintPop: {fileID: 0}
 --- !u!114 &1222821907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18292,6 +18296,7 @@ MonoBehaviour:
   pop: 1
   wrong: 1
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!114 &1625566561
 MonoBehaviour:
   m_ObjectHideFlags: 0
