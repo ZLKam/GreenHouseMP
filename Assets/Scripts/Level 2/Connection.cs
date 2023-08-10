@@ -160,14 +160,9 @@ public class Connection : MonoBehaviour
                 selection = raycastHit.transform;
                 if (selection.GetComponent<SelectedComponent>())
                 {
-                    //Debug.Log("Reached two");
                     selectedComponent = selection.GetComponent<SelectedComponent>();
                     //selectedComponent.valueReturn.selectedComponentBtn = selectedComponent;
                     //valueReturnBtn.selectedComponentBtn = selectedComponent;
-
-                    Debug.Log(selectedComponent.transform.position);
-                    
-
 
                     foreach (SelectedComponent component in componentArray) 
                     {
@@ -177,7 +172,6 @@ public class Connection : MonoBehaviour
                         }
                         else 
                         {
-                            //Debug.Log(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
                             cameraMovement.LookAtComponent(selectedComponent.transform);
                             component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
                         }
@@ -187,6 +181,7 @@ public class Connection : MonoBehaviour
                 {
                     if (selectedComponent)
                     {
+                        cameraMovement.allowRotation = true;
                         selectedComponent.RemoveUI();
                         cameraMovement.zooming = false;
                     }
@@ -196,6 +191,7 @@ public class Connection : MonoBehaviour
             {
                 if (selectedComponent) 
                 {
+                    cameraMovement.allowRotation = true;
                     selectedComponent.RemoveUI();
                     cameraMovement.zooming = false;
                 }
@@ -208,7 +204,7 @@ public class Connection : MonoBehaviour
                 if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
                 {
                     selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                    points.Remove(selection.gameObject);
+                    points.Remove(selectedComponent.IndexReturn().gameObject);
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
@@ -234,7 +230,7 @@ public class Connection : MonoBehaviour
                     tobeunhighlighted.Add(points[last - 1]);
                 }
 
-                Debug.Log(points.Count);
+                Debug.Log(points.Count);    
                 if (points.Count >= 2)
                 {
                     var pointlist = new List<GameObject>();

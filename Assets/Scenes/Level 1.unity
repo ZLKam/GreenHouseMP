@@ -8698,6 +8698,8 @@ MonoBehaviour:
   allowRotation: 1
   allowZoom: 1
   rotationSpeed: 60
+  scrollFloor: -15
+  scrollCeiling: 100
   initialDistance: 0
   sensitivity: 5
   maxZoom: 140

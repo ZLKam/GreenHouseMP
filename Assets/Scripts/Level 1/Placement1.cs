@@ -236,6 +236,7 @@ public class Placement1 : MonoBehaviour
             deletableGameobject = selectedTransform.gameObject;
             objectToTrack = deletableGameobject;
             deletingObject = true;
+            cameraMovement.allowZoom = false;
         }
 
         if (Input.touchCount > 0 && objectToTrack)
@@ -259,12 +260,14 @@ public class Placement1 : MonoBehaviour
                     objectToTrack = null;
                     highlightedPlacement = null;
                     deletingObject = false;
+                    cameraMovement.allowZoom = true;
                 }
                 else
                 {
                     objectToTrack.gameObject.transform.localPosition = Vector3.zero;
                     objectToTrack = null;
                     deletingObject = false;
+                    cameraMovement.allowZoom = true;
                 }
             }
         }
