@@ -107,8 +107,9 @@ public class CameraMovement : MonoBehaviour
         else
         //level 2
         {
-            SwitchCamera();
-            CameraRotation();
+            CameraScroll();
+            //SwitchCamera();
+            //CameraRotation();
             ZoomCamera();
         }
         //EnhancedCamera();
@@ -423,8 +424,9 @@ public class CameraMovement : MonoBehaviour
     public void LookAtComponent(Transform componentToLook) 
     {
         zooming = true;
+        transform.position = new Vector3(transform.position.x,componentToLook.position.y);
         Camera.main.fieldOfView = 10;
-        transform.LookAt(componentToLook);
+
     }
 
     public void LockCamera() 
