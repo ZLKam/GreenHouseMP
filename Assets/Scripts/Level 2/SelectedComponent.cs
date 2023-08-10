@@ -38,6 +38,9 @@ public class SelectedComponent : MonoBehaviour
 
     public void RemoveUI() 
     {
+        if (!uiTemp)
+            return;
+
         Destroy(uiTemp);
     }
 

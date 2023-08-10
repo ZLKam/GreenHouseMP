@@ -181,9 +181,11 @@ public class Connection : MonoBehaviour
                 {
                     if (selectedComponent)
                     {
-                        cameraMovement.allowRotation = true;
                         selectedComponent.RemoveUI();
+                        cameraMovement.transform.rotation = Quaternion.Euler(11, 90, 0);
+                        cameraMovement.allowRotation = true;
                         cameraMovement.zooming = false;
+                        Camera.main.fieldOfView = 25;
                     }
                 }
             }
@@ -191,9 +193,12 @@ public class Connection : MonoBehaviour
             {
                 if (selectedComponent) 
                 {
-                    cameraMovement.allowRotation = true;
                     selectedComponent.RemoveUI();
+                    cameraMovement.transform.rotation = Quaternion.Euler(11, 90, 0);
+                    cameraMovement.allowRotation = true;
                     cameraMovement.zooming = false;
+                    Camera.main.fieldOfView = 25;
+                    selectedComponent = null;
                 }
             }
         }
