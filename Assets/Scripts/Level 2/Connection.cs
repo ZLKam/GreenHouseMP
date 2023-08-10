@@ -165,6 +165,10 @@ public class Connection : MonoBehaviour
                     //selectedComponent.valueReturn.selectedComponentBtn = selectedComponent;
                     //valueReturnBtn.selectedComponentBtn = selectedComponent;
 
+                    Debug.Log(selectedComponent.transform.position);
+                    
+
+
                     foreach (SelectedComponent component in componentArray) 
                     {
                         if (selectedComponent != component)
@@ -173,6 +177,7 @@ public class Connection : MonoBehaviour
                         }
                         else 
                         {
+                            //Debug.Log(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
                             cameraMovement.LookAtComponent(selectedComponent.transform);
                             component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
                         }

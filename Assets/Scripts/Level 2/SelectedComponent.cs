@@ -29,12 +29,15 @@ public class SelectedComponent : MonoBehaviour
     {
         if (!uiTemp)
         {
-            uiTemp = Instantiate(UIPrefab, selectionPoint, Quaternion.identity);
+            Debug.Log(selectionPoint);
+            connection.uiParent.transform.position = selectionPoint;
+            uiTemp = Instantiate(UIPrefab, selectionPoint, Quaternion.identity, connection.uiParent.transform);
+            Debug.Log(selectionPoint + "round 2");
+            uiTemp.transform.localPosition = Vector3.zero;
             Camera.main.transform.parent.GetComponent<CameraMovement>().enabled = false;
             canChange = false;
             StartCoroutine(Co());
         }
-        uiTemp.transform.SetParent(connection.uiParent.transform);
         valueReturn = uiTemp.GetComponent<ReturnValue>();
     }
 
