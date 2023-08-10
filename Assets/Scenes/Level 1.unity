@@ -3225,6 +3225,22 @@ PrefabInstance:
       propertyPath: componentPrefab
       value: 
       objectReference: {fileID: 118911803906712837, guid: 1ae9954049e7f6b4288a6d72a23a083c, type: 3}
+    - target: {fileID: 8974622823169809071, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 121.1542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622823169809071, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 106.1235
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622823169809071, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 207.85109
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974622823169809071, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17.984701
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
 --- !u!224 &492146569 stripped
@@ -12224,7 +12240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c12df2dcf04bc34ea4b8c4872c0edeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 358b74ad748b3764cb3736d4de079932, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

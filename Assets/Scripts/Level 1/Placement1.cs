@@ -255,10 +255,10 @@ public class Placement1 : MonoBehaviour
                     objectToTrack.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(true);
                     objectToTrack.transform.parent.GetChild(0).GetComponent<Animator>().SetBool("ObjectPlaced", false);
                     Destroy(objectToTrack.gameObject);
+                    AutoPlace(deletableGameobject.transform.parent, true);
                     objectToTrack = null;
                     highlightedPlacement = null;
                     deletingObject = false;
-                    AutoPlace(deletableGameobject.transform.parent, true);
                 }
                 else
                 {
