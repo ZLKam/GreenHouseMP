@@ -52,16 +52,16 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     public void OnTabSelected(HoverTab components)
     //Upon Clicking the tabs
     {
+        dragToPlace = true;
+        ResetTabColor(components);
         components.imageToChange.transform.localScale = components.originTransform;
         components.imageToChange.transform.localScale = Vector3.Lerp(components.imageToChange.transform.localScale, components.imageToChange.transform.localScale * 0.8f, 1);
 
         wheelTitle.text = components.componentName;
-        openTab = true;
 
         if (placement && placeComponent)
         //For level 1
         {
-            dragToPlace = true;
             OnPlacementFound(components);
         }
         else if (connection) 
@@ -87,11 +87,11 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         }
     }
 
-
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (dragToPlace)
+            return;
         openTab = !openTab;
-        cameraController = FindAnyObjectByType<CameraMovement>();
     }
 
     private void OnPlacementFound(HoverTab components) 
@@ -110,6 +110,17 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         connection.body = components.pipeBody;
     }
 
+    public void ResetTabColor(HoverTab component) 
+    {
+        foreach (HoverTab hovertab in componentTabs) 
+        {
+            if (hovertab != component)
+            {
+                hovertab.backgroundImage.color = Color.white;
+            }
+        }
+    }
+
     #region MonoBehaviour
 
     private void Start()
@@ -124,7 +135,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         if (openTab)
         {
             transform.GetComponent<RectTransform>().localPosition = Vector3.Lerp(transform.GetComponent<RectTransform>().localPosition, new Vector3(finalPositionOfWheel, transform.GetComponent<RectTransform>().localPosition.y, transform.GetComponent<RectTransform>().localPosition.z), moveSpeed * Time.deltaTime);
-            tab.GetComponent<RectTransform>().sizeDelta = new Vector2(35, 90);
+            tab.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 90);
             placeComponent = true;
         }
         else
@@ -133,9 +144,13 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
             tab.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 90);
             placeComponent = false;
         }
-        dragToPlace = false;
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && placement.component && !dragToPlace)
+        if(Input.touchCount == 0 && dragToPlace) 
+        {
+            dragToPlace = false;
+        }
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && placement.component)
         {
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.GetTouch(0).position), out RaycastHit hit, Mathf.Infinity, ~(1 << 6)))
             {
@@ -149,6 +164,5 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     }
 
     #endregion
-
 
 }

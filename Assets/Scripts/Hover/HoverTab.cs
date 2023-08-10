@@ -14,9 +14,12 @@ public class HoverTab : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject componentPrefab;
     public GameObject[] pipes;
     public string componentName;
-
+    
     [HideInInspector]
     public GameObject parentPipe, pipeBody, pipeEntrance;
+    [HideInInspector]
+    public Image backgroundImage;
+
 
     void Start()
     {
@@ -26,11 +29,14 @@ public class HoverTab : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         PipeAssign();
 
+        backgroundImage = transform.GetChild(0).GetComponent<Image>();
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         hoverGroup.OnTabSelected(this);
+        backgroundImage.color = Color.green;
     }
 
     public void OnPointerUp(PointerEventData eventData)
