@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using System;
+using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
@@ -26,7 +28,6 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
 
         // The DontDestroyOnLoad function is called for the GameObject that this script is attached
         // which would prevent the GameObject to from being destroyed when moving in between scenes
@@ -54,15 +55,18 @@ public class AudioManager : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
     }
 
-    private void Update()
+    public void UpdateVolume() 
     {
-        if(audioSources != null)
+        //updates audio volume in the audioManager Object
+        if (audioSources != null)
         {
             foreach (AudioSource audio in audioSources)
             {
                 if (audio.clip.name == PlayerPrefs.GetString("musicName"))
+                //checks if the clip matches the current music being played
                 {
                     audio.volume = PlayerPrefs.GetFloat("musicValue") / 100;
+                    //adjusts the volume based on the float set in SettingsManager
                 }
 
                 if (audio.clip.name == "button 1")

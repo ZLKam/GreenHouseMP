@@ -1256,6 +1256,7 @@ MonoBehaviour:
   pop: 1
   wrong: 0
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!114 &189878267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8084,6 +8085,7 @@ MonoBehaviour:
   pop: 0
   wrong: 0
   popAtBeginning: 1
+  rewardHintPop: {fileID: 0}
 --- !u!114 &1100470216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8857,6 +8859,7 @@ MonoBehaviour:
   pop: 1
   wrong: 0
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!114 &1160921622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9037,6 +9040,7 @@ MonoBehaviour:
   pop: 1
   wrong: 1
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!114 &1186158699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10768,6 +10772,7 @@ MonoBehaviour:
   pop: 1
   wrong: 1
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!1 &1469774244
 GameObject:
   m_ObjectHideFlags: 0
@@ -11121,6 +11126,7 @@ MonoBehaviour:
   pop: 1
   wrong: 0
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!114 &1486794530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14019,6 +14025,7 @@ MonoBehaviour:
   pop: 0
   wrong: 0
   popAtBeginning: 1
+  rewardHintPop: {fileID: 0}
 --- !u!114 &1953659424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15037,7 +15044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4114148489311466336, guid: 0660d09100ea2dd45ae7ca0cad8ac67f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -298
+      value: -289
       objectReference: {fileID: 0}
     - target: {fileID: 4114148489311466336, guid: 0660d09100ea2dd45ae7ca0cad8ac67f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -15133,6 +15140,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1893078614906346335, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15e5f03885ed84945a3469386492fba9, type: 3}
     - target: {fileID: 2007340951330132848, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -15283,6 +15294,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4377663516003283197, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3100ade3055addc4085962db359e228d, type: 3}
     - target: {fileID: 6699498399732481243, guid: 74d883595c003ec4ba78511ceebba276, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
