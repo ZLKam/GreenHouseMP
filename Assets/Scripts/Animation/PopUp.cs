@@ -26,6 +26,9 @@ public class PopUp : MonoBehaviour
     [SerializeField]
     private bool popAtBeginning;
 
+    [SerializeField]
+    private GameObject rewardHintPop;
+
     
     // Start is called before the first frame update
     void Start()
@@ -98,12 +101,6 @@ public class PopUp : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    //public void NextPopUp(GameObject next)
-    //{
-    //    gameObject.SetActive(false);
-    //    next.SetActive(true);
-    //}
-
     public void Return()
     {
         FindObjectOfType<AudioManager>().Play("Click");
@@ -111,5 +108,11 @@ public class PopUp : MonoBehaviour
         pop = true;
         fade.darken = false;
         gameObject.SetActive(false);
+
+
+        if (rewardHintPop)
+        {
+            rewardHintPop.SetActive(true);
+        }
     }
 }

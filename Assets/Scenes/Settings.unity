@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 85244755}
   musicDrop: {fileID: 1690333787}
+  audioManager: {fileID: 0}
   rotate: {fileID: 212090515}
   zoomSpeed: {fileID: 806007228}
   zoomSensitivity: {fileID: 1396497496}
@@ -1716,6 +1717,7 @@ MonoBehaviour:
   progressionChapter1: {fileID: 0}
   progressionChapter2: {fileID: 0}
   progressionChapter3: {fileID: 0}
+  badge: {fileID: 0}
   chapterImages: []
 --- !u!114 &198328468
 MonoBehaviour:
@@ -5570,6 +5572,7 @@ MonoBehaviour:
   progressionChapter1: {fileID: 0}
   progressionChapter2: {fileID: 0}
   progressionChapter3: {fileID: 0}
+  badge: {fileID: 0}
   chapterImages: []
 --- !u!114 &950101204
 MonoBehaviour:

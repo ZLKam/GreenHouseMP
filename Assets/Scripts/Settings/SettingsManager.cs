@@ -6,6 +6,9 @@ using TMPro;
 
 public class SettingsManager : MonoBehaviour
 {
+    private AudioManager audioManager;
+    private CameraRotate cameraRotate;
+
     public TMP_Dropdown background;
     public TMP_Dropdown musicDrop;
 
@@ -22,6 +25,8 @@ public class SettingsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
+        cameraRotate = FindObjectOfType<CameraRotate>();
         background.value = PlayerPrefs.GetInt("backgroundIndex");
         musicDrop.value = PlayerPrefs.GetInt("musicIndex");
         if (!PlayerPrefs.HasKey("fadeValue"))
@@ -54,22 +59,34 @@ public class SettingsManager : MonoBehaviour
 
         Debug.Log(PlayerPrefs.GetString("musicName"));
 
-        FindObjectOfType<AudioManager>().Play(PlayerPrefs.GetString("musicName") + " (Music)");
+        audioManager.Play(PlayerPrefs.GetString("musicName") + " (Music)");
     }
 
     public void SetBackground()
     {
         PlayerPrefs.SetInt("backgroundIndex", background.value);
+
+        cameraRotate.CheckSkybox();
     }
 
     public void SetMusicVolume()
     {
         PlayerPrefs.SetFloat("musicValue", music.value);
+
+        if (audioManager)
+        {
+            audioManager.UpdateVolume();
+        }
     }
 
     public void SetSoundVolume()
     {
         PlayerPrefs.SetFloat("soundValue", sound.value);
+
+        if (audioManager) 
+        {
+            audioManager.UpdateVolume();
+        }
     }
 
     public void SetRotateSpeed()

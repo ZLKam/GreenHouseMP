@@ -19,6 +19,8 @@ public class CameraRotate : MonoBehaviour
 
     void Start()
     {
+        CheckSkybox();
+
         if (!PlayerPrefs.HasKey("firstTime"))
         {
             Debug.Log("First Time Opening");
@@ -51,13 +53,10 @@ public class CameraRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckSkybox();
-
-        transform.LookAt(focusPoint);
-        transform.Translate(rotationSpeed * Time.deltaTime * Vector3.right);
+        transform.RotateAround(focusPoint.position, Vector3.up, rotationSpeed * Time.deltaTime);
     }
 
-    void CheckSkybox()
+    public void CheckSkybox()
     {
         RenderSettings.skybox = skyboxes[PlayerPrefs.GetInt("backgroundIndex")];
     }
