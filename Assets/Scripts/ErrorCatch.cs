@@ -37,7 +37,7 @@ public class ErrorCatch : MonoBehaviour
 
     private void HandleLog(string condition, string stackTrace, LogType type)
     {
-#if !UNITY_EDITOR
+#if DEBUG
         if (type == LogType.Error || type == LogType.Exception)
         {
             string logMessage = $"{DateTime.Now.ToString()} {type}: {condition}\nStack Trace: {stackTrace}\n";
