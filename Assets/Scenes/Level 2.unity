@@ -7261,7 +7261,7 @@ PrefabInstance:
     - target: {fileID: 8974622823230098432, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1f4e12515c8cd17499716bd89480eb86, type: 3}
+      objectReference: {fileID: 21300000, guid: 88af9b1717fa2544cbb4fdc382cc7895, type: 3}
     - target: {fileID: 8974622823230098439, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: m_SizeDelta.x
       value: 737.003
@@ -22414,7 +22414,6 @@ MonoBehaviour:
   rotationSpeed: 60
   scrollFloor: -50
   scrollCeiling: 80
-  initialDistance: 0
   sensitivity: 5
   maxZoom: 140
   skyboxes:
