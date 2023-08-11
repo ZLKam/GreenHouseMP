@@ -166,7 +166,7 @@ public class Connection : MonoBehaviour
 
                     foreach (SelectedComponent component in componentArray) 
                     {
-                        if (selectedComponent != component)
+                        if (selectedComponent!= component) //.transform.name
                         {
                             component.RemoveUI();
                         }
