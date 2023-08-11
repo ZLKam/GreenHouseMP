@@ -57,7 +57,7 @@ public class Placement1 : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~layerToIgnore))
         {
-            if(!component)
+            if (!component)
                 DeleteComponent(hit.transform);
 
             Highlight(hit);
@@ -83,7 +83,6 @@ public class Placement1 : MonoBehaviour
             if (deletingObject)
             //prevents it being called when nothing is happening
             {
-                Debug.Log("tracking Object");
                 DeleteComponent(); 
             }
         }
@@ -93,7 +92,6 @@ public class Placement1 : MonoBehaviour
 
     private void Highlight(RaycastHit hit) 
     {
-
         foreach (GameObject selectPoints in selections)
         {
             if (selectPoints == hit.collider.gameObject)
@@ -183,6 +181,7 @@ public class Placement1 : MonoBehaviour
 
         component.transform.parent = selectedTransform;
         component.transform.localPosition = Vector3.zero;
+        component.transform.localRotation = selectedPrefab.transform.rotation;
         component.GetComponent<Collider>().enabled = true;
 
         if (selectedTransform.transform.GetChild(0).CompareTag("SharedSelection"))
@@ -202,7 +201,6 @@ public class Placement1 : MonoBehaviour
         {
             highlightedPlacement = null;
         }
-        else {}
 
         if (component.CompareTag("Component/CwpOpt") && selectedTransform.name.Equals("Selection Point (17)"))
         {
