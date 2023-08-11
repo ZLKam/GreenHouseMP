@@ -27,7 +27,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     public Image tab;
 
-    private bool openTab;
+    public bool openTab;
     private bool placeComponent;
     private Vector3 mousePos;
     public bool dragToPlace;
@@ -79,15 +79,18 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         dragToPlace = true;
         if(cameraController)
             cameraController.allowZoom = false;
-        if (placement.component)
+        if (placement)
         {
+            if (placement.component)
+            {
 #if UNITY_STANDALONE
-            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
+                mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
 #endif
 #if UNITY_ANDROID
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
 #endif
-            placement.component.transform.position = mousePos;
+                placement.component.transform.position = mousePos;
+            }
         }
     }
 

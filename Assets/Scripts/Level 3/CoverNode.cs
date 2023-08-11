@@ -12,6 +12,15 @@ namespace Level3
         [SerializeField]
         private List<Transform> changedCells = new();
 
+        private void Update()
+        {
+            if (GetComponent<ComponentEvent>())
+            {
+                if (GetComponent<ComponentEvent>().enabled == false)
+                    GetComponent<ComponentEvent>().enabled = true;
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             CheckCoveringRectGridCell(collision);

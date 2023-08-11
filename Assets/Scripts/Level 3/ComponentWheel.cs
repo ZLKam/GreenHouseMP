@@ -28,9 +28,6 @@ public class ComponentWheel : MonoBehaviour
 
     public Vector2 centerPointOfPlayArea = new();
 
-    private List<bool> correctList = new();
-    private int numberOfCorrectConnections = 5;
-
     // Start is called before the first frame update
     void Start()
     {

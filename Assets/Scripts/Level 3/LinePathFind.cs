@@ -28,7 +28,9 @@ public class LinePathFind : MonoBehaviour
 
     public GameObject line;
 
+    [SerializeField]
     private Vector2 lineStartPoint;
+    [SerializeField]
     private Vector2 lineEndPoint;
     private Transform lineFrom;
     private Transform lineTo;
@@ -66,6 +68,8 @@ public class LinePathFind : MonoBehaviour
     private List<RectGridCell> affectedCellsList = new();
     private Dictionary<GameObject, List<RectGridCell>> previousDrawnLineDict = new();
     private List<List<LineLimit>> previousDrawnLineFromAndTo = new();
+    [SerializeField]
+    private List<Vector2> newReversePathLocations = new List<Vector2>();
     #endregion
 
     private void Awake()
@@ -164,7 +168,15 @@ public class LinePathFind : MonoBehaviour
                 {
                     Debug.Log("Please select a different component");
                     toT = null;
-                    imgComponentTo.sprite = null;
+                    imgComponentTo.sprite = transparentSprite;
+                    return;
+                }
+                if (!typeOfLineSelected)
+                {
+                    selectColorPopUp.SetActive(true);
+                    hoverTab.SetHoverTab = true;
+                    toT = null;
+                    imgComponentTo.sprite = transparentSprite;
                     return;
                 }
                 // When from and to are selected, find the nearest nodes of them
@@ -303,6 +315,7 @@ public class LinePathFind : MonoBehaviour
                     distanceToInt = Vector2Int.Distance(toPointInt, point);
                     distanceTo = Vector2.Distance(toPoint, point);
                     nearestPointTo = point;
+                    Debug.Log(nearestPointTo);
                 }
             }
         }
@@ -441,6 +454,8 @@ public class LinePathFind : MonoBehaviour
         }
         if (pathFinder.status == PathFinderStatus.SUCCESS)
         {
+            Vector2Int curvePoint = new (-1, -1);
+
             //Debug.Log("Found a path, time taken: " + (Time.time - startTime));
             // found a valid path.
             // accumulate all the locations by traversing from goal to the start.
@@ -449,33 +464,138 @@ public class LinePathFind : MonoBehaviour
             while (node != null)
             {
                 reversePathLocations.Add(node.location);
+                //Debug.Log(node.location);
                 node = node.parent;
             }
+            for (int i = 1; i < reversePathLocations.Count - 1; i++)
+            {
+                if ((reversePathLocations[i].x == reversePathLocations[i - 1].x && reversePathLocations[i].y == reversePathLocations[i + 1].y) ||
+                    (reversePathLocations[i].x == reversePathLocations[i + 1].x && reversePathLocations[i].y == reversePathLocations[i - 1].y)) 
+                {
+                    curvePoint = reversePathLocations[i];
+                    //Debug.Log(reversePathLocations[i] + " is the curve point.");
+                    break;
+                }
+            }
+            if (curvePoint != Vector2Int.left + Vector2Int.down)
+            {
+                Vector2 newCurvePoint = new Vector2(curvePoint.x, curvePoint.y);
+                int indexOfCurvePoint = reversePathLocations.IndexOf(curvePoint);
+                Debug.Log(indexOfCurvePoint);
+                foreach (Vector2Int vector2Int in reversePathLocations)
+                {
+                    newReversePathLocations.Add(new Vector2(vector2Int.x, vector2Int.y));
+                }
+                // check if the from point to curve point is vertical or horizontal
+                if (reversePathLocations[^1].x == curvePoint.x)
+                {
+                    Debug.Log("From point to curve point is vertical");
+                    if (Mathf.Abs(lineStartPoint.x - newCurvePoint.x) < 0.5f)
+                    {
+                        for (int i = newReversePathLocations.Count - 1; i >= indexOfCurvePoint; i--)
+                        {
+                            newReversePathLocations[i] = new Vector2(lineStartPoint.x, newReversePathLocations[i].y);
+                        }
+                        newCurvePoint = new Vector2(lineStartPoint.x, newCurvePoint.y);
+                    }
+                    //else
+                    //{
+                    //    Debug.Log("Difference between start point and curve point is more than one cell, so add the start point to the path.");
+                    //    newReversePathLocations.Add(lineStartPoint);
+                    //}
+                }
+                else
+                {
+                    Debug.Log("From point to curve point is horizontal");
+                    if (Mathf.Abs(lineStartPoint.y - newCurvePoint.y) < 0.5f)
+                    {
+                        for (int i = newReversePathLocations.Count - 1; i >= indexOfCurvePoint; i--)
+                        {
+                            newReversePathLocations[i] = new Vector2(newReversePathLocations[i].x, lineStartPoint.y);
+                        }
+                        newCurvePoint = new Vector2(newCurvePoint.x, lineStartPoint.y);
+                    }
+                    //else
+                    //{
+                    //    Debug.Log("Difference between start point and curve point is more than one cell, so add the start point to the path.");
+                    //    newReversePathLocations.Add(lineStartPoint);
+                    //}
+                }
+                if (reversePathLocations[0].x == curvePoint.x)
+                {
+                    Debug.Log("To point to curve point is vertical");
+                    if (Mathf.Abs(lineEndPoint.x - newCurvePoint.x) < 0.5f)
+                    {
+                        for (int i = 0; i < indexOfCurvePoint; i++)
+                        {
+                            newReversePathLocations[i] = new Vector2(lineEndPoint.x, newReversePathLocations[i].y);
+                        }
+                        newCurvePoint = new Vector2(lineEndPoint.x, newCurvePoint.y);
+                    }
+                    //else
+                    //{
+                    //    Debug.Log("Difference between end point and curve point is more than one cell, so add the end point to the path.");
+                    //    newReversePathLocations.Insert(0, lineEndPoint);
+                    //}
+                }
+                else
+                {
+                    Debug.Log("To point to curve point is horizontal");
+                    if (Mathf.Abs(lineEndPoint.y - newCurvePoint.y) < 0.5f)
+                    {
+                        for (int i = 0; i < indexOfCurvePoint; i++)
+                        {
+                            newReversePathLocations[i] = new Vector2(newReversePathLocations[i].x, lineEndPoint.y);
+                        }
+                        newCurvePoint = new Vector2(newCurvePoint.x, lineEndPoint.y);
+                    }
+                    //else
+                    //{
+                    //    Debug.Log("Difference between end point and curve point is more than one cell, so add the end point to the path.");
+                    //    newReversePathLocations.Insert(0, lineEndPoint);
+                    //}
+                }
+                newReversePathLocations[indexOfCurvePoint] = newCurvePoint;
+            }
+            else
+            {
+                foreach (var v in reversePathLocations)
+                {
+                    newReversePathLocations.Add(new Vector2(v.x, v.y));
+                }
+            }
+
             GameObject line = Instantiate(this.line, transform);
             previousDrawnLineDict.Add(line, new List<RectGridCell>());
             line.GetComponent<DrawLine>().rectGrid = rectGrid;
-            AddFromRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[reversePathLocations.Count - 1]);
+            AddFromRotatePoint(line.GetComponent<DrawLine>(), newReversePathLocations[^1]); 
             // add all these points to the waypoints.
             for (int i = reversePathLocations.Count - 1; i >= 0; i--)
             {
                 AddWayPoint(reversePathLocations[i]);
-                line.GetComponent<DrawLine>().points.Add(reversePathLocations[i]);
+                //line.GetComponent<DrawLine>().points.Add(newReversePathLocations[i]);
                 RectGridCell cell = rectGrid.transform.Find("cell_" + reversePathLocations[i].x + "_" + reversePathLocations[i].y).GetComponent<RectGridCell>();
                 cell.SetNonWalkable();
                 affectedCellsList.Add(cell);
             }
-            previousDrawnLineDict[line] = new (affectedCellsList);
-            AddToRotatePoint(line.GetComponent<DrawLine>(), reversePathLocations[0]);
+            for (int i = newReversePathLocations.Count - 1; i >= 0; i--)
+            {
+                line.GetComponent<DrawLine>().points.Add(newReversePathLocations[i]);
+            }
+            previousDrawnLineDict[line] = new(affectedCellsList);
+            AddToRotatePoint(line.GetComponent<DrawLine>(), newReversePathLocations[0]);
             line.GetComponent<DrawLine>().lineFrom = lineFrom;
             line.GetComponent<DrawLine>().lineTo = lineTo;
-            line.GetComponent<DrawLine>().finishedAddingPoints = true;
             line.GetComponent<DrawLine>().lineColor = colorOfLineSelected;
+            line.GetComponent<DrawLine>().affectedCellList = new (affectedCellsList);
+            line.GetComponent<DrawLine>().finishedAddingPoints = true;
         }
         imgFindingPath.SetActive(false);
         findingPath = false;
         imgComponentFrom.sprite = transparentSprite;
         imgComponentTo.sprite = transparentSprite;
         affectedCellsList.Clear();
+        newReversePathLocations.Clear();
     }
 
     public void AddWayPoint(Vector2Int point)
@@ -483,16 +603,20 @@ public class LinePathFind : MonoBehaviour
         wayPoints.Enqueue(point);
     }
 
-    private void AddFromRotatePoint(DrawLine line, Vector2Int firstNodePos)
+    private void AddFromRotatePoint(DrawLine line, Vector2 firstNodePos)
     {
         line.points.Add(lineStartPoint);
         line.points.Add(new Vector2(firstNodePos.x, lineStartPoint.y));
     }
 
-    private void AddToRotatePoint(DrawLine line, Vector2Int lastNodePos)
+    private void AddToRotatePoint(DrawLine line, Vector2 lastNodePos)
     {
         line.points.Add(new Vector2(lastNodePos.x, lineEndPoint.y));
         line.points.Add(lineEndPoint);
+        //for (int i = 0; i < line.points.Count; i++)
+        //{
+        //    Debug.Log(line.points[i]);
+        //}
     }
 
     public void UndoFunction()

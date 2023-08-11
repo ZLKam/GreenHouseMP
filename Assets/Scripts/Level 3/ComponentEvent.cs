@@ -122,12 +122,33 @@ namespace Level3
         {
             highlightPlaceholder = Resources.Load<Sprite>("Game UI/BorderYellow");
             //CheckDirection();
+            StartCoroutine(CheckIfOutsideOfPlaceholder());
+        }
+
+        private IEnumerator CheckIfOutsideOfPlaceholder()
+        {
+            yield return new WaitForEndOfFrameUnit();
+            float time = 0f;
+            while (!holding)
+            {
+                if (time >= 2f)
+                    yield break;
+                time += Time.deltaTime;
+                if (transform.parent == buttonEvent.componentWheel.playArea)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
 
         public void OnDrag(PointerEventData eventData)
         {
             if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
+#if UNITY_ANDROID
+            if (Input.touchCount > 1)
+                return;
+#endif
             if (componentName == "Cooling Tower")
             {
                 GetComponent<PolygonCollider2D>().enabled = false;
@@ -143,6 +164,10 @@ namespace Level3
         {
             if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
+#if UNITY_ANDROID
+            if (Input.touchCount > 1)
+                return;
+#endif
             holding = true;
         }
 
@@ -180,6 +205,10 @@ namespace Level3
         {
             if (!buttonEvent.GetComponentInParent<ComponentWheel>())
                 return;
+#if UNITY_ANDROID
+            if (Input.touchCount > 1)
+                return;
+#endif
             CheckPlaceholder(eventData);
             if (componentName == "Cooling Tower")
             {

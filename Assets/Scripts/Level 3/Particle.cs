@@ -61,6 +61,7 @@ namespace Level3
                 targetPos = manager.targetPoints[target];
                 while (true)
                 {
+                    transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(targetPos.y - transform.position.y, targetPos.x - transform.position.x) * Mathf.Rad2Deg);
                     if (Vector2.Distance(transform.position, targetPos) < 0.1f)
                     {
                         if (target >= manager.targetPoints.Count - 1)

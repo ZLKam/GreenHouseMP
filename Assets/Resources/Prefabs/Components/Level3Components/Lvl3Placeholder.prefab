@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6212638477028507831}
   - component: {fileID: 4068684905307723619}
   - component: {fileID: 3940836653461233964}
+  - component: {fileID: -3601764044121917935}
   m_Layer: 0
   m_Name: Lvl3Placeholder
   m_TagString: Selection
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changedCells: []
+--- !u!114 &-3601764044121917935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104762158399420849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2222b05f87ff3104e906d88303d1fd1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenBorder: {fileID: 21300000, guid: d53fbe53b2f252d41b3c024f10d485b9, type: 3}

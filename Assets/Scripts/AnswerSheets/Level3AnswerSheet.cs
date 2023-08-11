@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
 {
     public LinePathFind line;
     public Fade fade;
+    public GameObject panel;
+    public HoverGroup hover;
+    public GameObject barSelectedComponents;
+    public Button btnUndo;
 
     private int numberOfCorrectConnections = 6;
 
@@ -61,6 +66,10 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
         });
         if (correct == numberOfCorrectConnections)
         {
+            hover.openTab = false;
+            barSelectedComponents.SetActive(false);
+            btnUndo.interactable = false;
+            panel.SetActive(true);
             correctPanel.SetActive(true);
             if (!PlayerPrefs.HasKey(Strings.ChapterTwoLevelThreeCompleted))
             {
@@ -77,7 +86,9 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
                 PlayerPrefs.SetInt(Strings.ChapterTwoLevelThreeCompleted, 1);
             }
             fade.ShowChapterTwoBadge();
-            Debug.Log("Correct!!!");
+            Debug.Log("Correct!!! Start to spawn particles");
+            correctLines.ForEach(correctLine => correctLine.SpawnParticle());
+            correctLines.ForEach(correctLine => correctLine.StopSpawnArrow());
         }
         else
         {

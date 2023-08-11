@@ -44,4 +44,9 @@ public class RectGridCell : MonoBehaviour
         isWalkable = false;
         SetInnerColor(rectGrid.NonWalkableColor);
     }
+
+    public bool IsWalkable
+    {
+        get { return isWalkable; }
+    }
 }

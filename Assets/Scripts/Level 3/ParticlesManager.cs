@@ -7,16 +7,24 @@ namespace Level3 {
     //handles spawning the moving particles through the pipes in the scene
     {
         public GameObject particle;
+        public GameObject arrow;
 
-        private Coroutine spawnCoroutine;
+        private Coroutine particleCoroutine;
+        private Coroutine arrowCoroutine;
 
         private bool spawnCoroutineRunning = false;
+        private bool arrowCoroutineRunning = false;
 
         public List<Vector2> targetPoints = new();
 
         public void SpawnParticle(Vector2 position)
         {
-            spawnCoroutine = StartCoroutine(SpawnParticle(position, this));
+            particleCoroutine = StartCoroutine(SpawnParticle(position, this));
+        }
+
+        public void SpawnArrow(Vector2 position)
+        {
+            arrowCoroutine = StartCoroutine(SpawnArrow(position, this));
         }
 
         //Stops spawning particles through the coroutine
@@ -24,8 +32,16 @@ namespace Level3 {
         {
             if (!spawnCoroutineRunning)
                 return;
-            StopCoroutine(spawnCoroutine);
+            StopCoroutine(particleCoroutine);
             spawnCoroutineRunning = false;
+        }
+
+        public void StopSpawnArrow()
+        {
+            if (!arrowCoroutineRunning)
+                return;
+            StopCoroutine(arrowCoroutine);
+            arrowCoroutineRunning = false;
         }
 
         //instantiate a new particle every 0.2s continously, as the coroutine is triggered
@@ -35,6 +51,17 @@ namespace Level3 {
             {
                 spawnCoroutineRunning = true;
                 GameObject particle = Instantiate(this.particle, position, Quaternion.identity, transform);
+                particle.GetComponent<Particle>().manager = manager;
+                yield return new WaitForSecondsRealtime(0.2f);
+            }
+        }
+
+        private IEnumerator SpawnArrow(Vector2 position, ParticlesManager manager)
+        {
+            while (true)
+            {
+                arrowCoroutineRunning = true;
+                GameObject particle = Instantiate(arrow, position, Quaternion.identity, transform);
                 particle.GetComponent<Particle>().manager = manager;
                 yield return new WaitForSecondsRealtime(0.2f);
             }

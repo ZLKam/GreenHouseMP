@@ -35,6 +35,8 @@ namespace Level3
 
         [SerializeField]
         internal bool isReverse = false;
+        [SerializeField]
+        internal List<RectGridCell> affectedCellList = new();
 
         // Start is called before the first frame update
         void Start()
@@ -68,26 +70,41 @@ namespace Level3
                 lr.BakeMesh(mesh);
                 meshCollider.sharedMesh = mesh;
                 particlesManager.targetPoints = points;
-                particlesManager.SpawnParticle(points[0]);
+                //particlesManager.SpawnParticle(points[0]);
+                particlesManager.SpawnArrow(points[0]);
                 yield break;
             }
+        }
+
+        public void SpawnParticle()
+        {
+            particlesManager.SpawnParticle(particlesManager.targetPoints[0]);
+        }
+
+        public void StopSpawnArrow()
+        {
+            particlesManager.StopSpawnArrow();
         }
 
         public void ResetCellToWalkable()
         {
             //points.ForEach(point => rectGrid.transform.Find("cell_" + point.x + "_" + point.y).GetComponent<RectGridCell>());
 
-            int index = 0;
-            points.ForEach((x) =>
+            //int index = 0;
+            //points.ForEach((x) =>
+            //{
+            //    Vector2 point = points[index];
+            //    Transform cell = rectGrid.transform.Find("cell_" + point.x + "_" + point.y);
+            //    if (cell)
+            //    {
+            //        cell.GetComponent<RectGridCell>()?.SetWalkable();
+            //    }
+            //    index++;
+            //});
+            foreach (RectGridCell cell in affectedCellList)
             {
-                Vector2 point = points[index];
-                Transform cell = rectGrid.transform.Find("cell_" + point.x + "_" + point.y);
-                if (cell)
-                {
-                    cell.GetComponent<RectGridCell>()?.SetWalkable();
-                }
-                index++;
-            });
+                cell.SetWalkable();
+            }
         }
 
         public bool isCorrect()
@@ -120,15 +137,15 @@ namespace Level3
             {
                 Destroy(transform.GetChild(i).gameObject);
             }
-            particlesManager.StopSpawnParticle();
-            Transform tempLineTo = lineFrom;
-            lineFrom = lineTo;
-            lineTo = tempLineTo;
+            //particlesManager.StopSpawnParticle();
+            particlesManager.StopSpawnArrow();
+            (lineTo, lineFrom) = (lineFrom, lineTo);
             if (isReverse)
                 particlesManager.targetPoints = reverseVector2Points;
             else
                 particlesManager.targetPoints = points;
-            particlesManager.SpawnParticle(particlesManager.targetPoints[0]);
+            //particlesManager.SpawnParticle(particlesManager.targetPoints[0]);
+            particlesManager.SpawnArrow(particlesManager.targetPoints[0]);
         }
     }
 }

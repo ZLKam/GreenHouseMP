@@ -53,6 +53,8 @@ MonoBehaviour:
   lineMat: {fileID: 2100000, guid: 5a46aa32d0d48dc48ae8037a1376c171, type: 2}
   lineFrom: {fileID: 0}
   lineTo: {fileID: 0}
+  isReverse: 0
+  affectedCellList: []
 --- !u!120 &6509680661341185981
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -162,4 +164,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 6937347189343736720, guid: bfa0d328f91dfc24db276391b3c7cf05, type: 3}
+  arrow: {fileID: 8813819317376306918, guid: 4edd2addc25b6e84e8d00bc659984e6f, type: 3}
   targetPoints: []

@@ -8,9 +8,10 @@ namespace Level3
 {
     public class ComponentButtonEvent : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
-        ComponentWheel componentWheel;
+        internal ComponentWheel componentWheel;
 
         public GameObject component;
+        [SerializeField]
         private Transform instantiatedComponent;
         //private static int spawnedComponentCount = 0;
 
@@ -27,6 +28,10 @@ namespace Level3
         {
             if (componentWheel.DrawLine)
                 return;
+#if UNITY_ANDROID
+            if (Input.touchCount > 1)
+                return;
+#endif
             //if (spawnedComponentCount >= 7)
             //    return;
             //transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
@@ -55,6 +60,10 @@ namespace Level3
         {
             if (!instantiatedComponent || componentWheel.DrawLine)
                 return;
+#if UNITY_ANDROID
+            if (Input.touchCount > 1)
+                return;
+#endif
             FollowDragPosition(instantiatedComponent);
         }
 
@@ -78,6 +87,10 @@ namespace Level3
         {
             if (componentWheel.DrawLine)
                 return;
+#if UNITY_ANDROID
+            if (Input.touchCount > 1)
+                return;
+#endif
             // On lift up
             if (instantiatedComponent)
             {
