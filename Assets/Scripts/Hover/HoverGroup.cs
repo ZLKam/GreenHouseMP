@@ -53,7 +53,9 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     //Upon Clicking the tabs
     {
         dragToPlace = true;
-        cameraController.allowZoom = false;
+        if(cameraController)
+            cameraController.allowZoom = false;
+
         ResetTabColor(components);
         components.imageToChange.transform.localScale = components.originTransform;
         components.imageToChange.transform.localScale = Vector3.Lerp(components.imageToChange.transform.localScale, components.imageToChange.transform.localScale * 0.8f, 1);
@@ -75,7 +77,8 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         dragToPlace = true;
-        cameraController.allowZoom = false;
+        if(cameraController)
+            cameraController.allowZoom = false;
         if (placement.component)
         {
 #if UNITY_STANDALONE
