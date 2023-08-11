@@ -156,7 +156,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         {
             dragToPlace = false;
             if(cameraController)
-                cameraController.allowZoom = false;
+                cameraController.allowZoom = true;
         }
 
         if (placement)

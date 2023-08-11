@@ -15,11 +15,10 @@ public class Level1Reward : MonoBehaviour
 
     [SerializeField]
     private GameObject LoadedObject;
-    public GameObject Panel;
+    public GameObject backgroundpanel;
     public Canvas canvasToHide;
     public TextMeshProUGUI componentTitle, partName;
-    public GameObject titlePanel;
-    public GameObject cross;
+    public GameObject titlePanel, panel, cross;
     public TextMeshProUGUI description;
     private GameObject inspectPrefab;
 
@@ -40,6 +39,8 @@ public class Level1Reward : MonoBehaviour
         lvl1RewardList = lines.ToList();
 
         GetComponent<Level1Reward>().enabled = false;
+
+        transform.GetComponent<Level1Reward>().enabled = false;
     }
 
     // Update is called once per frame
@@ -51,7 +52,7 @@ public class Level1Reward : MonoBehaviour
     private void InspectComponent()
     {
         Ray ray = new();
-        if (Input.touchCount>0)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             if (!inspectCamera.gameObject.activeSelf)
             {
@@ -63,8 +64,9 @@ public class Level1Reward : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerToCheck))
-        {
+        Debug.Log(EventSystem.current.IsPointerOverGameObject());
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerToCheck) && EventSystem.current.currentSelectedGameObject == null)
+        { 
             inspectCamera.gameObject.SetActive(true);
 
             if (hit.transform.tag.StartsWith("Component") && !LoadedObject) 
@@ -90,6 +92,7 @@ public class Level1Reward : MonoBehaviour
                 }
 
                 ComponentLinesAppend(tagArray[1], "End" + tagArray[1]);
+                backgroundpanel.SetActive(true);
                 cross.SetActive(true);
                 LoadedObject = null;
             }
@@ -131,9 +134,9 @@ public class Level1Reward : MonoBehaviour
     private void DisplayDescription()
     {
         string ClickedBtnName = EventSystem.current.currentSelectedGameObject.name;
-        if (!Panel.activeInHierarchy)
+        if (!panel.activeInHierarchy)
         {
-            Panel.SetActive(true);
+            panel.SetActive(true);
             partName.text = ClickedBtnName;
             for (int i = 0; i < descriptionList.Count; i++)
             {
@@ -148,14 +151,15 @@ public class Level1Reward : MonoBehaviour
         }
         else
         {
-            Panel.SetActive(false);
+            panel.SetActive(false);
         }
     }
 
     public void RemoveInspect() 
     {
         Destroy(inspectPrefab);
-        Panel.SetActive(false);
+        backgroundpanel.SetActive(false);
+        panel.SetActive(false);
         cross.SetActive(false);
         titlePanel.SetActive(false);
         inspectCamera.gameObject.SetActive(false);
