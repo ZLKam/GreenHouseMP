@@ -8,6 +8,9 @@ using TMPro;
 
 public class Level1Reward : MonoBehaviour
 {
+    private Level1AnswerSheet1 answerSheet;
+    private bool interactable;
+
     public TextAsset level1RewardText;
     public GameObject instantiatePoint;
     public Camera inspectCamera;
@@ -15,7 +18,6 @@ public class Level1Reward : MonoBehaviour
 
     [SerializeField]
     private GameObject LoadedObject;
-    public GameObject backgroundpanel;
     public Canvas canvasToHide;
     public TextMeshProUGUI componentTitle, partName;
     public GameObject titlePanel, panel, cross;
@@ -39,18 +41,28 @@ public class Level1Reward : MonoBehaviour
         lvl1RewardList = lines.ToList();
 
         GetComponent<Level1Reward>().enabled = false;
+        answerSheet = FindObjectOfType<Level1AnswerSheet1>();
+        interactable = false;
 
-        transform.GetComponent<Level1Reward>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (answerSheet.correctPanel.activeSelf && !interactable) 
+        {
+            interactable = true;
+            return;
+        }
+
         InspectComponent();
     }
 
     private void InspectComponent()
     {
+        if (!interactable)
+            return;
+
         Ray ray = new();
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -64,8 +76,7 @@ public class Level1Reward : MonoBehaviour
             }
         }
 
-        Debug.Log(EventSystem.current.IsPointerOverGameObject());
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerToCheck) && EventSystem.current.currentSelectedGameObject == null)
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerToCheck) && !EventSystem.current.IsPointerOverGameObject())
         { 
             inspectCamera.gameObject.SetActive(true);
 
@@ -92,7 +103,6 @@ public class Level1Reward : MonoBehaviour
                 }
 
                 ComponentLinesAppend(tagArray[1], "End" + tagArray[1]);
-                backgroundpanel.SetActive(true);
                 cross.SetActive(true);
                 LoadedObject = null;
             }
@@ -158,7 +168,6 @@ public class Level1Reward : MonoBehaviour
     public void RemoveInspect() 
     {
         Destroy(inspectPrefab);
-        backgroundpanel.SetActive(false);
         panel.SetActive(false);
         cross.SetActive(false);
         titlePanel.SetActive(false);

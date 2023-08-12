@@ -2764,7 +2764,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2112
   LoadedObject: {fileID: 0}
-  backgroundpanel: {fileID: 789896769}
   canvasToHide: {fileID: 1813309334}
   componentTitle: {fileID: 7353981127628862572}
   partName: {fileID: 906372413}
@@ -3065,7 +3064,7 @@ RectTransform:
   - {fileID: 789896770}
   - {fileID: 3710445671579525214}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4709,7 +4708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &789896770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10839,7 +10838,7 @@ RectTransform:
   - {fileID: 1630587943}
   - {fileID: 1541014914}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 2.549, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
