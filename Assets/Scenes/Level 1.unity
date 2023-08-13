@@ -2770,6 +2770,7 @@ MonoBehaviour:
   titlePanel: {fileID: 2144732176205417121}
   panel: {fileID: 3710445670644129406}
   cross: {fileID: 3710445671580850435}
+  backgroundPanel: {fileID: 789896769}
   description: {fileID: 3710445670470492766}
 --- !u!1 &325132430
 GameObject:
@@ -4708,7 +4709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &789896770
 RectTransform:
   m_ObjectHideFlags: 0
