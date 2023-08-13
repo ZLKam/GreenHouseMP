@@ -424,7 +424,7 @@ public class CameraMovement : MonoBehaviour
     //-15, 100
     private void CameraScroll() 
     {
-        if (!allowRotation)
+        if (!allowRotation || Time.timeScale == 0)
             return;
 
         if (Input.touchCount > 0)

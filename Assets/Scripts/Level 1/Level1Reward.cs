@@ -8,8 +8,6 @@ using TMPro;
 
 public class Level1Reward : MonoBehaviour
 {
-    private Level1AnswerSheet1 answerSheet;
-    private bool interactable;
 
     public TextAsset level1RewardText;
     public GameObject instantiatePoint;
@@ -20,7 +18,7 @@ public class Level1Reward : MonoBehaviour
     private GameObject LoadedObject;
     public Canvas canvasToHide;
     public TextMeshProUGUI componentTitle, partName;
-    public GameObject titlePanel, panel, cross;
+    public GameObject titlePanel, panel, cross, backgroundPanel;
     public TextMeshProUGUI description;
     private GameObject inspectPrefab;
 
@@ -41,28 +39,18 @@ public class Level1Reward : MonoBehaviour
         lvl1RewardList = lines.ToList();
 
         GetComponent<Level1Reward>().enabled = false;
-        answerSheet = FindObjectOfType<Level1AnswerSheet1>();
-        interactable = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (answerSheet.correctPanel.activeSelf && !interactable) 
-        {
-            interactable = true;
-            return;
-        }
 
         InspectComponent();
     }
 
     private void InspectComponent()
     {
-        if (!interactable)
-            return;
-
         Ray ray = new();
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -76,9 +64,18 @@ public class Level1Reward : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerToCheck) && !EventSystem.current.IsPointerOverGameObject())
-        { 
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerToCheck))
+        {
+            foreach (Touch touch in Input.touches) 
+            {
+                if (EventSystem.current.IsPointerOverGameObject(touch.fingerId)) 
+                {
+                    return;
+                }
+            }
+
             inspectCamera.gameObject.SetActive(true);
+            backgroundPanel.SetActive(true);
 
             if (hit.transform.tag.StartsWith("Component") && !LoadedObject) 
             {
@@ -171,6 +168,7 @@ public class Level1Reward : MonoBehaviour
         panel.SetActive(false);
         cross.SetActive(false);
         titlePanel.SetActive(false);
+        backgroundPanel.SetActive(false);
         inspectCamera.gameObject.SetActive(false);
         canvasToHide.gameObject.SetActive(true);
     }

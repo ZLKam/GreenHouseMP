@@ -259,6 +259,7 @@ public class Placement1 : MonoBehaviour
                     highlightedPlacement = null;
                     deletingObject = false;
                     cameraMovement.allowZoom = true;
+                    cameraMovement.allowRotation = true;
                 }
                 else
                 {
@@ -266,6 +267,7 @@ public class Placement1 : MonoBehaviour
                     objectToTrack = null;
                     deletingObject = false;
                     cameraMovement.allowZoom = true;
+                    cameraMovement.allowRotation = true;
                 }
             }
         }
