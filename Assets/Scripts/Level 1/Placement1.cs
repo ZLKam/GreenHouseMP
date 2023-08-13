@@ -11,9 +11,11 @@ public class Placement1 : MonoBehaviour
     public Level1AnswerSheet1 answerSheet1;
     public HoverGroup hoverGroup;
 
+    [HideInInspector]
     public GameObject component;
     [HideInInspector]
     public GameObject selectedPrefab;
+
     Transform highlightedPlacement;
     GameObject[] selections;
     public List<GameObject> duplicationPoints = new List<GameObject>();
@@ -28,7 +30,8 @@ public class Placement1 : MonoBehaviour
     public GameObject objectToCheck;
     private bool dontClear;
 
-    private Color darkBlue = new Color(0, 6 / 255, 1);
+    private Color darkBlue = new Color(0, 0.024f, 1, 1);
+    //0.024 is 6/255 rounded up to nearest 2SF
 
     // Start is called before the first frame update
     void Start()
@@ -38,12 +41,14 @@ public class Placement1 : MonoBehaviour
         hoverGroup = FindObjectOfType<HoverGroup>();
 
         selections = GameObject.FindGameObjectsWithTag("Selection");
+
         allowDelete = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
         ComponentController();
     }
 
@@ -67,6 +72,7 @@ public class Placement1 : MonoBehaviour
             {
                 if (highlightedPlacement)
                 {
+                    Debug.Log(highlightedPlacement.gameObject);
                     if (duplicationPoints.Contains(highlightedPlacement.gameObject))
                     {
                         AutoPlace(highlightedPlacement.transform, false);
@@ -95,10 +101,12 @@ public class Placement1 : MonoBehaviour
         foreach (GameObject selectPoints in selections)
         {
             if (selectPoints == hit.collider.gameObject)
+            //checks for which object the collider hits and matches it to a gameobject in the array, that will become the highlighted/selected point
             {
                 selectPoints.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
             }
             else
+            //everything else will be reset to its original colour
             {
                 if (selectPoints.transform.GetChild(0).CompareTag("SharedSelection"))
                 {
@@ -114,6 +122,8 @@ public class Placement1 : MonoBehaviour
 
 
         if (hit.transform.CompareTag("Selection") && hit.transform.GetChild(0).GetComponent<SpriteRenderer>().color == Color.yellow)
+        //assigns the highlighted placement variable to the hit object. The hit object has to meet two conditions, a tag of selection and the current colour has to be yellow
+        //if allowdelete is false, it prevents the gameobject from being deleted since it is outside the boundaries of the play area
         {
             highlightedPlacement = hit.collider.transform;
             allowDelete = false;
@@ -125,12 +135,14 @@ public class Placement1 : MonoBehaviour
     }
 
     private void AutoPlace(Transform objectToCheck, bool delete) 
+    //automatically places the selected component across all the blue points
     {
         if (!objectToCheck || !selectedPrefab)
             return;
 
         if (!delete)
         {
+            Debug.Log("test");
             Destroy(component);
             for (int i = 0; i < duplicationPoints.Count; i++) 
             {
