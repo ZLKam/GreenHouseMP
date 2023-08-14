@@ -11,8 +11,8 @@ public class SelectedComponent : MonoBehaviour
     public GameObject UIPrefab;
     public GameObject canvas;
     public GameObject uiTemp;
+    public List<GameObject> selectedTransform = new List<GameObject>();
     [SerializeField]
-    private List<GameObject> selectedTransform = new List<GameObject>();
     private GameObject connectionPoint;
 
     public ToggleMultiConnect multiConnecta;
@@ -49,6 +49,12 @@ public class SelectedComponent : MonoBehaviour
         if (valueReturn.ReturnIndex() == 0)
             return null;
         connectionPoint = selectedTransform[valueReturn.ReturnIndex()-1];
+        Debug.Log(connectionPoint);
         return connectionPoint;
+    }
+
+    public int IndexReturning(GameObject connectionpoint)
+    {
+        return selectedTransform.IndexOf(connectionpoint)+1;
     }
 }

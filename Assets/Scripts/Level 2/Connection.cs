@@ -160,17 +160,21 @@ public class Connection : MonoBehaviour
                 selection = raycastHit.transform;
                 if (selection.GetComponent<SelectedComponent>())
                 {
+                    if (selection.GetComponent<SelectedComponent>().gameObject.tag.Contains("AHU") && selectedComponent != null)
+                    {
+                        return;
+                    }
                     selectedComponent = selection.GetComponent<SelectedComponent>();
                     //selectedComponent.valueReturn.selectedComponentBtn = selectedComponent;
                     //valueReturnBtn.selectedComponentBtn = selectedComponent;
 
                     foreach (SelectedComponent component in componentArray) 
                     {
-                        if (selectedComponent!= component) //.transform.name
-                        {
-                            component.RemoveUI();
+                        if (selectedComponent != component)
+                        { 
+                            component.RemoveUI();   
                         }
-                        else 
+                        else //if (selectedComponent == component) //if smth selected & same item, look at
                         {
                             cameraMovement.LookAtComponent(selectedComponent.transform);
                             component.ShowUI(Camera.main.WorldToScreenPoint(selectedComponent.transform.position));
@@ -202,8 +206,10 @@ public class Connection : MonoBehaviour
                 }
             }
         }
+        Debug.Log(valueReturnBtn);
         if (valueReturnBtn && valueReturnBtn.pressedBtn)
         {
+            Debug.Log(selectedComponent.IndexReturn() != null);
             if (selectedComponent.IndexReturn() != null)
             {
                 if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
@@ -213,7 +219,8 @@ public class Connection : MonoBehaviour
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
-                originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
+                Debug.Log("test")
+;                originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
                 selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
             }
 
@@ -232,7 +239,10 @@ public class Connection : MonoBehaviour
                 if (points.Count >= 1)
                 {
                     var last = points.Count;
-                    tobeunhighlighted.Add(points[last - 1]);
+                    if (!tobeunhighlighted.Contains(points[last - 1]))
+                    {
+                        tobeunhighlighted.Add(points[last - 1]);
+                    }
                 }
 
                 Debug.Log(points.Count);    
@@ -431,8 +441,9 @@ public class Connection : MonoBehaviour
                     {
                         if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
                         {
+                            Debug.Log("reached");
                             tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                            tobeunhighlighted.Remove(tobeunhighlighted[tobeunhighlighted.Count - 1]);
+                            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
                         }
                     }
                 }
@@ -443,7 +454,7 @@ public class Connection : MonoBehaviour
                         if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
                         {
                             tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                            tobeunhighlighted.Remove(tobeunhighlighted[tobeunhighlighted.Count - 1]);
+                            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
                             points.Clear();
                         }
                     }
