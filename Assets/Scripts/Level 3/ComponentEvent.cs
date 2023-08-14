@@ -284,9 +284,9 @@ namespace Level3
             {
                 FindObjectsOfType<ComponentEvent>().ToList().ForEach((component) =>
                 {
-                    Destroy(GOToCheck);
                     if (component.componentName == "Chiller" && GOToCheck)
                     {
+                        Destroy(GOToCheck);
                         // Check the direction
                         float angle = Vector2.SignedAngle(Vector2.right, component.transform.position - GOToCheck.transform.position);
                         if (angle < 90 && angle > -90)
