@@ -315,7 +315,6 @@ public class LinePathFind : MonoBehaviour
                     distanceToInt = Vector2Int.Distance(toPointInt, point);
                     distanceTo = Vector2.Distance(toPoint, point);
                     nearestPointTo = point;
-                    Debug.Log(nearestPointTo);
                 }
             }
         }
