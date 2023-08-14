@@ -19,14 +19,14 @@ namespace Level3
                     Destroy(transform.GetChild(0).gameObject);
                 }
 
-                if (transform.childCount > 1)
-                {
-                    transform.GetComponentsInChildren<ComponentEvent>().ToList().ForEach((child) =>
-                    {
-                        if (!child.enabled)
-                            Destroy(child.gameObject);
-                    });
-                }
+                //if (transform.childCount > 1)
+                //{
+                //    transform.GetComponentsInChildren<ComponentEvent>().ToList().ForEach((child) =>
+                //    {
+                //        if (!child.enabled)
+                //            Destroy(child.gameObject);
+                //    });
+                //}
             }
             else
             {

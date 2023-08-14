@@ -286,7 +286,6 @@ namespace Level3
                 {
                     if (component.componentName == "Chiller" && GOToCheck)
                     {
-                        Destroy(GOToCheck);
                         // Check the direction
                         float angle = Vector2.SignedAngle(Vector2.right, component.transform.position - GOToCheck.transform.position);
                         if (angle < 90 && angle > -90)
@@ -298,7 +297,7 @@ namespace Level3
                                 cwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 cwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 cwp.GetComponent<BoxCollider2D>().enabled = true;
-                                //DestroyImmediate(GOToCheck);
+                                DestroyImmediate(GOToCheck);
                             }
                             else
                             {
@@ -306,18 +305,19 @@ namespace Level3
                                 chwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 chwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 chwp.GetComponent<BoxCollider2D>().enabled = true;
-                                //DestroyImmediate(GOToCheck);
+                                DestroyImmediate(GOToCheck);
                             }
                         }
                         else
                         {
+                            Destroy(GOToCheck);
                             if (GOToCheck.GetComponent<ComponentEvent>().componentName == "CHWP")
                             {
                                 GameObject chwp = Instantiate(CHWPLeft, GOToCheck.transform.position, Quaternion.identity, GOToCheck.transform.parent);
                                 chwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 chwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 chwp.GetComponent<BoxCollider2D>().enabled = true;
-                                //DestroyImmediate(GOToCheck);
+                                DestroyImmediate(GOToCheck);
                             }
                             else
                             {
@@ -325,7 +325,7 @@ namespace Level3
                                 cwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 cwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 cwp.GetComponent<BoxCollider2D>().enabled = true;
-                                //DestroyImmediate(GOToCheck);
+                                DestroyImmediate(GOToCheck);
                             }
                         }
                     }
