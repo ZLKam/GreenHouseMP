@@ -15,11 +15,12 @@ public class CameraRotate : MonoBehaviour
     public GameObject levelSelectPanel;
     public GameObject characterSelect;
 
-    public List<Material> skyboxes;
+    private Material[] skyboxes;
 
     void Start()
     {
-        CheckSkybox();
+        skyboxes = Resources.LoadAll<Material>("Skyboxes");
+       
 
         if (!PlayerPrefs.HasKey("firstTime"))
         {
@@ -35,6 +36,7 @@ public class CameraRotate : MonoBehaviour
             PlayerPrefs.SetFloat("zoomSpeed", 75);
             PlayerPrefs.SetFloat("zoomSensitivity", 5);
             PlayerPrefs.SetInt("firstTime", 1);
+            PlayerPrefs.SetInt("backgroundIndex", 3);
         }
         else
         {
@@ -45,7 +47,8 @@ public class CameraRotate : MonoBehaviour
                 FloorSelection.FromPreviewLevel = false;
             }
         }
-        
+        CheckSkybox();
+
         if (!menu)
         rotationSpeed = PlayerPrefs.GetFloat("rotationSpeed");
     }

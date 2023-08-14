@@ -932,7 +932,7 @@ PrefabInstance:
     - target: {fileID: 2540823588592721286, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bc6a727830ea26c41b326decac638760, type: 3}
+      objectReference: {fileID: 21300000, guid: 18c3ea855e199b24f941b7552f945a62, type: 3}
     - target: {fileID: 2540823588905575502, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -940,7 +940,7 @@ PrefabInstance:
     - target: {fileID: 2540823589296676280, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7763cb9904335d54e91b72bbc85b288e, type: 3}
+      objectReference: {fileID: 21300000, guid: 4dcedcdfe4088e4458eaf58cc7c45b12, type: 3}
     - target: {fileID: 2540823589296676281, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_SizeDelta.x
       value: 112.2046
@@ -976,11 +976,11 @@ PrefabInstance:
     - target: {fileID: 2540823589458481879, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9bf9fd7d175220a438e247f3874aa6b3, type: 3}
+      objectReference: {fileID: 21300000, guid: fd34e29b28943984eb89529f3564d1f3, type: 3}
     - target: {fileID: 2540823589518457025, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 13d31925a0d5c224ab69ba869b4487bb, type: 3}
+      objectReference: {fileID: 21300000, guid: 6e0512c56d6c0134897c80bbcdc2bee6, type: 3}
     - target: {fileID: 2540823589518457030, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_SizeDelta.x
       value: 701.0988
@@ -2347,7 +2347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 861b6d56adcb00d4dafaae6c2c051ed6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20ab3fcd592ed614595154aa5ea2bd2c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

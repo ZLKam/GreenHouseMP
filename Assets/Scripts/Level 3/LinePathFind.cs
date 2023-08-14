@@ -69,6 +69,8 @@ public class LinePathFind : MonoBehaviour
     private Dictionary<GameObject, List<RectGridCell>> previousDrawnLineDict = new();
     private List<List<LineLimit>> previousDrawnLineFromAndTo = new();
     [SerializeField]
+    private List<LineLimit> lastLineDrawn = new();
+    [SerializeField]
     private List<Vector2> newReversePathLocations = new List<Vector2>();
     #endregion
 
@@ -86,6 +88,12 @@ public class LinePathFind : MonoBehaviour
         imgComponentFrom.sprite = transparentSprite;
         imgComponentTo.sprite = transparentSprite;
         imgColorSelected.sprite = transparentSprite;
+    }
+
+    private void OnDisable()
+    {
+        previousDrawnLineDict.Clear();
+        previousDrawnLineFromAndTo.Clear();
     }
 
     // Update is called once per frame
@@ -184,6 +192,7 @@ public class LinePathFind : MonoBehaviour
                 if (nearestNodes[0] == zeros[0] || nearestNodes[1] == zeros[1])
                 {
                     Debug.Log("No nodes found.");
+                    previousDrawnLineFromAndTo.RemoveAt(previousDrawnLineFromAndTo.Count - 1);
                     StartCoroutine(ShowError());
                     if (!fullConnectionPoints)
                     {
@@ -315,7 +324,6 @@ public class LinePathFind : MonoBehaviour
                     distanceToInt = Vector2Int.Distance(toPointInt, point);
                     distanceTo = Vector2.Distance(toPoint, point);
                     nearestPointTo = point;
-                    Debug.Log(nearestPointTo);
                 }
             }
         }
@@ -481,7 +489,6 @@ public class LinePathFind : MonoBehaviour
             {
                 Vector2 newCurvePoint = new Vector2(curvePoint.x, curvePoint.y);
                 int indexOfCurvePoint = reversePathLocations.IndexOf(curvePoint);
-                Debug.Log(indexOfCurvePoint);
                 foreach (Vector2Int vector2Int in reversePathLocations)
                 {
                     newReversePathLocations.Add(new Vector2(vector2Int.x, vector2Int.y));

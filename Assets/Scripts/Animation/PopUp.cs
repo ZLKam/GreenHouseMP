@@ -86,6 +86,12 @@ public class PopUp : MonoBehaviour
 
     IEnumerator hidePopUp()
     {
+        if (Input.touchCount > 0)
+        {
+            pop = true;
+            gameObject.SetActive(false);
+  
+        }
         yield return new WaitForSeconds(timer);
         pop = true;
         gameObject.SetActive(false);

@@ -20,15 +20,28 @@ public class SettingsManager : MonoBehaviour
     public Slider music;
     public Slider sound;
 
+    public int defaultBackground;
+    public Image skyboxThumbail;
+
     private int[] fadeSpeedArray = new[] { 1, 5, 51, 255 };
+
+    private Sprite[] skyboxThumbnails;
 
     // Start is called before the first frame update
     void Start()
     {
+        skyboxThumbnails = Resources.LoadAll<Sprite>("SkyboxThumb");
+
         audioManager = FindObjectOfType<AudioManager>();
         cameraRotate = FindObjectOfType<CameraRotate>();
         background.value = PlayerPrefs.GetInt("backgroundIndex");
         musicDrop.value = PlayerPrefs.GetInt("musicIndex");
+
+        if (!PlayerPrefs.HasKey("firstTime"))
+        {
+            SetBackground();
+        }
+
         if (!PlayerPrefs.HasKey("fadeValue"))
         {
             fadeSlider.value = 2f;
@@ -57,14 +70,13 @@ public class SettingsManager : MonoBehaviour
             }
         }
 
-        Debug.Log(PlayerPrefs.GetString("musicName"));
-
         audioManager.Play(PlayerPrefs.GetString("musicName") + " (Music)");
     }
 
     public void SetBackground()
     {
         PlayerPrefs.SetInt("backgroundIndex", background.value);
+        skyboxThumbail.sprite = skyboxThumbnails[background.value];
 
         cameraRotate.CheckSkybox();
     }

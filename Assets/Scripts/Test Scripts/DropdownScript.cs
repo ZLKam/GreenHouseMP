@@ -16,7 +16,7 @@ public class DropdownScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateImage();
+        //UpdateImage();
     }
 
     public void UpdateImage()

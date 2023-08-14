@@ -28,7 +28,7 @@ public class CameraMovement : MonoBehaviour
     private float initialDistance;
     public float sensitivity = 5;
     public float maxZoom = 140;
-    public List<Material> skyboxes;
+    private Material[] skyboxes;
     public bool zooming;
     public bool moved;
 
@@ -59,6 +59,7 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
+        skyboxes = Resources.LoadAll<Material>("Skyboxes");
         rotationSpeed = PlayerPrefs.GetFloat("rotationSpeed");
         sensitivity = PlayerPrefs.GetFloat("zoomSensitivity");
         originalSpeed = rotationSpeed;
