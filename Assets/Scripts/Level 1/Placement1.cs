@@ -23,7 +23,8 @@ public class Placement1 : MonoBehaviour
     private bool allowDelete;
 
     private GameObject deletableGameobject;
-    private GameObject objectToTrack;
+    [HideInInspector]
+    public GameObject objectToTrack;
     public LayerMask layerToIgnore;
     public bool deletingObject;
 
@@ -142,7 +143,6 @@ public class Placement1 : MonoBehaviour
 
         if (!delete)
         {
-            Debug.Log("test");
             Destroy(component);
             for (int i = 0; i < duplicationPoints.Count; i++) 
             {
