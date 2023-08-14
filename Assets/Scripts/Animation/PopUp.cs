@@ -88,16 +88,9 @@ public class PopUp : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            foreach (Touch touch in Input.touches)
-            {
-                if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-                {
-                    pop = true;
-                    gameObject.SetActive(false);
-
-                    yield return null;
-                }
-            }
+            pop = true;
+            gameObject.SetActive(false);
+  
         }
         yield return new WaitForSeconds(timer);
         pop = true;

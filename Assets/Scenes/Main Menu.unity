@@ -5308,6 +5308,7 @@ MonoBehaviour:
   progressionChapter1: {fileID: 1238985014}
   progressionChapter2: {fileID: 243315729}
   progressionChapter3: {fileID: 458328662}
+  badge: {fileID: 0}
   chapterImages:
   - {fileID: 429506132}
   - {fileID: 2089352567}
@@ -12405,10 +12406,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 1318556290}
   levelSelectPanel: {fileID: 1982832614}
   characterSelect: {fileID: 1082873666}
-  skyboxes:
-  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
-  - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
-  - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
+  skyboxes: []
 --- !u!1 &1821616623
 GameObject:
   m_ObjectHideFlags: 0
