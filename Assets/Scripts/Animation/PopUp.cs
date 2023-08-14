@@ -92,8 +92,8 @@ public class PopUp : MonoBehaviour
             {
                 if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
-                    gameObject.SetActive(false);
                     pop = true;
+                    gameObject.SetActive(false);
 
                     yield return null;
                 }
