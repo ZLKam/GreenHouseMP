@@ -12406,7 +12406,6 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 1318556290}
   levelSelectPanel: {fileID: 1982832614}
   characterSelect: {fileID: 1082873666}
-  skyboxes: []
 --- !u!1 &1821616623
 GameObject:
   m_ObjectHideFlags: 0
@@ -12855,10 +12854,6 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 0}
   levelSelectPanel: {fileID: 0}
   characterSelect: {fileID: 0}
-  skyboxes:
-  - {fileID: 2100000, guid: 8167405d7a7665d4f8d36e0d1685b510, type: 2}
-  - {fileID: 2100000, guid: 1a158dc12f81f4b4680d6795b610bb9d, type: 2}
-  - {fileID: 2100000, guid: ee664c7929219794e819487a1bb845c3, type: 2}
 --- !u!20 &1869772187
 Camera:
   m_ObjectHideFlags: 0
