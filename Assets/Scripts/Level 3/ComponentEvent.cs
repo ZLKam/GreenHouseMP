@@ -280,51 +280,52 @@ namespace Level3
 
         public void CheckDirection(GameObject GOToCheck)
         {
-            if (componentName == "CWP" || componentName == "CHWP")
+            if (GOToCheck.GetComponent<ComponentEvent>().componentName == "CWP" || GOToCheck.GetComponent<ComponentEvent>().componentName == "CHWP")
             {
                 FindObjectsOfType<ComponentEvent>().ToList().ForEach((component) =>
                 {
-                    if (component.componentName == "Chiller")
+                    Destroy(GOToCheck);
+                    if (component.componentName == "Chiller" && GOToCheck)
                     {
                         // Check the direction
-                        float angle = Vector2.SignedAngle(Vector2.right, component.transform.position - transform.position);
+                        float angle = Vector2.SignedAngle(Vector2.right, component.transform.position - GOToCheck.transform.position);
                         if (angle < 90 && angle > -90)
                         {
                             // Chiller is at the right side
-                            if (componentName == "CWP")
+                            if (GOToCheck.GetComponent<ComponentEvent>().componentName == "CWP")
                             {
-                                GameObject cwp = Instantiate(CWPRight, transform.position, Quaternion.identity, transform.parent);
+                                GameObject cwp = Instantiate(CWPRight, GOToCheck.transform.position, Quaternion.identity, GOToCheck.transform.parent);
                                 cwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 cwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 cwp.GetComponent<BoxCollider2D>().enabled = true;
-                                Destroy(GOToCheck);
+                                //DestroyImmediate(GOToCheck);
                             }
                             else
                             {
-                                GameObject chwp = Instantiate(CHWPRight, transform.position, Quaternion.identity, transform.parent);
+                                GameObject chwp = Instantiate(CHWPRight, GOToCheck.transform.position, Quaternion.identity, GOToCheck.transform.parent);
                                 chwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 chwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 chwp.GetComponent<BoxCollider2D>().enabled = true;
-                                Destroy(GOToCheck);
+                                //DestroyImmediate(GOToCheck);
                             }
                         }
                         else
                         {
-                            if (componentName == "CHWP")
+                            if (GOToCheck.GetComponent<ComponentEvent>().componentName == "CHWP")
                             {
-                                GameObject chwp = Instantiate(CHWPLeft, transform.position, Quaternion.identity, transform.parent);
+                                GameObject chwp = Instantiate(CHWPLeft, GOToCheck.transform.position, Quaternion.identity, GOToCheck.transform.parent);
                                 chwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 chwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 chwp.GetComponent<BoxCollider2D>().enabled = true;
-                                Destroy(GOToCheck);
+                                //DestroyImmediate(GOToCheck);
                             }
                             else
                             {
-                                GameObject cwp = Instantiate(CWPLeft, transform.position, Quaternion.identity, transform.parent);
+                                GameObject cwp = Instantiate(CWPLeft, GOToCheck.transform.position, Quaternion.identity, GOToCheck.transform.parent);
                                 cwp.GetComponent<ComponentEvent>().buttonEvent = buttonEvent;
                                 cwp.GetComponent<ComponentEvent>().placeholder = placeholder;
                                 cwp.GetComponent<BoxCollider2D>().enabled = true;
-                                Destroy(GOToCheck);
+                                //DestroyImmediate(GOToCheck);
                             }
                         }
                     }

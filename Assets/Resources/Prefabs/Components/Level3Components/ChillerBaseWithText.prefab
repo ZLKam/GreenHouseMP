@@ -261,7 +261,7 @@ SpriteRenderer:
   m_SortingLayerID: -1130434511
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 13d31925a0d5c224ab69ba869b4487bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e0512c56d6c0134897c80bbcdc2bee6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8fcea48a42bf44a9290311f491ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent: {fileID: 0}
   componentName: Chiller
   specialID: 345
   placeholder: {fileID: 0}
@@ -291,6 +292,10 @@ MonoBehaviour:
   correctTarget2: {fileID: 3058490348155394926, guid: f953293d37e78934eafb167b47fac70f, type: 3}
   correctColor: {r: 1, g: 0, b: 0, a: 1}
   correctColor2: {r: 0, g: 0, b: 1, a: 1}
+  CHWPLeft: {fileID: 0}
+  CHWPRight: {fileID: 0}
+  CWPRight: {fileID: 0}
+  CWPLeft: {fileID: 0}
 --- !u!50 &7294034458165425355
 Rigidbody2D:
   serializedVersion: 4

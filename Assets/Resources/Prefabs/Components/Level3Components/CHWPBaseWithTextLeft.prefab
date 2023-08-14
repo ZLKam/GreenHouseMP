@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: -1130434511
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 31ee3b8d29bdf784f9bd6e23b313b209, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a5e1464cfdbbf7449e53cfd625e204d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8fcea48a42bf44a9290311f491ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent: {fileID: 0}
   componentName: CHWP
   specialID: 567
   placeholder: {fileID: 0}
