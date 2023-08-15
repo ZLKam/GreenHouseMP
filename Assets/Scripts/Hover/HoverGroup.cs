@@ -87,7 +87,7 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
                 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
 #endif
 #if UNITY_ANDROID
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
+                mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
 #endif
                 placement.component.transform.position = mousePos;
             }
@@ -103,11 +103,15 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     private void OnPlacementFound(HoverTab components) 
     {
-        placement.selectedPrefab = placement.component = null;
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150));
+        placement.selectedPrefab = null;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
         components.componentPrefab.GetComponent<Collider>().enabled = false;
-        placement.component = Instantiate(components.componentPrefab, mousePos, Quaternion.identity);
         placement.selectedPrefab = components.componentPrefab;
+
+        if (placement.component) 
+            Destroy(placement.component);
+
+        placement.component = Instantiate(components.componentPrefab, mousePos, Quaternion.identity);
     }
 
     private void OnConnectionFound(HoverTab components) 
@@ -152,10 +156,10 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
             placeComponent = false;
         }
 
-        if(Input.touchCount == 0 && dragToPlace) 
+        if (Input.touchCount == 0 && dragToPlace)
         {
             dragToPlace = false;
-            if(cameraController)
+            if (cameraController)
                 cameraController.allowZoom = true;
         }
 
