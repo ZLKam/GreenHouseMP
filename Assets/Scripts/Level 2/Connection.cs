@@ -63,6 +63,15 @@ public class Connection : MonoBehaviour
     public Fade fade;
     public GameObject uiParent;
 
+    private KeyValuePair<List<Transform>, List<List<Transform>>> kypAHUConnectionPoints = new();
+    [SerializeField]
+    private List<Transform> AHUs = new();
+    private List<List<Transform>> AHUConnectionPoints = new();
+    [SerializeField]
+    private List<Transform> AHUConnectionPoint1 = new();
+    [SerializeField]
+    private List<Transform> AHUConnectionPoint2 = new();
+
     public List<GameObject> AHUPoint1;
     public List<GameObject> AHUPoint2;
     #endregion
@@ -72,6 +81,34 @@ public class Connection : MonoBehaviour
     {
         Camera.main.transform.parent.GetComponent<CameraMovement>().zoomStopDistance = 30f;
         componentArray = FindObjectsOfType<SelectedComponent>();
+
+        AHUConnectionPoints = new List<List<Transform>>() { AHUConnectionPoint1, AHUConnectionPoint2 };
+        kypAHUConnectionPoints = new KeyValuePair<List<Transform>, List<List<Transform>>>(AHUs, AHUConnectionPoints);
+
+        for (int i = 0; i < kypAHUConnectionPoints.Key.Count; i++)
+        {
+            int k = 0;
+            for (int j = 0; j < kypAHUConnectionPoints.Value.Count; j++)
+            {
+                Debug.Log(kypAHUConnectionPoints.Key[i] + ": " + kypAHUConnectionPoints.Value[j][k]);
+                k++;
+            }
+        }
+
+        for (int i  = 0; i < kypAHUConnectionPoints.Value.Count; i++)
+        {
+            if (kypAHUConnectionPoints.Value[i].Contains(highlight))
+            {
+                for (int k = 0; k < kypAHUConnectionPoints.Key.Count; k++)
+                {
+                    for (int j = 0; j < kypAHUConnectionPoints.Value.Count; j++)
+                    {
+                        //return an index ( 0 /1 )
+                        // get all kvp keys, highlight all its value[index]
+                    }
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -155,8 +192,15 @@ public class Connection : MonoBehaviour
                 if (EventSystem.current.currentSelectedGameObject && EventSystem.current.currentSelectedGameObject.layer == 5)
                     return;
             }
-            if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
+            if (Physics.Raycast(ray, out raycastHit))
             {
+                foreach (Touch touch in Input.touches)
+                {
+                    if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                    {
+                        return;
+                    }
+                }
                 selection = raycastHit.transform;
                 if (selection.GetComponent<SelectedComponent>())
                 {
@@ -206,10 +250,8 @@ public class Connection : MonoBehaviour
                 }
             }
         }
-        Debug.Log(valueReturnBtn);
         if (valueReturnBtn && valueReturnBtn.pressedBtn)
         {
-            Debug.Log(selectedComponent.IndexReturn() != null);
             if (selectedComponent.IndexReturn() != null)
             {
                 if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
@@ -219,7 +261,6 @@ public class Connection : MonoBehaviour
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
-                Debug.Log("test");
                 originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
                 selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
             }
@@ -244,8 +285,7 @@ public class Connection : MonoBehaviour
                         tobeunhighlighted.Add(points[last - 1]);
                     }
                 }
-
-                Debug.Log(points.Count);    
+ 
                 if (points.Count >= 2)
                 {
                     var pointlist = new List<GameObject>();
@@ -253,7 +293,6 @@ public class Connection : MonoBehaviour
                     {
                         if (AHUPoint1.Contains(points[i]))
                         {
-                            Debug.Log("AHU 1");
                             if (i == 0)
                             {
                                 pointlist = new List<GameObject>(AHUPoint1);
@@ -268,7 +307,6 @@ public class Connection : MonoBehaviour
                         }
                         else if (AHUPoint2.Contains(points[i]))
                         {
-                            Debug.Log("AHU 2");
                             if (i == 0)
                             {
                                 pointlist = new List<GameObject>(AHUPoint2);
