@@ -49,7 +49,6 @@ public class SelectedComponent : MonoBehaviour
         if (valueReturn.ReturnIndex() == 0)
             return null;
         connectionPoint = selectedTransform[valueReturn.ReturnIndex()-1];
-        Debug.Log(connectionPoint);
         return connectionPoint;
     }
 
