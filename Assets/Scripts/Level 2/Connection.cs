@@ -219,8 +219,8 @@ public class Connection : MonoBehaviour
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
-                Debug.Log("test")
-;                originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
+                Debug.Log("test");
+                originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
                 selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
             }
 
