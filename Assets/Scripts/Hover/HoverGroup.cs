@@ -107,7 +107,8 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
         components.componentPrefab.GetComponent<Collider>().enabled = false;
         placement.selectedPrefab = components.componentPrefab;
-
+        if (placement.objectToTrack)
+            return;
         if (placement.component) 
             Destroy(placement.component);
 
