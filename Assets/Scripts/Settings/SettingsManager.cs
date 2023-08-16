@@ -51,12 +51,6 @@ public class SettingsManager : MonoBehaviour
             fadeSlider.value = PlayerPrefs.GetFloat("fadeValue");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetMusic()
     {
         PlayerPrefs.SetInt("musicIndex", musicDrop.value);

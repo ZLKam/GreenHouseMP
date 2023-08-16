@@ -999,7 +999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2540823589998851313, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: finalPositionOfWheel
-      value: -480
+      value: -430
       objectReference: {fileID: 0}
     - target: {fileID: 2540823589998851322, guid: acb58d29c5293f643a3318b28b7582ef, type: 3}
       propertyPath: m_Pivot.x
@@ -9729,6 +9729,7 @@ MonoBehaviour:
   selectColorPopUp: {fileID: 1454601717}
   hoverTab: {fileID: 1996722955}
   affectedCellsList: []
+  lastLineDrawn: []
   newReversePathLocations: []
 --- !u!1 &1263224617
 GameObject:
