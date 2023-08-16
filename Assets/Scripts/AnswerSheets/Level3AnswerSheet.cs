@@ -66,6 +66,7 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
         });
         if (correct == numberOfCorrectConnections)
         {
+            line.finishedLevel = true;
             hover.openTab = false;
             barSelectedComponents.SetActive(false);
             btnUndo.interactable = false;
@@ -93,7 +94,7 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
         else
         {
             wrongPanel.SetActive(true);
-            StartCoroutine(ResetLineColor(correctPanel.GetComponent<PopUp>().timer * 5, correctLines));
+            StartCoroutine(ResetLineColor(correctPanel.GetComponent<PopUp>().timer * 7, correctLines));
             StartCoroutine(ResetLineColor(wrongPanel.GetComponent<PopUp>().timer * 3, wrongLines));
             Debug.Log("You are so stupid!!! Wrong!!!!!!!!");
         }
