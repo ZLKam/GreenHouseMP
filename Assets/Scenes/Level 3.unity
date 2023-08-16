@@ -1267,7 +1267,7 @@ MonoBehaviour:
   popImage: {fileID: 189878267}
   fade: {fileID: 1146246940}
   pop: 1
-  wrong: 0
+  wrong: 1
   popAtBeginning: 0
   rewardHintPop: {fileID: 0}
 --- !u!114 &189878267
