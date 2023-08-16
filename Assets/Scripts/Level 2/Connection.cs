@@ -288,6 +288,10 @@ public class Connection : MonoBehaviour
  
                 if (points.Count >= 2)
                 {
+
+                    //Insert Cannot Connect in and in/Out and Out here
+
+
                     var pointlist = new List<GameObject>();
                     for (int i = 0; i < points.Count; i++)
                     {
