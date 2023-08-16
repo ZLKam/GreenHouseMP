@@ -62,7 +62,10 @@ namespace Level3
                 return;
 #if UNITY_ANDROID
             if (Input.touchCount > 1)
+            {
+                Destroy(instantiatedComponent.gameObject);
                 return;
+            }
 #endif
             FollowDragPosition(instantiatedComponent);
         }
@@ -89,7 +92,10 @@ namespace Level3
                 return;
 #if UNITY_ANDROID
             if (Input.touchCount > 1)
+            {
+                Destroy(instantiatedComponent.gameObject);
                 return;
+            }
 #endif
             // On lift up
             if (instantiatedComponent)
