@@ -14,7 +14,7 @@ public class CameraRotate : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject levelSelectPanel;
     public GameObject characterSelect;
-
+    [SerializeField]
     private Material[] skyboxes;
 
     void Start()
@@ -61,7 +61,25 @@ public class CameraRotate : MonoBehaviour
 
     public void CheckSkybox()
     {
-        RenderSettings.skybox = skyboxes[PlayerPrefs.GetInt("backgroundIndex")];
+        if (skyboxes == null)
+        {
+            StartCoroutine(CheckSkyboxCo());
+        }
+        else
+            RenderSettings.skybox = skyboxes[PlayerPrefs.GetInt("backgroundIndex")];
+    }
+
+    private IEnumerator CheckSkyboxCo()
+    {
+        while (true)
+        {
+            if (skyboxes != null)
+            {
+                RenderSettings.skybox = skyboxes[PlayerPrefs.GetInt("backgroundIndex")];
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     private void DirectlyShowLevelSelect()

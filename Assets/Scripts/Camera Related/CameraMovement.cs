@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
@@ -425,8 +426,15 @@ public class CameraMovement : MonoBehaviour
     //-15, 100
     private void CameraScroll() 
     {
-        if (!allowRotation || Time.timeScale == 0)
+        if (!allowRotation)
             return;
+        foreach (Touch touch in Input.touches)
+        {
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            {
+                return;
+            }
+        }
 
         if (Input.touchCount > 0)
         {
