@@ -207,7 +207,10 @@ namespace Level3
                 return;
 #if UNITY_ANDROID
             if (Input.touchCount > 1)
+            {
+                Destroy(gameObject);
                 return;
+            }
 #endif
             CheckPlaceholder(eventData);
             if (componentName == "Cooling Tower")
