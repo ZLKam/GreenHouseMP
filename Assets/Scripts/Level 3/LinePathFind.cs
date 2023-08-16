@@ -69,6 +69,7 @@ public class LinePathFind : MonoBehaviour
     [SerializeField]
     private List<RectGridCell> affectedCellsList = new();
     private Dictionary<GameObject, List<RectGridCell>> previousDrawnLineDict = new();
+    [SerializeField]
     private List<List<LineLimit>> previousDrawnLineFromAndTo = new();
     [SerializeField]
     private List<LineLimit> lastLineDrawn = new();
@@ -196,7 +197,10 @@ public class LinePathFind : MonoBehaviour
                 if (nearestNodes[0] == zeros[0] || nearestNodes[1] == zeros[1])
                 {
                     Debug.Log("No nodes found.");
-                    previousDrawnLineFromAndTo.RemoveAt(previousDrawnLineFromAndTo.Count - 1);
+                    //if (previousDrawnLineFromAndTo.Count > 0)
+                    //{
+                    //    previousDrawnLineFromAndTo.RemoveAt(previousDrawnLineFromAndTo.Count - 1);
+                    //}
                     StartCoroutine(ShowError());
                     if (!fullConnectionPoints)
                     {
