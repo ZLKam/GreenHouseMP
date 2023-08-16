@@ -12,6 +12,8 @@ public class LinePathFind : MonoBehaviour
     #region Variables
     public RectGrid rectGrid;
 
+    public bool finishedLevel = false;
+
     private int gridLayer = 1 << 3;
     private int lineLayer = 1 << 8;
 
@@ -114,6 +116,8 @@ public class LinePathFind : MonoBehaviour
 #if UNITY_ANDROID
             Vector3 touchPosition = Input.GetTouch(0).position;    
 #endif
+            if (finishedLevel)
+                return;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out RaycastHit hit3D, lineLayer))
             {
                 hit3D.transform.GetComponent<DrawLine>()?.ReverseLine();
