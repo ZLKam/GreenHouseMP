@@ -480,7 +480,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4.4, y: 11}
-  m_SizeDelta: {x: 231.8462, y: 150.6841}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2540823589296676283
 CanvasRenderer:
@@ -912,11 +912,12 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   connection: {fileID: 0}
   moveSpeed: 2
-  finalPositionOfWheel: -500
+  finalPositionOfWheel: -430
   startPositionOfWheel: -760
   wheelTitle: {fileID: 2540823590454670091}
   componentTabs: []
   tab: {fileID: 2540823589998851319}
+  openTab: 0
   dragToPlace: 0
 --- !u!1 &2540823590051239840
 GameObject:
@@ -1245,8 +1246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61, y: 11}
-  m_SizeDelta: {x: 154, y: 144}
+  m_AnchoredPosition: {x: 24, y: 11.6209}
+  m_SizeDelta: {x: 180.4335, y: 145.2419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2540823590454670090
 CanvasRenderer:
@@ -1276,7 +1277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Placeholder
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc43d32ed1d61d14888cc5ad44636607, type: 2}
   m_sharedMaterial: {fileID: -6626407770715667710, guid: bc43d32ed1d61d14888cc5ad44636607, type: 2}
@@ -1303,7 +1304,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.95
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

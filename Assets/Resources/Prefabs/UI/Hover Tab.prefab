@@ -112,7 +112,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4.4, y: 11}
-  m_SizeDelta: {x: 231.8462, y: 150.6841}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8974622821378845050
 CanvasRenderer:
@@ -522,10 +522,11 @@ MonoBehaviour:
   imageToChange: {fileID: 0}
   componentPrefab: {fileID: 0}
   pipes: []
-  componentName: Chilled Water Pump(CHWP)
+  componentName: Condeser Water Pump(CWP)
   parentPipe: {fileID: 0}
   pipeBody: {fileID: 0}
   pipeEntrance: {fileID: 0}
+  backgroundImage: {fileID: 0}
 --- !u!1 &8974622822180051072
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,6 +595,7 @@ MonoBehaviour:
   parentPipe: {fileID: 0}
   pipeBody: {fileID: 0}
   pipeEntrance: {fileID: 0}
+  backgroundImage: {fileID: 0}
 --- !u!1 &8974622822234834888
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,8 +631,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61, y: 11}
-  m_SizeDelta: {x: 154, y: 144}
+  m_AnchoredPosition: {x: 18, y: 10.509}
+  m_SizeDelta: {x: 152.011, y: 143.016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8974622822234834891
 CanvasRenderer:
@@ -660,7 +662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Placeholder
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc43d32ed1d61d14888cc5ad44636607, type: 2}
   m_sharedMaterial: {fileID: -6626407770715667710, guid: bc43d32ed1d61d14888cc5ad44636607, type: 2}
@@ -687,7 +689,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.95
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1029,10 +1031,11 @@ MonoBehaviour:
   imageToChange: {fileID: 0}
   componentPrefab: {fileID: 0}
   pipes: []
-  componentName: Condensed Water Pump(CWP)
+  componentName: Chilled Water Pump(CHWP)
   parentPipe: {fileID: 0}
   pipeBody: {fileID: 0}
   pipeEntrance: {fileID: 0}
+  backgroundImage: {fileID: 0}
 --- !u!1 &8974622822638789473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1104,7 @@ MonoBehaviour:
   parentPipe: {fileID: 0}
   pipeBody: {fileID: 0}
   pipeEntrance: {fileID: 0}
+  backgroundImage: {fileID: 0}
 --- !u!1 &8974622822886277178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,11 +1199,12 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   connection: {fileID: 0}
   moveSpeed: 2
-  finalPositionOfWheel: -500
+  finalPositionOfWheel: -430
   startPositionOfWheel: -780
   wheelTitle: {fileID: 8974622822234834890}
   componentTabs: []
   tab: {fileID: 8974622822886277174}
+  openTab: 0
   dragToPlace: 0
 --- !u!1 &8974622822959212756
 GameObject:
@@ -1346,6 +1351,7 @@ MonoBehaviour:
   parentPipe: {fileID: 0}
   pipeBody: {fileID: 0}
   pipeEntrance: {fileID: 0}
+  backgroundImage: {fileID: 0}
 --- !u!1 &8974622823230098438
 GameObject:
   m_ObjectHideFlags: 0
