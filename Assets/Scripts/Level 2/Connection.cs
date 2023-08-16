@@ -206,10 +206,10 @@ public class Connection : MonoBehaviour
                 }
             }
         }
-        Debug.Log(valueReturnBtn);
-        if (valueReturnBtn && valueReturnBtn.pressedBtn)
+        //Debug.Log(valueReturnBtn);
+        if (valueReturnBtn && valueReturnBtn.pressedBtn )
         {
-            Debug.Log(selectedComponent.IndexReturn() != null);
+            //Debug.Log(selectedComponent.IndexReturn() != null);
             if (selectedComponent.IndexReturn() != null)
             {
                 if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
@@ -219,7 +219,7 @@ public class Connection : MonoBehaviour
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
-                Debug.Log("test");
+                //Debug.Log("test");
                 originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
                 selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
             }
