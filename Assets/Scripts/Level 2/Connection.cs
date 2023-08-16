@@ -90,7 +90,7 @@ public class Connection : MonoBehaviour
             int k = 0;
             for (int j = 0; j < kypAHUConnectionPoints.Value.Count; j++)
             {
-                Debug.Log(kypAHUConnectionPoints.Key[i] + ": " + kypAHUConnectionPoints.Value[j][k]);
+                //Debug.Log(kypAHUConnectionPoints.Key[i] + ": " + kypAHUConnectionPoints.Value[j][k]);
                 k++;
             }
         }

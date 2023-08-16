@@ -25,16 +25,25 @@ public class ReturnValue : MonoBehaviour
             btn.onClick.AddListener(delegate { ReturnConnectionPoint(); });
         }
         selectedComponentBtn = connection.selectedComponent;
-
+        
         foreach (GameObject t in selectedComponentBtn.selectedTransform)
         {
             var mesh = t.GetComponent<MeshRenderer>().sharedMaterial;
+            var connectionIndex = selectedComponentBtn.selectedTransform.IndexOf(t);
+            //Debug.Log(mesh);
+            //Debug.Log(t.name.Substring(t.name.Length-1,1) + "This is the Index of Connection Point from name");
+            //Debug.Log((transform.GetChild(connectionIndex-1).GetComponent<Button>().gameObject.name));
+
+
 
             if (mesh == connection.selectionMat)
             {
                 int index = selectedComponentBtn.IndexReturning(t);
-                if (index == int.Parse(GetComponentInChildren<Button>().gameObject.name))
+                //Debug.Log(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name);
+                //Debug.Log(index);
+                if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
                 {
+                    Debug.Log("reached");
                     gameObject.transform.GetChild(index-1).GetComponent<Image>().color = greenish;
                 }
             }
