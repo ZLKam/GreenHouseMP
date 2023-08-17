@@ -373,7 +373,7 @@ public class LinePathFind : MonoBehaviour
             {
                 // if the connection point is already with line drawn, skip it.
                 if (!fromConnectionPoints[i].GetComponent<LineLimit>().AllowDrawLine ||
-                    !toConnectionPoints[j].GetComponent<LineLimit>().AllowDrawLine)
+                    !toConnectionPoints[j].GetComponent<LineLimit>().AllowDrawLine)we
                     continue;
                 for (int k = 0; k < secretPoints.Count; k++)
                 {

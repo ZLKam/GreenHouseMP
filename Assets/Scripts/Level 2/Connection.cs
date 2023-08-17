@@ -307,6 +307,7 @@ public class Connection : MonoBehaviour
                         
                         if (insame >= 2 || outsame >= 2)
                         {
+                            //tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
                             outsame = insame = 0;
                             //error pop up here
                             return;
