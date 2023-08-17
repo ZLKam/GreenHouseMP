@@ -8554,6 +8554,22 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3036719117227517079, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036719117227517079, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036719117227517079, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036719117227517079, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7392230416954645594, guid: 80aee600bd5a7b94ba25b9c9142fb428, type: 3}
       propertyPath: m_Text
       value: '       Fundamental Concepts'
@@ -9128,6 +9144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6021c68ca5d5b204f9632ae186dce04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  username: 
   genderFilled: 0
   usernameFilled: 0
   objectiveitems: {fileID: 421415630}
@@ -11468,6 +11485,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 1318556290}
   levelSelectPanel: {fileID: 1982832614}
   characterSelect: {fileID: 1082873666}
+  skyboxes: []
 --- !u!1 &1821616623
 GameObject:
   m_ObjectHideFlags: 0
@@ -11916,6 +11934,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 0}
   levelSelectPanel: {fileID: 0}
   characterSelect: {fileID: 0}
+  skyboxes: []
 --- !u!20 &1869772187
 Camera:
   m_ObjectHideFlags: 0

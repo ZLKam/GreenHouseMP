@@ -36,7 +36,7 @@ public class Profile : MonoBehaviour
    
     public Image alertPopUp;
     private string alertText = "Make sure a <color=red>Character</color> and a <color=red>Username</color> has been inputted.";
-    private string invalidUsernameText = "Invalid Username. Username an only contain <color=red>letters</color> and <color=red>numbers</color>.";
+    private string invalidUsernameText = "Invalid Username. Username can only contain <color=red>letters</color> and <color=red>numbers</color>.";
     private bool justShowedAlert = false;
 
     private byte[] selectedProfileImage;
