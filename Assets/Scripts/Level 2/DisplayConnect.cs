@@ -25,5 +25,18 @@ public class DisplayConnect : MonoBehaviour
         
     }
 
-    
+    public void FromSelected(GameObject component)
+    {
+        ImgFrom.sprite = component.GetComponent<Sprite>();
+    }
+
+    public void ToSelected(GameObject component)
+    {
+        ImgTo.sprite = component.GetComponent<Sprite>();
+    }
+
+    public void PipeClicked(GameObject pipe)
+    {
+        PipeSelected.sprite = pipe.GetComponent<Sprite>();
+    }
 }
