@@ -31,9 +31,9 @@ public class TempCheck : MonoBehaviour
         
         //light.transform.localRotation = Quaternion.identity;
         Camera = Camera.main;
-        Camera.transform.position = new Vector3(-250, 0, 0);
+        Camera.transform.position = new Vector3(-300, -30, 0);
         Camera.transform.rotation = Quaternion.Euler(1,90,0);
-        //Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
+        Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
         connection.transform.GetComponent<Connection>().enabled = false;
         Level2AnswerSheet.showPopUp = true;
         undo.SetActive(false);  

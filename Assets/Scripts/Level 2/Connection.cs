@@ -26,6 +26,8 @@ public class Connection : MonoBehaviour
     public List<GameObject> multiPoints;
     public List<GameObject> tobeunhighlighted;
     public SelectedComponent[] componentArray;
+    public List<GameObject> OutCP;
+    public List<GameObject> InCP;
 
     public int multiConnectLimit;
     public bool multiConnect;
@@ -290,11 +292,32 @@ public class Connection : MonoBehaviour
                 {
 
                     //Insert Cannot Connect in and in/Out and Out here
-
+                    int insame = 0;
+                    int outsame = 0;
+                    foreach (GameObject pipe in points)
+                    {
+                        if (InCP.Contains(pipe))
+                        {
+                            insame += 1;
+                        }
+                        else if (OutCP.Contains(pipe))
+                        {
+                            outsame += 1;
+                        }
+                        
+                        if (insame >= 2 || outsame >= 2)
+                        {
+                            outsame = insame = 0;
+                            //error pop up here
+                            return;
+                        }
+                    }
+                    outsame = insame = 0;
 
                     var pointlist = new List<GameObject>();
                     for (int i = 0; i < points.Count; i++)
                     {
+
                         if (AHUPoint1.Contains(points[i]))
                         {
                             if (i == 0)
