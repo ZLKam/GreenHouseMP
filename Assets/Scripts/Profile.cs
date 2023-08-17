@@ -6,11 +6,14 @@ using TMPro;
 using Unity.VisualScripting;
 using System.Text;
 using System;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 public class Profile : MonoBehaviour
 {
     //public static string gender;
     //public static string username;
+    [SerializeField]
     private string username;
     public bool genderFilled;
     public bool usernameFilled;
@@ -33,10 +36,13 @@ public class Profile : MonoBehaviour
    
     public Image alertPopUp;
     private string alertText = "Make sure a <color=red>Character</color> and a <color=red>Username</color> has been inputted.";
+    private string invalidUsernameText = "Invalid Username. Username an only contain <color=red>letters</color> and <color=red>numbers</color>.";
     private bool justShowedAlert = false;
 
     private byte[] selectedProfileImage;
     private string timeProfileCreated;
+
+    private Regex usernameRegex = new Regex(@"^[a-zA-Z0-9]$");
 
     // Start is called before the first frame update
     void Start()
@@ -155,6 +161,19 @@ public class Profile : MonoBehaviour
     {
         if (justShowedAlert)
             return;
+        List<bool> checks = new();
+        username.ToList().ForEach(x =>
+        {
+            checks.Add(usernameRegex.IsMatch(x.ToString()));
+        });
+        if (checks.Any(x => x == false))
+        {
+            Debug.Log("Invalid username.");
+            alertPopUp.gameObject.SetActive(true);
+            alertPopUp.GetComponentInChildren<TextMeshProUGUI>().text = invalidUsernameText;
+            StartCoroutine(CloseAlert());
+            return;
+        }
         if (genderFilled && usernameFilled)
         {
             //SceneManager.LoadScene("Main Menu");
