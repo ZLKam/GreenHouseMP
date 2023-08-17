@@ -90,6 +90,7 @@ public class PopUp : MonoBehaviour
         {
             pop = true;
             gameObject.SetActive(false);
+            yield break;
   
         }
         yield return new WaitForSeconds(timer);

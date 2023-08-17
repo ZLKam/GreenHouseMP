@@ -73,7 +73,6 @@ public class Placement1 : MonoBehaviour
             {
                 if (highlightedPlacement)
                 {
-                    Debug.Log(highlightedPlacement.gameObject);
                     if (duplicationPoints.Contains(highlightedPlacement.gameObject))
                     {
                         AutoPlace(highlightedPlacement.transform, false);
@@ -97,7 +96,7 @@ public class Placement1 : MonoBehaviour
 
     }
 
-    private void Highlight(RaycastHit hit) 
+    private void Highlight(RaycastHit hit)
     {
         foreach (GameObject selectPoints in selections)
         {
