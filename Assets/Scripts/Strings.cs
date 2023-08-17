@@ -76,10 +76,23 @@ public static class Strings
 
             badge.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(badgePath);
             badge.fillAmount = (float)progress / 3;
+            Debug.Log(badge.fillAmount);
+            if (badge.fillAmount != 1)
+            {
+                badge.transform.GetChild(1).GetComponent<Image>().color = new Color32(0, 0, 0, 100);
+            }
+            else
+            {
+                badge.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            }
 
             //Texture2D texture2D = new(1, 1);
             //texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(ChaptersDictionary[chapter][1])));
             //badge.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
+        }
+        else
+        {
+            badge.transform.GetChild(1).GetComponent<Image>().color = new Color32(0, 0, 0, 100);
         }
     }
 }

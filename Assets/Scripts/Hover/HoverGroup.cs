@@ -104,7 +104,13 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     private void OnPlacementFound(HoverTab components) 
     {
         placement.selectedPrefab = null;
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150));
+#if UNITY_STANDALONE
+        Vector3 touchPosition = new(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 150);
+#endif
+#if UNITY_ANDROID
+        Vector3 touchPosition = new(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 150);
+#endif
+        mousePos = Camera.main.ScreenToWorldPoint(touchPosition);
         components.componentPrefab.GetComponent<Collider>().enabled = false;
         placement.selectedPrefab = components.componentPrefab;
         if (placement.objectToTrack)
