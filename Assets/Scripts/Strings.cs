@@ -55,6 +55,11 @@ public static class Strings
         PlayerPrefs.DeleteKey("firstTime");
     }
 
+    public static int[] GetChaptersProgressions()
+    {
+        return new int[3] { PlayerPrefs.GetInt(ChapterOneProgressions), PlayerPrefs.GetInt(ChapterTwoProgressions), PlayerPrefs.GetInt(ChapterThreeProgressions) };
+    }
+
     public static bool IsFirstTime()
     {
         if (!PlayerPrefs.HasKey("firstTime"))

@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 public class TheoryBook : MonoBehaviour
 //Uses TheoryBookFormat.txt to process text info to place into the theorybook
 //make sure there is always an image for both the left and right pages before adding a new page
+//Avoid & and | inside your titles and description
 {
 
     private int currentLine;
