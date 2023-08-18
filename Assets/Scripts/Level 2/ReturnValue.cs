@@ -32,34 +32,19 @@ public class ReturnValue : MonoBehaviour
             var mesh = t.GetComponent<MeshRenderer>().sharedMaterial;
             var connectionIndex = selectedComponentBtn.selectedTransform.IndexOf(t);
             int index = selectedComponentBtn.IndexReturning(t);
-            //Debug.Log(mesh);
-            //Debug.Log(t.name.Substring(t.name.Length-1,1) + "This is the Index of Connection Point from name");
-            //Debug.Log((transform.GetChild(connectionIndex-1).GetComponent<Button>().gameObject.name));
             if (connection.tobeunhighlighted.Contains(t))
             {
                 if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
                 {
+                    gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
                     gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
                 }
             }
             else
             {
+                gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
                 gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
             }
-
-
-            if (mesh == connection.selectionMat)
-            {
-                //Debug.Log(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name);
-                //Debug.Log(index);
-                if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
-                {
-                    Debug.Log("reached");
-                    gameObject.transform.GetChild(index-1).GetComponent<Image>().color = greenish;
-                    //gameObject.transform.GetChild(index - 1).transform.GetChild(0).GetComponent<Text>().text = "In use";
-                }
-            }
-
         }
     }
 
@@ -72,20 +57,20 @@ public class ReturnValue : MonoBehaviour
             return;
         }
         pressedBtn = !pressedBtn;
-        //string ogText = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text;
+        string ogText = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text;
 
         if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color != greenish)
         {
             //pressedBtn = true;
             EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = greenish;
-            //EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text = "In use";
+            EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "In use";
             indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
         }
         else if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color != whiter)
         {
             Debug.Log(pressedBtn);
             EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = whiter;
-            //EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().text = ogText;
+            EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ogText;
             indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
         }
         scriptRef();
