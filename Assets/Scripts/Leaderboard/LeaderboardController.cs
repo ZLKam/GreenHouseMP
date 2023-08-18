@@ -17,9 +17,6 @@ public class LeaderboardController : MonoBehaviour
     public Transform playerEntryContainer;
     public GameObject playerEntryPrefab;
 
-    private HashSet<PlayerData> playerDataSet = new HashSet<PlayerData>();
-    [SerializeField]
-    private List<PlayerData> playerDataList = new();
     [SerializeField]
     private SerializableList<PlayerData> serializablePlayerDataList = new();
     private const string PlayerDataFileName = "playerdata.json";
@@ -28,40 +25,37 @@ public class LeaderboardController : MonoBehaviour
     private Coroutine scrollToBottomCoroutine;
     private ScrollRect scrollRect;
 
+    private string path;
+
     // Load saved player data from JSON file
     private void LoadPlayerData()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, PlayerDataFileName);
-        if (File.Exists(filePath))
+        if (File.Exists(path))
         {
-            string json = File.ReadAllText(filePath);
+            string json = File.ReadAllText(path);
             //List<PlayerData> data = JsonUtility.FromJson<List<PlayerData>>(json);
             //playerDataList = new(data);
             serializablePlayerDataList = JsonUtility.FromJson<SerializableList<PlayerData>>(json);
-            playerDataList = new(serializablePlayerDataList.list);
-            playerDataSet = new HashSet<PlayerData>(playerDataList);
         }
     }
 
     // Save current player data to JSON file
     private void SavePlayerData()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, PlayerDataFileName);
-        playerDataList = new(playerDataSet);
-        serializablePlayerDataList.list = new(playerDataSet);
         string json = JsonUtility.ToJson(serializablePlayerDataList);
-        File.WriteAllText(filePath, json);
+        File.WriteAllText(path, json);
     }
 
     // Method to add a player's data to the leaderboard
-    public void AddPlayerDataToLeaderboard(string playerName, int[] scores)
+    public void AddPlayerDataToLeaderboard(string playerName, int[] chapterProgressions, string gender)
     {
-        PlayerData playerData = new PlayerData
+        PlayerData playerData = new()
         {
             playerName = playerName,
-            scores = scores
+            chapterProgression = chapterProgressions,
+            gender = gender
         };
-        playerDataSet.Add(playerData);
+        serializablePlayerDataList.list.Add(playerData);
         SavePlayerData();
     }
 
@@ -72,15 +66,42 @@ public class LeaderboardController : MonoBehaviour
 
         int positionIndex = 1;
 
-        foreach (PlayerData playerData in playerDataSet)
+        foreach (PlayerData playerData in serializablePlayerDataList.list)
         {
             GameObject playerEntry = Instantiate(playerEntryPrefab, playerEntryContainer);
             TextMeshProUGUI playerNameText = playerEntry.transform.GetChild(0).Find("Body").GetComponentInChildren<TextMeshProUGUI>();
             TextMeshProUGUI positionText = playerEntry.transform.GetChild(0).Find("Position").GetComponentInChildren<TextMeshProUGUI>();
-            //Text scoresText = playerEntry.transform.Find("Scores").GetComponent<Text>();
+            Image profileImage = playerEntry.transform.GetChild(0).Find("Body").GetComponentsInChildren<Image>()[1];
+
+            Image badge1 = playerEntry.transform.GetChild(0).Find("Body").Find("Badges").GetComponentsInChildren<Image>()[0];
+            Image badge2 = playerEntry.transform.GetChild(0).Find("Body").Find("Badges").GetComponentsInChildren<Image>()[1];
+            Image badge3 = playerEntry.transform.GetChild(0).Find("Body").Find("Badges").GetComponentsInChildren<Image>()[2];
+
+            Sprite profileSprite = null;
+            switch (playerData.gender)
+            {
+                case "Male":
+                    profileSprite = Resources.Load<Sprite>("Game UI/FemaleWorkerPortrait");
+                    break;
+                case "Female":
+                    profileSprite = Resources.Load<Sprite>("Game UI/MaleWorkerPortrait");
+                    break;
+                default:
+                    Debug.Log("No gender saved");
+                    profileSprite = Resources.Load<Sprite>("Texture/TransparentSprite");
+                    break;
+            }
+            if (profileSprite)
+            {
+                profileImage.sprite = profileSprite;
+            }
 
             playerNameText.text = playerData.playerName;
             positionText.text = positionIndex.ToString();
+
+            Strings.ShowBadges(Strings.ChapterOne, playerData.chapterProgression[0], Strings.ChapterOneBadgePath, badge1);
+            Strings.ShowBadges(Strings.ChapterTwo, playerData.chapterProgression[1], Strings.ChapterTwoBadgePath, badge2);
+            Strings.ShowBadges(Strings.ChapterThree, playerData.chapterProgression[2], Strings.ChapterThreeBadgePath, badge3);
 
             positionIndex++;
             //scoresText.text = string.Join(", ", playerData.scores);
@@ -106,9 +127,10 @@ public class LeaderboardController : MonoBehaviour
     private void Start()
     {
         scrollRect = GetComponentInChildren<ScrollRect>();
+        path = Path.Combine(Application.persistentDataPath, PlayerDataFileName);
 
         LoadPlayerData();
-        AddPlayerDataToLeaderboard(PlayerPrefs.GetString(Strings.Username), Strings.GetChaptersProgressions());
+        AddPlayerDataToLeaderboard(PlayerPrefs.GetString(Strings.Username), Strings.GetChaptersProgressions(), Profile.gender);
         DisplayLeaderboard();
     }
 
@@ -125,6 +147,19 @@ public class LeaderboardController : MonoBehaviour
             if (scrollToTopCoroutine != null)
                 StopCoroutine(scrollToTopCoroutine);
             scrollToBottomCoroutine = StartCoroutine(ScrollToBottom());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            DeleteJSON();
+        }
+    }
+
+    public void DeleteJSON()
+    {
+        if (File.Exists(path))
+        {
+            File.Delete(path);
         }
     }
 

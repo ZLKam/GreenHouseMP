@@ -11,7 +11,7 @@ using System.Linq;
 
 public class Profile : MonoBehaviour
 {
-    //public static string gender;
+    public static string gender;
     //public static string username;
     [SerializeField]
     private string username;
@@ -121,7 +121,7 @@ public class Profile : MonoBehaviour
 
     public void GenderSetMale()
     {
-        //gender = "Male";
+        gender = "Male";
         genderFilled = true;
         ProfileImage.sprite = MaleImage;
         ObjProfileImg.sprite = MaleImage;
@@ -133,7 +133,7 @@ public class Profile : MonoBehaviour
 
     public void GenderSetFemale()
     {
-        //gender = "Female";
+        gender = "Female";
         genderFilled = true;
         ProfileImage.sprite = FemaleImage;
         ObjProfileImg.sprite = FemaleImage;
