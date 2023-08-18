@@ -64,6 +64,7 @@ public class Connection : MonoBehaviour
     public GameObject pipeWarningPanel;
     public Fade fade;
     public GameObject uiParent;
+    public GameObject ErrorInandIn;
 
     private KeyValuePair<List<Transform>, List<List<Transform>>> kypAHUConnectionPoints = new();
     [SerializeField]
@@ -260,6 +261,7 @@ public class Connection : MonoBehaviour
                 {
                     selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
                     points.Remove(selectedComponent.IndexReturn().gameObject);
+                    tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);    
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
@@ -273,14 +275,11 @@ public class Connection : MonoBehaviour
                 if (points.Contains(selectedComponent.IndexReturn().gameObject))
                 {
                     points.Remove(selectedComponent.IndexReturn().gameObject);
+                    tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
                 }
                 else
                 {
                     points.Add(selectedComponent.IndexReturn().gameObject);
-                }
-
-                if (points.Count >= 1)
-                {
                     var last = points.Count;
                     if (!tobeunhighlighted.Contains(points[last - 1]))
                     {
@@ -307,8 +306,9 @@ public class Connection : MonoBehaviour
                         
                         if (insame >= 2 || outsame >= 2)
                         {
+                            tobeunhighlighted.Remove(pipe);
                             outsame = insame = 0;
-                            //error pop up here
+                            ErrorInandIn.SetActive(true);
                             return;
                         }
                     }
@@ -488,48 +488,44 @@ public class Connection : MonoBehaviour
 
     public void UndoPipe()
     {
-        if (pipes.Count > 0)
+        if (tobeunhighlighted.Count > 0)
         {
             //points.Clear();
-            if (pipes.Contains(pipes[pipes.Count - 1]))
+
+            if (tobeunhighlighted.Count % 2 == 0)
+            {
+                for (int i = 1; i <= 2; i++)
+                {
+                    if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+                    {
+                        Debug.Log("reached");
+                        tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                        tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+                    }
+                }
+            }
+            else if (tobeunhighlighted.Count % 2 == 1)
+            {
+                for (int i = 1; i <= 3; i++)
+                {
+                    if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+                    {
+                        tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                        tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+                    }
+                }
+                points.Clear();
+            }
+
+            if (pipes.Count >= 1)
             {
                 GameObject Clone = pipes[pipes.Count - 1];
                 pipes.Remove(pipes[pipes.Count - 1]);
                 Destroy(Clone);
                 anomalyFound = false;
 
-                Debug.Log("Removed the lastest pipe");
-
-                if (tobeunhighlighted.Count % 2 == 0)
-                {
-                    for (int i = 1; i <= 2; i++)
-                    {
-                        if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-                        {
-                            Debug.Log("reached");
-                            tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
-                        }
-                    }
-                }
-                else if (tobeunhighlighted.Count % 2 == 1)
-                {
-                    for (int i = 1; i <= 3; i++)
-                    {
-                        if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-                        {
-                            tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
-                            points.Clear();
-                        }
-                    }
-                }
             }
-        }
-        else
-        {
-            Debug.Log("No pipes left");
-            //Can do warning pop up here;
+            Debug.Log("Removed the lastest pipe");
         }
     }
 
