@@ -64,6 +64,7 @@ public class Connection : MonoBehaviour
     public GameObject pipeWarningPanel;
     public Fade fade;
     public GameObject uiParent;
+    public GameObject ErrorInandIn;
 
     private KeyValuePair<List<Transform>, List<List<Transform>>> kypAHUConnectionPoints = new();
     [SerializeField]
@@ -307,8 +308,9 @@ public class Connection : MonoBehaviour
                         
                         if (insame >= 2 || outsame >= 2)
                         {
+                            tobeunhighlighted.Remove(pipe);
                             outsame = insame = 0;
-                            //error pop up here
+                            ErrorInandIn.SetActive(true);
                             return;
                         }
                     }
@@ -493,13 +495,6 @@ public class Connection : MonoBehaviour
             //points.Clear();
             if (pipes.Contains(pipes[pipes.Count - 1]))
             {
-                GameObject Clone = pipes[pipes.Count - 1];
-                pipes.Remove(pipes[pipes.Count - 1]);
-                Destroy(Clone);
-                anomalyFound = false;
-
-                Debug.Log("Removed the lastest pipe");
-
                 if (tobeunhighlighted.Count % 2 == 0)
                 {
                     for (int i = 1; i <= 2; i++)
@@ -524,6 +519,13 @@ public class Connection : MonoBehaviour
                         }
                     }
                 }
+
+                GameObject Clone = pipes[pipes.Count - 1];
+                pipes.Remove(pipes[pipes.Count - 1]);
+                Destroy(Clone);
+                anomalyFound = false;
+
+                Debug.Log("Removed the lastest pipe");
             }
         }
         else
