@@ -32,18 +32,21 @@ public class ReturnValue : MonoBehaviour
             var mesh = t.GetComponent<MeshRenderer>().sharedMaterial;
             var connectionIndex = selectedComponentBtn.selectedTransform.IndexOf(t);
             int index = selectedComponentBtn.IndexReturning(t);
-            if (connection.tobeunhighlighted.Contains(t))
+            if (connection.tobeunhighlighted.Count >= 2)
             {
-                if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
+                if (connection.tobeunhighlighted.Contains(t))
                 {
-                    gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
-                    gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
+                    if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
+                    {
+                        gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
+                        gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
+                    }
                 }
-            }
-            else
-            {
-                gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
-                gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
+                else
+                {
+                    gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
+                    gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
+                }
             }
         }
     }
@@ -56,8 +59,8 @@ public class ReturnValue : MonoBehaviour
             connection.pipeWarningPanel.SetActive(true);
             return;
         }
-        pressedBtn = !pressedBtn;
         string ogText = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text;
+        pressedBtn = !pressedBtn;
 
         if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color != greenish)
         {
