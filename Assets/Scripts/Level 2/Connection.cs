@@ -261,7 +261,7 @@ public class Connection : MonoBehaviour
                 {
                     selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
                     points.Remove(selectedComponent.IndexReturn().gameObject);
-                    tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+                    tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);    
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
