@@ -649,6 +649,8 @@ MonoBehaviour:
   fadeSpeed: 6
   canDarken: 1
   darken: 0
+  profileImage: {fileID: 0}
+  username: {fileID: 0}
   proceedButton: {fileID: 2146248349}
   transitionScene: Level 2
   previousScene: 
@@ -1320,6 +1322,8 @@ MonoBehaviour:
   fadeSpeed: 6
   canDarken: 1
   darken: 0
+  profileImage: {fileID: 0}
+  username: {fileID: 0}
   proceedButton: {fileID: 0}
   transitionScene: 
   previousScene: 
@@ -6162,7 +6166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6190,15 +6194,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.7
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6252,6 +6256,10 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 1817454496}
+    - target: {fileID: 2277970009710657515, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
+      propertyPath: profileImage
+      value: 
+      objectReference: {fileID: 2072618853}
     - target: {fileID: 2277970009710657515, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: instructionPanel
       value: 
@@ -8450,7 +8458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6305942689636936392, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6305942689636936392, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10724,8 +10732,8 @@ RectTransform:
   - {fileID: 180261418}
   - {fileID: 1741942267}
   - {fileID: 40205499}
-  - {fileID: 596180095}
   - {fileID: 1541014914}
+  - {fileID: 596180095}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 2.549, z: 0}
@@ -11647,6 +11655,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
+--- !u!114 &2072618853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716406527999657234, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
+  m_PrefabInstance: {fileID: 2072618852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2081471459
 GameObject:
   m_ObjectHideFlags: 0

@@ -227,6 +227,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1734517859}
     - target: {fileID: 2277970009710657515, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
+      propertyPath: profileImage
+      value: 
+      objectReference: {fileID: 1281282467}
+    - target: {fileID: 2277970009710657515, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: instructionPanel
       value: 
       objectReference: {fileID: 1100470212}
@@ -10306,6 +10310,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
+--- !u!114 &1281282467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716406527999657234, guid: 376eefe2f19417a468653c98c1aeee60, type: 3}
+  m_PrefabInstance: {fileID: 1281282466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1289289335
 GameObject:
   m_ObjectHideFlags: 0
@@ -14731,6 +14746,7 @@ MonoBehaviour:
   fadeSpeed: 6
   canDarken: 1
   darken: 0
+  profileImage: {fileID: 0}
   proceedButton: {fileID: 0}
   transitionScene: Main Menu
   previousScene: 

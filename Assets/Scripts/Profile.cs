@@ -14,7 +14,7 @@ public class Profile : MonoBehaviour
     public static string gender;
     //public static string username;
     [SerializeField]
-    private string username;
+    public static string username;
     public bool genderFilled;
     public bool usernameFilled;
     private Fade fadeScript;
@@ -82,18 +82,18 @@ public class Profile : MonoBehaviour
                 Strings.ResetProgress();
             }
         }
-        if (PlayerPrefs.HasKey(Strings.Username) && PlayerPrefs.HasKey(Strings.ProfileImage))
-        {
-            Texture2D texture2D = new(1, 1);
-            texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(Strings.ProfileImage)));
-            ProfileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
-            ObjProfileImg.sprite = ProfileImage.sprite;
-            profilestuff.SetActive(false);
-            //objectiveitems.SetActive(true);
-            if (!objectiveitems.activeSelf)
-                GetComponentInChildren<Fade>().GameMenu.SetActive(true);
-            textcon.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
-        }
+        //if (PlayerPrefs.HasKey(Strings.Username) && PlayerPrefs.HasKey(Strings.ProfileImage))
+        //{
+        //    Texture2D texture2D = new(1, 1);
+        //    texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(Strings.ProfileImage)));
+        //    ProfileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
+        //    ObjProfileImg.sprite = ProfileImage.sprite;
+        //    profilestuff.SetActive(false);
+        //    //objectiveitems.SetActive(true);
+        //    if (!objectiveitems.activeSelf)
+        //        GetComponentInChildren<Fade>().GameMenu.SetActive(true);
+        //    textcon.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
+        //}
         //FemaleImage = (Sprite)Resources.Load("FemaleWorkerPortrait");
         //MaleImage = (Sprite)Resources.Load("MaleWorkerPortrait");
     }

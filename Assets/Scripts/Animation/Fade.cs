@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Fade : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Fade : MonoBehaviour
     //public byte maxFade;
     //public byte fadeAmount;
     public byte fadeSpeed;
-    public static bool canFade = false;
+    public static bool canFade = true;
     //public byte red, green, blue;
     //Image fadeImage;
     //public bool fadeIn;
@@ -25,6 +26,8 @@ public class Fade : MonoBehaviour
     public bool canDarken;
     [HideInInspector]
     public bool darken;
+    public Image profileImage;
+    public TextMeshProUGUI username;
 
     public GameObject proceedButton;
 
@@ -38,7 +41,7 @@ public class Fade : MonoBehaviour
     public GameObject objectiveitems;
     public static bool Previewed;
 
-    public UnityEngine.UI.Button btnLevelSelect;
+    public Button btnLevelSelect;
 
     [SerializeField]
     private GameObject pausePanel;
@@ -70,19 +73,42 @@ public class Fade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Main Menu" && string.IsNullOrEmpty(Profile.gender)) 
-        {
-            SceneManager.LoadScene("CharacterSelect");
-        }
-
-        if (!PlayerPrefs.HasKey("fadeSpeed"))
-        {
-            PlayerPrefs.SetFloat("fadeSpeed", 51);
-        }
-
         fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
         previousScene = PlayerPrefs.GetString("previousScene");
         fadeAnim = GetComponent<Animator>();
+
+        if (SceneManager.GetActiveScene().name == "Main Menu" && !PlayerPrefs.HasKey(Strings.Username) && !PlayerPrefs.HasKey(Strings.ProfileImage))
+        {
+            SceneManager.LoadScene("CharacterSelect");
+            return;
+        }
+        else 
+        {
+            if (SceneManager.GetActiveScene().name == "SelectLevelChapter") 
+            {
+                ShowAllBadges();
+            }
+
+            if (!PlayerPrefs.HasKey("fadeSpeed"))
+            {
+                PlayerPrefs.SetFloat("fadeSpeed", 51);
+            }
+
+            if (PlayerPrefs.HasKey(Strings.Username) && PlayerPrefs.HasKey(Strings.ProfileImage) && profileImage)
+            {
+                Texture2D texture2D = new(1, 1);
+                texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(Strings.ProfileImage)));
+                profileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
+                Debug.Log("Running");
+                //ObjProfileImg.sprite = ProfileImage.sprite;
+                //profilestuff.SetActive(false);
+                //if (!objectiveitems.activeSelf)
+                //    GetComponentInChildren<Fade>().GameMenu.SetActive(true);
+                username.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
+            }
+
+        }
+
         //fadeImage = GetComponent<Image>();
         //fadeImage.color = new Color32(0, 0, 0, fadeAmount);
 

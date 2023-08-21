@@ -4813,7 +4813,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2277970009710657509, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_Name
-      value: Fade
+      value: FadeOverlay
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_Pivot.x
@@ -4853,15 +4853,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.71002764
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.71002764
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.71002764
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4923,6 +4923,14 @@ PrefabInstance:
       propertyPath: GameMenu
       value: 
       objectReference: {fileID: 1318556290}
+    - target: {fileID: 2277970009710657515, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
+      propertyPath: username
+      value: 
+      objectReference: {fileID: 904157432}
+    - target: {fileID: 2277970009710657515, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
+      propertyPath: profileImage
+      value: 
+      objectReference: {fileID: 739000105}
     - target: {fileID: 2277970009710657515, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: btnLevelSelect
       value: 

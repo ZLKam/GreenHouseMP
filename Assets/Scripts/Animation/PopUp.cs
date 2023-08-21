@@ -100,10 +100,10 @@ public class PopUp : MonoBehaviour
 
     public void hide()
     {
-        if (fade.darken)
-        {
-            fade.darken = false;
-        }
+        //if (fade.darken)
+        //{
+        //    fade.darken = false;
+        //}
 
         pop = true;
         gameObject.SetActive(false);

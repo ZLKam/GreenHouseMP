@@ -2959,7 +2959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6021c68ca5d5b204f9632ae186dce04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  username: 
   genderFilled: 0
   usernameFilled: 0
   objectiveitems: {fileID: 421415630}
@@ -5023,15 +5022,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.69986624
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.69986624
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.69986624
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_LocalPosition.x
