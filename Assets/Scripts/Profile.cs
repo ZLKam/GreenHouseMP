@@ -17,6 +17,7 @@ public class Profile : MonoBehaviour
     private string username;
     public bool genderFilled;
     public bool usernameFilled;
+    private Fade fadeScript;
     //public static bool ProfileSet;
 
     public GameObject objectiveitems;
@@ -67,6 +68,7 @@ public class Profile : MonoBehaviour
         //    MenuItems.SetActive(true);
         //    textcon.text = username;
         //}
+        fadeScript = FindAnyObjectByType<Fade>();
         if (PlayerPrefs.HasKey(Strings.TimeProfileCreated))
         {
             DateTime dateTime = DateTime.Now;
@@ -123,7 +125,7 @@ public class Profile : MonoBehaviour
     {
         gender = "Male";
         genderFilled = true;
-        ProfileImage.sprite = MaleImage;
+        //ProfileImage.sprite = MaleImage;
         ObjProfileImg.sprite = MaleImage;
         femaleBtn.GetComponent<Image>().color = Color.white;
         maleBtn.GetComponent<Image>().color = Color.yellow;
@@ -135,7 +137,7 @@ public class Profile : MonoBehaviour
     {
         gender = "Female";
         genderFilled = true;
-        ProfileImage.sprite = FemaleImage;
+        //ProfileImage.sprite = FemaleImage;
         ObjProfileImg.sprite = FemaleImage;
         femaleBtn.GetComponent<Image>().color = Color.yellow;
         maleBtn.GetComponent<Image>().color = Color.white;
@@ -166,9 +168,10 @@ public class Profile : MonoBehaviour
         {
             checks.Add(usernameRegex.IsMatch(x.ToString()));
         });
+
         if (checks.Any(x => x == false))
         {
-            Debug.Log("Invalid username.");
+            Fade.canFade = false;
             alertPopUp.gameObject.SetActive(true);
             alertPopUp.GetComponentInChildren<TextMeshProUGUI>().text = invalidUsernameText;
             StartCoroutine(CloseAlert());
@@ -177,26 +180,25 @@ public class Profile : MonoBehaviour
         if (genderFilled && usernameFilled)
         {
             //SceneManager.LoadScene("Main Menu");
-            profilestuff.SetActive(false);
+            //profilestuff.SetActive(false);
             if (Strings.IsFirstTime())
             {
                 GetComponentInChildren<Fade>().ShowObjective();
             }
             else
             {
-                GetComponentInChildren<Fade>().GameMenu.SetActive(true);
+                Fade.canFade = true;
             }
             //objectiveitems.SetActive(true);
             //ProfileSet = true;
             //TransferInfo = ProfileImage;
-            textcon.text = username;
+            //textcon.text = username;
             PlayerPrefs.SetString(Strings.Username, username);
             timeProfileCreated = DateTime.Now.ToString();
             PlayerPrefs.SetString(Strings.TimeProfileCreated, timeProfileCreated);
         }
         else if (!genderFilled || !usernameFilled)
         {
-            Debug.Log("Show alert");
             alertPopUp.gameObject.SetActive(true);
             alertPopUp.GetComponentInChildren<TextMeshProUGUI>().text = alertText;
             StartCoroutine(CloseAlert());
