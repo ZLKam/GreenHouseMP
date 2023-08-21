@@ -17,6 +17,10 @@ public class LeaderboardController : MonoBehaviour
     public Transform playerEntryContainer;
     public GameObject playerEntryPrefab;
 
+    public Image profilePicture;
+    public TextMeshProUGUI NameText;
+    public Image[] badge;
+
     [SerializeField]
     private SerializableList<PlayerData> serializablePlayerDataList = new();
     private const string PlayerDataFileName = "playerdata.json";
@@ -68,7 +72,7 @@ public class LeaderboardController : MonoBehaviour
 
         foreach (PlayerData playerData in serializablePlayerDataList.list)
         {
-            GameObject playerEntry = Instantiate(playerEntryPrefab, playerEntryContainer);
+            GameObject playerEntry = Instantiate(playerEntryPrefab, playerEntryContainer, false);
             TextMeshProUGUI playerNameText = playerEntry.transform.GetChild(0).Find("Body").GetComponentInChildren<TextMeshProUGUI>();
             TextMeshProUGUI positionText = playerEntry.transform.GetChild(0).Find("Position").GetComponentInChildren<TextMeshProUGUI>();
             Image profileImage = playerEntry.transform.GetChild(0).Find("Body").GetComponentsInChildren<Image>()[1];
@@ -91,11 +95,8 @@ public class LeaderboardController : MonoBehaviour
                     profileSprite = Resources.Load<Sprite>("Texture/TransparentSprite");
                     break;
             }
-            if (profileSprite)
-            {
-                profileImage.sprite = profileSprite;
-            }
-
+            
+            profileImage.sprite = profileSprite;
             playerNameText.text = playerData.playerName;
             positionText.text = positionIndex.ToString();
 
@@ -103,8 +104,9 @@ public class LeaderboardController : MonoBehaviour
             Strings.ShowBadges(Strings.ChapterTwo, playerData.chapterProgression[1], Strings.ChapterTwoBadgePath, badge2);
             Strings.ShowBadges(Strings.ChapterThree, playerData.chapterProgression[2], Strings.ChapterThreeBadgePath, badge3);
 
+            AssignToIntro(profileSprite, playerData);
+
             positionIndex++;
-            //scoresText.text = string.Join(", ", playerData.scores);
         }
     }
 
@@ -149,7 +151,7 @@ public class LeaderboardController : MonoBehaviour
             scrollToBottomCoroutine = StartCoroutine(ScrollToBottom());
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             DeleteJSON();
         }
@@ -161,6 +163,19 @@ public class LeaderboardController : MonoBehaviour
         {
             File.Delete(path);
         }
+    }
+
+    private void AssignToIntro(Sprite profileSprite, PlayerData playerData) 
+    {
+        profilePicture.sprite = profileSprite;
+    
+
+        NameText.text = playerData.playerName;
+
+       Strings.ShowBadges(Strings.ChapterOne, playerData.chapterProgression[0], Strings.ChapterOneBadgePath, badge[0]);
+       Strings.ShowBadges(Strings.ChapterTwo, playerData.chapterProgression[1], Strings.ChapterTwoBadgePath, badge[1]);
+       Strings.ShowBadges(Strings.ChapterThree, playerData.chapterProgression[2], Strings.ChapterThreeBadgePath, badge[2]);
+
     }
 
     private IEnumerator ScrollToTop()

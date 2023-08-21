@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class Fade : MonoBehaviour
 {
@@ -18,6 +17,7 @@ public class Fade : MonoBehaviour
     //public byte fadeAmount;
     public byte fadeSpeed;
     public static bool canFade = true;
+    public bool sessionEnd;
     //public byte red, green, blue;
     //Image fadeImage;
     //public bool fadeIn;
@@ -104,7 +104,8 @@ public class Fade : MonoBehaviour
                 //profilestuff.SetActive(false);
                 //if (!objectiveitems.activeSelf)
                 //    GetComponentInChildren<Fade>().GameMenu.SetActive(true);
-                username.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
+                if(username)    
+                    username.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
             }
 
         }
@@ -207,6 +208,15 @@ public class Fade : MonoBehaviour
             Strings.ResetProgress();
             Application.Quit();
         }
+        else if (sessionEnd) 
+        {
+            Instructions.Read = Previewed = false;
+            PlayerPrefs.DeleteKey("ProfileImage");
+            PlayerPrefs.DeleteKey("Username");
+            PlayerPrefs.DeleteKey("TimeProfileCreated");
+            Strings.ResetProgress();
+            SceneManager.LoadScene("CharacterSelect");
+        }
         else if (!string.IsNullOrEmpty(transitionScene))
         //loads the next scene if transition scene is specificed, set in editor
         {
@@ -237,7 +247,6 @@ public class Fade : MonoBehaviour
     //fades in and out but does not change the scene
     {
         FindAnyObjectByType<AudioManager>()?.Play("Click");
-        //fadeOut = true;
     }
 
     public void PreviousScene()
@@ -249,7 +258,6 @@ public class Fade : MonoBehaviour
         transitionScene = previousScene;
         fadeAnim.SetTrigger("FadeAway");
 
-        //fadeOut = true;
     }
 
     public void Quit()
@@ -259,6 +267,13 @@ public class Fade : MonoBehaviour
         exit = true;
         fadeAnim.SetTrigger("FadeAway");
         //fadeOut = true;
+    }
+
+    public void EndSession() 
+    {
+        FindObjectOfType<AudioManager>().Play("Click");
+        sessionEnd = true;
+        fadeAnim.SetTrigger("FadeAway");
     }
 
     //Pause Menus
@@ -365,5 +380,10 @@ public class Fade : MonoBehaviour
     {
         Debug.Log("Show level 2 badges");
         Strings.ShowBadges(Strings.ChapterTwo, Strings.ChapterTwoBadgePath, badge);
+    }
+
+    public void ShowObject(GameObject objectToShow) 
+    {
+        objectToShow.SetActive(true);
     }
 }
