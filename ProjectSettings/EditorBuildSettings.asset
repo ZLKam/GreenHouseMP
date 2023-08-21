@@ -15,11 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScenes/Main Menu.unity
     guid: 6a9fe7128b07fc54eb56c7b379915e4a
   - enabled: 1
-    path: Assets/Scenes/Instructions.unity
-    guid: edb2032899227d94c968548f02c93b37
+    path: Assets/Scenes/MenuScenes/SelectLevelChapter.unity
+    guid: 2ed3b7af7cfb6d84aa6d18aa2f3882ef
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: fd2dee955a2b25a4db1e26f17bc3ed8d
+  - enabled: 1
+    path: Assets/Scenes/PreviewLevel.unity
+    guid: 777995c28a04aea4387e49d63615d514
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: a21164b42664ed847a5a2bbba52f5b07
@@ -30,12 +33,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 3.unity
     guid: 96d56f75412120840b8572b8060da839
   - enabled: 1
-    path: Assets/Scenes/PreviewLevel.unity
-    guid: 777995c28a04aea4387e49d63615d514
-  - enabled: 1
     path: Assets/Scenes/LeaderBoard.unity
     guid: cbe6056915291444eae71225a868f5fc
-  - enabled: 1
-    path: Assets/Scenes/MenuScenes/SelectLevelChapter.unity
-    guid: 2ed3b7af7cfb6d84aa6d18aa2f3882ef
   m_configObjects: {}

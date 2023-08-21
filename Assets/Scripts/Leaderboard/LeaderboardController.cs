@@ -14,6 +14,8 @@ public class SerializableList<T>
 
 public class LeaderboardController : MonoBehaviour
 {
+    //if profile image not showing, start scene from where the profile script is then go to leaderboard
+
     public Transform playerEntryContainer;
     public GameObject playerEntryPrefab;
 
