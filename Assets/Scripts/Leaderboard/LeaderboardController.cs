@@ -24,6 +24,7 @@ public class LeaderboardController : MonoBehaviour
     [SerializeField]
     private SerializableList<PlayerData> serializablePlayerDataList = new();
     private const string PlayerDataFileName = "playerdata.json";
+    private Sprite profileSprite;
 
     private Coroutine scrollToTopCoroutine;
     private Coroutine scrollToBottomCoroutine;
@@ -81,14 +82,13 @@ public class LeaderboardController : MonoBehaviour
             Image badge2 = playerEntry.transform.GetChild(0).Find("Body").Find("Badges").GetComponentsInChildren<Image>()[1];
             Image badge3 = playerEntry.transform.GetChild(0).Find("Body").Find("Badges").GetComponentsInChildren<Image>()[2];
 
-            Sprite profileSprite = null;
             switch (playerData.gender)
             {
                 case "Male":
-                    profileSprite = Resources.Load<Sprite>("Game UI/FemaleWorkerPortrait");
+                    profileSprite = Resources.Load<Sprite>("Game UI/MaleWorkerPortrait");
                     break;
                 case "Female":
-                    profileSprite = Resources.Load<Sprite>("Game UI/MaleWorkerPortrait");
+                    profileSprite = Resources.Load<Sprite>("Game UI/FemaleWorkerPortrait");
                     break;
                 default:
                     Debug.Log("No gender saved");
@@ -168,8 +168,6 @@ public class LeaderboardController : MonoBehaviour
     private void AssignToIntro(Sprite profileSprite, PlayerData playerData) 
     {
         profilePicture.sprite = profileSprite;
-    
-
         NameText.text = playerData.playerName;
 
        Strings.ShowBadges(Strings.ChapterOne, playerData.chapterProgression[0], Strings.ChapterOneBadgePath, badge[0]);
