@@ -17,7 +17,6 @@ public class Profile : MonoBehaviour
     public static string username;
     public bool genderFilled;
     public bool usernameFilled;
-    private Fade fadeScript;
     //public static bool ProfileSet;
 
     public GameObject objectiveitems;
@@ -68,7 +67,6 @@ public class Profile : MonoBehaviour
         //    MenuItems.SetActive(true);
         //    textcon.text = username;
         //}
-        fadeScript = FindAnyObjectByType<Fade>();
         if (PlayerPrefs.HasKey(Strings.TimeProfileCreated))
         {
             DateTime dateTime = DateTime.Now;
