@@ -5,23 +5,29 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Fade : MonoBehaviour
 {
     public bool exit;
     public bool settings;
 
-    public byte maxFade;
-    public byte fadeAmount;
+    private Animator fadeAnim;
+
+    //public byte maxFade;
+    //public byte fadeAmount;
     public byte fadeSpeed;
-    public byte red, green, blue;
-    Image fadeImage;
-    public bool fadeIn;
-    public bool fadeOut;
+    public static bool canFade = true;
+    //public byte red, green, blue;
+    //Image fadeImage;
+    //public bool fadeIn;
+    //public bool fadeOut;
 
     public bool canDarken;
     [HideInInspector]
     public bool darken;
+    public Image profileImage;
+    public TextMeshProUGUI username;
 
     public GameObject proceedButton;
 
@@ -35,7 +41,7 @@ public class Fade : MonoBehaviour
     public GameObject objectiveitems;
     public static bool Previewed;
 
-    public UnityEngine.UI.Button btnLevelSelect;
+    public Button btnLevelSelect;
 
     [SerializeField]
     private GameObject pausePanel;
@@ -61,22 +67,50 @@ public class Fade : MonoBehaviour
     {
         if ((SceneManager.GetActiveScene().name == "Main Menu") && !Previewed)
         {
-            Debug.Log("reached");
             objectiveitems.SetActive(true);
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("fadeSpeed"))
-        {
-            PlayerPrefs.SetFloat("fadeSpeed", 51);
-        }
         fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
         previousScene = PlayerPrefs.GetString("previousScene");
+        fadeAnim = GetComponent<Animator>();
 
-        fadeImage = GetComponent<Image>();
-        fadeImage.color = new Color32(0, 0, 0, fadeAmount);
+        if (SceneManager.GetActiveScene().name == "Main Menu" && !PlayerPrefs.HasKey(Strings.Username) && !PlayerPrefs.HasKey(Strings.ProfileImage))
+        {
+            SceneManager.LoadScene("CharacterSelect");
+            return;
+        }
+        else 
+        {
+            if (SceneManager.GetActiveScene().name == "SelectLevelChapter") 
+            {
+                ShowAllBadges();
+            }
+
+            if (!PlayerPrefs.HasKey("fadeSpeed"))
+            {
+                PlayerPrefs.SetFloat("fadeSpeed", 51);
+            }
+
+            if (PlayerPrefs.HasKey(Strings.Username) && PlayerPrefs.HasKey(Strings.ProfileImage) && profileImage)
+            {
+                Texture2D texture2D = new(1, 1);
+                texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(Strings.ProfileImage)));
+                profileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
+                Debug.Log("Running");
+                //ObjProfileImg.sprite = ProfileImage.sprite;
+                //profilestuff.SetActive(false);
+                //if (!objectiveitems.activeSelf)
+                //    GetComponentInChildren<Fade>().GameMenu.SetActive(true);
+                username.text = PlayerPrefs.HasKey(Strings.Username) ? PlayerPrefs.GetString(Strings.Username) : string.Empty;
+            }
+
+        }
+
+        //fadeImage = GetComponent<Image>();
+        //fadeImage.color = new Color32(0, 0, 0, fadeAmount);
 
         //if (Previewed)
         //{
@@ -87,105 +121,106 @@ public class Fade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Darken();
+        //Darken();
 
-        //when fading in is true
-        // and the fade amount(fade alpha) is more than 0
-        if (fadeIn && fadeAmount > 0)
-        {
-            //disables fading out
-            //sets the alpha to the fade amount
-            //reduces fade alpha over update
-            fadeOut = false;
-            fadeImage.color = new Color32(red, green, blue, fadeAmount);
-            fadeAmount -= fadeSpeed;
+        ////when fading in is true
+        //// and the fade amount(fade alpha) is more than 0
+        //if (fadeIn && fadeAmount > 0)
+        //{
+        //    //disables fading out
+        //    //sets the alpha to the fade amount
+        //    //reduces fade alpha over update
+        //    //fadeOut = false;
+        //    //fadeImage.color = new Color32(red, green, blue, fadeAmount);
+        //    //fadeAmount -= fadeSpeed;
 
-            if (fadeAmount <= 0)
-            //once fade alpha is zero
-            //disables the fading in and the fade image 
-            {
-                fadeIn = false;
-                fadeImage.enabled = false;
-            }
-        }
+        //    if (fadeAmount <= 0)
+        //    //once fade alpha is zero
+        //    //disables the fading in and the fade image 
+        //    {
+        //        fadeIn = false;
+        //        fadeImage.enabled = false;
+        //    }
+        //}
 
-        if (fadeOut && fadeAmount < 255)
-        //when fading out of scene
-        //and fade amount(fade alpha) is less than 255(max alpha number)
-        {
-            //disables fading in and renables the fade image
-            //sets the fade amount as the alph
-            //begins increasing fade alpha
-            fadeIn = false;
-            fadeImage.enabled = true;
-            fadeImage.color = new Color32(red, green, blue, fadeAmount);
-            fadeAmount += fadeSpeed;
-
-            if (fadeAmount >= 255)
-            //once fade alpha hits the limit
-            {
-                if (exit)
-                //quits the game if true
-                {
-                    /*Profile.ProfileSet = */Instructions.Read = Previewed = false;
-                    PlayerPrefs.DeleteKey("ProfileImage");
-                    PlayerPrefs.DeleteKey("Username");
-                    PlayerPrefs.DeleteKey("TimeProfileCreated");
-                    Strings.ResetProgress();
-                    Application.Quit();
-                }
-                else if (!string.IsNullOrEmpty(transitionScene))
-                //loads the next scene if transition scene is specificed, set in editor
-                {
-                    SceneManager.LoadScene(transitionScene);
-                }
-                else 
-                //just switches between fading in and out
-                {
-                    fadeOut = false;
-                    fadeIn = true;
-                }
-            }
-        }
+        //if (fadeOut && fadeAmount >= 255)
+        ////when fading out of scene
+        ////and fade amount(fade alpha) is less than 255(max alpha number)
+        //{
+        //    //disables fading in and renables the fade image
+        //    //sets the fade amount as the alph
+        //    //begins increasing fade alpha
+        //    //fadeIn = false;
+        //    //fadeImage.enabled = true;
+        //    //fadeImage.color = new Color32(red, green, blue, fadeAmount);
+        //    fadeAmount += fadeSpeed;
+        //    if (fadeAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        //    //once fade alpha hits the limit
+        //    {
+        //    }
+        //}
     }
 
-    void Darken()
-    {
-        if (canDarken)
-        {
-            if (darken)
-            {
-                if (fadeAmount < maxFade)
-                {
-                    fadeImage.enabled = true;
-                    fadeImage.color = new Color32(red, green, blue, fadeAmount);
-                    fadeAmount += fadeSpeed;
-                }
-            }
-            else
-            {
-                if (fadeAmount > 0)
-                {
-                    fadeImage.color = new Color32(red, green, blue, fadeAmount);
-                    fadeAmount -= fadeSpeed;
+    //void Darken()
+    //{
+    //    if (canDarken)
+    //    {
+    //        if (darken)
+    //        {
+    //            if (fadeAmount < maxFade)
+    //            {
+    //                fadeImage.enabled = true;
+    //                fadeImage.color = new Color32(red, green, blue, fadeAmount);
+    //                fadeAmount += fadeSpeed;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (fadeAmount > 0)
+    //            {
+    //                fadeImage.color = new Color32(red, green, blue, fadeAmount);
+    //                fadeAmount -= fadeSpeed;
 
-                    if (fadeAmount <= 0)
-                    {
-                        if (proceedButton != null)
-                        {
-                            proceedButton.SetActive(true);
-                        }
-                        fadeImage.enabled = false;
-                    }
-                }
-            }
+    //                if (fadeAmount <= 0)
+    //                {
+    //                    if (proceedButton != null)
+    //                    {
+    //                        proceedButton.SetActive(true);
+    //                    }
+    //                    fadeImage.enabled = false;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
+    public void FadeEvent() 
+    {
+        if (exit)
+        //quits the game if true
+        {
+            /*Profile.ProfileSet = */
+            Instructions.Read = Previewed = false;
+            PlayerPrefs.DeleteKey("ProfileImage");
+            PlayerPrefs.DeleteKey("Username");
+            PlayerPrefs.DeleteKey("TimeProfileCreated");
+            Strings.ResetProgress();
+            Application.Quit();
+        }
+        else if (!string.IsNullOrEmpty(transitionScene))
+        //loads the next scene if transition scene is specificed, set in editor
+        {
+            SceneManager.LoadScene(transitionScene);
         }
     }
 
     public void Transition(string scene)
     //takes in a string as the scene destination
     {
+        if (!canFade) return;
+
         //resets time scale while playing click sound
+        //fadeOut = true;
         Time.timeScale = 1;
         FindObjectOfType<AudioManager>()?.Play("Click");
 
@@ -193,7 +228,8 @@ public class Fade : MonoBehaviour
         transitionScene = scene;
 
         //resets fadeout and read(past tense) for instructions
-        fadeOut = true;
+        //fadeOut = true;
+        fadeAnim.SetTrigger("FadeAway");
         Instructions.Read = false;
     }
 
@@ -201,7 +237,7 @@ public class Fade : MonoBehaviour
     //fades in and out but does not change the scene
     {
         FindAnyObjectByType<AudioManager>()?.Play("Click");
-        fadeOut = true;
+        //fadeOut = true;
     }
 
     public void PreviousScene()
@@ -211,16 +247,18 @@ public class Fade : MonoBehaviour
         Debug.Log(PlayerPrefs.GetString("previousScene"));
 
         transitionScene = previousScene;
+        fadeAnim.SetTrigger("FadeAway");
 
-        fadeOut = true;
+        //fadeOut = true;
     }
 
     public void Quit()
     //quits the game after click sound
     {
         FindObjectOfType<AudioManager>().Play("Click");
-        fadeOut = true;
         exit = true;
+        fadeAnim.SetTrigger("FadeAway");
+        //fadeOut = true;
     }
 
     //Pause Menus
@@ -280,7 +318,7 @@ public class Fade : MonoBehaviour
         //    });
         //}
         Section.SetActive(false);
-        objectiveitems.SetActive(false);
+        //objectiveitems.SetActive(false);
     }
 
     public void LevelSelect()
