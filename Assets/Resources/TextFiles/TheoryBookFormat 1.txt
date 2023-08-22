@@ -10,5 +10,6 @@ Pipes
 EndPipes
 
 Diagrams
-[L] | ComponentName:Level 1 and 2 | ComponentDescription:The answer for level 1 and 2 & [R] | ComponentName:Level 3 | ComponentDescription: Answer for level 3
+[L] | ComponentName:Level 1 | ComponentDescription:The answer for level 1 & [R] | ComponentName:Level 2 | ComponentDescription: Answer for level 2
+[L] | ComponentName:Level 3 | ComponentDescription:The answer for level 3 & [R] | ComponentName: | ComponentDescription:
 EndDiagrams
