@@ -13,16 +13,21 @@ public class DisplayConnect : MonoBehaviour
     public Image ImgTo;
     public Image PipeSelected;
 
-    // Start is called before the first frame update
-    void Start()
+    public Sprite transparentSprite;
+
+    private void Awake()
     {
-        
+        ImgFrom.sprite = transparentSprite;
+        ImgTo.sprite = transparentSprite;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (connection.points.Count > 0)
+        {
+
+        }
     }
 
     public void FromSelected(GameObject component)
@@ -39,4 +44,6 @@ public class DisplayConnect : MonoBehaviour
     {
         PipeSelected.sprite = pipe.GetComponent<Sprite>();
     }
+
+
 }

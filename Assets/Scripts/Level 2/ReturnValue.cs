@@ -32,20 +32,27 @@ public class ReturnValue : MonoBehaviour
             var mesh = t.GetComponent<MeshRenderer>().sharedMaterial;
             var connectionIndex = selectedComponentBtn.selectedTransform.IndexOf(t);
             int index = selectedComponentBtn.IndexReturning(t);
-            if (connection.tobeunhighlighted.Count >= 2)
+            if (connection.tobeunhighlighted.Count >= 1)
             {
+                //Debug.Log(connection.tobeunhighlighted.Contains(t));
                 if (connection.tobeunhighlighted.Contains(t))
                 {
                     if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
-                        gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
+                        if (connection.tobeunhighlighted.Count >= 2)
+                        {
+                            gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
+                        }
                     }
                 }
                 else
                 {
                     gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
-                    gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
+                    if (connection.tobeunhighlighted.Count >= 2)
+                    {
+                        gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
+                    }
                 }
             }
         }
