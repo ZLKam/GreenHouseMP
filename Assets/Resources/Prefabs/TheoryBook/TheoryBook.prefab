@@ -1673,8 +1673,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2f59115c4c7c3344ab8a29b05993e8b6, type: 3}
   - {fileID: 21300000, guid: 4a169fcd2e5288749ae0f5f746d31bf2, type: 3}
   diagramSprite:
-  - {fileID: 21300000, guid: 928e31828c94c504c88adbf597157447, type: 3}
-  - {fileID: 21300000, guid: 8993dabacb8daf146b662fae74e407c1, type: 3}
+  - {fileID: 21300000, guid: fb588a75f6ed2ae41805a785b0bc3e20, type: 3}
+  - {fileID: 21300000, guid: e0736f57703e9aa4b99ffcb1bb7ec9bc, type: 3}
+  - {fileID: 21300000, guid: 362259d5e2eeed348aff1dc3bbefef3b, type: 3}
   leftTitle: {fileID: 6305942689078520350}
   rightTitle: {fileID: 6305942688773708981}
   leftDescription: {fileID: 6305942688770115334}
@@ -2354,6 +2355,7 @@ MonoBehaviour:
   pop: 0
   wrong: 0
   popAtBeginning: 0
+  rewardHintPop: {fileID: 0}
 --- !u!1 &6305942690538312930
 GameObject:
   m_ObjectHideFlags: 0
