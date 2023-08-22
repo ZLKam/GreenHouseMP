@@ -18,6 +18,7 @@ public class ReturnValue : MonoBehaviour
     private void Start()
     {
         connection = FindObjectOfType<Connection>();
+        display = FindObjectOfType<DisplayConnect>();
         pressedBtn = false;
         indexValue = 0;
 
@@ -41,14 +42,18 @@ public class ReturnValue : MonoBehaviour
                     if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
-                        if (connection.points.Count == 1)
-                        {
-                            display.FromSelected(gameObject.GetComponent<Image>());
-                        }
-                        else if(connection.points.Count == 2)
-                        {
-                            display.ToSelected(gameObject.GetComponent<Image>());
-                        }
+                        //if (connection.points.Count == 1)
+                        //{
+                        //    Debug.Log("Display has changed");
+                        //    display.FromSelected(gameObject.GetComponent<Image>());
+                        //    display.FromTxt.text = gameObject.name;
+                        //}
+                        //else if(connection.points.Count == 2)
+                        //{
+                        //    Debug.Log("Display has changed");
+                        //    display.ToSelected(gameObject.GetComponent<Image>());
+                        //    display.ToTxt.text = gameObject.name;
+                        //}
                         if (connection.tobeunhighlighted.Count >= 2)
                         {
                             gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
@@ -58,14 +63,9 @@ public class ReturnValue : MonoBehaviour
                 else
                 {
                     gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
-                    if (connection.points.Count == 1)
-                    {
-                        display.ImgFrom.sprite = display.transparentSprite;
-                    }
-                    else if (connection.points.Count == 2)
-                    {
-                        display.ImgTo.sprite= display.transparentSprite;
-                    }
+                    //display.ImgFrom.sprite = display.transparentSprite;
+                    //display.ImgTo.sprite= display.transparentSprite;
+
                     if (connection.tobeunhighlighted.Count >= 2)
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;

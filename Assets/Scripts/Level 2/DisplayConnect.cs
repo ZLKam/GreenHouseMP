@@ -10,8 +10,13 @@ public class DisplayConnect : MonoBehaviour
 
 
     public Image ImgFrom;
+    public Text FromTxt;
+
     public Image ImgTo;
+    public Text ToTxt;
+
     public Image PipeSelected;
+    public Text PipeText;
 
     public Sprite transparentSprite;
 
