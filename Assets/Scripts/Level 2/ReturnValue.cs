@@ -42,18 +42,6 @@ public class ReturnValue : MonoBehaviour
                     if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
-                        //if (connection.points.Count == 1)
-                        //{
-                        //    Debug.Log("Display has changed");
-                        //    display.FromSelected(gameObject.GetComponent<Image>());
-                        //    display.FromTxt.text = gameObject.name;
-                        //}
-                        //else if(connection.points.Count == 2)
-                        //{
-                        //    Debug.Log("Display has changed");
-                        //    display.ToSelected(gameObject.GetComponent<Image>());
-                        //    display.ToTxt.text = gameObject.name;
-                        //}
                         if (connection.tobeunhighlighted.Count >= 2)
                         {
                             gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
@@ -99,6 +87,18 @@ public class ReturnValue : MonoBehaviour
             EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = whiter;
             EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ogText;
             indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+        }
+        if (connection.points.Count == 1)
+        {
+            Debug.Log("Display has changed");
+            display.FromSelected(gameObject.GetComponent<Image>());
+            display.FromTxt.text = gameObject.name;
+        }
+        else if (connection.points.Count == 2)
+        {
+            Debug.Log("Display has changed");
+            display.ToSelected(gameObject.GetComponent<Image>());
+            display.ToTxt.text = gameObject.name;
         }
         scriptRef();
     }
