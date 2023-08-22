@@ -214,6 +214,7 @@ public class Fade : MonoBehaviour
             PlayerPrefs.DeleteKey("ProfileImage");
             PlayerPrefs.DeleteKey("Username");
             PlayerPrefs.DeleteKey("TimeProfileCreated");
+            PlayerPrefs.DeleteKey("Gender");
             Strings.ResetProgress();
             Application.Quit();
         }
@@ -223,6 +224,7 @@ public class Fade : MonoBehaviour
             PlayerPrefs.DeleteKey("ProfileImage");
             PlayerPrefs.DeleteKey("Username");
             PlayerPrefs.DeleteKey("TimeProfileCreated");
+            PlayerPrefs.DeleteKey("Gender");
             Strings.ResetProgress();
             SceneManager.LoadScene("CharacterSelect");
         }
