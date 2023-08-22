@@ -134,7 +134,7 @@ public class LeaderboardController : MonoBehaviour
         path = Path.Combine(Application.persistentDataPath, PlayerDataFileName);
 
         LoadPlayerData();
-        AddPlayerDataToLeaderboard(PlayerPrefs.GetString(Strings.Username), Strings.GetChaptersProgressions(), Profile.gender);
+        AddPlayerDataToLeaderboard(PlayerPrefs.GetString(Strings.Username), Strings.GetChaptersProgressions(), PlayerPrefs.GetString(Strings.Gender));
         DisplayLeaderboard();
     }
 
