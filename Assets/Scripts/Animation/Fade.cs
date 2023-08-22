@@ -18,6 +18,7 @@ public class Fade : MonoBehaviour
     public byte fadeSpeed;
     public static bool canFade;
     public bool sessionEnd;
+    public Animator sectionAnim;
     //public byte red, green, blue;
     //Image fadeImage;
     //public bool fadeIn;
@@ -329,8 +330,9 @@ public class Fade : MonoBehaviour
     {
         //open up the level select popup
         //PreLevelItems.SetActive(true);
-        Level.SetActive(true);
+        //Level.SetActive(true);
         Level.transform.GetChild(0).transform.Find("ImgChapterSelected").GetComponent<Image>().sprite = chapterImages[chapter].sprite;
+        sectionAnim.SetBool("SlideIn", true);
         //if (!Previewed)
         //{
         //    Level.GetComponentsInChildren<UnityEngine.UI.Button>().ToList().ForEach(x =>
@@ -343,7 +345,7 @@ public class Fade : MonoBehaviour
         //        }
         //    });
         //}
-        Section.SetActive(false);
+        //Section.SetActive(false);
         //objectiveitems.SetActive(false);
     }
 
@@ -361,7 +363,7 @@ public class Fade : MonoBehaviour
     {
         GameMenu.SetActive(true);
         Section.SetActive(false);
-        objectiveitems.SetActive(false);
+        objectiveitems.SetActive(false);    
     }
 
     public void LevelBack()
@@ -375,8 +377,9 @@ public class Fade : MonoBehaviour
     public void PrelevelBack()
     {
         //PreLevelItems.SetActive(false);
-        Level.SetActive(false);
-        Section.SetActive(true);
+        //Level.SetActive(false);
+        //Section.SetActive(true);
+        sectionAnim.SetBool("SlideIn", false);
         ShowAllBadges();
     }
 
