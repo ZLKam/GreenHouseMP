@@ -10,6 +10,7 @@ public class ReturnValue : MonoBehaviour
     public int indexValue;
     public SelectedComponent selectedComponentBtn;
     public Connection connection;
+    public DisplayConnect display;
     public bool pressedBtn;
     Color greenish = new Color(0, 255, 0, 255);
     Color whiter = new Color(255, 255, 255, 143);
@@ -40,6 +41,14 @@ public class ReturnValue : MonoBehaviour
                     if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
+                        if (connection.points.Count == 1)
+                        {
+                            display.FromSelected(gameObject.GetComponent<Image>());
+                        }
+                        else if(connection.points.Count == 2)
+                        {
+                            display.ToSelected(gameObject.GetComponent<Image>());
+                        }
                         if (connection.tobeunhighlighted.Count >= 2)
                         {
                             gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
@@ -49,6 +58,14 @@ public class ReturnValue : MonoBehaviour
                 else
                 {
                     gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
+                    if (connection.points.Count == 1)
+                    {
+                        display.ImgFrom.sprite = display.transparentSprite;
+                    }
+                    else if (connection.points.Count == 2)
+                    {
+                        display.ImgTo.sprite= display.transparentSprite;
+                    }
                     if (connection.tobeunhighlighted.Count >= 2)
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
