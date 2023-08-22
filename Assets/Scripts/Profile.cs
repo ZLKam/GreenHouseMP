@@ -124,7 +124,7 @@ public class Profile : MonoBehaviour
         gender = "Male";
         genderFilled = true;
         //ProfileImage.sprite = MaleImage;
-        ObjProfileImg.sprite = MaleImage;
+        //ObjProfileImg.sprite = MaleImage;
         femaleBtn.GetComponent<Image>().color = Color.white;
         maleBtn.GetComponent<Image>().color = Color.yellow;
         selectedProfileImage = ImageConversion.EncodeToPNG(MaleImage.texture);
@@ -136,7 +136,7 @@ public class Profile : MonoBehaviour
         gender = "Female";
         genderFilled = true;
         //ProfileImage.sprite = FemaleImage;
-        ObjProfileImg.sprite = FemaleImage;
+        //ObjProfileImg.sprite = FemaleImage;
         femaleBtn.GetComponent<Image>().color = Color.yellow;
         maleBtn.GetComponent<Image>().color = Color.white;
         selectedProfileImage = ImageConversion.EncodeToPNG(FemaleImage.texture);
@@ -162,10 +162,13 @@ public class Profile : MonoBehaviour
         if (justShowedAlert)
             return;
         List<bool> checks = new();
-        username.ToList().ForEach(x =>
+        if (!string.IsNullOrEmpty(username))
         {
-            checks.Add(usernameRegex.IsMatch(x.ToString()));
-        });
+            username.ToList().ForEach(x =>
+            {
+                checks.Add(usernameRegex.IsMatch(x.ToString()));
+            });
+        }
 
         if (checks.Any(x => x == false))
         {

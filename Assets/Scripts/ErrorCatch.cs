@@ -9,6 +9,8 @@ public class ErrorCatch : MonoBehaviour
     string filePath = "";
     public GameObject errorPanel;
 
+    public bool quitGame;
+
     private void OnEnable()
     {
         DontDestroyOnLoad(gameObject);
@@ -59,4 +61,17 @@ public class ErrorCatch : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         Destroy(error);
     }
+
+    //private void OnApplicationFocus(bool focus)
+    //{
+    //    if (!focus) 
+    //    {
+    //        quitGame = true; 
+    //    }
+
+    //    if (focus && quitGame) 
+    //    {
+    //        SceneManager.LoadScene("PreloadScene");
+    //    }
+    //}
 }

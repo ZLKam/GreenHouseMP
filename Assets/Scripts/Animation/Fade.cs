@@ -16,7 +16,7 @@ public class Fade : MonoBehaviour
     //public byte maxFade;
     //public byte fadeAmount;
     public byte fadeSpeed;
-    public static bool canFade = true;
+    public static bool canFade;
     public bool sessionEnd;
     //public byte red, green, blue;
     //Image fadeImage;
@@ -73,6 +73,15 @@ public class Fade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "CharacterSelect")
+        {
+            canFade = false;
+        }
+        else 
+        {
+            canFade = true;
+        }
+
         fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
         previousScene = PlayerPrefs.GetString("previousScene");
         fadeAnim = GetComponent<Animator>();
