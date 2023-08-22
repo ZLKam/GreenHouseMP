@@ -26,7 +26,22 @@ public class DisplayConnect : MonoBehaviour
     {
         if (connection.points.Count > 0)
         {
+            if (connection.points.Count == 1)
+            {
+                var name = connection.points[0].name;
+                if (name == "AHU")
+                {
+                    ImgFrom.sprite = (Sprite)Resources.Load("GameUI/Icons/Level2/AHULVL2");
+                }
+                else if (name == "Cooling Tower")
+                {
 
+                }
+            }
+            else if (connection.points.Count == 2)
+            {
+
+            }
         }
     }
 
