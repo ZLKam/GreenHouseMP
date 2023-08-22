@@ -122,6 +122,7 @@ public class Profile : MonoBehaviour
     public void GenderSetMale()
     {
         gender = "Male";
+        PlayerPrefs.SetString(Strings.Gender, "Male");
         genderFilled = true;
         //ProfileImage.sprite = MaleImage;
         //ObjProfileImg.sprite = MaleImage;
@@ -134,6 +135,7 @@ public class Profile : MonoBehaviour
     public void GenderSetFemale()
     {
         gender = "Female";
+        PlayerPrefs.SetString(Strings.Gender, "Female");
         genderFilled = true;
         //ProfileImage.sprite = FemaleImage;
         //ObjProfileImg.sprite = FemaleImage;

@@ -9,6 +9,7 @@ public static class Strings
     public static string TimeProfileCreated = "TimeProfileCreated";
     public static string Username = "Username";
     public static string ProfileImage = "ProfileImage";
+    public static string Gender = "Gender";
 
     public static string ChapterOne = "ChapterOne";
     public static string ChapterTwo = "ChapterTwo";
