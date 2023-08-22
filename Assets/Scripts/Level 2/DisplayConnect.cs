@@ -10,8 +10,13 @@ public class DisplayConnect : MonoBehaviour
 
 
     public Image ImgFrom;
+    public Text FromTxt;
+
     public Image ImgTo;
+    public Text ToTxt;
+
     public Image PipeSelected;
+    public Text PipeText;
 
     public Sprite transparentSprite;
 
@@ -24,41 +29,29 @@ public class DisplayConnect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (connection.points.Count > 0)
+        if (connection.points.Count == 0)
         {
-            if (connection.points.Count == 1)
-            {
-                var name = connection.points[0].name;
-                if (name == "AHU")
-                {
-                    ImgFrom.sprite = (Sprite)Resources.Load("GameUI/Icons/Level2/AHULVL2");
-                }
-                else if (name == "Cooling Tower")
-                {
-
-                }
-            }
-            else if (connection.points.Count == 2)
-            {
-
-            }
+            Reset();
         }
     }
 
-    public void FromSelected(GameObject component)
+    public void FromSelected(Image component)
     {
-        ImgFrom.sprite = component.GetComponent<Sprite>();
+        ImgFrom.sprite = component.sprite;
     }
 
-    public void ToSelected(GameObject component)
+    public void ToSelected(Image component)
     {
-        ImgTo.sprite = component.GetComponent<Sprite>();
+        ImgTo.sprite = component.sprite;
     }
 
-    public void PipeClicked(GameObject pipe)
+    public void PipeClicked(Image pipe)
     {
-        PipeSelected.sprite = pipe.GetComponent<Sprite>();
+        PipeSelected.sprite = pipe.sprite;
     }
 
-
+    public void Reset()
+    {
+        PipeSelected.sprite = ImgFrom.sprite = ImgTo.sprite = transparentSprite;
+    }
 }

@@ -5202,7 +5202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3589026317650948730, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
@@ -5211,6 +5211,97 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 185326413432434511, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
   m_PrefabInstance: {fileID: 394087673}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &394087675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3589026317650948730, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 394087673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &394087676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394087675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d275eb55cdebaa04fa18d6b1fd920a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connection: {fileID: 0}
+  ImgFrom: {fileID: 394087679}
+  FromTxt: {fileID: 394087682}
+  ImgTo: {fileID: 394087678}
+  ToTxt: {fileID: 394087681}
+  PipeSelected: {fileID: 394087677}
+  PipeText: {fileID: 394087680}
+  transparentSprite: {fileID: 21300000, guid: 5719f899c227b294bb28e10492ba70cc, type: 3}
+--- !u!114 &394087677 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 22516772139705017, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 394087673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &394087678 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6255936584858953855, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 394087673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &394087679 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8071380226599836172, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 394087673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &394087680 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3215531305912458792, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 394087673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &394087681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1633052665447802491, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 394087673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &394087682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5237784153258381831, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+  m_PrefabInstance: {fileID: 394087673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &397625212
 GameObject:
   m_ObjectHideFlags: 0
@@ -6995,6 +7086,10 @@ PrefabInstance:
       propertyPath: pipes.Array.data[2]
       value: 
       objectReference: {fileID: 9215319287458789997, guid: b64f07ac7ceccb64987f8c3170dbb339, type: 3}
+    - target: {fileID: 8974622822886277168, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
+      propertyPath: display
+      value: 
+      objectReference: {fileID: 394087676}
     - target: {fileID: 8974622822886277168, guid: 156b3b97c5177ff45be9b05356fb28b6, type: 3}
       propertyPath: connection
       value: 

@@ -10,6 +10,7 @@ public class ReturnValue : MonoBehaviour
     public int indexValue;
     public SelectedComponent selectedComponentBtn;
     public Connection connection;
+    public DisplayConnect display;
     public bool pressedBtn;
     Color greenish = new Color(0, 255, 0, 255);
     Color whiter = new Color(255, 255, 255, 143);
@@ -17,6 +18,7 @@ public class ReturnValue : MonoBehaviour
     private void Start()
     {
         connection = FindObjectOfType<Connection>();
+        display = FindObjectOfType<DisplayConnect>();
         pressedBtn = false;
         indexValue = 0;
 
@@ -49,6 +51,9 @@ public class ReturnValue : MonoBehaviour
                 else
                 {
                     gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
+                    //display.ImgFrom.sprite = display.transparentSprite;
+                    //display.ImgTo.sprite= display.transparentSprite;
+
                     if (connection.tobeunhighlighted.Count >= 2)
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
@@ -82,6 +87,18 @@ public class ReturnValue : MonoBehaviour
             EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = whiter;
             EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ogText;
             indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+        }
+        if (connection.points.Count == 1)
+        {
+            Debug.Log("Display has changed");
+            display.FromSelected(gameObject.GetComponent<Image>());
+            display.FromTxt.text = gameObject.name;
+        }
+        else if (connection.points.Count == 2)
+        {
+            Debug.Log("Display has changed");
+            display.ToSelected(gameObject.GetComponent<Image>());
+            display.ToTxt.text = gameObject.name;
         }
         scriptRef();
     }
