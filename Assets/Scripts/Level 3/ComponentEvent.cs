@@ -213,16 +213,19 @@ namespace Level3
             }
 #endif
             CheckPlaceholder(eventData);
-            if (componentName == "Cooling Tower")
+            if (this)
             {
-                GetComponent<PolygonCollider2D>().enabled = true;
+                if (componentName == "Cooling Tower")
+                {
+                    GetComponent<PolygonCollider2D>().enabled = true;
+                }
+                else
+                {
+                    GetComponent<BoxCollider2D>().enabled = true;
+                }
+                holding = false;
+                CheckDirection(gameObject);
             }
-            else
-            {
-                GetComponent<BoxCollider2D>().enabled = true;
-            }
-            holding = false;
-            CheckDirection(gameObject);
         }
 
         private void CheckPlaceholder(PointerEventData eventData)
@@ -231,7 +234,7 @@ namespace Level3
             if (!currentRaycast)
             {
                 placeholder.GetComponent<SpriteRenderer>().enabled = true;
-                Destroy(gameObject);
+                DestroyImmediate(gameObject);
                 return;
             }
             if (currentRaycast.CompareTag("Selection"))
@@ -262,6 +265,7 @@ namespace Level3
             {
                 if (currentRaycast.CompareTag("Component"))
                 {
+                    Debug.Log("swap components");
                     // occupied, so swap components
                     Transform otherComponent = currentRaycast.transform;
                     Transform otherPlaceholder = currentRaycast.transform.parent;
@@ -277,7 +281,7 @@ namespace Level3
                     return;
                 }
                 placeholder.GetComponent<SpriteRenderer>().enabled = true;
-                Destroy(gameObject);
+                DestroyImmediate(gameObject);
             }
         }
 
