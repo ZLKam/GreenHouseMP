@@ -14,6 +14,7 @@ public class LinePathFind : MonoBehaviour
 
     public bool finishedLevel = false;
 
+    [Header("Layer Mask")]
     private int gridLayer = 1 << 3;
     private int lineLayer = 1 << 8;
 
@@ -119,11 +120,17 @@ public class LinePathFind : MonoBehaviour
 #endif
             if (finishedLevel)
                 return;
+
+            // If the player clicks on a line, reverse the line
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out RaycastHit hit3D, lineLayer))
             {
                 hit3D.transform.GetComponent<DrawLine>()?.ReverseLine();
             }
-            // Hit detection
+
+            /// When the player clicks, checks raycast to see if it hits anything, ignoring the grid layer
+            /// When it did not hit components,
+            /// check if it hits placeholder (in some case, the raycast will detect the placeholder instead of the component)
+            /// If it hits a placeholder and there is a component in it, set the component as fromT or toT (when fromT is already set and toT is not)
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touchPosition), Vector2.zero, Mathf.Infinity, ~gridLayer);
             if (!hit)
                 return;
@@ -153,6 +160,7 @@ public class LinePathFind : MonoBehaviour
                     fromT = hit.transform;
                     imgComponentFrom.sprite = fromT.GetComponent<SpriteRenderer>().sprite;
                 }
+                // When no type of line selected, not allow to choose from and to
                 if (!typeOfLineSelected)
                 {
                     selectColorPopUp.SetActive(true);
@@ -194,6 +202,7 @@ public class LinePathFind : MonoBehaviour
                 }
                 // When from and to are selected, find the nearest nodes of them
                 List<Vector2Int> nearestNodes = GetNearestNode();
+                // If there is no nodes found, show error and reset all the variables and return
                 if (nearestNodes[0] == zeros[0] || nearestNodes[1] == zeros[1])
                 {
                     Debug.Log("No nodes found.");
@@ -218,7 +227,7 @@ public class LinePathFind : MonoBehaviour
                 }
                 else
                 {
-                    // Find path from from to to
+                    // Start to find path with the from node and to node
                     SetDestination(nearestNodes[0], nearestNodes[1], rectGrid, rectGrid.pathFinder);
                     fromT = null;
                     toT = null;
@@ -261,6 +270,11 @@ public class LinePathFind : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculate the nearest nodes.
+    /// Return a list of Vector2Int, the first one is the nearest node of from, the second one is the nearest node of to
+    /// </summary>
+    /// <returns></returns>
     private List<Vector2Int> GetNearestNode()
     {
         // Get the two nearest connection points of from and to
@@ -343,8 +357,21 @@ public class LinePathFind : MonoBehaviour
         return new List<Vector2Int>() { nearestPointFrom, nearestPointTo };
     }
 
+    /// <summary>
+    /// Calculate two nearest points between two given transforms.
+    /// Return a list of two transforms, the first one is the nearest point of from, the second one is the nearest point of to
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
+    /// <returns></returns>
     private List<Transform> CalculateNearestConnectionPoints(Transform from, Transform to)
     {
+        /// This will not only calculate the nearest connection points of from and to,
+        /// and also consider if the point is nearer to the secret point
+        /// Example: a component has two connection points (a, b), if the nearer point from this component to the other is point a,
+        /// but there is a secret point nearby point b (distance between point b and secret point is shorter than distance between point a to the other),
+        /// then the point b will be the nearest point
+
         // Create two lists to store all the connection points of from and to
         List<Transform> fromConnectionPoints = new();
         List<Transform> toConnectionPoints = new();
@@ -438,7 +465,6 @@ public class LinePathFind : MonoBehaviour
                 wayPoints.Clear();
 
                 pathFinder.Init(origin, destination);
-                //grid.ResetCellColors();
                 // Start a coroutine to do go to loop the pathfinding steps.
                 startTime = Time.time;
                 StartCoroutine(Coroutine_PathFinding(pathFinder, grid));
@@ -452,6 +478,7 @@ public class LinePathFind : MonoBehaviour
         while (pathFinder.status == PathFinderStatus.RUNNING)
         {
             findingPath = true;
+            /// When the path finder loop more than 300 times (after finding for 300 cells and still have found a path)
             if (pathFindCount > 300)
             {
                 Debug.Log("PathFinding is taking too long, break it.");
@@ -462,17 +489,19 @@ public class LinePathFind : MonoBehaviour
             pathFindCount++;
             yield return null;
         }
-        // completed pathfinding.
         if (pathFinder.status == PathFinderStatus.FAILURE)
         {
             StartCoroutine(ShowError());
             Debug.Log("Failed finding a path. No valid path exists");
         }
+        // Found a path.
         if (pathFinder.status == PathFinderStatus.SUCCESS)
         {
+            // curve point is the curve poiint of the path
             Vector2Int curvePoint = new (-1, -1);
 
             //Debug.Log("Found a path, time taken: " + (Time.time - startTime));
+
             // found a valid path.
             // accumulate all the locations by traversing from goal to the start.
             List<Vector2Int> reversePathLocations = new List<Vector2Int>();
@@ -483,8 +512,10 @@ public class LinePathFind : MonoBehaviour
                 //Debug.Log(node.location);
                 node = node.parent;
             }
+            #region Calculation logic to make line less jagged
             for (int i = 1; i < reversePathLocations.Count - 1; i++)
             {
+                // calculate the curve point, as the path found are straight lines, simply calculate using the x and y values of it to check with neighbours
                 if ((reversePathLocations[i].x == reversePathLocations[i - 1].x && reversePathLocations[i].y == reversePathLocations[i + 1].y) ||
                     (reversePathLocations[i].x == reversePathLocations[i + 1].x && reversePathLocations[i].y == reversePathLocations[i - 1].y)) 
                 {
@@ -493,8 +524,10 @@ public class LinePathFind : MonoBehaviour
                     break;
                 }
             }
+            // if the curve point is not (-1, -1)
             if (curvePoint != Vector2Int.left + Vector2Int.down)
             {
+                /// This part is to make the line drawn later less jagged
                 Vector2 newCurvePoint = new Vector2(curvePoint.x, curvePoint.y);
                 int indexOfCurvePoint = reversePathLocations.IndexOf(curvePoint);
                 foreach (Vector2Int vector2Int in reversePathLocations)
@@ -507,6 +540,10 @@ public class LinePathFind : MonoBehaviour
                     Debug.Log("From point to curve point is vertical");
                     if (Mathf.Abs(lineStartPoint.x - newCurvePoint.x) < 0.5f)
                     {
+                        // if the difference between the start point and curve point is less than 1 cell,
+                        // then change the x value of the curve point to be the same as the start point
+                        // and set the x value of curve point also
+                        // similar to the rest
                         for (int i = newReversePathLocations.Count - 1; i >= indexOfCurvePoint; i--)
                         {
                             newReversePathLocations[i] = new Vector2(lineStartPoint.x, newReversePathLocations[i].y);
@@ -579,6 +616,7 @@ public class LinePathFind : MonoBehaviour
                     newReversePathLocations.Add(new Vector2(v.x, v.y));
                 }
             }
+            #endregion
 
             GameObject line = Instantiate(this.line, transform);
             previousDrawnLineDict.Add(line, new List<RectGridCell>());
@@ -605,6 +643,7 @@ public class LinePathFind : MonoBehaviour
             line.GetComponent<DrawLine>().affectedCellList = new (affectedCellsList);
             line.GetComponent<DrawLine>().finishedAddingPoints = true;
         }
+        // reset all the used variables
         imgFindingPath.SetActive(false);
         findingPath = false;
         imgComponentFrom.sprite = transparentSprite;
@@ -634,12 +673,16 @@ public class LinePathFind : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// Undo (remove) the last drawn line.
+    /// </summary>
     public void UndoFunction()
     {
         if (IsFindingPath())
         {
             return;
         }
+        // if there is a line previously drawn, remove it.
         if (previousDrawnLineDict.Count > 0)
         {
             GameObject lastLine = previousDrawnLineDict.Keys.ToList()[^1];

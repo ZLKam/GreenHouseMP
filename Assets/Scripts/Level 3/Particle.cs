@@ -55,6 +55,9 @@ namespace Level3
             //}
             #endregion
 
+            /// Move the particles across the target points
+            /// Rotate the particles to face the target points
+            /// When it reaches the last target point, destroy the particle
             for (int i = 0; i < manager.targetPoints.Count; i++)
             {
                 target = i;

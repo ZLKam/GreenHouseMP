@@ -42,6 +42,8 @@ public class LineButtonEvent : MonoBehaviour, IPointerClickHandler
         FindObjectOfType<AudioManager>()?.Play("Click");
         if (linePathFind.IsFindingPath())
             return;
+        /// On clicked, it will check if the line is already selected or not.
+        /// When type is not selected, it will set the line to selected.
         if (!linePathFind.typeOfLineSelected)
         {
             linePathFind.imgColorSelected.sprite = transform.GetChild(0).GetComponent<Image>().sprite;
@@ -53,6 +55,10 @@ public class LineButtonEvent : MonoBehaviour, IPointerClickHandler
         }
         else
         {
+            /// When the type of line is selected, it will check if the other type is selected
+            /// If the other type is selected, it will set the other type to not selected.
+            /// If the other type is not selected, it means that the selected type is the one that is clicked.
+            /// Then, it will set the selected type to not selected.
             if (!otherLine.GetComponent<LineButtonEvent>().clicked)
             {
                 linePathFind.imgColorSelected.sprite = linePathFind.transparentSprite;

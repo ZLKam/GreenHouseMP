@@ -7,6 +7,9 @@ public class LineLimit : MonoBehaviour
     [SerializeField]
     private bool allow = true;
 
+    /// <summary>
+    /// Check if still can draw line from this connection point
+    /// </summary>
     public bool AllowDrawLine
     {
         get { return allow; }
