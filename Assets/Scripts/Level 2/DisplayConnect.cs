@@ -24,6 +24,7 @@ public class DisplayConnect : MonoBehaviour
     {
         ImgFrom.sprite = transparentSprite;
         ImgTo.sprite = transparentSprite;
+        PipeSelected.sprite = transparentSprite;
     }
 
     // Update is called once per frame
@@ -52,6 +53,8 @@ public class DisplayConnect : MonoBehaviour
 
     public void Reset()
     {
-        PipeSelected.sprite = ImgFrom.sprite = ImgTo.sprite = transparentSprite;
+        //PipeSelected.sprite = transparentSprite;
+        ImgFrom.sprite = transparentSprite;
+        ImgTo.sprite = transparentSprite;
     }
 }

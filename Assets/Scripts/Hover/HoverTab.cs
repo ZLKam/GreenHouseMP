@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HoverTab : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public HoverGroup hoverGroup;
+    public DisplayConnect display;
 
     public Vector3 originTransform;
     public Transform imageToChange;
@@ -23,6 +24,7 @@ public class HoverTab : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     void Start()
     {
+        display = FindObjectOfType<DisplayConnect>();
         hoverGroup.Subscribe(this);
         imageToChange = transform.GetChild(0);
         originTransform = imageToChange.transform.localScale;
@@ -37,6 +39,14 @@ public class HoverTab : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         hoverGroup.OnTabSelected(this);
         backgroundImage.color = Color.green;
+        if (display != null)
+        {
+            //Debug.Log("Display has changed Pipe");
+            //Debug.Log(gameObject.transform.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>());
+            display.PipeClicked(gameObject.transform.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>());
+            
+            display.PipeText.text = this.parentPipe.name;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)

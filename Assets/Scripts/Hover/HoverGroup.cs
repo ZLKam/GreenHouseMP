@@ -14,7 +14,6 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     private CameraMovement cameraController;
     [SerializeField]
     private Connection connection;
-    public DisplayConnect display;
 
     [Header("Adjustable Values")]
     public int moveSpeed;
@@ -124,11 +123,6 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     private void OnConnectionFound(HoverTab components) 
     {
-        Debug.Log("Display has changed Image");
-        Debug.Log(display);
-        Debug.Log(gameObject.transform.transform.GetChild(0).transform.GetChild(0).GetChild(0).transform.GetChild(0));
-        display.PipeClicked(gameObject.transform.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>());
-        display.PipeText.text = components.parentPipe.name;
         connection.pipe = components.parentPipe;
         connection.exit = connection.entrance = components.pipeEntrance;
         connection.body = components.pipeBody;

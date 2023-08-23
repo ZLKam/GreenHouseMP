@@ -11,11 +11,14 @@ public class Connection : MonoBehaviour
 
     #region variables
     public bool tutorial;
+
+    [Header("References")]
     public Level2AnswerSheet level2AnswerSheet;
     public SelectedComponent selectedComponent;
     public ReturnValue valueReturnBtn;
     public ToggleMultiConnect multiConnectToggle;
     public CameraMovement cameraMovement;
+    public DisplayConnect display;
 
     public GameObject particle;
 
@@ -85,21 +88,10 @@ public class Connection : MonoBehaviour
     {
         Camera.main.transform.parent.GetComponent<CameraMovement>().zoomStopDistance = 30f;
         componentArray = FindObjectsOfType<SelectedComponent>();
+        display = FindObjectOfType<DisplayConnect>();
 
         AHUConnectionPoints = new List<List<Transform>>() { AHUConnectionPoint1, AHUConnectionPoint2 };
         kypAHUConnectionPoints = new KeyValuePair<List<Transform>, List<List<Transform>>>(AHUs, AHUConnectionPoints);
-
-        //for (int i = 0; i < kypAHUConnectionPoints.Key.Count; i++)
-        //{
-        //    int k = 0;
-        //    for (int j = 0; j < kypAHUConnectionPoints.Value.Count; j++)
-        //    {
-        //        //Debug.Log(kypAHUConnectionPoints.Key[i] + ": " + kypAHUConnectionPoints.Value[j][k]);
-        //        k++;
-        //    }
-        //}
-        //Debug.Log(kypAHUConnectionPoints);
-        //AHUHighlight();
     }
 
     // Update is called once per frame
@@ -117,41 +109,6 @@ public class Connection : MonoBehaviour
         }
     }
     
-    //void AHUHighlight()
-    //{
-
-    //    for (int i = 0; i < kypAHUConnectionPoints.Value.Count; i++)
-    //    {
-    //        Debug.Log(kypAHUConnectionPoints.Value.Count + "+" + kypAHUConnectionPoints.Key.Count);
-
-    //        for (int k = 0; k < kypAHUConnectionPoints.Key.Count; k++)
-    //        {
-    //            foreach (GameObject POINT in tobeunhighlighted)
-    //            {
-    //                if (kypAHUConnectionPoints.Key.Contains(POINT.transform))
-    //                {
-    //                    foreach (Transform T in kypAHUConnectionPoints.Value[i])
-    //                    {
-    //                        if (!tobeunhighlighted.Contains(T.gameObject))
-    //                        {
-    //                            tobeunhighlighted.Add(T.gameObject);
-    //                        }
-    //                    }   
-    //                }
-    //            }
-    //            Debug.Log(kypAHUConnectionPoints.Value[i][k]);
-    //            originalMat = kypAHUConnectionPoints.Value[i][k].GetComponent<MeshRenderer>().sharedMaterial;
-    //            //return an index ( 0 /1 )
-    //            // get all kvp keys, highlight all its value[index]
-
-    //            kypAHUConnectionPoints.Value[i][k].GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
-    //            //tobeunhighlighted.Add(kypAHUConnectionPoints.Value[i][k].gameObject);
-
-    //        }
-    //    }
-    //}
-
-
     void CheckUndoPipes()
     {
         if (Input.GetKey(KeyCode.LeftControl))
@@ -280,15 +237,7 @@ public class Connection : MonoBehaviour
         {
             if (selectedComponent.IndexReturn() != null)
             {
-                //if (AHUPoint1.Contains(selectedComponent.IndexReturn().transform.parent.gameObject))
-                //{
-                //    AHUHighlight();
-                //}
-                //else if (AHUPoint2.Contains(selectedComponent.IndexReturn().transform.parent.gameObject))
-                //{
-                //    AHUHighlight();
-                //    return;
-                //}
+
                 if (selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
                 {
                     selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
@@ -297,8 +246,6 @@ public class Connection : MonoBehaviour
                     valueReturnBtn.pressedBtn = false;
                     return;
                 }
-
-
                 originalMat = selectedComponent.IndexReturn().GetComponent<MeshRenderer>().material;
                 selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
             }
@@ -664,4 +611,39 @@ public class Connection : MonoBehaviour
             }
         }
     }
+
+
+    //void AHUHighlight()
+    //{
+
+    //    for (int i = 0; i < kypAHUConnectionPoints.Value.Count; i++)
+    //    {
+    //        Debug.Log(kypAHUConnectionPoints.Value.Count + "+" + kypAHUConnectionPoints.Key.Count);
+
+    //        for (int k = 0; k < kypAHUConnectionPoints.Key.Count; k++)
+    //        {
+    //            foreach (GameObject POINT in tobeunhighlighted)
+    //            {
+    //                if (kypAHUConnectionPoints.Key.Contains(POINT.transform))
+    //                {
+    //                    foreach (Transform T in kypAHUConnectionPoints.Value[i])
+    //                    {
+    //                        if (!tobeunhighlighted.Contains(T.gameObject))
+    //                        {
+    //                            tobeunhighlighted.Add(T.gameObject);
+    //                        }
+    //                    }   
+    //                }
+    //            }
+    //            Debug.Log(kypAHUConnectionPoints.Value[i][k]);
+    //            originalMat = kypAHUConnectionPoints.Value[i][k].GetComponent<MeshRenderer>().sharedMaterial;
+    //            //return an index ( 0 /1 )
+    //            // get all kvp keys, highlight all its value[index]
+
+    //            kypAHUConnectionPoints.Value[i][k].GetComponent<MeshRenderer>().sharedMaterial = selectionMat;
+    //            //tobeunhighlighted.Add(kypAHUConnectionPoints.Value[i][k].gameObject);
+
+    //        }
+    //    }
+    //}
 }
