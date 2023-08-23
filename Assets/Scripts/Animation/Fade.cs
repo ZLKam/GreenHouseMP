@@ -83,6 +83,7 @@ public class Fade : MonoBehaviour
             canFade = true;
         }
 
+
         fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
         previousScene = PlayerPrefs.GetString("previousScene");
         fadeAnim = GetComponent<Animator>();
@@ -109,7 +110,6 @@ public class Fade : MonoBehaviour
                 Texture2D texture2D = new(1, 1);
                 texture2D.LoadImage(Convert.FromBase64String(PlayerPrefs.GetString(Strings.ProfileImage)));
                 profileImage.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
-                Debug.Log("Running");
                 //ObjProfileImg.sprite = ProfileImage.sprite;
                 //profilestuff.SetActive(false);
                 //if (!objectiveitems.activeSelf)
