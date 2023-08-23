@@ -80,12 +80,12 @@ public class ReturnValue : MonoBehaviour
             EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = greenish;
             EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "In use";
             indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-            if (connection.points.Count == 1)
+            if (connection.points.Count == 0)
             {
                 display.FromSelected(gameObject.GetComponent<Image>());
                 display.FromTxt.text = gameObject.name;
             }
-            else if (connection.points.Count == 2)
+            else if (connection.points.Count == 1)
             {
                 display.ToSelected(gameObject.GetComponent<Image>());
                 display.ToTxt.text = gameObject.name;
