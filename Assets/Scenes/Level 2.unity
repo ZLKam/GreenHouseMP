@@ -3242,6 +3242,7 @@ MonoBehaviour:
   valueReturnBtn: {fileID: 0}
   multiConnectToggle: {fileID: 0}
   cameraMovement: {fileID: 1914569113}
+  display: {fileID: 0}
   particle: {fileID: 6937347189343736720, guid: bfa0d328f91dfc24db276391b3c7cf05, type: 3}
   highlightMat: {fileID: 2100000, guid: e8f2a314f04619740b04d2b91e337386, type: 2}
   selectionMat: {fileID: 2100000, guid: 54eb24558bf4f544eb32cac30bfe9406, type: 2}
@@ -5203,6 +5204,14 @@ PrefabInstance:
     - target: {fileID: 3589026317650948730, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544657806313817917, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544657806313817917, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 135
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432f5e276cf0d3e4d89637496b9aac28, type: 3}
