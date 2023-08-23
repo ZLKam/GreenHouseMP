@@ -30,7 +30,7 @@ public class DisplayConnect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (connection.points.Count == 0)
+        if (connection.points.Count == 0 && !connection.selectedComponent)
         {
             Reset();
         }
