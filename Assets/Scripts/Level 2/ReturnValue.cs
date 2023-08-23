@@ -80,6 +80,16 @@ public class ReturnValue : MonoBehaviour
             EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color = greenish;
             EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "In use";
             indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+            if (connection.points.Count == 1)
+            {
+                display.FromSelected(gameObject.GetComponent<Image>());
+                display.FromTxt.text = gameObject.name;
+            }
+            else if (connection.points.Count == 2)
+            {
+                display.ToSelected(gameObject.GetComponent<Image>());
+                display.ToTxt.text = gameObject.name;
+            }
         }
         else if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color != whiter)
         {
@@ -88,18 +98,18 @@ public class ReturnValue : MonoBehaviour
             EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ogText;
             indexValue = int.Parse(EventSystem.current.currentSelectedGameObject.name);
         }
-        if (connection.points.Count == 1)
-        {
-            Debug.Log("Display has changed");
-            display.FromSelected(gameObject.GetComponent<Image>());
-            display.FromTxt.text = gameObject.name;
-        }
-        else if (connection.points.Count == 2)
-        {
-            Debug.Log("Display has changed");
-            display.ToSelected(gameObject.GetComponent<Image>());
-            display.ToTxt.text = gameObject.name;
-        }
+        //if (connection.points.Count == 1)
+        //{
+        //    Debug.Log("Display has changed");
+        //    display.FromSelected(gameObject.GetComponent<Image>());
+        //    display.FromTxt.text = gameObject.name;
+        //}
+        //else if (connection.points.Count == 2)
+        //{
+        //    Debug.Log("Display has changed");
+        //    display.ToSelected(gameObject.GetComponent<Image>());
+        //    display.ToTxt.text = gameObject.name;
+        //}
         scriptRef();
     }
 

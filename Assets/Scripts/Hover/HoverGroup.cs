@@ -14,7 +14,6 @@ public class HoverGroup : MonoBehaviour, IPointerClickHandler, IDragHandler
     private CameraMovement cameraController;
     [SerializeField]
     private Connection connection;
-    public DisplayConnect display;
 
     [Header("Adjustable Values")]
     public int moveSpeed;

@@ -41,8 +41,8 @@ public class HoverTab : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         backgroundImage.color = Color.green;
         if (display != null)
         {
-            Debug.Log("Display has changed Pipe");
-            Debug.Log(gameObject.transform.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>());
+            //Debug.Log("Display has changed Pipe");
+            //Debug.Log(gameObject.transform.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>());
             display.PipeClicked(gameObject.transform.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>());
             
             display.PipeText.text = this.parentPipe.name;
