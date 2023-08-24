@@ -14,6 +14,7 @@ public class TempCheck : MonoBehaviour
     public GameObject connection;
     public GameObject undo;
     public GameObject Lock;
+    public GameObject Display;
 
     private bool showing;
 
@@ -39,6 +40,7 @@ public class TempCheck : MonoBehaviour
         undo.SetActive(false);  
         AnswerCheck.SetActive(false);
         Lock.SetActive(false);
+        Display.SetActive(false);
         AfterLevel.SetActive(true);
     }
     

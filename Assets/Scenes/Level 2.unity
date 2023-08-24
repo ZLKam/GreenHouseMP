@@ -12771,6 +12771,7 @@ MonoBehaviour:
   connection: {fileID: 252340422}
   undo: {fileID: 1598964905}
   Lock: {fileID: 470143158}
+  Display: {fileID: 394087675}
   Temps: 0c000000080000001c000000200000001d00000017000000
 --- !u!1 &1032340146
 GameObject:
@@ -21314,7 +21315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1799238614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21333,7 +21334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 633.5998, y: -289.5}
+  m_AnchoredPosition: {x: 612, y: -257}
   m_SizeDelta: {x: 150, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1799238615
@@ -21392,7 +21393,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 956774535}
         m_TargetAssemblyTypeName: Fade, Assembly-CSharp
         m_MethodName: Transition
         m_Mode: 5
