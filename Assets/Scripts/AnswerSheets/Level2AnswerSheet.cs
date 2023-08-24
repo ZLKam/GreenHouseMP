@@ -69,6 +69,7 @@ public class Level2AnswerSheet : MonoBehaviour
         ConnectionCheck();
         if (showPopUp)
         {
+            Debug.Log("PRESSED");
             if (connectionCHWR && connectionCHWS && connectionCWS && connectionCWR && connectionsChecked)
             {
                 connection.GetComponent<Connection>().enabled = false; 
@@ -95,7 +96,8 @@ public class Level2AnswerSheet : MonoBehaviour
             {
                 wrongPanel.SetActive(true);
                 Debug.Log("wrong");
-                showPopUp = connectionsChecked = false;
+                showPopUp = true;
+                connectionsChecked = false;
                 CHWSans = CHWRans = CWSans = CWRans = null;
             }
         }
