@@ -11974,7 +11974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657509, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2277970009710657514, guid: 3f4ea712a0ad18242bf05298daff308d, type: 3}
       propertyPath: m_Pivot.x
@@ -24312,7 +24312,7 @@ GameObject:
   - component: {fileID: 1980826810}
   - component: {fileID: 1980826809}
   m_Layer: 5
-  m_Name: Level complete (1)
+  m_Name: Error Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24358,9 +24358,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Connect Only In and Out pipes Together!
+  m_text: 'Connect only In and Out pipes together!
 
-    Choose another Pipe!'
+    Choose another connection
+    point.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc43d32ed1d61d14888cc5ad44636607, type: 2}
   m_sharedMaterial: {fileID: -6626407770715667710, guid: bc43d32ed1d61d14888cc5ad44636607, type: 2}
