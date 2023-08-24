@@ -24,6 +24,9 @@ namespace Level3
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            /// Whenever the change mode button is pressed, it will get the LinePathFind script and check if it is finding path.
+            /// When is finding path, it will not allow the player to change the mode.
+            /// Then, swap between select and draw mode.
             GameObject lineBoss = FindObjectOfType<LinePathFind>().gameObject;
             if (lineBoss.GetComponent<LinePathFind>().IsFindingPath())
                 return;
@@ -32,8 +35,9 @@ namespace Level3
 
             if (select)
             {
+                // In select component mode, it will destroy all the lines. Then, change the wheel to component wheel.
+                #region Old Code
                 //txtMode.text = "Select Component";
-                GetComponent<Image>().sprite = selectComponentSprite;
                 //FindObjectOfType<LineManagerController>().enabled = false;
                 //var lineParents = GameObject.FindGameObjectsWithTag("LineParent").ToList();
                 //var lines = GameObject.FindGameObjectsWithTag("Line").ToList();
@@ -52,6 +56,8 @@ namespace Level3
                 //        child.GetComponent<ComponentEvent>().CorrectConnection = false;
                 //    }
                 //}
+                #endregion
+                GetComponent<Image>().sprite = selectComponentSprite;
                 lineBoss.GetComponent<LinePathFind>().enabled = false;
                 List<GameObject> allLines = new();
                 for (int i = 0; i < lineBoss.transform.childCount; i++)
@@ -69,6 +75,8 @@ namespace Level3
             }
             else
             {
+                // In draw mode, it will enable the LinePathFind and change the wheel to line wheel and show the information.
+
                 //txtMode.text = "Draw Line";
                 GetComponent<Image>().sprite = drawLineSprite;
                 //FindObjectOfType<LineManagerController>().enabled = true;

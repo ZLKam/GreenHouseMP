@@ -27,7 +27,6 @@ namespace Level3 {
             arrowCoroutine = StartCoroutine(SpawnArrow(position, this));
         }
 
-        //Stops spawning particles through the coroutine
         public void StopSpawnParticle()
         {
             if (!spawnCoroutineRunning)
@@ -44,9 +43,9 @@ namespace Level3 {
             arrowCoroutineRunning = false;
         }
 
-        //instantiate a new particle every 0.2s continously, as the coroutine is triggered
         private IEnumerator SpawnParticle(Vector2 position, ParticlesManager manager)
         {
+            /// Spawn the particles at the given position every 0.2 seconds
             while (true)
             {
                 spawnCoroutineRunning = true;

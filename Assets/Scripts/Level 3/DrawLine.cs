@@ -58,13 +58,17 @@ namespace Level3
         {
             while (finishedAddingPoints)
             {
+                // Wait until points are finished adding
                 points.ForEach(x => vector3Points.Add(new Vector3(x.x, x.y, 0f)));
+                // reverse lists are for the reversing of the lines
                 reverseVector2Points = new(points);
                 reverseVector2Points.Reverse();
                 reverseVector3Points = new(vector3Points);
                 reverseVector3Points.Reverse();
+                // set the line renderer positions
                 lr.positionCount = vector3Points.Count;
                 lr.SetPositions(vector3Points.ToArray());
+                // add mesh collider to the line renderer and bake mesh, so that there is a collider for the line to detect by raycast
                 MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
                 Mesh mesh = new();
                 lr.BakeMesh(mesh);
@@ -107,6 +111,10 @@ namespace Level3
             }
         }
 
+        /// <summary>
+        /// Check if this line is correct (start and end points are connected to the correct target and the line is the correct type)
+        /// </summary>
+        /// <returns></returns>
         public bool isCorrect()
         {
             ComponentEvent component = lineFrom.GetComponentInParent<ComponentEvent>();
@@ -130,6 +138,9 @@ namespace Level3
             return false;
         }
 
+        /// <summary>
+        /// Reverse this line (start and end points are switched)
+        /// </summary>
         public void ReverseLine()
         {
             isReverse = !isReverse;
@@ -139,7 +150,9 @@ namespace Level3
             }
             //particlesManager.StopSpawnParticle();
             particlesManager.StopSpawnArrow();
+            // this is a tuple, it swaps the values of the two variables
             (lineTo, lineFrom) = (lineFrom, lineTo);
+
             if (isReverse)
                 particlesManager.targetPoints = reverseVector2Points;
             else

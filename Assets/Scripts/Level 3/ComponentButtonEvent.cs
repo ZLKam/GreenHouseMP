@@ -24,7 +24,6 @@ namespace Level3
         }
 
         public void OnPointerDown(PointerEventData eventData)
-        //handles instantiting the object component to be placed in the scene
         {
             if (componentWheel.DrawLine)
                 return;
@@ -36,7 +35,7 @@ namespace Level3
             //    return;
             //transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
 
-            // On clicking on the button, instantiate the component to the mouse position
+            // When the user finger / mouse pointer is down, instantiate the component and set the properties of the component
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
 
@@ -97,24 +96,27 @@ namespace Level3
                 return;
             }
 #endif
-            // On lift up
+            /// If there is component instantiated
+            /// Check the pointer position if it hits anything
+            /// When it hits a placeholder, place the component on the placeholder
+            /// When it hits another component, replace the component with the new one
+            /// Else, when it hits other things, destroy the component
             if (instantiatedComponent)
             {
                 instantiatedComponent.GetComponent<ComponentEvent>().holding = false;
                 if (!eventData.pointerCurrentRaycast.gameObject)
                 {
-                    // Check if the pointer is over anything, when not, destroy the instantiated component
                     Destroy(instantiatedComponent.gameObject);
                     instantiatedComponent = null;
                     return;
                 }
                 if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Selection"))
                 {
-                    // when pointer on a placeholder, place the component on the placeholder
                     Transform placeholder = eventData.pointerCurrentRaycast.gameObject.transform;
                     placeholder.GetComponent<SpriteRenderer>().enabled = false;
                     instantiatedComponent.transform.parent = placeholder;
                     instantiatedComponent.transform.localPosition = Vector3.zero;
+                    // This is because the collider of cooling tower is different from the other components
                     if (instantiatedComponent.GetComponent<ComponentEvent>().componentName == "Cooling Tower")
                     {
                         instantiatedComponent.GetComponent<PolygonCollider2D>().enabled = true;

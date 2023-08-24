@@ -14,6 +14,7 @@ namespace Level3
 
         private void Update()
         {
+            // If the gameobject is a component, and its ComponentEvent is disabled, enable it
             if (GetComponent<ComponentEvent>())
             {
                 if (GetComponent<ComponentEvent>().enabled == false)
@@ -31,10 +32,15 @@ namespace Level3
             RecoverRectGridCell(collision);
         }
 
+        /// <summary>
+        /// Set grid cell to non-walkable if it is covered
+        /// </summary>
+        /// <param name="collision"></param>
         private void CheckCoveringRectGridCell(Collider2D collision)
         {
             if (collision.CompareTag(rectGrid))
             {
+                // for components, needs to know which cells are changed so that when the component is removed, the cells can be recovered
                 if (CompareTag("Component") && collision.GetComponent<RectGridCell>().isWalkable)
                 {
                     changedCells.Add(collision.transform);
@@ -45,6 +51,10 @@ namespace Level3
             }
         }
 
+        /// <summary>
+        /// Recover grid cell to walkable if it is no longer covered
+        /// </summary>
+        /// <param name="collision"></param>
         public void RecoverRectGridCell(Collider2D collision)
         {
             if (collision.CompareTag(rectGrid))

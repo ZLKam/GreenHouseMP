@@ -12,6 +12,9 @@ namespace Level3
         // Update is called once per frame
         private void Update()
         {
+            /// This is attached to placeholder to prevent any error happens in some very rare cases
+            /// Usually, this will not be running
+            
             if (transform.childCount > 0)
             {
                 if ((!transform.GetChild(0).GetComponent<ComponentEvent>().holding && transform.GetChild(0).localPosition != Vector3.zero))

@@ -125,6 +125,10 @@ namespace Level3
             StartCoroutine(CheckIfOutsideOfPlaceholder());
         }
 
+        /// <summary>
+        /// To prevent the component from staying outside of the placeholder in some very rare cases
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator CheckIfOutsideOfPlaceholder()
         {
             yield return new WaitForEndOfFrameUnit();
@@ -175,6 +179,9 @@ namespace Level3
         {
             if (!holding)
                 return;
+            /// To change the placeholder sprite when the component is dragged over it
+            /// Default placeholder is the default sprite of the placeholder which is green color
+            /// When the component is dragged over the placeholder, the placeholder sprite changes to highlight placeholder which is yellow color
             RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
             if (hits.Length > 0)
             {
@@ -194,6 +201,7 @@ namespace Level3
                     }
                 }
             }
+            // When the component is dragged outside of the placeholder, the placeholder sprite changes back to default placeholder
             if (!hitPlaceholder)
             {
                 if (defaultPlaceholder)
@@ -228,6 +236,10 @@ namespace Level3
             }
         }
 
+        /// <summary>
+        /// Handles the placement of the component, including changing its placeholder and swapping with other components
+        /// </summary>
+        /// <param name="eventData"></param>
         private void CheckPlaceholder(PointerEventData eventData)
         {
             GameObject currentRaycast = eventData.pointerCurrentRaycast.gameObject;
@@ -265,12 +277,12 @@ namespace Level3
             {
                 if (currentRaycast.CompareTag("Component"))
                 {
-                    Debug.Log("swap components");
                     // occupied, so swap components
                     Transform otherComponent = currentRaycast.transform;
-                    Transform otherPlaceholder = currentRaycast.transform.parent;
+                    Transform otherPlaceholder = otherComponent.parent;
                     otherComponent.parent = placeholder;
                     otherComponent.localPosition = Vector3.zero;
+                    otherComponent.GetComponent<ComponentEvent>().placeholder = placeholder;
                     if (otherComponent.GetComponent<ComponentEvent>().specialID != specialID)
                     {
                         otherComponent.GetComponent<ComponentEvent>().CheckDirection(otherComponent.gameObject);
@@ -285,6 +297,10 @@ namespace Level3
             }
         }
 
+        /// <summary>
+        /// For pumps only! Checks the direction of the pump to face the chiller
+        /// </summary>
+        /// <param name="GOToCheck"></param>
         public void CheckDirection(GameObject GOToCheck)
         {
             if (GOToCheck.GetComponent<ComponentEvent>().componentName == "CWP" || GOToCheck.GetComponent<ComponentEvent>().componentName == "CHWP")
@@ -317,7 +333,6 @@ namespace Level3
                         }
                         else
                         {
-                            Destroy(GOToCheck);
                             if (GOToCheck.GetComponent<ComponentEvent>().componentName == "CHWP")
                             {
                                 GameObject chwp = Instantiate(CHWPLeft, GOToCheck.transform.position, Quaternion.identity, GOToCheck.transform.parent);
