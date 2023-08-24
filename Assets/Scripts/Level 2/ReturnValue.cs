@@ -42,7 +42,7 @@ public class ReturnValue : MonoBehaviour
                     if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
-                        if (connection.tobeunhighlighted.Count >= 2)
+                        if (connection.tobeunhighlighted.Count % 2 == 0)
                         {
                             gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
                         }
@@ -54,7 +54,7 @@ public class ReturnValue : MonoBehaviour
                     //display.ImgFrom.sprite = display.transparentSprite;
                     //display.ImgTo.sprite= display.transparentSprite;
 
-                    if (connection.tobeunhighlighted.Count >= 2)
+                    if (connection.tobeunhighlighted.Count % 2 == 0)
                     {
                         gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
                     }
