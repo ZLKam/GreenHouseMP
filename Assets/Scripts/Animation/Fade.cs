@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -8,32 +9,30 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
-    public bool exit;
-    public bool settings;
-
-    private Animator fadeAnim;
-
+    //public bool settings;
     //public byte maxFade;
     //public byte fadeAmount;
     public byte fadeSpeed;
     public static bool canFade;
-    public bool sessionEnd;
+
+    private Animator fadeAnim;
     public Animator sectionAnim;
+
+    public bool sessionEnd;
     //public byte red, green, blue;
     //Image fadeImage;
     //public bool fadeIn;
     //public bool fadeOut;
-
-    public bool canDarken;
+    //public bool canDarken;
     [HideInInspector]
     public bool darken;
+    public bool exit;
     public Image profileImage;
     public TextMeshProUGUI username;
 
     public GameObject proceedButton;
 
-    public string transitionScene;
-    public string previousScene;
+    private string transitionScene, previousScene;
 
     public GameObject Section;
     public GameObject Level;
@@ -46,6 +45,7 @@ public class Fade : MonoBehaviour
 
     [SerializeField]
     private GameObject pausePanel;
+    public Animator pauseAnim;
     [SerializeField]
     private GameObject instructionPanel;
 
@@ -297,14 +297,30 @@ public class Fade : MonoBehaviour
         {
             Time.timeScale = 0;
             pausePanel.SetActive(true);
+            pauseAnim.SetBool("Pause", true);
             PauseCheck = true;
         }
         else 
         {
-            Time.timeScale = 1;
-            pausePanel.SetActive(false);
-            PauseCheck = false;
-            Debug.Log(PauseCheck);
+            pauseAnim.SetBool("Pause", false);
+            StartCoroutine(StopShowPanel(pauseAnim));
+        }
+    }
+
+    private IEnumerator StopShowPanel(Animator anim)
+    {
+        while (true)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("PauseLeave"))
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+                {
+                    Time.timeScale = 1;
+                    pausePanel.SetActive(false);
+                    PauseCheck = false;
+                }
+            }
+            yield return null;
         }
     }
 
