@@ -84,9 +84,11 @@ public class Fade : MonoBehaviour
         }
 
 
-        fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeSpeed");
+        fadeSpeed = (byte)PlayerPrefs.GetFloat("fadeValue");
         previousScene = PlayerPrefs.GetString("previousScene");
         fadeAnim = GetComponent<Animator>();
+
+        fadeAnim.speed = fadeSpeed;
 
         if (SceneManager.GetActiveScene().name == "Main Menu" && !PlayerPrefs.HasKey(Strings.Username) && !PlayerPrefs.HasKey(Strings.ProfileImage))
         {
