@@ -32,7 +32,7 @@ public class TempCheck : MonoBehaviour
         
         //light.transform.localRotation = Quaternion.identity;
         Camera = Camera.main;
-        Camera.transform.position = new Vector3(-300, -30, 0);
+        Camera.transform.position = new Vector3(-350, -20, 0);
         Camera.transform.rotation = Quaternion.Euler(1,90,0);
         Camera.transform.parent.GetComponent<CameraMovement>().enabled = false;
         connection.transform.GetComponent<Connection>().enabled = false;
@@ -55,7 +55,7 @@ public class TempCheck : MonoBehaviour
                     TempValues[i].gameObject.SetActive(true);
                     //alueImage[i].gameObject.SetActive(true);
                     TextMeshProUGUI texts = TempValues[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-                    texts.text = Temps[i].ToString() + "C";
+                    texts.text = Temps[i].ToString() + '\u00B0' + "C";
                 }
                 showing = true;
             }
