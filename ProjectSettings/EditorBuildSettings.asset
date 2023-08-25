@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LeaderBoard.unity
     guid: cbe6056915291444eae71225a868f5fc
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/TestSelectLevel.unity
+    guid: 34fef0f1290abb64994628e1dc494881
   m_configObjects: {}
