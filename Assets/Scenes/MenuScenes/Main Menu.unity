@@ -2791,6 +2791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPSCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 8424519204929298055, guid: d28bd86d897af3145bcf79056540eca4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d28bd86d897af3145bcf79056540eca4, type: 3}
 --- !u!224 &988157352 stripped
