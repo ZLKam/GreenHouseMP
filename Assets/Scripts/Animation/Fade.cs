@@ -97,7 +97,7 @@ public class Fade : MonoBehaviour
         }
         else 
         {
-            if (SceneManager.GetActiveScene().name == "TestSelectLevel") 
+            if (SceneManager.GetActiveScene().name == "SelectLevelChapter") 
             {
                 ShowAllBadges();
             }
