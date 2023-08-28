@@ -14,6 +14,7 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
     public HoverGroup hover;
     public GameObject barSelectedComponents;
     public Button btnUndo;
+    public GameObject btnProceed;
 
     private int numberOfCorrectConnections = 6;
 
@@ -29,6 +30,9 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
     private GameObject correctPanel;
     [SerializeField]
     private GameObject wrongPanel;
+
+    [SerializeField]
+    private bool allAnswerCorrect = false;
 
     private List<KeyValuePair<DrawLine, Material>> correctLinesPreviousMaterials = new();
     private List<KeyValuePair<DrawLine, Material>> wrongLinesPreviousMaterials = new();
@@ -65,6 +69,11 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
             wrongLine.lr.material = wrongMat;
         });
         if (correct == numberOfCorrectConnections)
+            allAnswerCorrect = true;
+        else
+            allAnswerCorrect = false;
+
+        if (allAnswerCorrect)
         {
             line.finishedLevel = true;
             hover.openTab = false;
@@ -72,6 +81,8 @@ public class Level3AnswerSheet : MonoBehaviour, IPointerClickHandler
             btnUndo.interactable = false;
             panel.SetActive(true);
             correctPanel.SetActive(true);
+            gameObject.SetActive(false);
+            btnProceed.SetActive(true);
             if (!PlayerPrefs.HasKey(Strings.ChapterTwoLevelThreeCompleted))
             {
                 if (PlayerPrefs.HasKey(Strings.ChapterTwoProgressions))
