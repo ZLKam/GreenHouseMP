@@ -8,15 +8,21 @@ public class SlidingChapterAnimation : MonoBehaviour
 {
     public List<Transform> objects;
 
-    public float leftPosition, rightPosition;
-    public float verticalPosition;
+    [Header("Adjustable Values")]
+    public float leftPosition;
+    public float rightPosition;
+    public float verticalPosition, centreVerticalPosition;
+    public float initialSize = 1f;
+    public float smallerSize = 0.7f;
 
+    private Vector3 centreScale;
+    private Vector3 objecthiddenScale;
+    public float rotateSpeed = 1f;
+
+    [Header("Debug Purposes")]
     [SerializeField]
     private Transform selectedObject;
     public int selectedObjectIndex = 0;
-
-    private Vector3 objecthiddenScale = new(0.7f, 0.7f, 0.7f);
-    public float rotateSpeed = 1f;
 
     private bool pointerDown = false;
     private Vector3 initialPointerPosition;
@@ -24,6 +30,8 @@ public class SlidingChapterAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        centreScale = new Vector3(initialSize, initialSize, initialSize);
+        objecthiddenScale = new Vector3(smallerSize, smallerSize, smallerSize);
         MakeSphereLike(objects, selectedObjectIndex, rotateSpeed);
     }
     
@@ -151,7 +159,7 @@ public class SlidingChapterAnimation : MonoBehaviour
         //right position
         StartCoroutine(Move(right, new(rightPosition, verticalPosition, 0), objecthiddenScale, time));
         //centre position
-        StartCoroutine(Move(selectedObject, Vector3.zero, Vector3.one, time));
+        StartCoroutine(Move(selectedObject, new(0, centreVerticalPosition, 0), centreScale, time));
     }
 
     public void MoveLeft(float time = 0)
