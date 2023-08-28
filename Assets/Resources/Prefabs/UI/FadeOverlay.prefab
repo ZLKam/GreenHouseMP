@@ -90,22 +90,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0170011b3b884881ef5eae243809f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exit: 0
-  settings: 0
   fadeSpeed: 1
-  canDarken: 0
+  sectionAnim: {fileID: 0}
+  sessionEnd: 0
   darken: 0
+  exit: 0
   profileImage: {fileID: 0}
   username: {fileID: 0}
   proceedButton: {fileID: 0}
-  transitionScene: 
-  previousScene: 
   Section: {fileID: 0}
   Level: {fileID: 0}
   GameMenu: {fileID: 0}
   objectiveitems: {fileID: 0}
   btnLevelSelect: {fileID: 0}
   pausePanel: {fileID: 0}
+  pauseAnim: {fileID: 0}
   instructionPanel: {fileID: 0}
   PauseCheck: 0
   progressionChapter1: {fileID: 0}
