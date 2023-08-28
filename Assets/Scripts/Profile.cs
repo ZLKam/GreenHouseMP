@@ -67,19 +67,19 @@ public class Profile : MonoBehaviour
         //    MenuItems.SetActive(true);
         //    textcon.text = username;
         //}
-        if (PlayerPrefs.HasKey(Strings.TimeProfileCreated))
-        {
-            DateTime dateTime = DateTime.Now;
-            DateTime profileCreatedTime = DateTime.Parse(PlayerPrefs.GetString(Strings.TimeProfileCreated));
-            double minutesSinceProfileCreated = (dateTime - profileCreatedTime).TotalMinutes;
-            if (minutesSinceProfileCreated > 10)
-            {
-                PlayerPrefs.DeleteKey(Strings.ProfileImage);
-                PlayerPrefs.DeleteKey(Strings.Username);
-                PlayerPrefs.DeleteKey(Strings.TimeProfileCreated);
-                Strings.ResetProgress();
-            }
-        }
+        //if (PlayerPrefs.HasKey(Strings.TimeProfileCreated))
+        //{
+        //    DateTime dateTime = DateTime.Now;
+        //    DateTime profileCreatedTime = DateTime.Parse(PlayerPrefs.GetString(Strings.TimeProfileCreated));
+        //    double minutesSinceProfileCreated = (dateTime - profileCreatedTime).TotalMinutes;
+        //    if (minutesSinceProfileCreated > 10)
+        //    {
+        //        PlayerPrefs.DeleteKey(Strings.ProfileImage);
+        //        PlayerPrefs.DeleteKey(Strings.Username);
+        //        PlayerPrefs.DeleteKey(Strings.TimeProfileCreated);
+        //        Strings.ResetProgress();
+        //    }
+        //}
         //if (PlayerPrefs.HasKey(Strings.Username) && PlayerPrefs.HasKey(Strings.ProfileImage))
         //{
         //    Texture2D texture2D = new(1, 1);
