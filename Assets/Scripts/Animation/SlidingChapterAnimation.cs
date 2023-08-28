@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TestDraggableChapter : MonoBehaviour
+public class SlidingChapterAnimation : MonoBehaviour
 {
     public List<Transform> objects;
 
