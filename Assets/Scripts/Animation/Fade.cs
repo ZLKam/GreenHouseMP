@@ -88,7 +88,14 @@ public class Fade : MonoBehaviour
         previousScene = PlayerPrefs.GetString("previousScene");
         fadeAnim = GetComponent<Animator>();
 
-        fadeAnim.speed = fadeSpeed;
+        if (fadeSpeed != 0)
+        {
+            fadeAnim.speed = fadeSpeed;
+        }
+        else
+        {
+            fadeAnim.speed = 1;
+        }
 
         if (SceneManager.GetActiveScene().name == "Main Menu" && !PlayerPrefs.HasKey(Strings.Username) && !PlayerPrefs.HasKey(Strings.ProfileImage))
         {
@@ -213,12 +220,12 @@ public class Fade : MonoBehaviour
         //quits the game if true
         {
             /*Profile.ProfileSet = */
-            Instructions.Read = Previewed = false;
-            PlayerPrefs.DeleteKey("ProfileImage");
-            PlayerPrefs.DeleteKey("Username");
-            PlayerPrefs.DeleteKey("TimeProfileCreated");
-            PlayerPrefs.DeleteKey("Gender");
-            Strings.ResetProgress();
+            //Instructions.Read = Previewed = false;
+            //PlayerPrefs.DeleteKey("ProfileImage");
+            //PlayerPrefs.DeleteKey("Username");
+            //PlayerPrefs.DeleteKey("TimeProfileCreated");
+            //PlayerPrefs.DeleteKey("Gender");
+            //Strings.ResetProgress();
             Application.Quit();
         }
         else if (sessionEnd) 
