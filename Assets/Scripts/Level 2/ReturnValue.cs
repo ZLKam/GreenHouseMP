@@ -27,43 +27,59 @@ public class ReturnValue : MonoBehaviour
         {
             btn.onClick.AddListener(delegate { ReturnConnectionPoint(); });
         }
-        
+
         selectedComponentBtn = connection.selectedComponent;
 
         foreach (GameObject t in selectedComponentBtn.selectedTransform)
         {
             var mesh = t.GetComponent<MeshRenderer>().sharedMaterial;
             var connectionIndex = selectedComponentBtn.selectedTransform.IndexOf(t);
-            int index = selectedComponentBtn.IndexReturning(t);
 
-            if (connection.tobeunhighlighted.Count >= 1)
+            if (mesh == connection.selectionMat)
             {
-                //Debug.Log(connection.tobeunhighlighted.Contains(t));
-                if (connection.tobeunhighlighted.Contains(t))
+                gameObject.transform.GetChild(connectionIndex).GetComponent<Image>().color = greenish;
+                gameObject.transform.GetChild(connectionIndex).GetComponent<Button>().interactable = false;
+                if (connection.points.Contains(t))
                 {
-                    if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
-                    {
-                        gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
-                        if (connection.tobeunhighlighted.Count % 2 == 0)
-                        {
-                            gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
-                        }
-                    }
-                }
-                else
-                {
-                    gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
-                    //display.ImgFrom.sprite = display.transparentSprite;
-                    //display.ImgTo.sprite= display.transparentSprite;
-
-                    if (connection.tobeunhighlighted.Count % 2 == 0)
-                    {
-                        gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
-                    }
+                    gameObject.transform.GetChild(connectionIndex).GetComponent<Button>().interactable = true;
                 }
             }
-        }
+            else
+            {
+                gameObject.transform.GetChild(connectionIndex).GetComponent<Button>().interactable = true;
+            }
 
+            //int index = selectedComponentBtn.IndexReturning(t);
+
+            //    if (connection.tobeunhighlighted.Count >= 1)
+            //    {
+            //        //Debug.Log(connection.tobeunhighlighted.Contains(t));
+            //        if (connection.tobeunhighlighted.Contains(t))
+            //        {
+            //            if (index == int.Parse(transform.GetChild(connectionIndex).GetComponent<Button>().gameObject.name))
+            //            {
+            //                gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = greenish;
+            //                if (connection.tobeunhighlighted.Count % 2 == 0)
+            //                {
+            //                    gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = false;
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            gameObject.transform.GetChild(index - 1).GetComponent<Image>().color = whiter;
+            //            //display.ImgFrom.sprite = display.transparentSprite;
+            //            //display.ImgTo.sprite= display.transparentSprite;
+
+            //            if (connection.tobeunhighlighted.Count % 2 == 0)
+            //            {
+            //                gameObject.transform.GetChild(index - 1).GetComponent<Button>().interactable = true;
+            //            }
+            //        }
+            //    }
+            //}
+
+        }
     }
 
     public void ReturnConnectionPoint()
