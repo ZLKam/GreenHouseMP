@@ -349,7 +349,10 @@ public class Connection : MonoBehaviour
                 if (points.Count >= 2)
                 {
                     CheckConnectType();
+                }
 
+                if (points.Count >= 2)
+                {
                     var pointlist = new List<GameObject>();
                     for (int i = 0; i < points.Count; i++)
                     {
