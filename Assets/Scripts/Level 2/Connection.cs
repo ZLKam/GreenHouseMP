@@ -252,26 +252,31 @@ public class Connection : MonoBehaviour
                 {
                     selectedComponent.IndexReturn().GetComponent<MeshRenderer>().sharedMaterial = originalMat;
                     points.Remove(selectedComponent.IndexReturn().gameObject);
-                    if (!(tobeunhighlighted.Count % 2 == 0))
+                    if (tobeunhighlighted[tobeunhighlighted.Count - 1] == selectedComponent.IndexReturn() && (AHUPoint1.Contains(selectedComponent.IndexReturn()) || AHUPoint2.Contains(selectedComponent.IndexReturn())))
                     {
-                        foreach (GameObject point in AHUPoint1)
+                        if (AHUPoint1.Contains(selectedComponent.IndexReturn()))
                         {
-                            if (tobeunhighlighted.Contains(point))
+                            foreach (GameObject point in AHUPoint1)
                             {
-                                point.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                                tobeunhighlighted.Remove(point);
+                                if (tobeunhighlighted.Contains(point))
+                                {
+                                    point.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                                    tobeunhighlighted.Remove(point);
+                                }
                             }
                         }
-                        foreach(GameObject point in AHUPoint2)
+                        if (AHUPoint2.Contains(selectedComponent.IndexReturn()))
                         {
-                            if (tobeunhighlighted.Contains(point))
+                            foreach (GameObject point in AHUPoint2)
                             {
-                                point.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                                tobeunhighlighted.Remove(point);
+                                if (tobeunhighlighted.Contains(point))
+                                {
+                                    point.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                                    tobeunhighlighted.Remove(point);
+                                }
                             }
                         }
                     }
-                    else
                     {
                         tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
                     }
@@ -343,38 +348,11 @@ public class Connection : MonoBehaviour
  
                 if (points.Count >= 2)
                 {
+                    CheckConnectType();
+                }
 
-                    //Insert Cannot Connect in and in/Out and Out here
-                    int insame = 0;
-                    int outsame = 0;
-                    foreach (GameObject pipe in points)
-                    {
-                        if (InCP.Contains(pipe))
-                        {
-                            insame += 1;
-                        }
-                        else if (OutCP.Contains(pipe))
-                        {
-                            outsame += 1;
-                        }
-                        
-                        if (insame >= 2 || outsame >= 2)
-                        {
-                            tobeunhighlighted.Remove(pipe);
-                            outsame = insame = 0;
-
-                            foreach (GameObject connectionPoint in points) 
-                            {
-                                connectionPoint.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                            }
-                            points.Clear();
-                            display.ResetDisplayConnect();
-                            ErrorInandIn.SetActive(true);
-                            return;
-                        }
-                    }
-                    outsame = insame = 0;
-
+                if (points.Count >= 2)
+                {
                     var pointlist = new List<GameObject>();
                     for (int i = 0; i < points.Count; i++)
                     {
@@ -549,6 +527,141 @@ public class Connection : MonoBehaviour
 
     public void UndoPipe()
     {
+        if (tobeunhighlighted.Count > 1)
+        {
+            if (tobeunhighlighted.Count % 2 == 0)
+            {
+                for (int i = 1; i <= 2; i++)
+                {
+                    if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
+                    {
+                        //Debug.Log(tobeunhighlighted.Count - 1);
+                        //Debug.Log("reached");
+
+                        CheckList.Add(tobeunhighlighted[tobeunhighlighted.Count - 1]);
+                        if (AHUPoint1.Contains(CheckList[0]) || AHUPoint2.Contains(CheckList[0]))
+                        {
+                            for (int index = 0; index < AHUPoint1.Count; index++)
+                            {
+                                tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                                tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+                            }
+                        }
+                        else
+                        {
+                            tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+                        }
+                        CheckList.Clear();
+
+                    }
+                }
+                points.Clear();
+                //foreach (GameObject removed in CheckList)
+                //{
+                //    if (AHUPoint1.Contains(removed) || AHUPoint2.Contains(removed))
+                //    {
+                //        if (AHUPoint1.Contains(removed))
+                //        {
+                //            for (int index = 0; index < AHUPoint1.Count-1;index++)
+                //            {
+                //                if (AHUPoint1.Contains(tobeunhighlighted[tobeunhighlighted.Count-1]))
+                //                {
+                //                    AHUPoint1[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
+                //                    tobeunhighlighted.Remove(AHUPoint1[index]);
+                //                }
+                //            }
+                //            //CheckList.Remove(removed);
+                //        }
+                //        else if (AHUPoint2.Contains(removed))
+                //        {
+                //            for (int index = 0; index < AHUPoint2.Count - 1; index++)
+                //            {
+                //                if (AHUPoint2.Contains(tobeunhighlighted[tobeunhighlighted.Count - 1]))
+                //                {
+                //                    AHUPoint2[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
+                //                    tobeunhighlighted.Remove(AHUPoint2[index]);
+                //                }
+                //            }
+                //            //CheckList.Remove(removed);
+                //        }
+                //    }
+                //}
+                CheckList.Clear();
+                Debug.Log("Cleared");
+            }
+
+            else if (tobeunhighlighted.Count % 2 == 1)
+            {
+                for (int i = 1; i <= 3; i++)
+                {
+                    CheckList.Add(tobeunhighlighted[tobeunhighlighted.Count - 1]);
+                    if (AHUPoint1.Contains(CheckList[0]) || AHUPoint2.Contains(CheckList[0]))
+                    {
+                        for (int index = 0; index < AHUPoint1.Count; index++)
+                        {
+                            tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+                        }
+                    }
+                    else
+                    {
+                        tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                        tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+                    }
+                    CheckList.Clear();
+                }
+                points.Clear();
+                CheckList.Clear();
+                //foreach (GameObject removed in CheckList)
+                //{
+                //    if (AHUPoint1.Contains(removed) || AHUPoint2.Contains(removed))
+                //    {
+                //        Debug.Log("Reached the important part");
+                //        if (AHUPoint1.Contains(removed))
+                //        {
+                //            for (int index = 0; index < AHUPoint1.Count - 1; index++)
+                //            {
+                //                if (AHUPoint1.Contains(tobeunhighlighted[tobeunhighlighted.Count - 1]))
+                //                {
+                //                    AHUPoint1[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
+                //                    tobeunhighlighted.Remove(AHUPoint1[index]);
+                //                }
+                //            }
+                //        }
+                //        else if (AHUPoint2.Contains(removed))
+                //        {
+                //            for (int index = 0; index < AHUPoint1.Count - 1; index++)
+                //            {
+                //                if (AHUPoint1.Contains(tobeunhighlighted[tobeunhighlighted.Count - 1]))
+                //                {
+                //                    AHUPoint1[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
+                //                    tobeunhighlighted.Remove(AHUPoint1[index]);
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+            }
+        }
+        else
+        {
+            tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
+            points.Clear();
+        }
+
+
+        if (pipes.Count >= 1)
+        {
+            GameObject Clone = pipes[pipes.Count - 1];
+            pipes.Remove(pipes[pipes.Count - 1]);
+            Destroy(Clone);
+            anomalyFound = false;
+
+        }
+        Debug.Log("Removed the lastest pipe");
+
         //if (tobeunhighlighted.Count > 0)
         //{
         //    if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
@@ -578,123 +691,6 @@ public class Connection : MonoBehaviour
         //    Debug.Log("No Pipes Left");
         //    return;
         //}
-
-
-
-        if (tobeunhighlighted.Count > 1)
-        {
-            if (tobeunhighlighted.Count % 2 == 0)
-            {
-                for (int i = 1; i <= 2; i++)
-                {
-                    if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-                    {
-                        //Debug.Log(tobeunhighlighted.Count - 1);
-                        //Debug.Log("reached");
-                        tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                        CheckList.Add(tobeunhighlighted[tobeunhighlighted.Count - 1]);
-                        Debug.Log(CheckList.Count);
-                        tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
-                        
-                    }
-                }
-                points.Clear();
-                foreach (GameObject removed in CheckList)
-                {
-                    if (AHUPoint1.Contains(removed) || AHUPoint2.Contains(removed))
-                    {
-                        if (AHUPoint1.Contains(removed))
-                        {
-                            for (int index = 0; index < AHUPoint1.Count-1;index++)
-                            {
-                                if (AHUPoint1.Contains(tobeunhighlighted[tobeunhighlighted.Count-1]))
-                                {
-                                    AHUPoint1[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
-                                    tobeunhighlighted.Remove(AHUPoint1[index]);
-                                }
-                            }
-                            //CheckList.Remove(removed);
-                        }
-                        else if (AHUPoint2.Contains(removed))
-                        {
-                            for (int index = 0; index < AHUPoint2.Count - 1; index++)
-                            {
-                                if (AHUPoint2.Contains(tobeunhighlighted[tobeunhighlighted.Count - 1]))
-                                {
-                                    AHUPoint2[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
-                                    tobeunhighlighted.Remove(AHUPoint2[index]);
-                                }
-                            }
-                            //CheckList.Remove(removed);
-                        }
-                    }
-                }
-                CheckList.Clear();
-                Debug.Log("Cleared");
-            }
-
-            else if (tobeunhighlighted.Count % 2 == 1)
-            {
-                for (int i = 1; i <= 3; i++)
-                {
-                    Debug.Log(tobeunhighlighted.Count);
-                    if (tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial == selectionMat)
-                    {
-                        tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-                        CheckList.Add(tobeunhighlighted[tobeunhighlighted.Count - 1]);
-                        tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
-                    }
-                }
-                points.Clear();
-                foreach (GameObject removed in CheckList)
-                {
-                    if (AHUPoint1.Contains(removed) || AHUPoint2.Contains(removed))
-                    {
-                        Debug.Log("Reached the important part");
-                        if (AHUPoint1.Contains(removed))
-                        {
-                            for (int index = 0; index < AHUPoint1.Count - 1; index++)
-                            {
-                                if (AHUPoint1.Contains(tobeunhighlighted[tobeunhighlighted.Count - 1]))
-                                {
-                                    AHUPoint1[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
-                                    tobeunhighlighted.Remove(AHUPoint1[index]);
-                                }
-                            }
-                        }
-                        else if (AHUPoint2.Contains(removed))
-                        {
-                            for (int index = 0; index < AHUPoint1.Count - 1; index++)
-                            {
-                                if (AHUPoint1.Contains(tobeunhighlighted[tobeunhighlighted.Count - 1]))
-                                {
-                                    AHUPoint1[index].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat; //tobeunhighlighted[tobeunhighlighted.Count - 1]
-                                    tobeunhighlighted.Remove(AHUPoint1[index]);
-                                }
-                            }
-                        }
-                    }
-                }
-                CheckList.Clear();
-            }
-        }
-        else
-        {
-            tobeunhighlighted[tobeunhighlighted.Count - 1].transform.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
-            tobeunhighlighted.RemoveAt(tobeunhighlighted.Count - 1);
-        }
-
-
-        if (pipes.Count >= 1)
-        {
-            GameObject Clone = pipes[pipes.Count - 1];
-            pipes.Remove(pipes[pipes.Count - 1]);
-            Destroy(Clone);
-            anomalyFound = false;
-
-        }
-        Debug.Log("Removed the lastest pipe");
-
     }
 
 
@@ -772,4 +768,54 @@ public class Connection : MonoBehaviour
     //        }
     //    }
     //}
+
+    public void CheckConnectType()
+    {
+        //Insert Cannot Connect in and in/Out and Out here
+        int insame = 0;
+        int outsame = 0;
+        for (int i = 0; i < points.Count; i++)
+        {
+            if (InCP.Contains(points[i]))
+            {
+                insame += 1;
+            }
+            else if (OutCP.Contains(points[i]))
+            {
+                outsame += 1;
+            }
+        }
+
+        if (insame >= 2 || outsame >= 2)
+        {
+            Debug.Log("THERE ARE 2");
+            if (AHUPoint1.Contains(points[1]))
+            {
+                foreach (GameObject point in AHUPoint1)
+                {
+                    point.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                    tobeunhighlighted.Remove(point);
+                }
+            }
+            else if (AHUPoint2.Contains(points[1]))
+            {
+                foreach (GameObject point in AHUPoint2)
+                {
+                    point.GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                    tobeunhighlighted.Remove(point);
+                }
+            }
+            else
+            {
+                points[1].GetComponent<MeshRenderer>().sharedMaterial = originalMat;
+                tobeunhighlighted.Remove(points[1]);
+            }
+
+            points.Remove(points[1]);
+            display.ResetDisplayConnect();
+            ErrorInandIn.SetActive(true);
+            outsame = insame = 0;
+            return;
+        }
+    }
 }
