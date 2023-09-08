@@ -5171,6 +5171,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 182
       objectReference: {fileID: 0}
+    - target: {fileID: 6687260899377458447, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: inspectCanvas
+      value: 
+      objectReference: {fileID: 1457539146}
+    - target: {fileID: 6687260899377458447, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
+      propertyPath: inspectComponent
+      value: 
+      objectReference: {fileID: 1457539145}
     - target: {fileID: 7355600384038062760, guid: c1397dce5bbeffc49a47221857fed0e8, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.38823068
@@ -16998,6 +17006,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4247619556089041927, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+      propertyPath: mainCanvas
+      value: 
+      objectReference: {fileID: 889600439}
     - target: {fileID: 8308388784912494394, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -17046,12 +17058,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: InspectCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 8308388784912494399, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8308388786504601161, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+--- !u!114 &1457539145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4247619556089041927, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+  m_PrefabInstance: {fileID: 1457539144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e39306371cf5074fafb13e379733cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1457539146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8308388786504601161, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+  m_PrefabInstance: {fileID: 1457539144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1467932058
 GameObject:
   m_ObjectHideFlags: 0
@@ -24013,6 +24045,10 @@ MonoBehaviour:
   zooming: 0
   moved: 0
   zoomAmount: 0
+  maxRotationX: 30
+  minRotationX: 340
+  maxRotationY: 150
+  minRotationY: 30
   cameraDist: 0
 --- !u!1 &1917923425
 GameObject:

@@ -31,6 +31,8 @@ public class InspectComponent : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI partName, partDescription;
 
+    private bool KeepRunning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,9 @@ public class InspectComponent : MonoBehaviour
                 instantiatePoint.transform.Rotate(Vector3.up, Input.GetTouch(0).deltaPosition.x, Space.World);
             }
         }
+
+
+
     }
 
     public void InspectingComponent(string prefabName) 
@@ -77,8 +82,11 @@ public class InspectComponent : MonoBehaviour
     private void ComponentLinesAppend(string startString, string endString)
     //changes which part of the text file to take based on the text that seperates the segments
     {
+        Debug.Log(startString + "," + endString);
+        Debug.Log(partsComponentList.Count);
         for (int i = 0; i < partsComponentList.Count; i++)
         {
+            Debug.Log("test");
             if (partsComponentList[i].StartsWith(startString))
             {
                 startIndex = i + 1;
@@ -89,8 +97,10 @@ public class InspectComponent : MonoBehaviour
             }
         }
 
+        Debug.Log(startIndex + endIndex);
         for (int i = startIndex; i < endIndex; i++)
         {
+            Debug.Log("test");
             componentToDisplayList.Add(partsComponentList[i]);
         }
 
@@ -105,7 +115,7 @@ public class InspectComponent : MonoBehaviour
             partName.text = ClickedBtnName;
             for (int i = 0; i < componentToDisplayList.Count; i++)
             {
-                //Debug.Log(descriptionList[i].StartsWith("[" + ClickedBtnName + "]"));
+                Debug.Log(componentToDisplayList[i].StartsWith("[" + ClickedBtnName + "]"));
                 if (componentToDisplayList[i].StartsWith("[" + ClickedBtnName + "]"))
                 {
                     int index = componentToDisplayList[i].IndexOf("]");

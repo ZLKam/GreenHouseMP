@@ -8778,6 +8778,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4247619556089041927, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+      propertyPath: mainCanvas
+      value: 
+      objectReference: {fileID: 1813309334}
     - target: {fileID: 8308388784912494394, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -8826,6 +8830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InspectCameraTheoryBook
       objectReference: {fileID: 0}
+    - target: {fileID: 8308388784912494399, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8308388786504601161, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8843,10 +8851,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1388310709 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8308388786504601526, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4247619556089041927, guid: fbd120a3eca16c045a8f5419788e7d1f, type: 3}
   m_PrefabInstance: {fileID: 1388310707}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388310708}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e39306371cf5074fafb13e379733cbc, type: 3}
@@ -10233,6 +10241,10 @@ MonoBehaviour:
   zooming: 0
   moved: 0
   zoomAmount: 0
+  maxRotationX: 30
+  minRotationX: 340
+  maxRotationY: 150
+  minRotationY: 30
   cameraDist: 0
 --- !u!4 &1586243752
 Transform:
