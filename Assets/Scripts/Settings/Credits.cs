@@ -19,7 +19,7 @@ public class Credits : MonoBehaviour
         scrollRect = GetComponentInChildren<ScrollRect>();
         text = scrollRect.content.GetComponentInChildren<TextMeshProUGUI>();
         text.text = textCredit.text;
-        scrollRect.content.GetComponent<GridLayoutGroup>().cellSize = new(1000, text.renderedHeight + Screen.height);
+        scrollRect.content.GetComponent<GridLayoutGroup>().cellSize = new(1000, text.preferredHeight + 0.7f * Screen.height);
     }
 
     // Update is called once per frame
@@ -35,10 +35,12 @@ public class Credits : MonoBehaviour
             gameObject.SetActive(false);
         }
 
+        Debug.Log("scrolling");
         scrollRect.verticalNormalizedPosition -= 0.0005f;
         if (scrollRect.verticalNormalizedPosition <= 0)
         {
             gameObject.SetActive(false);
+            scrollRect.verticalNormalizedPosition = 1;
         }
     }
 }

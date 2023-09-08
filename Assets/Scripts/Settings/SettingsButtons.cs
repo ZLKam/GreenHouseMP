@@ -32,6 +32,8 @@ public class SettingsButtons : MonoBehaviour
     public GameObject btnClearLogFile;
     public GameObject btnShowLogFile;
 
+    private GameObject previousShowed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,7 @@ public class SettingsButtons : MonoBehaviour
         volPanel.SetActive(false);
         sensPanel.SetActive(false);
         resetButton.SetActive(false);
+        previousShowed = bgPanel;
     }
 
     //sets the panels for the volume settings to active
@@ -72,6 +75,7 @@ public class SettingsButtons : MonoBehaviour
         volPanel.SetActive(true);
         sensPanel.SetActive(false);
         resetButton.SetActive(false);
+        previousShowed = volPanel;
     }
     
 
@@ -87,19 +91,20 @@ public class SettingsButtons : MonoBehaviour
         volPanel.SetActive(false);
         sensPanel.SetActive(true);
         resetButton.SetActive(true);
+        previousShowed = sensPanel;
     }
 
     public void ClickOnCredits()
     {
-        bgButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-        volumeButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-        sensitivityButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-        creditButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        //bgButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+        //volumeButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+        //sensitivityButton.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+        //creditButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
-        bgPanel.SetActive(false);
-        volPanel.SetActive(false);
-        sensPanel.SetActive(false);
-        resetButton.SetActive(false);
+        //bgPanel.SetActive(false);
+        //volPanel.SetActive(false);
+        //sensPanel.SetActive(false);
+        //resetButton.SetActive(false);
         creditsPanel.SetActive(true);
     }
 
