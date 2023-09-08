@@ -137,7 +137,6 @@ public class InspectComponent : MonoBehaviour
         descriptionPanel.SetActive(false);
         cross.SetActive(false);
         titlePanel.SetActive(false);
-        inspectCamera.gameObject.SetActive(false);
         mainCanvas.gameObject.SetActive(true);
     }
 

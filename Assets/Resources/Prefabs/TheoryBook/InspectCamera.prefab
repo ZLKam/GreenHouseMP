@@ -91,8 +91,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partDescriptionTextFile: {fileID: 4900000, guid: 9c10a441c2c8bbf46b33aa2adcaa943e, type: 3}
   inspectCamera: {fileID: 8308388784912494393}
-  partsComponentList: []
-  componentToDisplayList: []
   mainCanvas: {fileID: 0}
   instantiatePoint: {fileID: 8308388785505620605}
   titlePanel: {fileID: 8308388785805750764}
@@ -474,7 +472,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4247619556089041927}
         m_TargetAssemblyTypeName: InspectComponent, Assembly-CSharp
         m_MethodName: RemoveInspect
         m_Mode: 1
