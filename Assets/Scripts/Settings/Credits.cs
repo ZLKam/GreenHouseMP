@@ -19,7 +19,7 @@ public class Credits : MonoBehaviour
         scrollRect = GetComponentInChildren<ScrollRect>();
         text = scrollRect.content.GetComponentInChildren<TextMeshProUGUI>();
         text.text = textCredit.text;
-        scrollRect.content.GetComponent<GridLayoutGroup>().cellSize = new(1000, text.preferredHeight + 0.7f * Screen.height);
+        scrollRect.content.GetComponent<GridLayoutGroup>().cellSize = new(1000, text.preferredHeight + Screen.height);
     }
 
     // Update is called once per frame
