@@ -10,13 +10,13 @@ public class ShaderChange : MonoBehaviour
     public Shader shaderWrong;
     Renderer[] testChild;
 
-    public float thickness;
-    public bool wrong;
+    public float thicccc;
+    public bool boiii;
 
     // Start is called before the first frame update
     void Start()
     {
-        thickness = 1.07f;
+        thicccc = 1.07f;
         testChild = gameObject1.GetComponentsInChildren<Renderer>();
     }
 
@@ -33,17 +33,17 @@ public class ShaderChange : MonoBehaviour
 
         foreach (Renderer child in testChild) 
         {
-            if (wrong)
+            if (boiii)
             {
                 child.material.shader = shaderRight;
                 child.sharedMaterial.SetColor("_OutlineColor", Color.red);
-                child.sharedMaterial.SetFloat("_OutlineWidth", thickness);
+                child.sharedMaterial.SetFloat("_OutlineWidth", thicccc);
             }
             else 
             {
                 child.material.shader = shaderRight;
                 child.sharedMaterial.SetColor("_OutlineColor", Color.green);
-                child.sharedMaterial.SetFloat("_OutlineWidth", thickness);
+                child.sharedMaterial.SetFloat("_OutlineWidth", thicccc);
             }
         }
     }
