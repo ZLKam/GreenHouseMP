@@ -3484,7 +3484,7 @@ MonoBehaviour:
   - {fileID: 3420256080813939743, guid: 304e1455dcae9d24ea49b24b8d5735a3, type: 3}
   - {fileID: 3420256080813939743, guid: 7fa8a3eb0f0772c498a337cf8a609ba7, type: 3}
   - {fileID: 3420256080813939743, guid: 17a6527b39ec37c418b883f7e6cc68bd, type: 3}
-  fade: {fileID: 0}
+  fade: {fileID: 956774535}
 --- !u!1 &253657870
 GameObject:
   m_ObjectHideFlags: 0
